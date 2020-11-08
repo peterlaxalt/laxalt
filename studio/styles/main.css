@@ -1,0 +1,10 @@
+:root {
+  --body-bg: #000000;
+  --text-color: #fff;
+  --brand-primary: #ff8e6f;
+  --brand-secondary: #ff7650;
+  --component-bg: #1b161c;
+  --component-border-color: rgb(57, 57, 57);
+  --component-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  --state-danger-color: #f8495f;
+}
