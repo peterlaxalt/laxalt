@@ -174,8 +174,8 @@ export class DharmaCounter extends React.PureComponent<
         <filter id="displacementFilter">
           <feTurbulence
             type="turbulence"
-            baseFrequency="1.2"
-            numOctaves="2"
+            baseFrequency=".05"
+            numOctaves="1"
             result="turbulence"
           />
           <feDisplacementMap

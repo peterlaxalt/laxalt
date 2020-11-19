@@ -35,6 +35,10 @@ export const InteractiveFrameHeaderStyle = styled.div`
     --${InteractiveFrameHeaderClassName}__frame-edge-size: 3rem;
     --${InteractiveFrameHeaderClassName}__marquee-speed: 60s;
 
+    @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      --${InteractiveFrameHeaderClassName}__frame-edge-size: 2rem;
+    }
+
     // __________________________
     // Inner Grid
     .${InteractiveFrameHeaderClassName}__inner {
@@ -66,6 +70,13 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
       width: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2));
       height: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
+
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        transform: translate(-50%, -50%) rotate(90deg);
+
+        width: calc(100vh - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
+        height: calc(100vw - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
+      }
 
       cursor: crosshair;
 
