@@ -46,6 +46,8 @@ export const InteractiveFrameHeaderStyle = styled.div`
       height: 100vh;
 
       position: relative;
+
+      /* filter: url(#displacementFilter) */
     }
 
     .${DharmaTypeClassName}, .${InteractiveFrameHeaderClassName}__frame {
@@ -99,7 +101,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
         transition: stroke-width .5s ease;
 
 
-        filter: url(#displacementFilter);
+        /* filter: url(#displacementFilter); */
 
         /* animation: ${PulseStroke} calc(1s * ((var(--dharma-type-key) / 2) + 1)) ease infinite; */
 

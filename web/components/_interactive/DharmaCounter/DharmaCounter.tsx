@@ -65,6 +65,10 @@ export class DharmaCounter extends React.PureComponent<
     };
 
     this.incrementLetterCount = this.incrementLetterCount.bind(this);
+    this.decrementLetterCount = this.decrementLetterCount.bind(this);
+    this.resetLetterCount = this.resetLetterCount.bind(this);
+    this.updateLetterCount = this.updateLetterCount.bind(this);
+
     this.letterCountTimer = this.letterCountTimer.bind(this);
   }
 
@@ -133,6 +137,62 @@ export class DharmaCounter extends React.PureComponent<
     return;
   }
 
+  decrementLetterCount(id: number) {
+    this.setState({
+      characters: this.state.characters.map(
+        (character: LXLT_DharmaChar, idx: number) => {
+          return {
+            letter: character.letter,
+            count: id == character.idx ? character.count - 1 : character.count,
+            idx: idx,
+          };
+        }
+      ),
+    });
+
+    return;
+  }
+
+  resetLetterCount(id: number) {
+    this.setState({
+      characters: this.state.characters.map(
+        (character: LXLT_DharmaChar, idx: number) => {
+          return {
+            letter: character.letter,
+            count: id == character.idx ? 1 : character.count,
+            idx: idx,
+          };
+        }
+      ),
+    });
+
+    return;
+  }
+
+  updateLetterCount(id: number) {
+    if (this.state.characters && this.state.characters.length > 0) {
+      let matchedCharacter: LXLT_DharmaChar = this.state.characters.filter(
+        (character: LXLT_DharmaChar) => character.idx == id
+      )[0];
+
+      let maxCount = 5;
+
+      if (matchedCharacter) {
+        if (matchedCharacter.count === maxCount) {
+          this.resetLetterCount(id);
+        } else {
+          this.incrementLetterCount(id);
+        }
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
+
+    return;
+  }
+
   letterCountTimer() {
     function generateRandomInteger(min, max) {
       return Math.floor(min + Math.random() * (max + 1 - min));
@@ -140,7 +200,7 @@ export class DharmaCounter extends React.PureComponent<
 
     window.setInterval(
       () =>
-        this.incrementLetterCount(
+        this.updateLetterCount(
           generateRandomInteger(0, this.state.characters.length)
         ),
       3000
@@ -159,7 +219,7 @@ export class DharmaCounter extends React.PureComponent<
       characterVerticalTranslation,
     } = this.state;
 
-    // console.log("DharmaCounter state:", this.state);
+    // console.table("DharmaCounter state:", this.state.characters);
 
     return (
       <DharmaTypeStyle
@@ -171,22 +231,6 @@ export class DharmaCounter extends React.PureComponent<
           [`--${DharmaTypeClassName}-font-size` as any]: `${viewBoxHeight}px`,
         }}
       >
-        <filter id="displacementFilter">
-          <feTurbulence
-            type="turbulence"
-            baseFrequency=".05"
-            numOctaves="1"
-            result="turbulence"
-          />
-          <feDisplacementMap
-            in2="turbulence"
-            in="SourceGraphic"
-            scale="3"
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-        </filter>
-
         <g>
           {characters.map((char: LXLT_DharmaChar, idx: number) => {
             let countArray = Array.from(Array(char.count).keys());
@@ -209,8 +253,24 @@ export class DharmaCounter extends React.PureComponent<
                   data-char-id={idx}
                   data-char-count={duplicate}
                   key={idxx}
-                  onClick={() => this.incrementLetterCount(idx)}
+                  onClick={() => this.updateLetterCount(idx)}
                 >
+                  <filter id={`displacementFilter__${idx}__${idxx}`}>
+                    <feTurbulence
+                      type="turbulence"
+                      baseFrequency={.05 * (idxx + 1)}
+                      numOctaves={1 * (idxx + 10)}
+                      result="turbulence"
+                    />
+                    <feDisplacementMap
+                      in2="turbulence"
+                      in="SourceGraphic"
+                      scale={3 - (idxx * .5)}
+                      xChannelSelector="R"
+                      yChannelSelector="G"
+                    />
+                  </filter>
+
                   <text
                     className={`${DharmaTypeClassName}__character`}
                     transform={`translate(${
@@ -218,6 +278,7 @@ export class DharmaCounter extends React.PureComponent<
                     } ${adjustedVerticalTranslation}) scale(${characterHorizontalScale}, ${adjustedVerticalScale})`}
                     style={{
                       [`--${DharmaTypeClassName}-key` as any]: idx,
+                      filter: `url(#displacementFilter__${idx}__${idxx})`,
                     }}
                   >
                     <tspan className={`${DharmaTypeClassName}__letter`}>

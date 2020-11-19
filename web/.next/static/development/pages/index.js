@@ -68,6 +68,9 @@ function (_React$PureComponent) {
       isInitialized: false
     };
     _this.incrementLetterCount = _this.incrementLetterCount.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this));
+    _this.decrementLetterCount = _this.decrementLetterCount.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this));
+    _this.resetLetterCount = _this.resetLetterCount.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this));
+    _this.updateLetterCount = _this.updateLetterCount.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this));
     _this.letterCountTimer = _this.letterCountTimer.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_6__["default"])(_this));
     return _this;
   }
@@ -128,6 +131,58 @@ function (_React$PureComponent) {
       return;
     }
   }, {
+    key: "decrementLetterCount",
+    value: function decrementLetterCount(id) {
+      this.setState({
+        characters: this.state.characters.map(function (character, idx) {
+          return {
+            letter: character.letter,
+            count: id == character.idx ? character.count - 1 : character.count,
+            idx: idx
+          };
+        })
+      });
+      return;
+    }
+  }, {
+    key: "resetLetterCount",
+    value: function resetLetterCount(id) {
+      this.setState({
+        characters: this.state.characters.map(function (character, idx) {
+          return {
+            letter: character.letter,
+            count: id == character.idx ? 1 : character.count,
+            idx: idx
+          };
+        })
+      });
+      return;
+    }
+  }, {
+    key: "updateLetterCount",
+    value: function updateLetterCount(id) {
+      if (this.state.characters && this.state.characters.length > 0) {
+        var matchedCharacter = this.state.characters.filter(function (character) {
+          return character.idx == id;
+        })[0];
+        var maxCount = 5;
+
+        if (matchedCharacter) {
+          if (matchedCharacter.count === maxCount) {
+            this.resetLetterCount(id);
+          } else {
+            this.incrementLetterCount(id);
+          }
+        } else {
+          return;
+        }
+      } else {
+        return;
+      }
+
+      return;
+    }
+  }, {
     key: "letterCountTimer",
     value: function letterCountTimer() {
       var _this2 = this;
@@ -137,7 +192,7 @@ function (_React$PureComponent) {
       }
 
       window.setInterval(function () {
-        return _this2.incrementLetterCount(generateRandomInteger(0, _this2.state.characters.length));
+        return _this2.updateLetterCount(generateRandomInteger(0, _this2.state.characters.length));
       }, 3000);
     }
   }, {
@@ -152,7 +207,7 @@ function (_React$PureComponent) {
           characterWidth = _this$state.characterWidth,
           characterHorizontalScale = _this$state.characterHorizontalScale,
           characterVerticalScale = _this$state.characterVerticalScale,
-          characterVerticalTranslation = _this$state.characterVerticalTranslation; // console.log("DharmaCounter state:", this.state);
+          characterVerticalTranslation = _this$state.characterVerticalTranslation; // console.table("DharmaCounter state:", this.state.characters);
 
       return __jsx(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeStyle"], {
         xmlns: "http://www.w3.org/2000/svg",
@@ -162,47 +217,21 @@ function (_React$PureComponent) {
         style: Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])({}, "--".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "-font-size"), "".concat(viewBoxHeight, "px")),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 165
+          lineNumber: 225
         },
         __self: this
-      }, __jsx("filter", {
-        id: "displacementFilter",
+      }, __jsx("g", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 174
-        },
-        __self: this
-      }, __jsx("feTurbulence", {
-        type: "turbulence",
-        baseFrequency: ".05",
-        numOctaves: "1",
-        result: "turbulence",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 175
-        },
-        __self: this
-      }), __jsx("feDisplacementMap", {
-        in2: "turbulence",
-        "in": "SourceGraphic",
-        scale: "3",
-        xChannelSelector: "R",
-        yChannelSelector: "G",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 181
-        },
-        __self: this
-      })), __jsx("g", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 190
+          lineNumber: 234
         },
         __self: this
       }, characters.map(function (_char, idx) {
         var countArray = _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_0___default()(Array(_char.count).keys());
 
         return countArray.map(function (duplicate, idxx) {
+          var _ref2;
+
           var adjustedDuplicate = _char.count > 1 ? _char.count : duplicate + 1;
           var adjustedVerticalTranslation = viewBoxHeight / adjustedDuplicate * (idxx + 1) * characterVerticalTranslation;
           var adjustedVerticalScale = characterVerticalScale / adjustedDuplicate;
@@ -212,27 +241,55 @@ function (_React$PureComponent) {
             "data-char-count": duplicate,
             key: idxx,
             onClick: function onClick() {
-              return _this3.incrementLetterCount(idx);
+              return _this3.updateLetterCount(idx);
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 207
+              lineNumber: 251
             },
             __self: this
-          }, __jsx("text", {
-            className: "".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "__character"),
-            transform: "translate(".concat(characterWidth * idx, " ").concat(adjustedVerticalTranslation, ") scale(").concat(characterHorizontalScale, ", ").concat(adjustedVerticalScale, ")"),
-            style: Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])({}, "--".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "-key"), idx),
+          }, __jsx("filter", {
+            id: "displacementFilter__".concat(idx, "__").concat(idxx),
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 214
+              lineNumber: 258
+            },
+            __self: this
+          }, __jsx("feTurbulence", {
+            type: "turbulence",
+            baseFrequency: .05 * (idxx + 1),
+            numOctaves: 1 * (idxx + 10),
+            result: "turbulence",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 259
+            },
+            __self: this
+          }), __jsx("feDisplacementMap", {
+            in2: "turbulence",
+            "in": "SourceGraphic",
+            scale: 3 - idxx * .5,
+            xChannelSelector: "R",
+            yChannelSelector: "G",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 265
+            },
+            __self: this
+          })), __jsx("text", {
+            className: "".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "__character"),
+            transform: "translate(".concat(characterWidth * idx, " ").concat(adjustedVerticalTranslation, ") scale(").concat(characterHorizontalScale, ", ").concat(adjustedVerticalScale, ")"),
+            style: (_ref2 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(_ref2, "--".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "-key"), idx), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(_ref2, "filter", "url(#displacementFilter__".concat(idx, "__").concat(idxx, ")")), _ref2),
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 274
             },
             __self: this
           }, __jsx("tspan", {
             className: "".concat(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_9__["DharmaTypeClassName"], "__letter"),
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 223
+              lineNumber: 284
             },
             __self: this
           }, _char.letter)));
@@ -551,7 +608,7 @@ var InteractiveFrameHeaderClassName = "interactive-frame-header";
 var InteractiveFrameHeaderStyle = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div.withConfig({
   displayName: "stylesscss__InteractiveFrameHeaderStyle",
   componentId: "tg0k5n-0"
-})(["&.", "{--", "__frame-edge-size:3rem;--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:2rem;}.", "__inner{width:100vw;height:100vh;position:relative;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2.25));@media(max-width:", "){transform:translate(-50%,-50%) rotate(90deg);width:calc(100vh - (var(--", "__frame-edge-size) * 2.25));height:calc(100vw - (var(--", "__frame-edge-size) * 2.25));}cursor:crosshair;.", "{top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__character{fill:", ";transition:stroke-width .5s ease;filter:url(#displacementFilter);&:hover{}}}.", "__frame{&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;vertical-align:middle;display:table-cell;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
+})(["&.", "{--", "__frame-edge-size:3rem;--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:2rem;}.", "__inner{width:100vw;height:100vh;position:relative;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2.25));@media(max-width:", "){transform:translate(-50%,-50%) rotate(90deg);width:calc(100vh - (var(--", "__frame-edge-size) * 2.25));height:calc(100vw - (var(--", "__frame-edge-size) * 2.25));}cursor:crosshair;.", "{top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__character{fill:", ";transition:stroke-width .5s ease;&:hover{}}}.", "__frame{&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;vertical-align:middle;display:table-cell;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
 
 /***/ }),
 
