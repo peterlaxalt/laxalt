@@ -159,7 +159,7 @@ export class DharmaCounter extends React.PureComponent<
       characterVerticalTranslation,
     } = this.state;
 
-    console.log("DharmaCounter state:", this.state);
+    // console.log("DharmaCounter state:", this.state);
 
     return (
       <DharmaTypeStyle

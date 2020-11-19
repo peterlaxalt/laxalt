@@ -1118,6 +1118,16 @@ const Typography = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalS
     font-variant-numeric: proportional-nums;
   }
 
+  @font-face {
+    font-family: "dharma";
+    src: url("/fonts/dharma/dharma_regular.eot"); /* IE9*/
+    src: url("/fonts/dharma/dharma_regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("/fonts/dharma/dharma_regular.woff2") format("woff2"), /* chrome firefox */
+    url("/fonts/dharma/dharma_regular.woff") format("woff"), /* chrome firefox */
+    url("/fonts/dharma/dharma_regular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("/fonts/dharma/dharma_regular.svg#DharmaGothicCW01-Regular") format("svg"); /* iOS 4.1- */
+  }
+
   /* Paragraph Styles */
   p {
     font-family: ${Font.Body};

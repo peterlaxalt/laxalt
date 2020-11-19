@@ -63,7 +63,7 @@ export const DharmaTypeStyle = styled.svg`
 
     .${DharmaTypeClassName}__character {
       font-size: var(--${DharmaTypeClassName}-font-size);
-      font-family: DharmaGothicC-ExBold, Dharma Gothic C;
+      font-family: dharma;
       /* font-family: Bordeaux Roman Bold LET, DharmaGothicC-ExBold, Dharma Gothic C; */
       font-weight: 700;
       letter-spacing: 0em;

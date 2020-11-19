@@ -214,8 +214,8 @@ class DharmaCounter extends react__WEBPACK_IMPORTED_MODULE_1___default.a.PureCom
       characterHorizontalScale,
       characterVerticalScale,
       characterVerticalTranslation
-    } = this.state;
-    console.log("DharmaCounter state:", this.state);
+    } = this.state; // console.log("DharmaCounter state:", this.state);
+
     return __jsx(_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_2__["DharmaTypeStyle"], {
       xmlns: "http://www.w3.org/2000/svg",
       viewBox: `0 0 ${viewBoxWidth} ${viewBoxHeight}`,
@@ -660,7 +660,7 @@ const DharmaTypeClassName = "dharma-type";
 const DharmaTypeStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.svg.withConfig({
   displayName: "stylesscss__DharmaTypeStyle",
   componentId: "lgdyqd-0"
-})(["&.", "{.", "__character-wrapper{filter:blur(0px);transition:filter 1s ease-in-out;will-change:filter;&[data-char-id=\"5\"]{transform:translateX(3.65px);}&[data-char-id=\"4\"]{transform:translateX(5.25px);}&[data-char-id=\"3\"]{transform:translateX(3.25px);}&[data-char-id=\"2\"]{transform:translateX(.75px);}&[data-char-id=\"1\"]{transform:translateX(-1.5px);}&[data-char-id=\"0\"]{transform:translateX(0px);}}.", "__character{font-size:var(--", "-font-size);font-family:DharmaGothicC-ExBold,Dharma Gothic C;font-weight:700;letter-spacing:0em;", ";}.", "__text{font-size:var(--", "-font-size);font-family:DharmaGothicC-ExBold,Dharma Gothic C;font-weight:700;letter-spacing:0em;cursor:crosshair;transition:filter 1s ease-in-out;will-change:filter;}}"], DharmaTypeClassName, DharmaTypeClassName, DharmaTypeClassName, DharmaTypeClassName, _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__["CssUtils"].DisableUserSelect(), DharmaTypeClassName, DharmaTypeClassName);
+})(["&.", "{.", "__character-wrapper{filter:blur(0px);transition:filter 1s ease-in-out;will-change:filter;&[data-char-id=\"5\"]{transform:translateX(3.65px);}&[data-char-id=\"4\"]{transform:translateX(5.25px);}&[data-char-id=\"3\"]{transform:translateX(3.25px);}&[data-char-id=\"2\"]{transform:translateX(.75px);}&[data-char-id=\"1\"]{transform:translateX(-1.5px);}&[data-char-id=\"0\"]{transform:translateX(0px);}}.", "__character{font-size:var(--", "-font-size);font-family:dharma;font-weight:700;letter-spacing:0em;", ";}.", "__text{font-size:var(--", "-font-size);font-family:DharmaGothicC-ExBold,Dharma Gothic C;font-weight:700;letter-spacing:0em;cursor:crosshair;transition:filter 1s ease-in-out;will-change:filter;}}"], DharmaTypeClassName, DharmaTypeClassName, DharmaTypeClassName, DharmaTypeClassName, _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__["CssUtils"].DisableUserSelect(), DharmaTypeClassName, DharmaTypeClassName);
 
 /***/ }),
 
@@ -1481,6 +1481,16 @@ const Typography = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalS
     -webkit-font-feature-settings: "pnum";
     font-feature-settings: "pnum";
     font-variant-numeric: proportional-nums;
+  }
+
+  @font-face {
+    font-family: "dharma";
+    src: url("/fonts/dharma/dharma_regular.eot"); /* IE9*/
+    src: url("/fonts/dharma/dharma_regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("/fonts/dharma/dharma_regular.woff2") format("woff2"), /* chrome firefox */
+    url("/fonts/dharma/dharma_regular.woff") format("woff"), /* chrome firefox */
+    url("/fonts/dharma/dharma_regular.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("/fonts/dharma/dharma_regular.svg#DharmaGothicCW01-Regular") format("svg"); /* iOS 4.1- */
   }
 
   /* Paragraph Styles */
