@@ -203,6 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_styles_Global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/styles/Global */ "./constants/styles/Global.tsx");
 /* harmony import */ var _GrainCover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GrainCover */ "./components/GrainCover/index.tsx");
 /* harmony import */ var _SiteHead__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SiteHead */ "./components/SiteHead/index.tsx");
+/* harmony import */ var _ThemePicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ThemePicker */ "./components/ThemePicker/index.tsx");
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/components/Layout/Layout.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -218,6 +219,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
  // Components
 
+
  // Begin Interface
 //////////////////////////////////////////////////////////////////////
 
@@ -229,26 +231,32 @@ const Layout = ({
 }) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_constants_styles_Global__WEBPACK_IMPORTED_MODULE_1__["GlobalStyle"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 32
+    lineNumber: 33
   },
   __self: undefined
 }), __jsx(_SiteHead__WEBPACK_IMPORTED_MODULE_3__["SiteHead"], {
   title: "LAXALT",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 33
+    lineNumber: 34
   },
   __self: undefined
 }), __jsx(_GrainCover__WEBPACK_IMPORTED_MODULE_2__["GrainCover"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 34
+    lineNumber: 35
+  },
+  __self: undefined
+}), __jsx(_ThemePicker__WEBPACK_IMPORTED_MODULE_4__["ThemePicker"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 36
   },
   __self: undefined
 }), __jsx("main", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 35
+    lineNumber: 37
   },
   __self: undefined
 }, children));
@@ -353,6 +361,205 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./components/ThemePicker/ThemePicker.tsx":
+/*!************************************************!*\
+  !*** ./components/ThemePicker/ThemePicker.tsx ***!
+  \************************************************/
+/*! exports provided: ThemePicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return ThemePicker; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
+/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles.scss */ "./components/ThemePicker/styles.scss.tsx");
+var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/components/ThemePicker/ThemePicker.tsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+// Core
+
+
+
+
+ // Begin Types
+// __________________________________________________________________________________________
+
+// Begin Component
+// __________________________________________________________________________________________
+
+/**
+ * @name ThemePicker
+ * @author Peter Laxalt
+ *
+ */
+class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTheme: {
+        name: "default",
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Text
+      },
+      availableThemes: [{
+        name: "default",
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Foreground
+      }, {
+        name: "goldenrod",
+        primary: "#393349",
+        secondary: "#393349",
+        background: "goldenrod",
+        foreground: "#393349"
+      }, {
+        name: "cadetblue",
+        primary: "cornsilk",
+        secondary: "cornsilk",
+        background: "cadetblue",
+        foreground: "cornsilk"
+      }, {
+        name: "orangered",
+        primary: "cornsilk",
+        secondary: "cornsilk",
+        background: "orangered",
+        foreground: "cornsilk"
+      }, {
+        name: "cornsilk",
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        background: "cornsilk",
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy
+      }, {
+        name: "galaxy",
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background
+      }]
+    };
+    this.setNewTheme = this.setNewTheme.bind(this);
+  }
+
+  setNewTheme(theme) {
+    this.setState({
+      activeTheme: theme
+    });
+  }
+
+  render() {
+    let {
+      activeTheme,
+      availableThemes
+    } = this.state;
+    const SetGlobalTheme = styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"]`
+      ${activeTheme ? _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_2__["CssUtils"].CreateTheme(activeTheme.primary, activeTheme.secondary, activeTheme.background, activeTheme.foreground) : ""}
+    `;
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, activeTheme && activeTheme.name !== "default" ? __jsx(SetGlobalTheme, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 123
+      },
+      __self: this
+    }) : null, __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerStyle"], {
+      className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}`,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 125
+      },
+      __self: this
+    }, availableThemes ? availableThemes.map((themeItem, idx) => {
+      return __jsx("div", {
+        className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}__option ${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}__option--${themeItem.name === activeTheme.name ? 'active' : 'inactive'}`,
+        style: {
+          backgroundColor: themeItem.background
+        },
+        onClick: () => this.setNewTheme(themeItem),
+        key: idx,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 129
+        },
+        __self: this
+      });
+    }) : null));
+  }
+
+}
+
+/***/ }),
+
+/***/ "./components/ThemePicker/index.tsx":
+/*!******************************************!*\
+  !*** ./components/ThemePicker/index.tsx ***!
+  \******************************************/
+/*! exports provided: ThemePicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ThemePicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThemePicker */ "./components/ThemePicker/ThemePicker.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return _ThemePicker__WEBPACK_IMPORTED_MODULE_0__["ThemePicker"]; });
+
+
+
+/***/ }),
+
+/***/ "./components/ThemePicker/styles.scss.tsx":
+/*!************************************************!*\
+  !*** ./components/ThemePicker/styles.scss.tsx ***!
+  \************************************************/
+/*! exports provided: ThemePickerClassName, ThemePickerStyle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePickerClassName", function() { return ThemePickerClassName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePickerStyle", function() { return ThemePickerStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
+/* harmony import */ var _constants_Root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/Root */ "./constants/Root.tsx");
+/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
+// Imports
+// _________________________________________________________________________
+// Core
+ // Constants
+
+
+
+ // Begin Styles
+// _________________________________________________________________________
+
+/**
+ *
+ * @name ThemePickerClassName
+ * @description The root class name for styling. BEM naming conventions.
+ *
+ */
+
+const ThemePickerClassName = "theme-picker";
+/**
+ *
+ * @name ThemePickerStyle
+ * @author Peter Laxalt
+ *
+ */
+
+const ThemePickerStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "stylesscss__ThemePickerStyle",
+  componentId: "nyqkd7-0"
+})(["&.", "{position:fixed;right:0;top:0;height:", ";display:flex;align-items:center;border-left:1px solid ", ";background:", ";z-index:990;.", "__option{width:calc(", " * 0.5);height:calc(", " * 0.5);border-radius:50%;margin:0 0.5rem;box-shadow:0px 0px 0px 1px ", ";&:hover{box-shadow:0px 0px 0px 2px ", ";}&:focus,&:active{box-shadow:0px 0px 0px 1px ", ";}&--active{box-shadow:0px 0px 0px 3px ", ";&:hover{box-shadow:0px 0px 0px 3px ", ";}}}}"], ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground);
+
+/***/ }),
+
 /***/ "./constants/Root.tsx":
 /*!****************************!*\
   !*** ./constants/Root.tsx ***!
@@ -377,12 +584,10 @@ __webpack_require__.r(__webpack_exports__);
 // import { Root } from '../../../path/to/Root'
 // 2. Use it in your SC: 'color: ${Root.Size}; or simply refer to the object and key when used in functions.'
 
- // Begin Interface
-//////////////////////////////////////////////////////////////////////
-
-// Begin Component
+ // Begin Component
 //////////////////////////////////////////////////////////////////////
 // Assign CSS Variables for automatic Media Queries.
+
 const Root = {
   // Palette
   Color: {
@@ -430,7 +635,9 @@ const Root = {
   // Inputs
   Input: "var(--InputSize)",
   // Geometry
-  Radius: "var(--Radius)"
+  Radius: "var(--Radius)",
+  // Frame
+  FrameSize: "var(--FrameSize)"
 }; // Responsive Measurements:
 // We use these to avoid media queries all
 // over the place where possible.
@@ -445,7 +652,7 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
     --MbmColor: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.White}
 
     /* --------------- Base Measurements*/
-    
+
     /* -------- Base Measurement */
     --Size: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Size.Lg};
 
@@ -459,7 +666,7 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
 
     /* -------- View Width (vw) Based Measurements */
     --ViewWidthPadding: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.ViewWidth.Padding.Lg};
-    
+
     /* --------- Site Grid */
     --SiteWidth: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Grid.SiteWidth};
     --NavSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Grid.Nav.Size.Lg};
@@ -479,11 +686,17 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
 
     /* --------- Geometry */
     --Radius: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Geometry.Radius};
-    
+
+    /* --------- Frame */
+    --FrameSize: 2.5rem;
+
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md}) {
       /* --------------- Base Measurements*/
-    
+
+        /* --------- Frame */
+        --FrameSize: 2rem;
+
         /* -------- Base Measurement */
         --Size: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Size.Md};
 
@@ -522,7 +735,7 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
     /* ----------------------------------- Small Width Viewports */
     @media (max-width: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Sm}) {
       /* --------------- Base Measurements*/
-    
+
         /* -------- Base Measurement */
         --Size: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Size.Sm};
 
@@ -1011,11 +1224,16 @@ __webpack_require__.r(__webpack_exports__);
 // _______________________________________________________
 
 const Color = {
+  // Color Variables
+  varPrimary: "var(--clrPrimary)",
+  varSecondary: "var(--clrSecondary)",
+  varBackground: "var(--clrBackground)",
+  varForeground: "var(--clrForeground)",
   // Core Colors
-  Primary: "#000000",
+  Primary: "#111b24",
   Secondary: "#5D6376",
   Background: "#ff988c",
-  Text: "#520589",
+  Text: "#111b24",
   // Grayscale Palette
   Black: "#000000",
   Nightsky: "#151313",
@@ -1047,8 +1265,73 @@ const Color = {
 const Palette = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
   ::selection { background: ${Color.Primary}; color: ${Color.White} }
+
+  :root {
+    --clrPrimary: ${Color.Primary};
+    --clrSecondary: ${Color.Secondary};
+    --clrBackground: ${Color.Background};
+    --clrForeground: ${Color.Text};
+  }
 `; //////////////////////////////////////////////////////////////////////
 // End Component
+
+/***/ }),
+
+/***/ "./constants/styles/CssUtils.tsx":
+/*!***************************************!*\
+  !*** ./constants/styles/CssUtils.tsx ***!
+  \***************************************/
+/*! exports provided: CssUtils, LockBodyScroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssUtils", function() { return CssUtils; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LockBodyScroll", function() { return LockBodyScroll; });
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Theme */ "./constants/Theme.tsx");
+/* harmony import */ var _Root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Root */ "./constants/Root.tsx");
+
+// Core
+ // Constants
+
+
+ // Begin Component
+// __________________________________________________________________________________________
+
+/**
+ *
+ * @name CssUtils
+ * @description CSS Utility functions. Just like SCSS mixins.
+ * @returns A plethora of useful CSS.
+ *
+ */
+
+class CssUtils {}
+
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(CssUtils, "ObjectFit", (position = "cover") => {
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(["position:absolute;left:0;right:0;top:0;bottom:0;object-fit:", ";width:100%;height:100%;object-position:center;max-width:100%;"], position);
+});
+
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(CssUtils, "ForceFullWidth", (spacing = "0", addGutter = false) => {
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(["width:calc(100% + (", " * 2));margin-left:calc(", " * -1);margin-right:calc(", " * -1);max-width:100vw;", ""], spacing, spacing, spacing, addGutter ? Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(["padding-left:", ";padding-right:", ";"], spacing, spacing) : null);
+});
+
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(CssUtils, "CreateTheme", (clrPrimary, clrSecondary, clrBackground, clrForeground) => {
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])([":root{--clrPrimary:", ";--clrSecondary:", ";--clrBackground:", ";--clrForeground:", ";}"], clrPrimary, clrSecondary, clrBackground, clrForeground);
+});
+
+Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(CssUtils, "DisableUserSelect", () => {
+  return Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["css"])(["-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;"]);
+});
+
+const LockBodyScroll = styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"]`
+    body, html {
+      overflow: hidden !important;
+    }
+  `;
 
 /***/ }),
 
@@ -1234,6 +1517,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Font__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Font */ "./constants/styles/Font.tsx");
 /* harmony import */ var _Color__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Color */ "./constants/styles/Color.tsx");
 /* harmony import */ var _Root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Root */ "./constants/Root.tsx");
+/* harmony import */ var _Theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Theme */ "./constants/Theme.tsx");
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/constants/styles/Global.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1249,6 +1533,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // Core
 
  // Styles
+
 
 
 
@@ -1297,8 +1582,11 @@ html {
     padding: 0;
     min-height: 100%;
     overflow: auto;
-    background-color: ${_Root__WEBPACK_IMPORTED_MODULE_4__["Root"].Color.Bg};
-    color: ${_Root__WEBPACK_IMPORTED_MODULE_4__["Root"].Color.Text}
+    background-color: ${_Theme__WEBPACK_IMPORTED_MODULE_5__["Theme"].Color.varBackground};
+    color: ${_Theme__WEBPACK_IMPORTED_MODULE_5__["Theme"].Color.varForeground};
+
+    cursor: crosshair;
+
     /* overflow: hidden; */
   }
 
@@ -1317,8 +1605,11 @@ html {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
-    background-color: ${_Root__WEBPACK_IMPORTED_MODULE_4__["Root"].Color.Bg};
-    color: ${_Root__WEBPACK_IMPORTED_MODULE_4__["Root"].Color.Text}
+    background-color: ${_Theme__WEBPACK_IMPORTED_MODULE_5__["Theme"].Color.varBackground};
+    color: ${_Theme__WEBPACK_IMPORTED_MODULE_5__["Theme"].Color.varForeground};
+
+    cursor: crosshair;
+
     /* overflow: hidden; */
   }
 
@@ -1725,25 +2016,25 @@ html {
 const GlobalStyle = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_Root__WEBPACK_IMPORTED_MODULE_4__["RootVariables"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 494
+    lineNumber: 501
   },
   __self: undefined
 }), __jsx(Reset, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 495
+    lineNumber: 502
   },
   __self: undefined
 }), __jsx(_Font__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 496
+    lineNumber: 503
   },
   __self: undefined
 }), __jsx(_Color__WEBPACK_IMPORTED_MODULE_3__["Palette"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 497
+    lineNumber: 504
   },
   __self: undefined
 }));
@@ -1758,6 +2049,47 @@ const GlobalStyle = () => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fra
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "core-js/library/fn/object/assign");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-property */ "core-js/library/fn/object/define-property");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -1868,6 +2200,17 @@ module.exports = __webpack_require__(/*! private-next-pages/_app.tsx */"./pages/
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/assign");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/define-property":
+/*!************************************************************!*\
+  !*** external "core-js/library/fn/object/define-property" ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/define-property");
 
 /***/ }),
 

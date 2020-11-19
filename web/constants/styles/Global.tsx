@@ -16,7 +16,8 @@ import { createGlobalStyle } from "styled-components";
 // Styles
 import { Typography } from "./Font";
 import { Palette } from "./Color";
-import { RootVariables, Root } from "../Root";
+import { RootVariables } from "../Root";
+import { Theme } from "../Theme";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
@@ -63,8 +64,11 @@ html {
     padding: 0;
     min-height: 100%;
     overflow: auto;
-    background-color: ${Root.Color.Bg};
-    color: ${Root.Color.Text}
+    background-color: ${Theme.Color.varBackground};
+    color: ${Theme.Color.varForeground};
+
+    cursor: crosshair;
+
     /* overflow: hidden; */
   }
 
@@ -83,8 +87,11 @@ html {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
-    background-color: ${Root.Color.Bg};
-    color: ${Root.Color.Text}
+    background-color: ${Theme.Color.varBackground};
+    color: ${Theme.Color.varForeground};
+
+    cursor: crosshair;
+
     /* overflow: hidden; */
   }
 

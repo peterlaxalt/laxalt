@@ -10,11 +10,17 @@ import { createGlobalStyle } from "styled-components";
 // _______________________________________________________
 
 export const Color = {
+  // Color Variables
+  varPrimary: "var(--clrPrimary)",
+  varSecondary: "var(--clrSecondary)",
+  varBackground: "var(--clrBackground)",
+  varForeground: "var(--clrForeground)",
+
   // Core Colors
-  Primary: "#000000",
+  Primary: "#111b24",
   Secondary: "#5D6376",
   Background: "#ff988c",
-  Text: "#520589",
+  Text: "#111b24",
 
   // Grayscale Palette
   Black: "#000000",
@@ -51,6 +57,13 @@ export const Color = {
 export const Palette = createGlobalStyle`
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
   ::selection { background: ${Color.Primary}; color: ${Color.White} }
+
+  :root {
+    --clrPrimary: ${Color.Primary};
+    --clrSecondary: ${Color.Secondary};
+    --clrBackground: ${Color.Background};
+    --clrForeground: ${Color.Text};
+  }
 `;
 
 //////////////////////////////////////////////////////////////////////

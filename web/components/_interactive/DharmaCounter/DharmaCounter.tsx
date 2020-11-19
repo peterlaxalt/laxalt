@@ -97,7 +97,7 @@ export class DharmaCounter extends React.PureComponent<
       let characterCount = splitCharacterArray.length;
       let characterWidth = viewBoxWidth / characterCount;
 
-      let characterVerticalTranslation = 0.983; // Multiplied by the viewBoxHeight
+      let characterVerticalTranslation = 0.963; // Multiplied by the viewBoxHeight
       let characterHorizontalScale = 0.75; // Multiplied by the characterWidth
       let characterVerticalScale = 1.38; // Multiplied by the characterWidth
 
@@ -175,7 +175,7 @@ export class DharmaCounter extends React.PureComponent<
         (character: LXLT_DharmaChar) => character.idx == id
       )[0];
 
-      let maxCount = 5;
+      let maxCount = 4;
 
       if (matchedCharacter) {
         if (matchedCharacter.count === maxCount) {
@@ -231,6 +231,22 @@ export class DharmaCounter extends React.PureComponent<
           [`--${DharmaTypeClassName}-font-size` as any]: `${viewBoxHeight}px`,
         }}
       >
+        <filter id={`displacementFilter`}>
+          <feTurbulence
+            type="turbulence"
+            baseFrequency={0.05}
+            numOctaves={1}
+            result="turbulence"
+          />
+          <feDisplacementMap
+            in2="turbulence"
+            in="SourceGraphic"
+            scale={3}
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+
         <g>
           {characters.map((char: LXLT_DharmaChar, idx: number) => {
             let countArray = Array.from(Array(char.count).keys());
@@ -258,14 +274,14 @@ export class DharmaCounter extends React.PureComponent<
                   <filter id={`displacementFilter__${idx}__${idxx}`}>
                     <feTurbulence
                       type="turbulence"
-                      baseFrequency={.05 * (idxx + 1)}
-                      numOctaves={1 * (idxx + 10)}
+                      baseFrequency={0.05 * (idxx * 0.05)}
+                      numOctaves={1 * (idxx + 20)}
                       result="turbulence"
                     />
                     <feDisplacementMap
                       in2="turbulence"
                       in="SourceGraphic"
-                      scale={3 - (idxx * .5)}
+                      scale={3 - idxx * 0.5}
                       xChannelSelector="R"
                       yChannelSelector="G"
                     />

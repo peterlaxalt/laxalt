@@ -30,14 +30,18 @@ export const DharmaTypeStyle = styled.svg`
   &.${DharmaTypeClassName} {
     .${DharmaTypeClassName}__character-wrapper {
       filter: blur(0px);
+      position: relative;
 
-      transition: filter 1s ease-in-out;
-      will-change: filter;
+      transition: filter 0.5s ease-in-out;
+
+      &:hover {
+        filter: blur(0.25px);
+      }
 
       // ___________________________________
       // @name Letter Kerning for "LAXALT"
       &[data-char-id="5"] {
-        transform: translateX(3.65px);
+        transform: translateX(2.25px);
       }
 
       &[data-char-id="4"] {
@@ -49,7 +53,7 @@ export const DharmaTypeStyle = styled.svg`
       }
 
       &[data-char-id="2"] {
-        transform: translateX(.75px);
+        transform: translateX(0.75px);
       }
 
       &[data-char-id="1"] {
@@ -80,8 +84,6 @@ export const DharmaTypeStyle = styled.svg`
       /* font-family: Bordeaux Roman Bold LET, DharmaGothicC-ExBold, Dharma Gothic C; */
       font-weight: 700;
       letter-spacing: 0em;
-
-      cursor: crosshair;
 
       transition: filter 1s ease-in-out;
       will-change: filter;

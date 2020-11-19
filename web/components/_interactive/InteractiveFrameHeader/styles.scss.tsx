@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 // Constants
 import { Theme } from "../../../constants/Theme";
-import {} from "../../../constants/Root";
+import { Root } from "../../../constants/Root";
 import { DharmaTypeClassName } from "../../_svg/DharmaType/styles.scss";
 import {} from "../../../constants/styles/CssUtils";
 import { PulseStroke } from "../../../constants/styles/Animation";
@@ -32,11 +32,11 @@ export const InteractiveFrameHeaderStyle = styled.div`
   &.${InteractiveFrameHeaderClassName} {
     // __________________________
     // Settings
-    --${InteractiveFrameHeaderClassName}__frame-edge-size: 3rem;
+    --${InteractiveFrameHeaderClassName}__frame-edge-size: ${Root.FrameSize};
     --${InteractiveFrameHeaderClassName}__marquee-speed: 60s;
 
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
-      --${InteractiveFrameHeaderClassName}__frame-edge-size: 2rem;
+      --${InteractiveFrameHeaderClassName}__frame-edge-size: ${Root.FrameSize};
     }
 
     // __________________________
@@ -47,7 +47,6 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
       position: relative;
 
-      /* filter: url(#displacementFilter) */
     }
 
     .${DharmaTypeClassName}, .${InteractiveFrameHeaderClassName}__frame {
@@ -73,14 +72,12 @@ export const InteractiveFrameHeaderStyle = styled.div`
       width: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2));
       height: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
 
-      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
         transform: translate(-50%, -50%) rotate(90deg);
 
         width: calc(100vh - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
         height: calc(100vw - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
       }
-
-      cursor: crosshair;
 
       .${DharmaTypeClassName} {
         top: 0;
@@ -93,7 +90,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
       }
 
       .${DharmaTypeClassName}__character {
-        fill: ${Theme.Color.Galaxy};
+        fill: ${Theme.Color.varForeground};
 
         /* stroke: salmon; */
         /* stroke-width: .15px; */
@@ -148,7 +145,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
         .${InteractiveFrameHeaderClassName}__frame-items {
           list-style-type: none;
 
-          color: ${Theme.Color.Galaxy};
+          color: ${Theme.Color.varForeground};
 
           height: var(--${InteractiveFrameHeaderClassName}__frame-edge-size);
 
@@ -203,7 +200,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
         &--top,
         &--right {
-          border-bottom: 1px solid ${Theme.Color.Galaxy};
+          border-bottom: 1px solid ${Theme.Color.varForeground};
 
           .${InteractiveFrameHeaderClassName}__frame-items {
             padding-top: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) / 6);
@@ -217,7 +214,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
         &--bottom,
         &--left {
-          border-top: 1px solid ${Theme.Color.Galaxy};
+          border-top: 1px solid ${Theme.Color.varForeground};
 
           .${InteractiveFrameHeaderClassName}__frame-items {
             padding-top: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) / 6);

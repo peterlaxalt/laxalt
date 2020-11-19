@@ -49,6 +49,22 @@ export class CssUtils {
     `;
   };
 
+  static CreateTheme = (
+    clrPrimary: string,
+    clrSecondary: string,
+    clrBackground: string,
+    clrForeground: string
+  ) => {
+    return css`
+      :root {
+        --clrPrimary: ${clrPrimary};
+        --clrSecondary: ${clrSecondary};
+        --clrBackground: ${clrBackground};
+        --clrForeground: ${clrForeground};
+      }
+    `;
+  };
+
   static DisableUserSelect = () => {
     return css`
       -webkit-touch-callout: none;

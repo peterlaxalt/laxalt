@@ -12,79 +12,16 @@
 import { createGlobalStyle } from "styled-components";
 import { Theme } from "../constants/Theme";
 
-// Begin Interface
-//////////////////////////////////////////////////////////////////////
-
-interface Root {
-  // Palette
-  Color: {
-    Bg: string;
-    Text: string;
-    Mbm: string;
-  };
-
-  // Core Base Measurement
-  Size: string;
-
-  ViewWidthFontSize: string;
-  ViewHeightFontSize: string;
-  IconSize: string;
-
-  // Root Element Measurement
-  Rem: string;
-
-  // View Width (vw) Based Measurements
-  ViewWidthPadding: string;
-
-  // Site Grid
-  Site: {
-    Width: string;
-  };
-  Nav: {
-    Size: string;
-  };
-  Footer: {
-    Size: string;
-  };
-
-  Grid: {
-    // Universal padding from the edge of the browser
-    // Read more: https://read.compassofdesign.com/guides-gutters-and-grids-2ce6092fc3de
-    Gutter: {
-      Top: string;
-      Right: string;
-      Bottom: string;
-      Left: string;
-    };
-
-    Indent: {
-      X: string;
-      Y: string;
-    };
-  };
-
-  // Buttons
-  Button: {
-    Size: string;
-  };
-
-  // Inputs
-  Input: string;
-
-  // Geometry
-  Radius: string;
-}
-
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 // Assign CSS Variables for automatic Media Queries.
-export const Root: Root = {
+export const Root = {
   // Palette
   Color: {
     Bg: "var(--BgColor)",
     Text: "var(--TextColor)",
-    Mbm: "var(--MbmColor)"
+    Mbm: "var(--MbmColor)",
   },
 
   // Core Base Measurement
@@ -102,13 +39,13 @@ export const Root: Root = {
 
   // Site Grid
   Site: {
-    Width: "var(--SiteWidth)"
+    Width: "var(--SiteWidth)",
   },
   Nav: {
-    Size: "var(--NavSize)"
+    Size: "var(--NavSize)",
   },
   Footer: {
-    Size: "var(--FooterSize)"
+    Size: "var(--FooterSize)",
   },
 
   Grid: {
@@ -118,25 +55,28 @@ export const Root: Root = {
       Top: "var(--GutterTop)",
       Right: "var(--GutterRight)",
       Bottom: "var(--GutterBottom)",
-      Left: "var(--GutterLeft)"
+      Left: "var(--GutterLeft)",
     },
 
     Indent: {
       X: "var(--IndentX)",
-      Y: "var(--IndentY)"
-    }
+      Y: "var(--IndentY)",
+    },
   },
 
   // Buttons
   Button: {
-    Size: "var(--ButtonSize)"
+    Size: "var(--ButtonSize)",
   },
 
   // Inputs
   Input: "var(--InputSize)",
 
   // Geometry
-  Radius: "var(--Radius)"
+  Radius: "var(--Radius)",
+
+  // Frame
+  FrameSize: "var(--FrameSize)",
 };
 
 // Responsive Measurements:
@@ -153,7 +93,7 @@ export const RootVariables = createGlobalStyle`
     --MbmColor: ${Theme.Color.White}
 
     /* --------------- Base Measurements*/
-    
+
     /* -------- Base Measurement */
     --Size: ${Theme.Base.Size.Lg};
 
@@ -167,7 +107,7 @@ export const RootVariables = createGlobalStyle`
 
     /* -------- View Width (vw) Based Measurements */
     --ViewWidthPadding: ${Theme.Base.ViewWidth.Padding.Lg};
-    
+
     /* --------- Site Grid */
     --SiteWidth: ${Theme.Base.Grid.SiteWidth};
     --NavSize: ${Theme.Base.Grid.Nav.Size.Lg};
@@ -187,11 +127,17 @@ export const RootVariables = createGlobalStyle`
 
     /* --------- Geometry */
     --Radius: ${Theme.Base.Geometry.Radius};
-    
+
+    /* --------- Frame */
+    --FrameSize: 2.5rem;
+
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Md}) {
       /* --------------- Base Measurements*/
-    
+
+        /* --------- Frame */
+        --FrameSize: 2rem;
+
         /* -------- Base Measurement */
         --Size: ${Theme.Base.Size.Md};
 
@@ -230,7 +176,7 @@ export const RootVariables = createGlobalStyle`
     /* ----------------------------------- Small Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Sm}) {
       /* --------------- Base Measurements*/
-    
+
         /* -------- Base Measurement */
         --Size: ${Theme.Base.Size.Sm};
 

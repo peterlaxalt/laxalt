@@ -13,6 +13,7 @@ import { GrainCover } from "../GrainCover";
 
 // Components
 import { SiteHead } from "../SiteHead";
+import { ThemePicker } from "../ThemePicker";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -32,6 +33,7 @@ export const Layout = ({ children }: Layout) => (
     <GlobalStyle />
     <SiteHead title="LAXALT" />
     <GrainCover />
+    <ThemePicker />
     <main>{children}</main>
     {/* <Footer /> */}
   </>
