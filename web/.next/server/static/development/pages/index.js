@@ -229,10 +229,38 @@ class DharmaCounter extends react__WEBPACK_IMPORTED_MODULE_1___default.a.PureCom
         lineNumber: 165
       },
       __self: this
-    }, __jsx("g", {
+    }, __jsx("filter", {
+      id: "displacementFilter",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 174
+      },
+      __self: this
+    }, __jsx("feTurbulence", {
+      type: "turbulence",
+      baseFrequency: "1.2",
+      numOctaves: "2",
+      result: "turbulence",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 175
+      },
+      __self: this
+    }), __jsx("feDisplacementMap", {
+      in2: "turbulence",
+      in: "SourceGraphic",
+      scale: "3",
+      xChannelSelector: "R",
+      yChannelSelector: "G",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 181
+      },
+      __self: this
+    })), __jsx("g", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 190
       },
       __self: this
     }, characters.map((char, idx) => {
@@ -250,7 +278,7 @@ class DharmaCounter extends react__WEBPACK_IMPORTED_MODULE_1___default.a.PureCom
           onClick: () => this.incrementLetterCount(idx),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 191
+            lineNumber: 207
           },
           __self: this
         }, __jsx("text", {
@@ -261,14 +289,14 @@ class DharmaCounter extends react__WEBPACK_IMPORTED_MODULE_1___default.a.PureCom
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 198
+            lineNumber: 214
           },
           __self: this
         }, __jsx("tspan", {
           className: `${_svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_2__["DharmaTypeClassName"]}__letter`,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 207
+            lineNumber: 223
           },
           __self: this
         }, char.letter)));
@@ -339,6 +367,9 @@ const FrameItems = () => {
     label: "Interactive",
     href: "/"
   }, {
+    label: "Murals",
+    href: "/"
+  }, {
     label: "Code",
     href: "/"
   }, {
@@ -364,14 +395,14 @@ const FrameItems = () => {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__marquee-container`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 83
     },
     __self: undefined
   }, __jsx("ul", {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame-items`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 84
     },
     __self: undefined
   }, items.map((item, idx) => {
@@ -379,7 +410,7 @@ const FrameItems = () => {
       key: idx,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 82
+        lineNumber: 86
       },
       __self: undefined
     }, item.label);
@@ -387,7 +418,7 @@ const FrameItems = () => {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame-items`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 90
     },
     __self: undefined
   }, items.map((item, idx) => {
@@ -395,7 +426,7 @@ const FrameItems = () => {
       key: idx,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 92
       },
       __self: undefined
     }, item.label);
@@ -415,101 +446,101 @@ const InteractiveFrameHeader = () => __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 105
+    lineNumber: 109
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__inner`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 108
+    lineNumber: 112
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 111
+    lineNumber: 115
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__y-axis`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 114
+    lineNumber: 118
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--top`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 115
+    lineNumber: 119
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 118
+    lineNumber: 122
   },
   __self: undefined
 })), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--bottom`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 120
+    lineNumber: 124
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 123
+    lineNumber: 127
   },
   __self: undefined
 }))), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__x-axis`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 129
+    lineNumber: 133
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--left`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 130
+    lineNumber: 134
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 133
+    lineNumber: 137
   },
   __self: undefined
 })), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--right`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 136
+    lineNumber: 140
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 139
+    lineNumber: 143
   },
   __self: undefined
 })))), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__type`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 146
+    lineNumber: 150
   },
   __self: undefined
 }, __jsx(_DharmaCounter__WEBPACK_IMPORTED_MODULE_1__["DharmaCounter"], {
   text: "LAXALT",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 147
+    lineNumber: 151
   },
   __self: undefined
 })))); // End Component
@@ -581,7 +612,7 @@ const InteractiveFrameHeaderClassName = "interactive-frame-header";
 const InteractiveFrameHeaderStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__InteractiveFrameHeaderStyle",
   componentId: "tg0k5n-0"
-})(["&.", "{--", "__frame-edge-size:3rem;--", "__marquee-speed:60s;.", "__inner{width:100vw;height:100vh;position:relative;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2));cursor:crosshair;.", "{top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__character{fill:", ";stroke:salmon;stroke-width:.15px;transition:stroke-width .5s ease;animation:", " calc(1s * ((var(--dharma-type-key) / 2) + 1)) ease infinite;&:hover{stroke-width:1px;}}}.", "__frame{&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_5__["PulseStroke"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
+})(["&.", "{--", "__frame-edge-size:3rem;--", "__marquee-speed:60s;.", "__inner{width:100vw;height:100vh;position:relative;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2.25));cursor:crosshair;.", "{top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__character{fill:", ";transition:stroke-width .5s ease;filter:url(#displacementFilter);&:hover{}}}.", "__frame{&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;vertical-align:middle;display:table-cell;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.Galaxy, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
 
 /***/ }),
 
@@ -1055,7 +1086,7 @@ const Settings = {
 /*!****************************************!*\
   !*** ./constants/styles/Animation.tsx ***!
   \****************************************/
-/*! exports provided: Blink, FadeIn, PulseStroke, OverlayFadeIn, FadeInScaleUpFromTop, Disappear, Marquee, SlideFromRight, SlideUp, Grain, LoaderDot */
+/*! exports provided: Blink, FadeIn, PulseStroke, Grain, OverlayFadeIn, FadeInScaleUpFromTop, Disappear, Marquee, SlideFromRight, SlideUp, LoaderDot */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1063,13 +1094,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Blink", function() { return Blink; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeIn", function() { return FadeIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PulseStroke", function() { return PulseStroke; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Grain", function() { return Grain; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OverlayFadeIn", function() { return OverlayFadeIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeInScaleUpFromTop", function() { return FadeInScaleUpFromTop; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disappear", function() { return Disappear; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Marquee", function() { return Marquee; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideFromRight", function() { return SlideFromRight; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideUp", function() { return SlideUp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Grain", function() { return Grain; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderDot", function() { return LoaderDot; });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
@@ -1080,13 +1111,13 @@ __webpack_require__.r(__webpack_exports__);
 const Blink = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["to{visibility:hidden;}"]);
 const FadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:1;}"]);
 const PulseStroke = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{stroke-width:.15px;}50%{stroke-width:1px;}100%{stroke-width:.15px;}"]);
+const Grain = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%,100%{transform:scale(1.5) translate(0,0)}10%{transform:scale(1.5) translate(-5%,-10%)}20%{transform:scale(1.5) translate(-15%,5%)}30%{transform:scale(1.5) translate(7%,-10%)}40%{transform:scale(1.5) translate(-5%,10%)}50%{transform:scale(1.5) translate(-15%,10%)}60%{transform:scale(1.5) translate(15%,0%)}70%{transform:scale(1.5) translate(0%,15%)}80%{transform:scale(1.5) translate(3%,10%)}90%{transform:scale(1.5) translate(-10%,10%)}"]);
 const OverlayFadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:.75;}"]);
 const FadeInScaleUpFromTop = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:scale(.9);transform-origin:top center;opacity:0;}to{transform:scale(1);transform-origin:top center;opacity:1;}"]);
 const Disappear = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{display:flex;}to{display:none !important;}"]);
 const Marquee = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:translateX(0%);}to{transform:translateX(-100%);}"]);
 const SlideFromRight = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
 const SlideUp = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
-const Grain = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%,100%{transform:scale(1.5) translate(0,0)}10%{transform:scale(1.5) translate(-5%,-10%)}20%{transform:scale(1.5) translate(-15%,5%)}30%{transform:scale(1.5) translate(7%,-10%)}40%{transform:scale(1.5) translate(-5%,10%)}50%{transform:scale(1.5) translate(-15%,10%)}60%{transform:scale(1.5) translate(15%,0%)}70%{transform:scale(1.5) translate(0%,15%)}80%{transform:scale(1.5) translate(3%,10%)}90%{transform:scale(1.5) translate(-10%,10%)}"]);
 const LoaderDot = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{background:#f7fafc;}50%{background:#cbd5e0;}100%{background:#f7fafc;}"]);
 
 /***/ }),

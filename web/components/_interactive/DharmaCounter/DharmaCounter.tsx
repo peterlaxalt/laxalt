@@ -171,6 +171,22 @@ export class DharmaCounter extends React.PureComponent<
           [`--${DharmaTypeClassName}-font-size` as any]: `${viewBoxHeight}px`,
         }}
       >
+        <filter id="displacementFilter">
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="1.2"
+            numOctaves="2"
+            result="turbulence"
+          />
+          <feDisplacementMap
+            in2="turbulence"
+            in="SourceGraphic"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+
         <g>
           {characters.map((char: LXLT_DharmaChar, idx: number) => {
             let countArray = Array.from(Array(char.count).keys());

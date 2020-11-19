@@ -46,6 +46,10 @@ const FrameItems = () => {
       href: "/",
     },
     {
+      label: "Murals",
+      href: "/",
+    },
+    {
       label: "Code",
       href: "/",
     },

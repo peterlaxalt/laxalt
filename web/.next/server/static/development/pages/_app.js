@@ -93,6 +93,101 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/GrainCover/GrainCover.tsx":
+/*!**********************************************!*\
+  !*** ./components/GrainCover/GrainCover.tsx ***!
+  \**********************************************/
+/*! exports provided: GrainCover */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GrainCover", function() { return GrainCover; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.scss */ "./components/GrainCover/styles.scss.tsx");
+var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/components/GrainCover/GrainCover.tsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+// Imports
+// __________________________________________________________________________________________
+// Core
+
+ // Begin Component
+// __________________________________________________________________________________________
+
+/**
+ *
+ * GrainCover.js
+ * @author Peter Laxalt
+ * @description Our main launcher dialog.
+ * @example Default: <GrainCover visible={true | false} />
+ *
+ */
+
+const GrainCover = () => {
+  return __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "grain-cover-inner",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    },
+    __self: undefined
+  }));
+};
+
+/***/ }),
+
+/***/ "./components/GrainCover/index.tsx":
+/*!*****************************************!*\
+  !*** ./components/GrainCover/index.tsx ***!
+  \*****************************************/
+/*! exports provided: GrainCover */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GrainCover__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GrainCover */ "./components/GrainCover/GrainCover.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "GrainCover", function() { return _GrainCover__WEBPACK_IMPORTED_MODULE_0__["GrainCover"]; });
+
+
+
+/***/ }),
+
+/***/ "./components/GrainCover/styles.scss.tsx":
+/*!***********************************************!*\
+  !*** ./components/GrainCover/styles.scss.tsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/styles/Animation */ "./constants/styles/Animation.tsx");
+// GrainCover Styles
+// Imports
+// __________________________________________________________________________________________
+// Core
+
+ // Animations
+// Begin Styles
+// __________________________________________________________________________________________
+
+const GrainCoverStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "stylesscss__GrainCoverStyle",
+  componentId: "uy0vxl-0"
+})(["position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;display:flex;z-index:999;mix-blend-mode:multiply;.grain-cover-inner{width:1000vw;height:1000vh;animation:grain 8s steps(10) infinite;background-image:url('noise.png');animation:", " 8s steps(10) infinite;}"], _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_1__["Grain"]);
+/* harmony default export */ __webpack_exports__["default"] = (GrainCoverStyle);
+
+/***/ }),
+
 /***/ "./components/Layout/Layout.tsx":
 /*!**************************************!*\
   !*** ./components/Layout/Layout.tsx ***!
@@ -106,7 +201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants_styles_Global__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/styles/Global */ "./constants/styles/Global.tsx");
-/* harmony import */ var _SiteHead__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SiteHead */ "./components/SiteHead/index.tsx");
+/* harmony import */ var _GrainCover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GrainCover */ "./components/GrainCover/index.tsx");
+/* harmony import */ var _SiteHead__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SiteHead */ "./components/SiteHead/index.tsx");
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/components/Layout/Layout.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -118,6 +214,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
  *
  */
 // Constants
+
 
  // Components
 
@@ -132,20 +229,26 @@ const Layout = ({
 }) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_constants_styles_Global__WEBPACK_IMPORTED_MODULE_1__["GlobalStyle"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 31
+    lineNumber: 32
   },
   __self: undefined
-}), __jsx(_SiteHead__WEBPACK_IMPORTED_MODULE_2__["SiteHead"], {
+}), __jsx(_SiteHead__WEBPACK_IMPORTED_MODULE_3__["SiteHead"], {
   title: "LAXALT",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 32
+    lineNumber: 33
+  },
+  __self: undefined
+}), __jsx(_GrainCover__WEBPACK_IMPORTED_MODULE_2__["GrainCover"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 34
   },
   __self: undefined
 }), __jsx("main", {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 33
+    lineNumber: 35
   },
   __self: undefined
 }, children));
@@ -665,6 +768,46 @@ const Settings = {
     fbAppId: "56639339020281"
   }
 };
+
+/***/ }),
+
+/***/ "./constants/styles/Animation.tsx":
+/*!****************************************!*\
+  !*** ./constants/styles/Animation.tsx ***!
+  \****************************************/
+/*! exports provided: Blink, FadeIn, PulseStroke, Grain, OverlayFadeIn, FadeInScaleUpFromTop, Disappear, Marquee, SlideFromRight, SlideUp, LoaderDot */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Blink", function() { return Blink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeIn", function() { return FadeIn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PulseStroke", function() { return PulseStroke; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Grain", function() { return Grain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OverlayFadeIn", function() { return OverlayFadeIn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeInScaleUpFromTop", function() { return FadeInScaleUpFromTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disappear", function() { return Disappear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Marquee", function() { return Marquee; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideFromRight", function() { return SlideFromRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideUp", function() { return SlideUp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderDot", function() { return LoaderDot; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+// Core
+ // Begin Component
+// __________________________________________________________________________________________
+
+const Blink = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["to{visibility:hidden;}"]);
+const FadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:1;}"]);
+const PulseStroke = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{stroke-width:.15px;}50%{stroke-width:1px;}100%{stroke-width:.15px;}"]);
+const Grain = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%,100%{transform:scale(1.5) translate(0,0)}10%{transform:scale(1.5) translate(-5%,-10%)}20%{transform:scale(1.5) translate(-15%,5%)}30%{transform:scale(1.5) translate(7%,-10%)}40%{transform:scale(1.5) translate(-5%,10%)}50%{transform:scale(1.5) translate(-15%,10%)}60%{transform:scale(1.5) translate(15%,0%)}70%{transform:scale(1.5) translate(0%,15%)}80%{transform:scale(1.5) translate(3%,10%)}90%{transform:scale(1.5) translate(-10%,10%)}"]);
+const OverlayFadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:.75;}"]);
+const FadeInScaleUpFromTop = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:scale(.9);transform-origin:top center;opacity:0;}to{transform:scale(1);transform-origin:top center;opacity:1;}"]);
+const Disappear = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{display:flex;}to{display:none !important;}"]);
+const Marquee = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:translateX(0%);}to{transform:translateX(-100%);}"]);
+const SlideFromRight = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
+const SlideUp = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
+const LoaderDot = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{background:#f7fafc;}50%{background:#cbd5e0;}100%{background:#f7fafc;}"]);
 
 /***/ }),
 

@@ -9,6 +9,7 @@
 // Constants
 import React from "react";
 import { GlobalStyle } from "../../constants/styles/Global";
+import { GrainCover } from "../GrainCover";
 
 // Components
 import { SiteHead } from "../SiteHead";
@@ -30,6 +31,7 @@ export const Layout = ({ children }: Layout) => (
   <>
     <GlobalStyle />
     <SiteHead title="LAXALT" />
+    <GrainCover />
     <main>{children}</main>
     {/* <Footer /> */}
   </>

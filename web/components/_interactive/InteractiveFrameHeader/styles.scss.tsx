@@ -65,7 +65,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
       transform: translate(-50%, -50%);
 
       width: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2));
-      height: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2));
+      height: calc(100% - (var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 2.25));
 
       cursor: crosshair;
 
@@ -82,15 +82,18 @@ export const InteractiveFrameHeaderStyle = styled.div`
       .${DharmaTypeClassName}__character {
         fill: ${Theme.Color.Galaxy};
 
-        stroke: salmon;
-        stroke-width: .15px;
+        /* stroke: salmon; */
+        /* stroke-width: .15px; */
 
         transition: stroke-width .5s ease;
 
-        animation: ${PulseStroke} calc(1s * ((var(--dharma-type-key) / 2) + 1)) ease infinite;
+
+        filter: url(#displacementFilter);
+
+        /* animation: ${PulseStroke} calc(1s * ((var(--dharma-type-key) / 2) + 1)) ease infinite; */
 
         &:hover {
-          stroke-width: 1px;
+          /* stroke-width: 1px; */
           /* fill: none; */
         }
       }
@@ -107,6 +110,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
         top: 50%;
 
         pointer-events: none;
+
       }
 
       &__y-axis {
@@ -166,6 +170,9 @@ export const InteractiveFrameHeaderStyle = styled.div`
               width: auto;
               flex-shrink: 0;
               white-space: nowrap;
+
+              vertical-align: middle;
+              display: table-cell;
             }
           }
         }
