@@ -439,10 +439,10 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
         foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy
       }, {
         name: "galaxy",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
+        primary: "cornsilk",
+        secondary: "cornsilk",
         background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background
+        foreground: "cornsilk"
       }]
     };
     this.setNewTheme = this.setNewTheme.bind(this);

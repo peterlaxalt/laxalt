@@ -84,10 +84,10 @@ export class ThemePicker extends React.PureComponent<
         },
         {
           name: "galaxy",
-          primary: Theme.Color.Galaxy,
-          secondary: Theme.Color.Galaxy,
+          primary: "cornsilk",
+          secondary: "cornsilk",
           background: Theme.Color.Galaxy,
-          foreground: Theme.Color.Background,
+          foreground: "cornsilk",
         },
       ],
     };

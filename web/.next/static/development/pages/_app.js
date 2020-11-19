@@ -378,10 +378,10 @@ function (_React$PureComponent) {
         foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Galaxy
       }, {
         name: "galaxy",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Galaxy,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Galaxy,
+        primary: "cornsilk",
+        secondary: "cornsilk",
         background: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Galaxy,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Background
+        foreground: "cornsilk"
       }]
     };
     _this.setNewTheme = _this.setNewTheme.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
