@@ -449,7 +449,7 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
       availableThemes: [{
         name: "default",
         primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Seconndary,
         background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
         foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Foreground
       }, {
@@ -471,11 +471,11 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
         background: "orangered",
         foreground: "cornsilk"
       }, {
-        name: "cornsilk",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        background: "cornsilk",
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy
+        name: "white",
+        primary: "black",
+        secondary: "black",
+        background: "white",
+        foreground: "black"
       }, {
         name: "galaxy",
         primary: "cornsilk",
