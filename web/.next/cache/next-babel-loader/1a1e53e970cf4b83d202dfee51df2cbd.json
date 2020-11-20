@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function handle(req, res) {\n  console.log(req.body); // The request body\n\n  console.log(req.query); // The url querystring\n\n  console.log(req.cookies); // The passed cookies\n\n  res.end(\"Hello World\");\n}","map":null,"metadata":{},"sourceType":"module"}
