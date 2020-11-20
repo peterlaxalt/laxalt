@@ -9,7 +9,6 @@ import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
 import { DharmaTypeClassName } from "../../_svg/DharmaType/styles.scss";
 import {} from "../../../constants/styles/CssUtils";
-import { PulseStroke } from "../../../constants/styles/Animation";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -38,6 +37,8 @@ export const InteractiveFrameHeaderStyle = styled.div`
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
       --${InteractiveFrameHeaderClassName}__frame-edge-size: ${Root.FrameSize};
     }
+
+    overflow: hidden;
 
     // __________________________
     // Inner Grid
@@ -80,6 +81,12 @@ export const InteractiveFrameHeaderStyle = styled.div`
       }
 
       .${DharmaTypeClassName} {
+        --${DharmaTypeClassName}-offset-size: 10px;
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          --${DharmaTypeClassName}-offset-size: 5px;
+        }
+
         top: 0;
         left: 0;
         right: 0;
@@ -87,29 +94,25 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
         width: 100%;
         height: 100%;
+
+        &--offset {
+          top: calc(var(--${DharmaTypeClassName}-offset-size) * (var(--${DharmaTypeClassName}-offset) * -1));
+          left: calc(var(--${DharmaTypeClassName}-offset-size) * (var(--${DharmaTypeClassName}-offset) * 1));
+          right: calc(var(--${DharmaTypeClassName}-offset-size) * (var(--${DharmaTypeClassName}-offset) * -1));
+          bottom: calc(var(--${DharmaTypeClassName}-offset-size) * (var(--${DharmaTypeClassName}-offset) * 1));
+        }
       }
 
       .${DharmaTypeClassName}__character {
         fill: ${Theme.Color.varForeground};
 
-        /* stroke: salmon; */
-        /* stroke-width: .15px; */
-
         transition: stroke-width .5s ease;
-
-
-        /* filter: url(#displacementFilter); */
-
-        /* animation: ${PulseStroke} calc(1s * ((var(--dharma-type-key) / 2) + 1)) ease infinite; */
-
-        &:hover {
-          /* stroke-width: 1px; */
-          /* fill: none; */
-        }
       }
     }
 
     .${InteractiveFrameHeaderClassName}__frame {
+      z-index: 500;
+
       &__y-axis,
       &__x-axis {
         position: absolute;
@@ -141,6 +144,10 @@ export const InteractiveFrameHeaderStyle = styled.div`
         font-size: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) * 0.75);
         text-transform: uppercase;
         line-height: 0;
+
+        z-index: 800;
+
+        background: ${Theme.Color.varBackground};
 
         .${InteractiveFrameHeaderClassName}__frame-items {
           list-style-type: none;

@@ -183,7 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 const GrainCoverStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__GrainCoverStyle",
   componentId: "uy0vxl-0"
-})(["position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;display:flex;z-index:999;mix-blend-mode:multiply;.grain-cover-inner{width:1000vw;height:1000vh;animation:grain 8s steps(10) infinite;background-image:url('noise.png');animation:", " 8s steps(10) infinite;}"], _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_1__["Grain"]);
+})(["position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;display:none;z-index:999;mix-blend-mode:multiply;.grain-cover-inner{width:1000vw;height:1000vh;animation:grain 8s steps(10) infinite;background-image:url('noise.png');animation:", " 8s steps(10) infinite;}"], _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_1__["Grain"]);
 /* harmony default export */ __webpack_exports__["default"] = (GrainCoverStyle);
 
 /***/ }),
@@ -449,7 +449,7 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
       availableThemes: [{
         name: "default",
         primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Seconndary,
         background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
         foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Foreground
       }, {
@@ -471,11 +471,11 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
         background: "orangered",
         foreground: "cornsilk"
       }, {
-        name: "cornsilk",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        background: "cornsilk",
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy
+        name: "white",
+        primary: "black",
+        secondary: "black",
+        background: "white",
+        foreground: "black"
       }, {
         name: "galaxy",
         primary: "cornsilk",

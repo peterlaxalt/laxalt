@@ -1,5 +1,6 @@
 // Core
 import React from "react";
+import { Theme } from "../../../constants/Theme";
 import {
   DharmaTypeClassName,
   DharmaTypeStyle,
@@ -26,12 +27,23 @@ type LXLT_DharmaCounterState = {
   characterWidth: number;
 
   isInitialized: boolean;
+
+  offsetCount: number;
 };
 
 type LXLT_DharmaChar = {
   letter: string;
   count: number;
   idx: number;
+  copies: boolean;
+};
+
+type LXLT_DharmaCounterDisplay = LXLT_DharmaCounterState & {
+  updateLetterCount: (id: number) => void;
+
+  outlined?: boolean;
+  offset?: number;
+  addClass?: string;
 };
 
 // Begin Component
@@ -57,6 +69,8 @@ export class DharmaCounter extends React.PureComponent<
       viewBoxWidth: 0,
       characterWidth: 0,
 
+      offsetCount: 3,
+
       characterVerticalTranslation: 0,
       characterHorizontalScale: 0,
       characterVerticalScale: 0,
@@ -70,6 +84,9 @@ export class DharmaCounter extends React.PureComponent<
     this.updateLetterCount = this.updateLetterCount.bind(this);
 
     this.letterCountTimer = this.letterCountTimer.bind(this);
+
+    this.offsetCountTimer = this.offsetCountTimer.bind(this);
+    this.incrementOffsetCount = this.incrementOffsetCount.bind(this);
   }
 
   componentDidMount() {
@@ -85,6 +102,7 @@ export class DharmaCounter extends React.PureComponent<
             letter: character,
             count: 1,
             idx: idx,
+            copies: Math.random() <= 0.5,
           };
         }
       );
@@ -97,7 +115,8 @@ export class DharmaCounter extends React.PureComponent<
       let characterCount = splitCharacterArray.length;
       let characterWidth = viewBoxWidth / characterCount;
 
-      let characterVerticalTranslation = 0.963; // Multiplied by the viewBoxHeight
+      // let characterVerticalTranslation = 0.963; // Multiplied by the viewBoxHeight
+      let characterVerticalTranslation = 0.993; // Multiplied by the viewBoxHeight
       let characterHorizontalScale = 0.75; // Multiplied by the characterWidth
       let characterVerticalScale = 1.38; // Multiplied by the characterWidth
 
@@ -118,6 +137,7 @@ export class DharmaCounter extends React.PureComponent<
       });
 
       this.letterCountTimer();
+      this.offsetCountTimer();
     }
   }
 
@@ -129,6 +149,7 @@ export class DharmaCounter extends React.PureComponent<
             letter: character.letter,
             count: id == character.idx ? character.count + 1 : character.count,
             idx: idx,
+            copies: Math.random() <= 0.5,
           };
         }
       ),
@@ -145,6 +166,7 @@ export class DharmaCounter extends React.PureComponent<
             letter: character.letter,
             count: id == character.idx ? character.count - 1 : character.count,
             idx: idx,
+            copies: Math.random() <= 0.5,
           };
         }
       ),
@@ -161,6 +183,7 @@ export class DharmaCounter extends React.PureComponent<
             letter: character.letter,
             count: id == character.idx ? 1 : character.count,
             idx: idx,
+            copies: Math.random() <= 0.5,
           };
         }
       ),
@@ -207,106 +230,183 @@ export class DharmaCounter extends React.PureComponent<
     );
   }
 
+  incrementOffsetCount() {
+    this.setState({
+      offsetCount: this.state.offsetCount < 15 ? this.state.offsetCount + 1 : 2,
+    });
+
+    return;
+  }
+
+  offsetCountTimer() {
+    window.setInterval(() => this.incrementOffsetCount(), 5000);
+  }
+
   render() {
-    let {
-      viewBoxHeight,
-      viewBoxWidth,
-      characters,
-      characterWidth,
-
-      characterHorizontalScale,
-      characterVerticalScale,
-      characterVerticalTranslation,
-    } = this.state;
-
-    // console.table("DharmaCounter state:", this.state.characters);
+    let offsetCount = this.state.offsetCount;
+    var offsetArr = Array.from(Array(offsetCount).keys());
 
     return (
-      <DharmaTypeStyle
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-        preserveAspectRatio="none"
-        className={`${DharmaTypeClassName} ${DharmaTypeClassName}--couter`}
-        style={{
-          [`--${DharmaTypeClassName}-font-size` as any]: `${viewBoxHeight}px`,
-        }}
-      >
-        <filter id={`displacementFilter`}>
-          <feTurbulence
-            type="turbulence"
-            baseFrequency={0.05}
-            numOctaves={1}
-            result="turbulence"
-          />
-          <feDisplacementMap
-            in2="turbulence"
-            in="SourceGraphic"
-            scale={3}
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-        </filter>
+      <>
+        <DharmaCounterDisplay
+          updateLetterCount={this.updateLetterCount}
+          {...this.state}
+        />
 
-        <g>
-          {characters.map((char: LXLT_DharmaChar, idx: number) => {
-            let countArray = Array.from(Array(char.count).keys());
-
-            return countArray.map((duplicate: number, idxx: number) => {
-              let adjustedDuplicate =
-                char.count > 1 ? char.count : duplicate + 1;
-
-              let adjustedVerticalTranslation =
-                (viewBoxHeight / adjustedDuplicate) *
-                (idxx + 1) *
-                characterVerticalTranslation;
-
-              let adjustedVerticalScale =
-                characterVerticalScale / adjustedDuplicate;
-
-              return (
-                <g
-                  className={`${DharmaTypeClassName}__character-wrapper`}
-                  data-char-id={idx}
-                  data-char-count={duplicate}
-                  key={idxx}
-                  onClick={() => this.updateLetterCount(idx)}
-                >
-                  <filter id={`displacementFilter__${idx}__${idxx}`}>
-                    <feTurbulence
-                      type="turbulence"
-                      baseFrequency={0.05 * (idxx * 0.05)}
-                      numOctaves={1 * (idxx + 20)}
-                      result="turbulence"
-                    />
-                    <feDisplacementMap
-                      in2="turbulence"
-                      in="SourceGraphic"
-                      scale={3 - idxx * 0.5}
-                      xChannelSelector="R"
-                      yChannelSelector="G"
-                    />
-                  </filter>
-
-                  <text
-                    className={`${DharmaTypeClassName}__character`}
-                    transform={`translate(${
-                      characterWidth * idx
-                    } ${adjustedVerticalTranslation}) scale(${characterHorizontalScale}, ${adjustedVerticalScale})`}
-                    style={{
-                      [`--${DharmaTypeClassName}-key` as any]: idx,
-                      filter: `url(#displacementFilter__${idx}__${idxx})`,
-                    }}
-                  >
-                    <tspan className={`${DharmaTypeClassName}__letter`}>
-                      {char.letter}
-                    </tspan>
-                  </text>
-                </g>
-              );
-            });
-          })}
-        </g>
-      </DharmaTypeStyle>
+        {offsetArr.map((n: number, idx: number) => {
+          return (
+            <DharmaCounterDisplay
+              outlined={true}
+              offset={n}
+              key={idx}
+              updateLetterCount={this.updateLetterCount}
+              {...this.state}
+            />
+          );
+        })}
+      </>
     );
   }
 }
+
+const DharmaCounterDisplay: React.FunctionComponent<LXLT_DharmaCounterDisplay> = (
+  props
+) => {
+  let {
+    viewBoxHeight,
+    viewBoxWidth,
+    characters,
+    characterWidth,
+
+    characterHorizontalScale,
+    characterVerticalScale,
+    characterVerticalTranslation,
+
+    updateLetterCount,
+
+    offset,
+    outlined,
+
+    addClass,
+  } = props;
+
+  return (
+    <DharmaTypeStyle
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      preserveAspectRatio="none"
+      className={`${DharmaTypeClassName} ${DharmaTypeClassName}--counter ${
+        offset ? `${DharmaTypeClassName}--offset` : ""
+      } ${addClass}`}
+      style={{
+        [`--${DharmaTypeClassName}-font-size` as any]: `${viewBoxHeight}px`,
+        [`--${DharmaTypeClassName}-offset` as any]: `${offset ? offset : 0}`,
+      }}
+    >
+      <g>
+        {characters.map((char: LXLT_DharmaChar, idx: number) => {
+          let countArray = Array.from(Array(char.count).keys());
+
+          return countArray.map((duplicate: number, idxx: number) => {
+            let adjustedDuplicate = char.count > 1 ? char.count : duplicate + 1;
+
+            let canCopy = Math.random() <= 0.5;
+
+            let adjustedVerticalTranslation =
+              (viewBoxHeight / adjustedDuplicate) *
+              (idxx + 1) *
+              characterVerticalTranslation;
+
+            let adjustedVerticalScale =
+              characterVerticalScale / adjustedDuplicate;
+
+            return (
+              <g
+                className={`${DharmaTypeClassName}__character-wrapper`}
+                data-char-id={idx}
+                data-char-count={duplicate}
+                key={idxx}
+                onClick={() => updateLetterCount(idx)}
+                style={{
+                  display: outlined && char.copies && canCopy ? "none" : "inherit",
+                }}
+              >
+                <filter
+                  id={`displacementFilter__${idx}__${idxx}${
+                    outlined ? "__outlined" : ""
+                  }`}
+                >
+                  {!outlined && (
+                    <>
+                      <feTurbulence
+                        type="turbulence"
+                        // baseFrequency={0.6 * (idxx * 0.05)}
+                        // numOctaves={1 * (idxx + 20)}
+                        baseFrequency={0}
+                        numOctaves={0}
+                        result="turbulence"
+                      />
+                      <feDisplacementMap
+                        in2="turbulence"
+                        in="SourceGraphic"
+                        // scale={3 - idxx * 0.5}
+                        scale={0}
+                        xChannelSelector="R"
+                        yChannelSelector="G"
+                      />
+                    </>
+                  )}
+
+                  {/* Outline  */}
+                  {outlined && (
+                    <>
+                      <feFlood
+                        flood-color={Theme.Color.varBackground}
+                        flood-opacity="1"
+                        result="PINK"
+                      />
+                      <feMorphology
+                        in="SourceAlpha"
+                        result="DILATED"
+                        operator="dilate"
+                        radius=".1"
+                      />
+                      <feComposite
+                        in="PINK"
+                        in2="DILATED"
+                        operator="in"
+                        result="OUTLINE"
+                      />
+
+                      <feMerge>
+                        <feMergeNode in="OUTLINE" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </>
+                  )}
+                </filter>
+
+                <text
+                  className={`${DharmaTypeClassName}__character`}
+                  transform={`translate(${
+                    characterWidth * idx
+                  } ${adjustedVerticalTranslation}) scale(${characterHorizontalScale}, ${adjustedVerticalScale})`}
+                  style={{
+                    [`--${DharmaTypeClassName}-key` as any]: idx,
+                    filter: `url(#displacementFilter__${idx}__${idxx}${
+                      outlined ? "__outlined" : ""
+                    })`,
+                  }}
+                >
+                  <tspan className={`${DharmaTypeClassName}__letter`}>
+                    {char.letter}
+                  </tspan>
+                </text>
+              </g>
+            );
+          });
+        })}
+      </g>
+    </DharmaTypeStyle>
+  );
+};

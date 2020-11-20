@@ -11,7 +11,7 @@ import { ThemePickerClassName, ThemePickerStyle } from "./styles.scss";
 type LXLT_ThemePicker = {};
 
 type LXLT_Theme = {
-  name: "default" | "cornsilk" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
+  name: "default" | "white" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
   primary: string;
   secondary: string;
   background: string;
@@ -50,7 +50,7 @@ export class ThemePicker extends React.PureComponent<
         {
           name: "default",
           primary: Theme.Color.Primary,
-          secondary: Theme.Color.Secondary,
+          secondary: Theme.Color.Seconndary,
           background: Theme.Color.Background,
           foreground: Theme.Color.Foreground,
         },
@@ -76,11 +76,11 @@ export class ThemePicker extends React.PureComponent<
           foreground: "cornsilk",
         },
         {
-          name: "cornsilk",
-          primary: Theme.Color.Galaxy,
-          secondary: Theme.Color.Galaxy,
-          background: "cornsilk",
-          foreground: Theme.Color.Galaxy,
+          name: "white",
+          primary: "black",
+          secondary: "black",
+          background: "white",
+          foreground: "black",
         },
         {
           name: "galaxy",
