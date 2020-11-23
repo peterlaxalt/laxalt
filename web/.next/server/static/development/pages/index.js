@@ -101,7 +101,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2184,25 +2184,29 @@ class P5PageWithContext extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] 
           animation-fill-mode: forwards;
           animation-iteration-count: 1;
         }
+
+        #p5_loading {
+          display: none !important;
+        }
       }
     `;
     return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(DharmaGlobalStyles, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 94
+        lineNumber: 98
       },
       __self: this
     }), __jsx(_components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_4__["InteractiveFrameHeader"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 95
+        lineNumber: 99
       },
       __self: this
     }), this.state.domLoaded && this.state.windowHeight > 10 && this.state.windowWidth > 10 ? __jsx("div", {
       className: "dharma-container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 99
+        lineNumber: 103
       },
       __self: this
     }, this.renderP5("dharma")) : null);
@@ -2216,7 +2220,7 @@ const DharmaCanvasPage = () => {
     colorThemeContext: themeContext,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 113
     },
     __self: undefined
   });
@@ -2937,7 +2941,7 @@ const GLSL_Canvas = (W, H, ID, BG) => p => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*******************************!*\
   !*** multi ./pages/index.tsx ***!
   \*******************************/

@@ -11356,7 +11356,7 @@ var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/pages/projects/dharma.
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n      body, html {\n        overflow: hidden;\n      }\n\n      .dharma-container {\n        width: 100vw;\n        height: 100vh;\n        overflow: hidden;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        canvas {\n          animation: ", " 1s ease 1;\n          animation-fill-mode: forwards;\n          animation-iteration-count: 1;\n        }\n      }\n    "]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n      body, html {\n        overflow: hidden;\n      }\n\n      .dharma-container {\n        width: 100vw;\n        height: 100vh;\n        overflow: hidden;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        canvas {\n          animation: ", " 1s ease 1;\n          animation-fill-mode: forwards;\n          animation-iteration-count: 1;\n        }\n\n        #p5_loading {\n          display: none !important;\n        }\n      }\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -11444,20 +11444,20 @@ function (_Component) {
       return __jsx(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, __jsx(DharmaGlobalStyles, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 98
         },
         __self: this
       }), __jsx(_components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_11__["InteractiveFrameHeader"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 99
         },
         __self: this
       }), this.state.domLoaded && this.state.windowHeight > 10 && this.state.windowWidth > 10 ? __jsx("div", {
         className: "dharma-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 103
         },
         __self: this
       }, this.renderP5("dharma")) : null);
@@ -11473,7 +11473,7 @@ var DharmaCanvasPage = function DharmaCanvasPage() {
     colorThemeContext: themeContext,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 113
     },
     __self: this
   });
@@ -12208,7 +12208,7 @@ var GLSL_Canvas = function GLSL_Canvas(W, H, ID, BG) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fpflaxalt%2FRepositories%2F_pfl%2Fweb%2Fpages%2Findex.tsx ***!
   \************************************************************************************************************************************/
@@ -12231,5 +12231,5 @@ module.exports = dll_817bc00842ec66b68155;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
