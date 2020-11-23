@@ -101,7 +101,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2360,8 +2360,12 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
       count: 1,
       idx: idx,
       copies: 5,
-      isIncrementing: true,
-      isDecrementing: false
+      copiesLastVisible: 0,
+      copiesAreVisible: false,
+      countIsIncrementing: true,
+      countIsDecrementing: false,
+      copiesAreIncrementing: true,
+      copiesAreDecrementing: false
     };
   });
   let characterCount = splitCharacterArray.length;
@@ -2371,27 +2375,24 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
   // Counts
   // let renderCount: number = 0;
 
-  let previousTime = 0; // ____________________________
+  let previousCountUpdateTime = 0;
+  let previousCopyUpdateTime = 0; // ____________________________
   // Strokes
 
   let strokeWidth = 4;
   let strokeOffset = strokeWidth * 1.5; // ____________________________
-  // Incrementing
+  // Limits
 
   let maxCount = 6;
-  let minCount = 1; // ____________________________
+  let minCount = 1;
+  let maxCopies = 12;
+  let minCopies = 1; // ____________________________
   // Translation
   // let previousVerticalTranslation: number = H / 2.25;
 
   let verticalTranslationWhitespaceCompensation = 2.25;
 
-  const previousHorizontalTranslation = idx => -60 + (characterWidth * idx + characterWidth / 1.5 + strokeOffset); // const previousHorizontalTranslation = (idx: number) =>
-  //   characterWidth * idx + characterWidth / 2 + strokeOffset * renderCount;
-  // let characterVerticalTranslation = 0.963; // Multiplied by the viewBoxHeight
-  // let characterVerticalTranslation: number = 0.993; // Multiplied by the viewBoxHeight
-  // let characterHorizontalScale: number = 0.75; // Multiplied by the characterWidth
-  // let characterVerticalScale: number = 1.38; // Multiplied by the characterWidth
-  // _________________________________________________
+  const previousHorizontalTranslation = idx => -60 + (characterWidth * idx + characterWidth / 1.5 + strokeOffset); // _________________________________________________
   // Preload
 
 
@@ -2409,32 +2410,75 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
 
 
   const updateCharacter = (char, idx) => {
-    if (char.count < maxCount && char.isIncrementing) {
+    if (char.count < maxCount && char.countIsIncrementing) {
       characters[idx] = _objectSpread({}, char, {
         count: char.count + 1
       });
-      previousTime = p.millis();
+      previousCountUpdateTime = p.millis();
+      return;
     } else if (char.count === maxCount) {
       characters[idx] = _objectSpread({}, char, {
         count: char.count - 1,
-        isIncrementing: false,
-        isDecrementing: true
+        countIsIncrementing: false,
+        countIsDecrementing: true
       });
-      previousTime = p.millis();
-    } else if (char.count > minCount && char.isDecrementing) {
+      previousCountUpdateTime = p.millis();
+      return;
+    } else if (char.count > minCount && char.countIsDecrementing) {
       characters[idx] = _objectSpread({}, char, {
         count: char.count - 1,
-        isDecrementing: true
+        countIsDecrementing: true
       });
-      previousTime = p.millis();
-    } else if (char.count === minCount && char.isDecrementing) {
+      previousCountUpdateTime = p.millis();
+      return;
+    } else if (char.count === minCount && char.countIsDecrementing) {
       characters[idx] = _objectSpread({}, char, {
         count: char.count + 1,
-        isIncrementing: true,
-        isDecrementing: false
+        countIsIncrementing: true,
+        countIsDecrementing: false
       });
-      previousTime = p.millis();
+      previousCountUpdateTime = p.millis();
+      return;
     }
+
+    return;
+  }; // _________________________________________________
+  // Update Copies
+
+
+  const updateCopies = (char, idx) => {
+    if (char.copies < maxCopies && char.copiesAreIncrementing) {
+      characters[idx] = _objectSpread({}, char, {
+        copies: char.copies + 1
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies === maxCopies) {
+      characters[idx] = _objectSpread({}, char, {
+        copies: char.copies - 1,
+        copiesAreIncrementing: false,
+        copiesAreDecrementing: true
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies > minCopies && char.copiesAreDecrementing) {
+      characters[idx] = _objectSpread({}, char, {
+        copies: char.copies - 1,
+        copiesAreDecrementing: true
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies === minCopies && char.copiesAreDecrementing) {
+      characters[idx] = _objectSpread({}, char, {
+        copies: char.copies + 1,
+        copiesAreIncrementing: true,
+        copiesAreDecrementing: false
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    }
+
+    return;
   }; // _________________________________________________
   // Draw
 
@@ -2455,7 +2499,14 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
         p.scale(1, 1);
         let randomCharPick = Math.random() <= 0.5;
 
-        if (randomCharPick && p.millis() - previousTime > 3000) {
+        if (randomCharPick) {
+          console.log("yep");
+          updateCopies(char, idx);
+        } else {
+          console.log("nope");
+        }
+
+        if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
           updateCharacter(char, idx);
         }
 
@@ -2478,11 +2529,29 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
 
           copiesArray = copiesArray.map(copyNumber => {
             return copyNumber + 1;
-          });
+          }); // let randomCopyPick = Math.random() <= 0.5;
+          // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
+
+          previousCopyUpdateTime; // let isFirstCount = true;
+
           copiesArray.map((copyNumber, idxxx) => {
+            // let centerCoordsX = W / 2;
+            // let centerCoordsY = H / 2;
+            // let horizontalTranslate =
+            //   copyNumber !== 1
+            //     ? (previousHorizontalTranslation(idx) +
+            //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
+            //     : previousHorizontalTranslation(idx) +
+            //       strokeOffset * copyNumber;
+            // let verticalTranslate =
+            //   copyNumber !== 1
+            //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
+            //     : duplicateVerticalPosition - strokeOffset * copyNumber;
+            let horizontalTranslate = previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+            let verticalTranslate = duplicateVerticalPosition - strokeOffset * copyNumber;
             p.push();
             p.scale(1, verticalScale);
-            p.text(char.letter, previousHorizontalTranslation(idx) + strokeOffset * copyNumber, duplicateVerticalPosition - strokeOffset * copyNumber);
+            p.text(char.letter, horizontalTranslate, verticalTranslate);
             p.pop();
           });
         });
@@ -2676,7 +2745,7 @@ const GLSL_Canvas = (W, H, ID, BG) => p => {
 
 /***/ }),
 
-/***/ 6:
+/***/ 3:
 /*!*****************************************!*\
   !*** multi ./pages/projects/dharma.tsx ***!
   \*****************************************/

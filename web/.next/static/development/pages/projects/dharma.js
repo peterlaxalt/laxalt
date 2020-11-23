@@ -11480,8 +11480,12 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
         count: 1,
         idx: idx,
         copies: 5,
-        isIncrementing: true,
-        isDecrementing: false
+        copiesLastVisible: 0,
+        copiesAreVisible: false,
+        countIsIncrementing: true,
+        countIsDecrementing: false,
+        copiesAreIncrementing: true,
+        copiesAreDecrementing: false
       };
     });
     var characterCount = splitCharacterArray.length;
@@ -11491,15 +11495,18 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
     // Counts
     // let renderCount: number = 0;
 
-    var previousTime = 0; // ____________________________
+    var previousCountUpdateTime = 0;
+    var previousCopyUpdateTime = 0; // ____________________________
     // Strokes
 
     var strokeWidth = 4;
     var strokeOffset = strokeWidth * 1.5; // ____________________________
-    // Incrementing
+    // Limits
 
     var maxCount = 6;
-    var minCount = 1; // ____________________________
+    var minCount = 1;
+    var maxCopies = 12;
+    var minCopies = 1; // ____________________________
     // Translation
     // let previousVerticalTranslation: number = H / 2.25;
 
@@ -11507,13 +11514,7 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
 
     var previousHorizontalTranslation = function previousHorizontalTranslation(idx) {
       return -60 + (characterWidth * idx + characterWidth / 1.5 + strokeOffset);
-    }; // const previousHorizontalTranslation = (idx: number) =>
-    //   characterWidth * idx + characterWidth / 2 + strokeOffset * renderCount;
-    // let characterVerticalTranslation = 0.963; // Multiplied by the viewBoxHeight
-    // let characterVerticalTranslation: number = 0.993; // Multiplied by the viewBoxHeight
-    // let characterHorizontalScale: number = 0.75; // Multiplied by the characterWidth
-    // let characterVerticalScale: number = 1.38; // Multiplied by the characterWidth
-    // _________________________________________________
+    }; // _________________________________________________
     // Preload
 
 
@@ -11531,32 +11532,75 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
 
 
     var updateCharacter = function updateCharacter(_char, idx) {
-      if (_char.count < maxCount && _char.isIncrementing) {
+      if (_char.count < maxCount && _char.countIsIncrementing) {
         characters[idx] = _objectSpread({}, _char, {
           count: _char.count + 1
         });
-        previousTime = p.millis();
+        previousCountUpdateTime = p.millis();
+        return;
       } else if (_char.count === maxCount) {
         characters[idx] = _objectSpread({}, _char, {
           count: _char.count - 1,
-          isIncrementing: false,
-          isDecrementing: true
+          countIsIncrementing: false,
+          countIsDecrementing: true
         });
-        previousTime = p.millis();
-      } else if (_char.count > minCount && _char.isDecrementing) {
+        previousCountUpdateTime = p.millis();
+        return;
+      } else if (_char.count > minCount && _char.countIsDecrementing) {
         characters[idx] = _objectSpread({}, _char, {
           count: _char.count - 1,
-          isDecrementing: true
+          countIsDecrementing: true
         });
-        previousTime = p.millis();
-      } else if (_char.count === minCount && _char.isDecrementing) {
+        previousCountUpdateTime = p.millis();
+        return;
+      } else if (_char.count === minCount && _char.countIsDecrementing) {
         characters[idx] = _objectSpread({}, _char, {
           count: _char.count + 1,
-          isIncrementing: true,
-          isDecrementing: false
+          countIsIncrementing: true,
+          countIsDecrementing: false
         });
-        previousTime = p.millis();
+        previousCountUpdateTime = p.millis();
+        return;
       }
+
+      return;
+    }; // _________________________________________________
+    // Update Copies
+
+
+    var updateCopies = function updateCopies(_char2, idx) {
+      if (_char2.copies < maxCopies && _char2.copiesAreIncrementing) {
+        characters[idx] = _objectSpread({}, _char2, {
+          copies: _char2.copies + 1
+        });
+        previousCopyUpdateTime = p.millis();
+        return;
+      } else if (_char2.copies === maxCopies) {
+        characters[idx] = _objectSpread({}, _char2, {
+          copies: _char2.copies - 1,
+          copiesAreIncrementing: false,
+          copiesAreDecrementing: true
+        });
+        previousCopyUpdateTime = p.millis();
+        return;
+      } else if (_char2.copies > minCopies && _char2.copiesAreDecrementing) {
+        characters[idx] = _objectSpread({}, _char2, {
+          copies: _char2.copies - 1,
+          copiesAreDecrementing: true
+        });
+        previousCopyUpdateTime = p.millis();
+        return;
+      } else if (_char2.copies === minCopies && _char2.copiesAreDecrementing) {
+        characters[idx] = _objectSpread({}, _char2, {
+          copies: _char2.copies + 1,
+          copiesAreIncrementing: true,
+          copiesAreDecrementing: false
+        });
+        previousCopyUpdateTime = p.millis();
+        return;
+      }
+
+      return;
     }; // _________________________________________________
     // Draw
 
@@ -11573,15 +11617,22 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
       if (H && W) {
         // _________________________________________
         // Loop through our copies
-        characters.map(function (_char2, idx) {
+        characters.map(function (_char3, idx) {
           p.scale(1, 1);
           var randomCharPick = Math.random() <= 0.5;
 
-          if (randomCharPick && p.millis() - previousTime > 3000) {
-            updateCharacter(_char2, idx);
+          if (randomCharPick) {
+            console.log("yep");
+            updateCopies(_char3, idx);
+          } else {
+            console.log("nope");
           }
 
-          var countArray = _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6___default()(Array(_char2.count).keys());
+          if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
+            updateCharacter(_char3, idx);
+          }
+
+          var countArray = _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6___default()(Array(_char3.count).keys());
 
           countArray = countArray.map(function (countNumber) {
             return countNumber + 1;
@@ -11589,22 +11640,40 @@ var DharmaCanvasDisplay = function DharmaCanvasDisplay(W, H, ID, BG) {
           // Duplicate positions
 
           countArray.map(function (countNumber, idxx) {
-            var verticalScale = 1 / (_char2.count * 0.95);
+            var verticalScale = 1 / (_char3.count * 0.95);
             var verticalSkewDivisible = 2.75;
             var characterSkewDivisible = 1.36;
-            var duplicateVerticalPosition = _char2.count == 1 ? H / verticalTranslationWhitespaceCompensation : characterSize / verticalSkewDivisible + characterSize / characterSkewDivisible * idxx; // _________________________________________
+            var duplicateVerticalPosition = _char3.count == 1 ? H / verticalTranslationWhitespaceCompensation : characterSize / verticalSkewDivisible + characterSize / characterSkewDivisible * idxx; // _________________________________________
             // Make copies
 
-            var copiesArray = _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6___default()(Array(_char2.copies).keys()); // let randomCopyPick = Math.random() <= 0.5;
+            var copiesArray = _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6___default()(Array(_char3.copies).keys()); // let randomCopyPick = Math.random() <= 0.5;
 
 
             copiesArray = copiesArray.map(function (copyNumber) {
               return copyNumber + 1;
-            });
+            }); // let randomCopyPick = Math.random() <= 0.5;
+            // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
+
+            previousCopyUpdateTime; // let isFirstCount = true;
+
             copiesArray.map(function (copyNumber, idxxx) {
+              // let centerCoordsX = W / 2;
+              // let centerCoordsY = H / 2;
+              // let horizontalTranslate =
+              //   copyNumber !== 1
+              //     ? (previousHorizontalTranslation(idx) +
+              //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : previousHorizontalTranslation(idx) +
+              //       strokeOffset * copyNumber;
+              // let verticalTranslate =
+              //   copyNumber !== 1
+              //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : duplicateVerticalPosition - strokeOffset * copyNumber;
+              var horizontalTranslate = previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+              var verticalTranslate = duplicateVerticalPosition - strokeOffset * copyNumber;
               p.push();
               p.scale(1, verticalScale);
-              p.text(_char2.letter, previousHorizontalTranslation(idx) + strokeOffset * copyNumber, duplicateVerticalPosition - strokeOffset * copyNumber);
+              p.text(_char3.letter, horizontalTranslate, verticalTranslate);
               p.pop();
             });
           });
@@ -11805,7 +11874,7 @@ var GLSL_Canvas = function GLSL_Canvas(W, H, ID, BG) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 0:
 /*!*****************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fprojects%2Fdharma&absolutePagePath=%2FUsers%2Fpflaxalt%2FRepositories%2F_pfl%2Fweb%2Fpages%2Fprojects%2Fdharma.tsx ***!
   \*****************************************************************************************************************************************************************/
@@ -11828,5 +11897,5 @@ module.exports = dll_817bc00842ec66b68155;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=dharma.js.map
