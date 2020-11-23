@@ -6,7 +6,7 @@
  */
 
 import p5, { Font } from "p5";
-import { Theme } from "../../constants/Theme";
+import { LXLT_ColorTheme } from "../../constants/styles/Color";
 
 // Begin Component
 // __________________________________________________________________________
@@ -15,14 +15,14 @@ export type LXLT_DharmaCanvas = {
   W: number;
   H: number;
   ID: number;
-  BG: string;
+  BG: LXLT_ColorTheme;
 };
 
 export type LXLT_DharmaCanvasDisplay = (
   W: number,
   H: number,
   ID: number,
-  BG: string
+  BG: LXLT_ColorTheme
 ) => (p: p5) => void;
 
 type LXLT_DharmaCanvasChar = {
@@ -41,9 +41,12 @@ type LXLT_DharmaCanvasChar = {
   countIsDecrementing: boolean;
 };
 
-const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
-  p: p5
-) => {
+const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
+  W,
+  H,
+  ID,
+  DharmaTheme
+) => (p: p5) => {
   // _________________________________________________
   // Config
 
@@ -95,11 +98,13 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
 
   // ____________________________
   // Limits
-  let maxCount = 6;
+  let maxCount = 3;
   let minCount = 1;
 
   let maxCopies = 12;
   let minCopies = 1;
+
+  let frameRate = 10;
 
   // ____________________________
   // Translation
@@ -120,6 +125,8 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
   p.setup = () => {
     // Our Canvas
     p.createCanvas(W, H);
+
+    p.frameRate(frameRate);
   };
 
   // _________________________________________________
@@ -223,7 +230,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
   // _________________________________________________
   // Draw
   p.draw = () => {
-    p.background(BG);
+    p.background(DharmaTheme.background);
 
     p.textFont(dharmaFont);
 
@@ -231,9 +238,9 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
 
     p.textAlign(p.CENTER, p.CENTER);
 
-    p.fill(`${Theme.Color.Galaxy}`);
+    p.fill(`${DharmaTheme.foreground}`);
     p.strokeWeight(strokeWidth);
-    p.stroke(BG);
+    p.stroke(DharmaTheme.background);
 
     if (H && W) {
       // _________________________________________
@@ -244,11 +251,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (W, H, ID, BG) => (
         let randomCharPick = Math.random() <= 0.5;
 
         if (randomCharPick) {
-          console.log("yep");
-
           updateCopies(char, idx);
-        } else {
-          console.log("nope");
         }
 
         if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {

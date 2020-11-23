@@ -1,6 +1,7 @@
 // Core
-import React from "react";
+import React, { useContext } from "react";
 import { createGlobalStyle } from "styled-components";
+import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
 import { CssUtils } from "../../constants/styles/CssUtils";
 import { Theme } from "../../constants/Theme";
 import { ThemePickerClassName, ThemePickerStyle } from "./styles.scss";
@@ -8,30 +9,32 @@ import { ThemePickerClassName, ThemePickerStyle } from "./styles.scss";
 // Begin Types
 // __________________________________________________________________________________________
 
-type LXLT_ThemePicker = {};
-
-type LXLT_Theme = {
-  name: "default" | "white" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
-  primary: string;
-  secondary: string;
-  background: string;
-  foreground: string;
+type LXLT_ThemePicker = {
+  setTheme: (theme: LXLT_ColorTheme) => void;
 };
 
+// type LXLT_Theme = {
+// name: "default" | "white" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
+//   primary: string;
+//   secondary: string;
+//   background: string;
+//   foreground: string;
+// };
+
 type LXLT_ThemePickerState = {
-  availableThemes: LXLT_Theme[];
-  activeTheme?: LXLT_Theme;
+  availableThemes: LXLT_ColorTheme[];
+  activeTheme?: LXLT_ColorTheme;
 };
 
 // Begin Component
 // __________________________________________________________________________________________
 
 /**
- * @name ThemePicker
+ * @name ThemePickerWithHook
  * @author Peter Laxalt
  *
  */
-export class ThemePicker extends React.PureComponent<
+export class ThemePickerWithHook extends React.PureComponent<
   LXLT_ThemePicker,
   LXLT_ThemePickerState
 > {
@@ -58,36 +61,36 @@ export class ThemePicker extends React.PureComponent<
           name: "goldenrod",
           primary: "#393349",
           secondary: "#393349",
-          background: "goldenrod",
+          background: "#DAA520",
           foreground: "#393349",
         },
         {
           name: "cadetblue",
-          primary: "cornsilk",
-          secondary: "cornsilk",
-          background: "cadetblue",
-          foreground: "cornsilk",
+          primary: "#FFF8DC",
+          secondary: "#FFF8DC",
+          background: "#5F9EA0",
+          foreground: "#FFF8DC",
         },
         {
           name: "orangered",
-          primary: "cornsilk",
-          secondary: "cornsilk",
-          background: "orangered",
-          foreground: "cornsilk",
+          primary: "#FFF8DC",
+          secondary: "#FFF8DC",
+          background: "#FF4500",
+          foreground: "#FFF8DC",
         },
         {
           name: "white",
-          primary: "black",
-          secondary: "black",
-          background: "white",
-          foreground: "black",
+          primary: Theme.Color.Black,
+          secondary: Theme.Color.Black,
+          background: Theme.Color.White,
+          foreground: Theme.Color.Black,
         },
         {
           name: "galaxy",
-          primary: "cornsilk",
-          secondary: "cornsilk",
+          primary: "#FFF8DC",
+          secondary: "#FFF8DC",
           background: Theme.Color.Galaxy,
-          foreground: "cornsilk",
+          foreground: "#FFF8DC",
         },
       ],
     };
@@ -95,10 +98,14 @@ export class ThemePicker extends React.PureComponent<
     this.setNewTheme = this.setNewTheme.bind(this);
   }
 
-  setNewTheme(theme: LXLT_Theme) {
+  setNewTheme(theme: LXLT_ColorTheme) {
+    const { setTheme } = this.props;
+
     this.setState({
       activeTheme: theme,
     });
+
+    setTheme(theme);
   }
 
   render() {
@@ -124,10 +131,14 @@ export class ThemePicker extends React.PureComponent<
         ) : null}
         <ThemePickerStyle className={`${ThemePickerClassName}`}>
           {availableThemes
-            ? availableThemes.map((themeItem: LXLT_Theme, idx: number) => {
+            ? availableThemes.map((themeItem: LXLT_ColorTheme, idx: number) => {
                 return (
                   <div
-                    className={`${ThemePickerClassName}__option ${ThemePickerClassName}__option--${themeItem.name === activeTheme.name ? 'active' : 'inactive'}`}
+                    className={`${ThemePickerClassName}__option ${ThemePickerClassName}__option--${
+                      themeItem.name === activeTheme.name
+                        ? "active"
+                        : "inactive"
+                    }`}
                     style={{ backgroundColor: themeItem.background }}
                     onClick={() => this.setNewTheme(themeItem)}
                     key={idx}
@@ -139,4 +150,13 @@ export class ThemePicker extends React.PureComponent<
       </>
     );
   }
+}
+
+export const ThemePicker: React.FunctionComponent = () => {
+
+  const { setTheme } = useContext(ColorContext);
+
+  return (
+    <ThemePickerWithHook setTheme={setTheme}  />
+  )
 }

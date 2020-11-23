@@ -404,22 +404,25 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./components/ThemePicker/ThemePicker.tsx ***!
   \************************************************/
-/*! exports provided: ThemePicker */
+/*! exports provided: ThemePickerWithHook, ThemePicker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePickerWithHook", function() { return ThemePickerWithHook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return ThemePicker; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
-/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
-/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles.scss */ "./components/ThemePicker/styles.scss.tsx");
+/* harmony import */ var _constants_styles_Color__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/styles/Color */ "./constants/styles/Color.tsx");
+/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
+/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.scss */ "./components/ThemePicker/styles.scss.tsx");
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/components/ThemePicker/ThemePicker.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // Core
+
 
 
 
@@ -431,66 +434,70 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 // __________________________________________________________________________________________
 
 /**
- * @name ThemePicker
+ * @name ThemePickerWithHook
  * @author Peter Laxalt
  *
  */
-class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent {
+class ThemePickerWithHook extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       activeTheme: {
         name: "default",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Text
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Text
       },
       availableThemes: [{
         name: "default",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Primary
       }, {
         name: "goldenrod",
         primary: "#393349",
         secondary: "#393349",
-        background: "goldenrod",
+        background: "#DAA520",
         foreground: "#393349"
       }, {
         name: "cadetblue",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: "cadetblue",
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: "#5F9EA0",
+        foreground: "#FFF8DC"
       }, {
         name: "orangered",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: "orangered",
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: "#FF4500",
+        foreground: "#FFF8DC"
       }, {
         name: "white",
-        primary: "black",
-        secondary: "black",
-        background: "white",
-        foreground: "black"
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Black,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Black,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.White,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Black
       }, {
         name: "galaxy",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Galaxy,
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_4__["Theme"].Color.Galaxy,
+        foreground: "#FFF8DC"
       }]
     };
     this.setNewTheme = this.setNewTheme.bind(this);
   }
 
   setNewTheme(theme) {
+    const {
+      setTheme
+    } = this.props;
     this.setState({
       activeTheme: theme
     });
+    setTheme(theme);
   }
 
   render() {
@@ -499,24 +506,24 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
       availableThemes
     } = this.state;
     const SetGlobalTheme = styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"]`
-      ${activeTheme ? _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_2__["CssUtils"].CreateTheme(activeTheme.primary, activeTheme.secondary, activeTheme.background, activeTheme.foreground) : ""}
+      ${activeTheme ? _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__["CssUtils"].CreateTheme(activeTheme.primary, activeTheme.secondary, activeTheme.background, activeTheme.foreground) : ""}
     `;
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, activeTheme && activeTheme.name !== "default" ? __jsx(SetGlobalTheme, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 123
+        lineNumber: 130
       },
       __self: this
-    }) : null, __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerStyle"], {
-      className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}`,
+    }) : null, __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_5__["ThemePickerStyle"], {
+      className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_5__["ThemePickerClassName"]}`,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 125
+        lineNumber: 132
       },
       __self: this
     }, availableThemes ? availableThemes.map((themeItem, idx) => {
       return __jsx("div", {
-        className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}__option ${_styles_scss__WEBPACK_IMPORTED_MODULE_4__["ThemePickerClassName"]}__option--${themeItem.name === activeTheme.name ? 'active' : 'inactive'}`,
+        className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_5__["ThemePickerClassName"]}__option ${_styles_scss__WEBPACK_IMPORTED_MODULE_5__["ThemePickerClassName"]}__option--${themeItem.name === activeTheme.name ? "active" : "inactive"}`,
         style: {
           backgroundColor: themeItem.background
         },
@@ -524,7 +531,7 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
         key: idx,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 136
         },
         __self: this
       });
@@ -532,6 +539,19 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
   }
 
 }
+const ThemePicker = () => {
+  const {
+    setTheme
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_2__["ColorContext"]);
+  return __jsx(ThemePickerWithHook, {
+    setTheme: setTheme,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: undefined
+  });
+};
 
 /***/ }),
 
@@ -539,12 +559,14 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
 /*!******************************************!*\
   !*** ./components/ThemePicker/index.tsx ***!
   \******************************************/
-/*! exports provided: ThemePicker */
+/*! exports provided: ThemePickerWithHook, ThemePicker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ThemePicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThemePicker */ "./components/ThemePicker/ThemePicker.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemePickerWithHook", function() { return _ThemePicker__WEBPACK_IMPORTED_MODULE_0__["ThemePickerWithHook"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return _ThemePicker__WEBPACK_IMPORTED_MODULE_0__["ThemePicker"]; });
 
 
@@ -595,7 +617,7 @@ const ThemePickerClassName = "theme-picker";
 const ThemePickerStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__ThemePickerStyle",
   componentId: "nyqkd7-0"
-})(["&.", "{position:fixed;right:0;top:0;height:", ";display:flex;align-items:center;border-left:1px solid ", ";background:", ";z-index:990;.", "__option{width:calc(", " * 0.5);height:calc(", " * 0.5);border-radius:50%;margin:0 0.5rem;box-shadow:0px 0px 0px 1px ", ";&:hover{box-shadow:0px 0px 0px 2px ", ";}&:focus,&:active{box-shadow:0px 0px 0px 1px ", ";}&--active{box-shadow:0px 0px 0px 3px ", ";&:hover{box-shadow:0px 0px 0px 3px ", ";}}}}"], ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground);
+})(["&.", "{position:fixed;right:0;top:0;height:calc(", " + 2px);display:flex;align-items:center;border-left:1px solid ", ";border-bottom:1px solid ", ";background:", ";z-index:990;.", "__option{width:calc(", " * 0.5);height:calc(", " * 0.5);border-radius:50%;margin:0 0.5rem;box-shadow:0px 0px 0px 1px ", ";&:hover{box-shadow:0px 0px 0px 2px ", ";}&:focus,&:active{box-shadow:0px 0px 0px 1px ", ";}&--active{box-shadow:0px 0px 0px 3px ", ";&:hover{box-shadow:0px 0px 0px 3px ", ";}}}}"], ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground);
 
 /***/ }),
 
@@ -1249,19 +1271,50 @@ const Base = {
 /*!************************************!*\
   !*** ./constants/styles/Color.tsx ***!
   \************************************/
-/*! exports provided: Color, Palette */
+/*! exports provided: Color, ColorContext_Defaults, useColorContext, ColorContext, Palette */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return Color; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext_Defaults", function() { return ColorContext_Defaults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useColorContext", function() { return useColorContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext", function() { return ColorContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Palette", function() { return Palette; });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 // Color.js:
 // This is the sitewide palette.
 // Imports
 // _______________________________________________________
+
  // Begin Component
 // _______________________________________________________
 
@@ -1304,7 +1357,54 @@ const Color = {
   Warning: "#FC6376",
   Success: "#40DA33"
 };
-const Palette = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
+/**
+ *
+ * @name ColorContext_Defaults
+ * @description Defaults for our theming context
+ *
+ */
+
+const ColorContext_Defaults = {
+  primary: Color.Primary,
+  secondary: Color.Secondary,
+  foreground: Color.Text,
+  background: Color.Background,
+  setTheme: () => {}
+};
+/**
+ *
+ * @name useColorContext
+ * @description Our hook to update our color context
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+const useColorContext = () => {
+  const [colorTheme, setColorTheme] = react__WEBPACK_IMPORTED_MODULE_7___default.a.useState(ColorContext_Defaults);
+  const setTheme = react__WEBPACK_IMPORTED_MODULE_7___default.a.useCallback(currentColorTheme => {
+    setColorTheme(currentColorTheme);
+  }, []);
+  return _objectSpread({}, colorTheme, {
+    setTheme
+  });
+};
+/**
+ *
+ * @name ColorContext
+ * @description Our context to provide color themes
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+const ColorContext = react__WEBPACK_IMPORTED_MODULE_7___default.a.createContext(ColorContext_Defaults);
+/**
+ *
+ * @name Palette
+ * @description Global CSS Variables for palette
+ *
+ */
+
+const Palette = styled_components__WEBPACK_IMPORTED_MODULE_8__["createGlobalStyle"]`
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
   ::selection { background: ${Color.Primary}; color: ${Color.White} }
 
@@ -2094,6 +2194,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "co
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-properties */ "core-js/library/fn/object/define-properties");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js ***!
@@ -2102,6 +2213,50 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "co
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/define-property */ "core-js/library/fn/object/define-property");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptors */ "core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "core-js/library/fn/object/get-own-property-symbols");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/keys */ "core-js/library/fn/object/keys");
 
 /***/ }),
 
@@ -2181,10 +2336,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout/index.tsx");
+/* harmony import */ var _constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/styles/Color */ "./constants/styles/Color.tsx");
 
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/pages/_app.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // /pages/_app_.js
+
 
  // Begin Component
 // __________________________________________________________________________________________
@@ -2202,20 +2359,28 @@ const MyApp = ({
   Component,
   pageProps
 }) => {
-  // Render our App
-  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
+  const colorTheme = Object(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__["useColorContext"])(); // Render our App
+
+  return __jsx(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__["ColorContext"].Provider, {
+    value: colorTheme,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 27
+    },
+    __self: undefined
+  }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
     },
     __self: undefined
   }), __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 29
     },
     __self: undefined
-  })));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);
@@ -2245,6 +2410,17 @@ module.exports = require("core-js/library/fn/object/assign");
 
 /***/ }),
 
+/***/ "core-js/library/fn/object/define-properties":
+/*!**************************************************************!*\
+  !*** external "core-js/library/fn/object/define-properties" ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/define-properties");
+
+/***/ }),
+
 /***/ "core-js/library/fn/object/define-property":
 /*!************************************************************!*\
   !*** external "core-js/library/fn/object/define-property" ***!
@@ -2253,6 +2429,50 @@ module.exports = require("core-js/library/fn/object/assign");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/define-property");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-descriptor":
+/*!************************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-descriptor" ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-descriptors":
+/*!*************************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-descriptors" ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-symbols":
+/*!*********************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-symbols" ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-symbols");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/keys":
+/*!*************************************************!*\
+  !*** external "core-js/library/fn/object/keys" ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/keys");
 
 /***/ }),
 

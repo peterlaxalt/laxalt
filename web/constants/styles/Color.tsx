@@ -4,10 +4,20 @@
 // Imports
 // _______________________________________________________
 
+import React from "react";
 import { createGlobalStyle } from "styled-components";
 
 // Begin Component
 // _______________________________________________________
+
+export type LXLT_ColorTheme = {
+  name?: "default" | "white" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
+  primary: string;
+  secondary: string;
+  background: string;
+  foreground: string;
+  setTheme?: (theme: LXLT_ColorTheme) => void;
+};
 
 export const Color = {
   // Color Variables
@@ -54,6 +64,60 @@ export const Color = {
   Success: "#40DA33",
 };
 
+/**
+ *
+ * @name ColorContext_Defaults
+ * @description Defaults for our theming context
+ *
+ */
+export const ColorContext_Defaults: LXLT_ColorTheme = {
+  primary: Color.Primary,
+  secondary: Color.Secondary,
+  foreground: Color.Text,
+  background: Color.Background,
+  setTheme: () => {},
+};
+
+/**
+ *
+ * @name useColorContext
+ * @description Our hook to update our color context
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+export const useColorContext = (): LXLT_ColorTheme => {
+  const [colorTheme, setColorTheme] = React.useState(ColorContext_Defaults);
+
+  const setTheme = React.useCallback(
+    (currentColorTheme: LXLT_ColorTheme): void => {
+      setColorTheme(currentColorTheme);
+    },
+    []
+  );
+
+  return {
+    ...colorTheme,
+    setTheme,
+  };
+};
+
+/**
+ *
+ * @name ColorContext
+ * @description Our context to provide color themes
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+export const ColorContext = React.createContext<LXLT_ColorTheme>(
+  ColorContext_Defaults
+);
+
+/**
+ *
+ * @name Palette
+ * @description Global CSS Variables for palette
+ *
+ */
 export const Palette = createGlobalStyle`
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
   ::selection { background: ${Color.Primary}; color: ${Color.White} }

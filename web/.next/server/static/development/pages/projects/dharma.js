@@ -550,6 +550,9 @@ const FrameItems = () => {
     label: "Code",
     href: "/"
   }, {
+    label: "Lab",
+    href: "/"
+  }, {
     label: "Products",
     href: "/"
   }, {
@@ -559,7 +562,10 @@ const FrameItems = () => {
     label: "Tattoo",
     href: "/"
   }, {
-    label: "eCommerce",
+    label: "Shop",
+    href: "/"
+  }, {
+    label: "Resources",
     href: "/"
   }, {
     label: "Advice",
@@ -572,14 +578,14 @@ const FrameItems = () => {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__marquee-container`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 85
+      lineNumber: 93
     },
     __self: undefined
   }, __jsx("ul", {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame-items`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 94
     },
     __self: undefined
   }, items.map((item, idx) => {
@@ -587,7 +593,7 @@ const FrameItems = () => {
       key: idx,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 96
       },
       __self: undefined
     }, item.label);
@@ -595,7 +601,7 @@ const FrameItems = () => {
     className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame-items`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 100
     },
     __self: undefined
   }, items.map((item, idx) => {
@@ -603,7 +609,7 @@ const FrameItems = () => {
       key: idx,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 94
+        lineNumber: 102
       },
       __self: undefined
     }, item.label);
@@ -625,101 +631,101 @@ const InteractiveFrameHeader = ({
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 113
+    lineNumber: 121
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__inner`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 116
+    lineNumber: 124
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 119
+    lineNumber: 127
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__y-axis`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 122
+    lineNumber: 130
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--top`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 123
+    lineNumber: 131
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 126
+    lineNumber: 134
   },
   __self: undefined
 })), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--bottom`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 128
+    lineNumber: 136
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 131
+    lineNumber: 139
   },
   __self: undefined
 }))), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__x-axis`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 137
+    lineNumber: 145
   },
   __self: undefined
 }, __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--left`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 138
+    lineNumber: 146
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 141
+    lineNumber: 149
   },
   __self: undefined
 })), __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge ${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__frame__edge--right`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 144
+    lineNumber: 152
   },
   __self: undefined
 }, __jsx(FrameItems, {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 147
+    lineNumber: 155
   },
   __self: undefined
 })))), includeType ? __jsx("div", {
   className: `${_styles_scss__WEBPACK_IMPORTED_MODULE_2__["InteractiveFrameHeaderClassName"]}__type`,
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 155
+    lineNumber: 163
   },
   __self: undefined
 }, __jsx(_DharmaCounter__WEBPACK_IMPORTED_MODULE_1__["DharmaCounter"], {
   text: "LAXALT",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 156
+    lineNumber: 164
   },
   __self: undefined
 })) : null)); // End Component
@@ -789,7 +795,7 @@ const InteractiveFrameHeaderClassName = "interactive-frame-header";
 const InteractiveFrameHeaderStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__InteractiveFrameHeaderStyle",
   componentId: "tg0k5n-0"
-})(["&.", "{--", "__frame-edge-size:", ";--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:", ";}overflow:hidden;position:fixed;left:0;top:0;width:100vw;height:100vh;.", "__inner{width:100vw;height:100vh;position:relative;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2.25));@media(max-width:", "){transform:translate(-50%,-50%) rotate(90deg);width:calc(100vh - (var(--", "__frame-edge-size) * 2.25));height:calc(100vw - (var(--", "__frame-edge-size) * 2.25));}.", "{--", "-offset-size:10px;@media(max-width:", "){--", "-offset-size:5px;}top:0;left:0;right:0;bottom:0;width:100%;height:100%;&--offset{top:calc(var(--", "-offset-size) * (var(--", "-offset) * -1));left:calc(var(--", "-offset-size) * (var(--", "-offset) * 1));right:calc(var(--", "-offset-size) * (var(--", "-offset) * -1));bottom:calc(var(--", "-offset-size) * (var(--", "-offset) * 1));}}.", "__character{fill:", ";transition:stroke-width .5s ease;}}.", "__frame{z-index:500;&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;z-index:800;background:", ";.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;vertical-align:middle;display:table-cell;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Sm, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Sm, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
+})(["&.", "{--", "__frame-edge-size:", ";--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:", ";}overflow:hidden;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:900;pointer-events:none;.", "__inner{width:100vw;height:100vh;position:relative;z-index:999;pointer-events:none;}.", ",.", "__frame{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;}.", "__type{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - (var(--", "__frame-edge-size) * 2));height:calc(100% - (var(--", "__frame-edge-size) * 2.25));@media(max-width:", "){transform:translate(-50%,-50%) rotate(90deg);width:calc(100vh - (var(--", "__frame-edge-size) * 2.25));height:calc(100vw - (var(--", "__frame-edge-size) * 2.25));}.", "{--", "-offset-size:10px;@media(max-width:", "){--", "-offset-size:5px;}top:0;left:0;right:0;bottom:0;width:100%;height:100%;&--offset{top:calc(var(--", "-offset-size) * (var(--", "-offset) * -1));left:calc(var(--", "-offset-size) * (var(--", "-offset) * 1));right:calc(var(--", "-offset-size) * (var(--", "-offset) * -1));bottom:calc(var(--", "-offset-size) * (var(--", "-offset) * 1));}}.", "__character{fill:", ";transition:stroke-width .5s ease;}}.", "__frame{z-index:500;&__y-axis,&__x-axis{position:absolute;overflow:hidden;left:50%;top:50%;pointer-events:none;}&__y-axis{width:100vw;height:100vh;transform:translate(-50%,-50%);}&__x-axis{width:100vh;height:100vw;transform:translate(-50%,-50%) rotate(90deg);}&__edge{font-size:calc(var(--", "__frame-edge-size) * 0.75);text-transform:uppercase;line-height:0;z-index:800;background:", ";.", "__frame-items{list-style-type:none;color:", ";height:var(--", "__frame-edge-size);display:block;align-items:center;justify-content:flex-start;li{margin-right:calc(var(--", "__frame-edge-size) / 2);}}.", "__marquee-container{flex-shrink:0;display:flex;justify-content:flex-start;flex-wrap:nowrap;position:relative;overflow:hidden;.", "__frame-items{display:flex;flex-wrap:nowrap;white-space:nowrap;flex-shrink:0;li{width:auto;flex-shrink:0;white-space:nowrap;vertical-align:middle;display:table-cell;}}}&--top,&--bottom,&--left,&--right{position:absolute;overflow:hidden;pointer-events:all;}&--top,&--right{border-bottom:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);position:relative;animation:marqueeTopRightQuadrants var(--", "__marquee-speed) linear infinite;}}&--bottom,&--left{border-top:1px solid ", ";.", "__frame-items{padding-top:calc(var(--", "__frame-edge-size) / 6);padding-bottom:calc(var(--", "__frame-edge-size) / 6);animation:marqueeBottomLeftQuadrants var(--", "__marquee-speed) linear infinite;}}&--top,&--bottom{width:calc(100vw - var(--", "__frame-edge-size));}&--left,&--right{width:calc(100vh - var(--", "__frame-edge-size));}&--top{top:0;left:var(--", "__frame-edge-size);}&--bottom{bottom:0;right:var(--", "__frame-edge-size);}&--right{top:0;left:var(--", "__frame-edge-size);}&--left{bottom:0;left:0;}}}}"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md, InteractiveFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Sm, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Sm, _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _svg_DharmaType_styles_scss__WEBPACK_IMPORTED_MODULE_3__["DharmaTypeClassName"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName, InteractiveFrameHeaderClassName);
 
 /***/ }),
 
@@ -1265,6 +1271,46 @@ const Settings = {
 
 /***/ }),
 
+/***/ "./constants/styles/Animation.tsx":
+/*!****************************************!*\
+  !*** ./constants/styles/Animation.tsx ***!
+  \****************************************/
+/*! exports provided: Blink, FadeIn, PulseStroke, Grain, OverlayFadeIn, FadeInScaleUpFromTop, Disappear, Marquee, SlideFromRight, SlideUp, LoaderDot */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Blink", function() { return Blink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeIn", function() { return FadeIn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PulseStroke", function() { return PulseStroke; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Grain", function() { return Grain; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OverlayFadeIn", function() { return OverlayFadeIn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FadeInScaleUpFromTop", function() { return FadeInScaleUpFromTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Disappear", function() { return Disappear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Marquee", function() { return Marquee; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideFromRight", function() { return SlideFromRight; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlideUp", function() { return SlideUp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderDot", function() { return LoaderDot; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+// Core
+ // Begin Component
+// __________________________________________________________________________________________
+
+const Blink = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["to{visibility:hidden;}"]);
+const FadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:1;}"]);
+const PulseStroke = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{stroke-width:.15px;}50%{stroke-width:1px;}100%{stroke-width:.15px;}"]);
+const Grain = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%,100%{transform:scale(1.5) translate(0,0)}10%{transform:scale(1.5) translate(-5%,-10%)}20%{transform:scale(1.5) translate(-15%,5%)}30%{transform:scale(1.5) translate(7%,-10%)}40%{transform:scale(1.5) translate(-5%,10%)}50%{transform:scale(1.5) translate(-15%,10%)}60%{transform:scale(1.5) translate(15%,0%)}70%{transform:scale(1.5) translate(0%,15%)}80%{transform:scale(1.5) translate(3%,10%)}90%{transform:scale(1.5) translate(-10%,10%)}"]);
+const OverlayFadeIn = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;}to{opacity:.75;}"]);
+const FadeInScaleUpFromTop = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:scale(.9);transform-origin:top center;opacity:0;}to{transform:scale(1);transform-origin:top center;opacity:1;}"]);
+const Disappear = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{display:flex;}to{display:none !important;}"]);
+const Marquee = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{transform:translateX(0%);}to{transform:translateX(-100%);}"]);
+const SlideFromRight = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
+const SlideUp = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["from{opacity:0;transform:translateX(100%);}to{opacity:1;transform:translateX(0%);}"]);
+const LoaderDot = Object(styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"])(["0%{background:#f7fafc;}50%{background:#cbd5e0;}100%{background:#f7fafc;}"]);
+
+/***/ }),
+
 /***/ "./constants/styles/Base.tsx":
 /*!***********************************!*\
   !*** ./constants/styles/Base.tsx ***!
@@ -1451,19 +1497,50 @@ const Base = {
 /*!************************************!*\
   !*** ./constants/styles/Color.tsx ***!
   \************************************/
-/*! exports provided: Color, Palette */
+/*! exports provided: Color, ColorContext_Defaults, useColorContext, ColorContext, Palette */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return Color; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext_Defaults", function() { return ColorContext_Defaults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useColorContext", function() { return useColorContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext", function() { return ColorContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Palette", function() { return Palette; });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 // Color.js:
 // This is the sitewide palette.
 // Imports
 // _______________________________________________________
+
  // Begin Component
 // _______________________________________________________
 
@@ -1506,7 +1583,54 @@ const Color = {
   Warning: "#FC6376",
   Success: "#40DA33"
 };
-const Palette = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
+/**
+ *
+ * @name ColorContext_Defaults
+ * @description Defaults for our theming context
+ *
+ */
+
+const ColorContext_Defaults = {
+  primary: Color.Primary,
+  secondary: Color.Secondary,
+  foreground: Color.Text,
+  background: Color.Background,
+  setTheme: () => {}
+};
+/**
+ *
+ * @name useColorContext
+ * @description Our hook to update our color context
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+const useColorContext = () => {
+  const [colorTheme, setColorTheme] = react__WEBPACK_IMPORTED_MODULE_7___default.a.useState(ColorContext_Defaults);
+  const setTheme = react__WEBPACK_IMPORTED_MODULE_7___default.a.useCallback(currentColorTheme => {
+    setColorTheme(currentColorTheme);
+  }, []);
+  return _objectSpread({}, colorTheme, {
+    setTheme
+  });
+};
+/**
+ *
+ * @name ColorContext
+ * @description Our context to provide color themes
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+const ColorContext = react__WEBPACK_IMPORTED_MODULE_7___default.a.createContext(ColorContext_Defaults);
+/**
+ *
+ * @name Palette
+ * @description Global CSS Variables for palette
+ *
+ */
+
+const Palette = styled_components__WEBPACK_IMPORTED_MODULE_8__["createGlobalStyle"]`
   ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
   ::selection { background: ${Color.Primary}; color: ${Color.White} }
 
@@ -1910,20 +2034,22 @@ function _extends() {
 /*!***********************************!*\
   !*** ./pages/projects/dharma.tsx ***!
   \***********************************/
-/*! exports provided: default */
+/*! exports provided: DharmaCanvasPage, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DharmaCanvasPage", function() { return DharmaCanvasPage; });
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/dynamic */ "next/dynamic");
 /* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/_interactive/InteractiveFrameHeader */ "./components/_interactive/InteractiveFrameHeader/index.tsx");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/_interactive/InteractiveFrameHeader */ "./components/_interactive/InteractiveFrameHeader/index.tsx");
+/* harmony import */ var _constants_styles_Color__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants/styles/Color */ "./constants/styles/Color.tsx");
+/* harmony import */ var _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../constants/styles/Animation */ "./constants/styles/Animation.tsx");
 
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/pages/projects/dharma.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
@@ -1931,21 +2057,17 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
  // Utils
 
  // Theme
+// import { Theme } from "../../constants/Theme";
+// Types
 
- // Types
+
 
 
  // Begin Component
 // __________________________________________________________________________
 
 const P5Wrapper = next_dynamic__WEBPACK_IMPORTED_MODULE_2___default()(() => Promise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! react-p5-wrapper */ "react-p5-wrapper", 7)), {
-  loading: () => __jsx("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 29
-    },
-    __self: undefined
-  }, "Loading..."),
+  loading: () => __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null),
   ssr: false,
   loadableGenerated: {
     webpack: () => [/*require.resolve*/(/*! react-p5-wrapper */ "react-p5-wrapper")],
@@ -1953,18 +2075,18 @@ const P5Wrapper = next_dynamic__WEBPACK_IMPORTED_MODULE_2___default()(() => Prom
   }
 });
 
-class P5Page extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
+class P5PageWithContext extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
   constructor(props) {
     super(props);
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "renderP5", filename => {
-      const sketch = __webpack_require__("./sketches/p5 sync recursive ^\\.\\/.*$")(`./${filename}`).default(this.state.windowWidth, this.state.windowHeight, 1, this.state.backgroundColor);
+      const sketch = __webpack_require__("./sketches/p5 sync recursive ^\\.\\/.*$")(`./${filename}`).default(this.state.windowWidth, this.state.windowHeight, 1, this.props.colorThemeContext);
 
       return __jsx(P5Wrapper, {
         sketch: sketch,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 67
         },
         __self: this
       });
@@ -1973,8 +2095,7 @@ class P5Page extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
     this.state = {
       domLoaded: false,
       windowWidth: 0,
-      windowHeight: 0,
-      backgroundColor: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background
+      windowHeight: 0
     };
   }
 
@@ -1989,36 +2110,43 @@ class P5Page extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
   }
 
   render() {
-    const GlobalScrollLock = styled_components__WEBPACK_IMPORTED_MODULE_4__["createGlobalStyle"]`
+    const DharmaGlobalStyles = styled_components__WEBPACK_IMPORTED_MODULE_3__["createGlobalStyle"]`
       body, html {
         overflow: hidden;
       }
+
+      .dharma-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        canvas {
+          animation: ${_constants_styles_Animation__WEBPACK_IMPORTED_MODULE_6__["FadeIn"]} 1s ease 1;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
+      }
     `;
-    return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(GlobalScrollLock, {
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(DharmaGlobalStyles, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75
+        lineNumber: 94
       },
       __self: this
-    }), __jsx(_components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_5__["InteractiveFrameHeader"], {
+    }), __jsx(_components_interactive_InteractiveFrameHeader__WEBPACK_IMPORTED_MODULE_4__["InteractiveFrameHeader"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 76
+        lineNumber: 95
       },
       __self: this
     }), this.state.domLoaded && this.state.windowHeight > 10 && this.state.windowWidth > 10 ? __jsx("div", {
       className: "dharma-container",
-      style: {
-        width: "100vw",
-        height: "100vh",
-        overflow: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-      },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 99
       },
       __self: this
     }, this.renderP5("dharma")) : null);
@@ -2026,7 +2154,18 @@ class P5Page extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (P5Page);
+const DharmaCanvasPage = () => {
+  const themeContext = react__WEBPACK_IMPORTED_MODULE_1___default.a.useContext(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_5__["ColorContext"]);
+  return __jsx(P5PageWithContext, {
+    colorThemeContext: themeContext,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 109
+    },
+    __self: undefined
+  });
+};
+/* harmony default export */ __webpack_exports__["default"] = (DharmaCanvasPage);
 
 /***/ }),
 
@@ -2321,7 +2460,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/array/from */ "./node_modules/@babel/runtime-corejs2/core-js/array/from.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_array_from__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
 
 
 
@@ -2341,10 +2479,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  * @author Peter Laxalt
  *
  */
- // Begin Component
+// Begin Component
 // __________________________________________________________________________
-
-const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
+const DharmaCanvasDisplay = (W, H, ID, DharmaTheme) => p => {
   // _________________________________________________
   // Config
   // ____________________________
@@ -2383,10 +2520,11 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
   let strokeOffset = strokeWidth * 1.5; // ____________________________
   // Limits
 
-  let maxCount = 6;
+  let maxCount = 3;
   let minCount = 1;
   let maxCopies = 12;
-  let minCopies = 1; // ____________________________
+  let minCopies = 1;
+  let frameRate = 10; // ____________________________
   // Translation
   // let previousVerticalTranslation: number = H / 2.25;
 
@@ -2405,6 +2543,7 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
   p.setup = () => {
     // Our Canvas
     p.createCanvas(W, H);
+    p.frameRate(frameRate);
   }; // _________________________________________________
   // Update Character
 
@@ -2484,13 +2623,13 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
 
 
   p.draw = () => {
-    p.background(BG);
+    p.background(DharmaTheme.background);
     p.textFont(dharmaFont);
     p.textSize(characterSize);
     p.textAlign(p.CENTER, p.CENTER);
-    p.fill(`${_constants_Theme__WEBPACK_IMPORTED_MODULE_8__["Theme"].Color.Galaxy}`);
+    p.fill(`${DharmaTheme.foreground}`);
     p.strokeWeight(strokeWidth);
-    p.stroke(BG);
+    p.stroke(DharmaTheme.background);
 
     if (H && W) {
       // _________________________________________
@@ -2500,10 +2639,7 @@ const DharmaCanvasDisplay = (W, H, ID, BG) => p => {
         let randomCharPick = Math.random() <= 0.5;
 
         if (randomCharPick) {
-          console.log("yep");
           updateCopies(char, idx);
-        } else {
-          console.log("nope");
         }
 
         if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {

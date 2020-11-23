@@ -56,6 +56,10 @@ const FrameItems = () => {
       href: "/",
     },
     {
+      label: "Lab",
+      href: "/",
+    },
+    {
       label: "Products",
       href: "/",
     },
@@ -68,7 +72,11 @@ const FrameItems = () => {
       href: "/",
     },
     {
-      label: "eCommerce",
+      label: "Shop",
+      href: "/",
+    },
+    {
+      label: "Resources",
       href: "/",
     },
     {

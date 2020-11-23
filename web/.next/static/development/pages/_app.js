@@ -311,11 +311,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./components/ThemePicker/ThemePicker.tsx ***!
   \************************************************/
-/*! exports provided: ThemePicker */
+/*! exports provided: ThemePickerWithHook, ThemePicker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePickerWithHook", function() { return ThemePickerWithHook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return ThemePicker; });
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
@@ -327,9 +328,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
-/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
-/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./styles.scss */ "./components/ThemePicker/styles.scss.tsx");
+/* harmony import */ var _constants_styles_Color__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants/styles/Color */ "./constants/styles/Color.tsx");
+/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants/styles/CssUtils */ "./constants/styles/CssUtils.tsx");
+/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants/Theme */ "./constants/Theme.tsx");
+/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./styles.scss */ "./components/ThemePicker/styles.scss.tsx");
 
 
 
@@ -355,6 +357,7 @@ function _templateObject() {
 
 
 
+
  // Begin Types
 // __________________________________________________________________________________________
 
@@ -362,77 +365,79 @@ function _templateObject() {
 // __________________________________________________________________________________________
 
 /**
- * @name ThemePicker
+ * @name ThemePickerWithHook
  * @author Peter Laxalt
  *
  */
-var ThemePicker =
+var ThemePickerWithHook =
 /*#__PURE__*/
 function (_React$PureComponent) {
-  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(ThemePicker, _React$PureComponent);
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_6__["default"])(ThemePickerWithHook, _React$PureComponent);
 
-  function ThemePicker(props) {
+  function ThemePickerWithHook(props) {
     var _this;
 
-    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, ThemePicker);
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, ThemePickerWithHook);
 
-    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(ThemePicker).call(this, props));
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(ThemePickerWithHook).call(this, props));
     _this.state = {
       activeTheme: {
         name: "default",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Secondary,
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Background,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Text
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Text
       },
       availableThemes: [{
         name: "default",
-        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Secondary,
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Background,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Primary
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Primary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Secondary,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Background,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Primary
       }, {
         name: "goldenrod",
         primary: "#393349",
         secondary: "#393349",
-        background: "goldenrod",
+        background: "#DAA520",
         foreground: "#393349"
       }, {
         name: "cadetblue",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: "cadetblue",
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: "#5F9EA0",
+        foreground: "#FFF8DC"
       }, {
         name: "orangered",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: "orangered",
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: "#FF4500",
+        foreground: "#FFF8DC"
       }, {
         name: "white",
-        primary: "black",
-        secondary: "black",
-        background: "white",
-        foreground: "black"
+        primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Black,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Black,
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.White,
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Black
       }, {
         name: "galaxy",
-        primary: "cornsilk",
-        secondary: "cornsilk",
-        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_10__["Theme"].Color.Galaxy,
-        foreground: "cornsilk"
+        primary: "#FFF8DC",
+        secondary: "#FFF8DC",
+        background: _constants_Theme__WEBPACK_IMPORTED_MODULE_11__["Theme"].Color.Galaxy,
+        foreground: "#FFF8DC"
       }]
     };
     _this.setNewTheme = _this.setNewTheme.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this));
     return _this;
   }
 
-  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(ThemePicker, [{
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(ThemePickerWithHook, [{
     key: "setNewTheme",
     value: function setNewTheme(theme) {
+      var setTheme = this.props.setTheme;
       this.setState({
         activeTheme: theme
       });
+      setTheme(theme);
     }
   }, {
     key: "render",
@@ -442,23 +447,23 @@ function (_React$PureComponent) {
       var _this$state = this.state,
           activeTheme = _this$state.activeTheme,
           availableThemes = _this$state.availableThemes;
-      var SetGlobalTheme = Object(styled_components__WEBPACK_IMPORTED_MODULE_8__["createGlobalStyle"])(_templateObject(), activeTheme ? _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_9__["CssUtils"].CreateTheme(activeTheme.primary, activeTheme.secondary, activeTheme.background, activeTheme.foreground) : "");
+      var SetGlobalTheme = Object(styled_components__WEBPACK_IMPORTED_MODULE_8__["createGlobalStyle"])(_templateObject(), activeTheme ? _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_10__["CssUtils"].CreateTheme(activeTheme.primary, activeTheme.secondary, activeTheme.background, activeTheme.foreground) : "");
       return __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, activeTheme && activeTheme.name !== "default" ? __jsx(SetGlobalTheme, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 123
+          lineNumber: 130
         },
         __self: this
-      }) : null, __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_11__["ThemePickerStyle"], {
-        className: "".concat(_styles_scss__WEBPACK_IMPORTED_MODULE_11__["ThemePickerClassName"]),
+      }) : null, __jsx(_styles_scss__WEBPACK_IMPORTED_MODULE_12__["ThemePickerStyle"], {
+        className: "".concat(_styles_scss__WEBPACK_IMPORTED_MODULE_12__["ThemePickerClassName"]),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 125
+          lineNumber: 132
         },
         __self: this
       }, availableThemes ? availableThemes.map(function (themeItem, idx) {
         return __jsx("div", {
-          className: "".concat(_styles_scss__WEBPACK_IMPORTED_MODULE_11__["ThemePickerClassName"], "__option ").concat(_styles_scss__WEBPACK_IMPORTED_MODULE_11__["ThemePickerClassName"], "__option--").concat(themeItem.name === activeTheme.name ? 'active' : 'inactive'),
+          className: "".concat(_styles_scss__WEBPACK_IMPORTED_MODULE_12__["ThemePickerClassName"], "__option ").concat(_styles_scss__WEBPACK_IMPORTED_MODULE_12__["ThemePickerClassName"], "__option--").concat(themeItem.name === activeTheme.name ? "active" : "inactive"),
           style: {
             backgroundColor: themeItem.background
           },
@@ -468,7 +473,7 @@ function (_React$PureComponent) {
           key: idx,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 129
+            lineNumber: 136
           },
           __self: this
         });
@@ -476,8 +481,21 @@ function (_React$PureComponent) {
     }
   }]);
 
-  return ThemePicker;
+  return ThemePickerWithHook;
 }(react__WEBPACK_IMPORTED_MODULE_7___default.a.PureComponent);
+var ThemePicker = function ThemePicker() {
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_7__["useContext"])(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_9__["ColorContext"]),
+      setTheme = _useContext.setTheme;
+
+  return __jsx(ThemePickerWithHook, {
+    setTheme: setTheme,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: this
+  });
+};
 
 /***/ }),
 
@@ -485,12 +503,14 @@ function (_React$PureComponent) {
 /*!******************************************!*\
   !*** ./components/ThemePicker/index.tsx ***!
   \******************************************/
-/*! exports provided: ThemePicker */
+/*! exports provided: ThemePickerWithHook, ThemePicker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ThemePicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ThemePicker */ "./components/ThemePicker/ThemePicker.tsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemePickerWithHook", function() { return _ThemePicker__WEBPACK_IMPORTED_MODULE_0__["ThemePickerWithHook"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ThemePicker", function() { return _ThemePicker__WEBPACK_IMPORTED_MODULE_0__["ThemePicker"]; });
 
 
@@ -540,7 +560,7 @@ var ThemePickerClassName = "theme-picker";
 var ThemePickerStyle = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div.withConfig({
   displayName: "stylesscss__ThemePickerStyle",
   componentId: "nyqkd7-0"
-})(["&.", "{position:fixed;right:0;top:0;height:", ";display:flex;align-items:center;border-left:1px solid ", ";background:", ";z-index:990;.", "__option{width:calc(", " * 0.5);height:calc(", " * 0.5);border-radius:50%;margin:0 0.5rem;box-shadow:0px 0px 0px 1px ", ";&:hover{box-shadow:0px 0px 0px 2px ", ";}&:focus,&:active{box-shadow:0px 0px 0px 1px ", ";}&--active{box-shadow:0px 0px 0px 3px ", ";&:hover{box-shadow:0px 0px 0px 3px ", ";}}}}"], ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground);
+})(["&.", "{position:fixed;right:0;top:0;height:calc(", " + 2px);display:flex;align-items:center;border-left:1px solid ", ";border-bottom:1px solid ", ";background:", ";z-index:990;.", "__option{width:calc(", " * 0.5);height:calc(", " * 0.5);border-radius:50%;margin:0 0.5rem;box-shadow:0px 0px 0px 1px ", ";&:hover{box-shadow:0px 0px 0px 2px ", ";}&:focus,&:active{box-shadow:0px 0px 0px 1px ", ";}&--active{box-shadow:0px 0px 0px 3px ", ";&:hover{box-shadow:0px 0px 0px 3px ", ";}}}}"], ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varBackground, ThemePickerClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Root__WEBPACK_IMPORTED_MODULE_2__["Root"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Color.varForeground);
 
 /***/ }),
 
@@ -1076,19 +1096,46 @@ var Base = {
 /*!************************************!*\
   !*** ./constants/styles/Color.tsx ***!
   \************************************/
-/*! exports provided: Color, Palette */
+/*! exports provided: Color, ColorContext_Defaults, useColorContext, ColorContext, Palette */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return Color; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext_Defaults", function() { return ColorContext_Defaults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useColorContext", function() { return useColorContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorContext", function() { return ColorContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Palette", function() { return Palette; });
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+
+
+
+
+
+
+
 
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  ::-moz-selection { background: ", "; color: ", " }\n  ::selection { background: ", "; color: ", " }\n\n  :root {\n    --clrPrimary: ", ";\n    --clrSecondary: ", ";\n    --clrBackground: ", ";\n    --clrForeground: ", ";\n  }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_6__["default"])(["\n  ::-moz-selection { background: ", "; color: ", " }\n  ::selection { background: ", "; color: ", " }\n\n  :root {\n    --clrPrimary: ", ";\n    --clrSecondary: ", ";\n    --clrBackground: ", ";\n    --clrForeground: ", ";\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -1097,10 +1144,15 @@ function _templateObject() {
   return data;
 }
 
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 // Color.js:
 // This is the sitewide palette.
 // Imports
 // _______________________________________________________
+
  // Begin Component
 // _______________________________________________________
 
@@ -1143,7 +1195,58 @@ var Color = {
   Warning: "#FC6376",
   Success: "#40DA33"
 };
-var Palette = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyle"])(_templateObject(), Color.Primary, Color.White, Color.Primary, Color.White, Color.Primary, Color.Secondary, Color.Background, Color.Text); //////////////////////////////////////////////////////////////////////
+/**
+ *
+ * @name ColorContext_Defaults
+ * @description Defaults for our theming context
+ *
+ */
+
+var ColorContext_Defaults = {
+  primary: Color.Primary,
+  secondary: Color.Secondary,
+  foreground: Color.Text,
+  background: Color.Background,
+  setTheme: function setTheme() {}
+};
+/**
+ *
+ * @name useColorContext
+ * @description Our hook to update our color context
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+var useColorContext = function useColorContext() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_9___default.a.useState(ColorContext_Defaults),
+      _React$useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_8__["default"])(_React$useState, 2),
+      colorTheme = _React$useState2[0],
+      setColorTheme = _React$useState2[1];
+
+  var setTheme = react__WEBPACK_IMPORTED_MODULE_9___default.a.useCallback(function (currentColorTheme) {
+    setColorTheme(currentColorTheme);
+  }, []);
+  return _objectSpread({}, colorTheme, {
+    setTheme: setTheme
+  });
+};
+/**
+ *
+ * @name ColorContext
+ * @description Our context to provide color themes
+ * @see https://medium.com/@0n3z3r0n3/react-usecontext-how-to-update-context-from-child-component-8fa2894eee3d
+ *
+ */
+
+var ColorContext = react__WEBPACK_IMPORTED_MODULE_9___default.a.createContext(ColorContext_Defaults);
+/**
+ *
+ * @name Palette
+ * @description Global CSS Variables for palette
+ *
+ */
+
+var Palette = Object(styled_components__WEBPACK_IMPORTED_MODULE_10__["createGlobalStyle"])(_templateObject(), Color.Primary, Color.White, Color.Primary, Color.White, Color.Primary, Color.Secondary, Color.Background, Color.Text); //////////////////////////////////////////////////////////////////////
 // End Component
 
 /***/ }),
@@ -1391,6 +1494,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/array/is-array */ ".
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/get-iterator */ "./node_modules/core-js/library/fn/get-iterator.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js ***!
@@ -1457,6 +1571,39 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/freeze */ "./
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "./node_modules/core-js/library/fn/object/get-own-property-descriptor.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptors */ "./node_modules/core-js/library/fn/object/get-own-property-descriptors.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js":
 /*!********************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js ***!
@@ -1465,6 +1612,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/freeze */ "./
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/get-prototype-of */ "./node_modules/core-js/library/fn/object/get-prototype-of.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/keys */ "./node_modules/core-js/library/fn/object/keys.js");
 
 /***/ }),
 
@@ -1598,6 +1756,25 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _arrayWithHoles; });
+/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js");
+/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
+
+function _arrayWithHoles(arr) {
+  if (_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default()(arr)) return arr;
+}
 
 /***/ }),
 
@@ -1792,6 +1969,70 @@ function _inherits(subClass, superClass) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _iterableToArrayLimit; });
+/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
+/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core-js/is-iterable */ "./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js");
+/* harmony import */ var _core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(_core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1___default()(Object(arr)) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _nonIterableRest; });
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js":
 /*!**************************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js ***!
@@ -1836,6 +2077,28 @@ function _setPrototypeOf(o, p) {
   };
 
   return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _slicedToArray; });
+/* harmony import */ var _arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js");
+/* harmony import */ var _iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js");
+/* harmony import */ var _nonIterableRest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js");
+
+
+
+function _slicedToArray(arr, i) {
+  return Object(_arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || Object(_iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || Object(_nonIterableRest__WEBPACK_IMPORTED_MODULE_2__["default"])();
 }
 
 /***/ }),
@@ -2229,6 +2492,20 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/fn/get-iterator.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/library/fn/get-iterator.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../modules/web.dom.iterable */ "./node_modules/core-js/library/modules/web.dom.iterable.js");
+__webpack_require__(/*! ../modules/es6.string.iterator */ "./node_modules/core-js/library/modules/es6.string.iterator.js");
+module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ "./node_modules/core-js/library/modules/core.get-iterator.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/fn/is-iterable.js":
 /*!********************************************************!*\
   !*** ./node_modules/core-js/library/fn/is-iterable.js ***!
@@ -2317,6 +2594,48 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-descriptor.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.object.get-own-property-descriptor */ "./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js");
+var $Object = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object;
+module.exports = function getOwnPropertyDescriptor(it, key) {
+  return $Object.getOwnPropertyDescriptor(it, key);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-descriptors.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-descriptors.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es7.object.get-own-property-descriptors */ "./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getOwnPropertyDescriptors;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-symbols.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.symbol */ "./node_modules/core-js/library/modules/es6.symbol.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getOwnPropertySymbols;
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/fn/object/get-prototype-of.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/library/fn/object/get-prototype-of.js ***!
@@ -2326,6 +2645,19 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 __webpack_require__(/*! ../../modules/es6.object.get-prototype-of */ "./node_modules/core-js/library/modules/es6.object.get-prototype-of.js");
 module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getPrototypeOf;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/keys.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/keys.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.object.keys */ "./node_modules/core-js/library/modules/es6.object.keys.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.keys;
 
 
 /***/ }),
@@ -3931,6 +4263,27 @@ module.exports = function (KEY, exec) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/_own-keys.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/library/modules/_own-keys.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// all object keys, includes non-enumerable and symbols
+var gOPN = __webpack_require__(/*! ./_object-gopn */ "./node_modules/core-js/library/modules/_object-gopn.js");
+var gOPS = __webpack_require__(/*! ./_object-gops */ "./node_modules/core-js/library/modules/_object-gops.js");
+var anObject = __webpack_require__(/*! ./_an-object */ "./node_modules/core-js/library/modules/_an-object.js");
+var Reflect = __webpack_require__(/*! ./_global */ "./node_modules/core-js/library/modules/_global.js").Reflect;
+module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
+  var keys = gOPN.f(anObject(it));
+  var getSymbols = gOPS.f;
+  return getSymbols ? keys.concat(getSymbols(it)) : keys;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/_property-desc.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_property-desc.js ***!
@@ -4404,6 +4757,24 @@ module.exports = __webpack_require__(/*! ./_core */ "./node_modules/core-js/libr
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/core.get-iterator.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/core.get-iterator.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__(/*! ./_an-object */ "./node_modules/core-js/library/modules/_an-object.js");
+var get = __webpack_require__(/*! ./core.get-iterator-method */ "./node_modules/core-js/library/modules/core.get-iterator-method.js");
+module.exports = __webpack_require__(/*! ./_core */ "./node_modules/core-js/library/modules/_core.js").getIterator = function (it) {
+  var iterFn = get(it);
+  if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
+  return anObject(iterFn.call(it));
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/core.is-iterable.js":
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/library/modules/core.is-iterable.js ***!
@@ -4612,6 +4983,26 @@ __webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+var toIObject = __webpack_require__(/*! ./_to-iobject */ "./node_modules/core-js/library/modules/_to-iobject.js");
+var $getOwnPropertyDescriptor = __webpack_require__(/*! ./_object-gopd */ "./node_modules/core-js/library/modules/_object-gopd.js").f;
+
+__webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('getOwnPropertyDescriptor', function () {
+  return function getOwnPropertyDescriptor(it, key) {
+    return $getOwnPropertyDescriptor(toIObject(it), key);
+  };
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/es6.object.get-prototype-of.js":
 /*!*****************************************************************************!*\
   !*** ./node_modules/core-js/library/modules/es6.object.get-prototype-of.js ***!
@@ -4626,6 +5017,26 @@ var $getPrototypeOf = __webpack_require__(/*! ./_object-gpo */ "./node_modules/c
 __webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
+  };
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es6.object.keys.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.object.keys.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(/*! ./_to-object */ "./node_modules/core-js/library/modules/_to-object.js");
+var $keys = __webpack_require__(/*! ./_object-keys */ "./node_modules/core-js/library/modules/_object-keys.js");
+
+__webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
   };
 });
 
@@ -4966,6 +5377,39 @@ setToStringTag($Symbol, 'Symbol');
 setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/tc39/proposal-object-getownpropertydescriptors
+var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
+var ownKeys = __webpack_require__(/*! ./_own-keys */ "./node_modules/core-js/library/modules/_own-keys.js");
+var toIObject = __webpack_require__(/*! ./_to-iobject */ "./node_modules/core-js/library/modules/_to-iobject.js");
+var gOPD = __webpack_require__(/*! ./_object-gopd */ "./node_modules/core-js/library/modules/_object-gopd.js");
+var createProperty = __webpack_require__(/*! ./_create-property */ "./node_modules/core-js/library/modules/_create-property.js");
+
+$export($export.S, 'Object', {
+  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
+    var O = toIObject(object);
+    var getDesc = gOPD.f;
+    var keys = ownKeys(O);
+    var result = {};
+    var i = 0;
+    var key, desc;
+    while (keys.length > i) {
+      desc = getDesc(O, key = keys[i++]);
+      if (desc !== undefined) createProperty(result, key, desc);
+    }
+    return result;
+  }
+});
 
 
 /***/ }),
@@ -9672,10 +10116,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout/index.tsx");
+/* harmony import */ var _constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/styles/Color */ "./constants/styles/Color.tsx");
 
 var _jsxFileName = "/Users/pflaxalt/Repositories/_pfl/web/pages/_app.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 // /pages/_app_.js
+
 
  // Begin Component
 // __________________________________________________________________________________________
@@ -9692,20 +10138,28 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 var MyApp = function MyApp(_ref) {
   var Component = _ref.Component,
       pageProps = _ref.pageProps;
-  // Render our App
-  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
+  var colorTheme = Object(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__["useColorContext"])(); // Render our App
+
+  return __jsx(_constants_styles_Color__WEBPACK_IMPORTED_MODULE_3__["ColorContext"].Provider, {
+    value: colorTheme,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 27
+    },
+    __self: this
+  }, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["Layout"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
     },
     __self: this
   }), __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 29
     },
     __self: this
-  })));
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);

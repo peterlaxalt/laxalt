@@ -11,7 +11,7 @@ import { NextPage } from "next";
 import React from "react";
 
 // Components
-import { InteractiveFrameHeader } from "../components/_interactive/InteractiveFrameHeader";
+import { DharmaCanvasPage } from "./projects/dharma";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -28,7 +28,7 @@ export const HomePageClassName = "route__home-page";
  */
 const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => (
   <div className={`${HomePageClassName}`}>
-    <InteractiveFrameHeader includeType={true} />
+    <DharmaCanvasPage />
   </div>
 );
 

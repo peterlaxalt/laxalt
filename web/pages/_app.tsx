@@ -2,6 +2,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { Layout } from "../components/Layout";
+import { ColorContext, useColorContext } from "../constants/styles/Color";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -19,11 +20,15 @@ type LMNTS_CustomAppData = AppProps & {};
  */
 
 const MyApp = ({ Component, pageProps }: LMNTS_CustomAppData) => {
+  const colorTheme = useColorContext();
+
   // Render our App
   return (
-    <Layout {...pageProps}>
-      <Component {...pageProps} />
-    </Layout>
+    <ColorContext.Provider value={colorTheme}>
+      <Layout {...pageProps}>
+        <Component {...pageProps} />
+      </Layout>
+    </ColorContext.Provider>
   );
 };
 

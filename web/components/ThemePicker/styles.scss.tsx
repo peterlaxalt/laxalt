@@ -33,12 +33,13 @@ export const ThemePickerStyle = styled.div`
     right: 0;
     top: 0;
 
-    height: ${Root.FrameSize};
+    height: calc(${Root.FrameSize} + 2px);
 
     display: flex;
     align-items: center;
 
     border-left: 1px solid ${Theme.Color.varForeground};
+    border-bottom: 1px solid ${Theme.Color.varForeground};
 
     background: ${Theme.Color.varBackground};
 

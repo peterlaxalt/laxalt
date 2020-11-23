@@ -5,32 +5,37 @@ import React, { Component } from "react";
 import dynamic from "next/dynamic";
 
 // Theme
-import { Theme } from "../../constants/Theme";
+// import { Theme } from "../../constants/Theme";
 
 // Types
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { createGlobalStyle } from "styled-components";
 import { InteractiveFrameHeader } from "../../components/_interactive/InteractiveFrameHeader";
+import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
+import { NextPage } from "next";
+import { FadeIn } from "../../constants/styles/Animation";
 
 // Begin Component
 // __________________________________________________________________________
 
 type LXLT_P5Wrapper = any;
 
-type LXLT_P5Page = {};
+type LXLT_P5Page = {
+  colorThemeContext: LXLT_ColorTheme;
+};
+
 type LXLT_P5Page_State = {
   domLoaded: boolean;
   windowWidth: number;
   windowHeight: number;
-  backgroundColor: string;
 };
 
 const P5Wrapper: LXLT_P5Wrapper = dynamic(import("react-p5-wrapper"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <></>,
   ssr: false,
 });
 
-class P5Page extends Component<LXLT_P5Page, LXLT_P5Page_State> {
+class P5PageWithContext extends Component<LXLT_P5Page, LXLT_P5Page_State> {
   constructor(props) {
     super(props);
 
@@ -38,7 +43,6 @@ class P5Page extends Component<LXLT_P5Page, LXLT_P5Page_State> {
       domLoaded: false,
       windowWidth: 0,
       windowHeight: 0,
-      backgroundColor: Theme.Color.Background,
     };
   }
 
@@ -57,43 +61,56 @@ class P5Page extends Component<LXLT_P5Page, LXLT_P5Page_State> {
       this.state.windowWidth,
       this.state.windowHeight,
       1,
-      this.state.backgroundColor
+      this.props.colorThemeContext
     );
 
     return <P5Wrapper sketch={sketch} />;
   };
 
   render() {
-    const GlobalScrollLock = createGlobalStyle`
+    const DharmaGlobalStyles = createGlobalStyle`
       body, html {
         overflow: hidden;
+      }
+
+      .dharma-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        canvas {
+          animation: ${FadeIn} 1s ease 1;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
+
+        #p5_loading {
+          display: none !important;
+        }
       }
     `;
 
     return (
       <>
-        <GlobalScrollLock />
+        <DharmaGlobalStyles />
         <InteractiveFrameHeader />
         {this.state.domLoaded &&
         this.state.windowHeight > 10 &&
         this.state.windowWidth > 10 ? (
-          <div
-            className="dharma-container"
-            style={{
-              width: "100vw",
-              height: "100vh",
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {this.renderP5("dharma")}
-          </div>
+          <div className="dharma-container">{this.renderP5("dharma")}</div>
         ) : null}
       </>
     );
   }
 }
 
-export default P5Page;
+export const DharmaCanvasPage: NextPage = () => {
+  const themeContext = React.useContext(ColorContext);
+
+  return <P5PageWithContext colorThemeContext={themeContext} />;
+};
+
+export default DharmaCanvasPage;

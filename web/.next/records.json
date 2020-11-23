@@ -1,0 +1,57 @@
+{
+  "modules": {
+    "byIdentifier": {},
+    "usedIds": {}
+  },
+  "chunks": {
+    "byName": {
+      "static/runtime/webpack.js": 0,
+      "commons": 1,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/_app.js": 3,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/_error.js": 4,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/about.js": 5,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/contact.js": 6,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/index-old.js": 7,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/index.js": 8,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/25/13.js": 9,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/25/8.js": 10,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/dharma.js": 11,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p1.js": 12,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p2.js": 13,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p3.js": 14,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p4.js": 15,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p5.js": 16,
+      "static/IFUjplL3RDJEdcXelqcnS/pages/projects/p6.js": 17,
+      "static/runtime/main.js": 18,
+      "static/runtime/polyfills.js": 19
+    },
+    "bySource": {
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/projects/dharma.tsx react-p5-wrapper": 2,
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/projects/p1.tsx react-p5-wrapper": 2,
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/projects/p2.tsx react-p5-wrapper": 2,
+      "0 node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/projects/p6.tsx react-p5-wrapper": 2
+    },
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}

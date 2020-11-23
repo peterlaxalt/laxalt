@@ -48,6 +48,12 @@ export const InteractiveFrameHeaderStyle = styled.div`
     width: 100vw;
     height: 100vh;
 
+    z-index: 900;
+
+    pointer-events: none;
+
+
+
     // __________________________
     // Inner Grid
     .${InteractiveFrameHeaderClassName}__inner {
@@ -55,6 +61,10 @@ export const InteractiveFrameHeaderStyle = styled.div`
       height: 100vh;
 
       position: relative;
+
+      z-index: 999;
+
+      pointer-events: none;
 
     }
 
