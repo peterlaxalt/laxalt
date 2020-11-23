@@ -7,9 +7,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/p5": "^0.9.1",
     "next": "latest",
     "next-page-transitions": "^1.0.0-beta.2",
-    "p5": "^0.10.2",
+    "p5": "^1.1.9",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-p5-wrapper": "^2.0.0",

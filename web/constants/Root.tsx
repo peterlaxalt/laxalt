@@ -129,7 +129,7 @@ export const RootVariables = createGlobalStyle`
     --Radius: ${Theme.Base.Geometry.Radius};
 
     /* --------- Frame */
-    --FrameSize: 2.5rem;
+    --FrameSize: ${Theme.FrameSize};
 
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Md}) {

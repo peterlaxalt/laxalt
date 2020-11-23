@@ -13,7 +13,9 @@ import {
 // Begin Types
 // __________________________________________________________________________________________
 
-type LXLT_InteractiveFrameHeader = {};
+type LXLT_InteractiveFrameHeader = {
+  includeType?: boolean;
+};
 
 type LXLT_InteractiveFrameItem = {
   label: string;
@@ -105,7 +107,9 @@ const FrameItems = () => {
  * @author Peter Laxalt
  *
  */
-export const InteractiveFrameHeader: React.FunctionComponent<LXLT_InteractiveFrameHeader> = () => (
+export const InteractiveFrameHeader: React.FunctionComponent<LXLT_InteractiveFrameHeader> = ({
+  includeType,
+}) => (
   <InteractiveFrameHeaderStyle className={`${InteractiveFrameHeaderClassName}`}>
     {/* ______________________________________________ */}
     {/* Inner Grid */}
@@ -147,9 +151,11 @@ export const InteractiveFrameHeader: React.FunctionComponent<LXLT_InteractiveFra
 
       {/* ______________________________________________ */}
       {/* Typeface */}
-      <div className={`${InteractiveFrameHeaderClassName}__type`}>
-        <DharmaCounter text="LAXALT" />
-      </div>
+      {includeType ? (
+        <div className={`${InteractiveFrameHeaderClassName}__type`}>
+          <DharmaCounter text="LAXALT" />
+        </div>
+      ) : null}
     </div>
   </InteractiveFrameHeaderStyle>
 );

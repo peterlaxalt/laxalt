@@ -254,7 +254,10 @@ export const Base = {
   // Geometry
   Geometry: {
     Radius: 15 // px
-  }
+  },
+
+  // Frame
+  FrameSize: 2.5 // rem
 };
 
 // End Component

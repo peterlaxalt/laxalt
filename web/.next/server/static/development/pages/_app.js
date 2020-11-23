@@ -183,7 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 const GrainCoverStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__GrainCoverStyle",
   componentId: "uy0vxl-0"
-})(["position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;display:flex;z-index:999;mix-blend-mode:multiply;.grain-cover-inner{width:1000vw;height:1000vh;animation:grain 8s steps(10) infinite;background-image:url('noise.png');animation:", " 8s steps(10) infinite;}"], _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_1__["Grain"]);
+})(["position:fixed;left:0;right:0;top:0;bottom:0;pointer-events:none;overflow:hidden;display:none;z-index:999;mix-blend-mode:multiply;.grain-cover-inner{width:1000vw;height:1000vh;background-image:url('/noise.png');}"]);
 /* harmony default export */ __webpack_exports__["default"] = (GrainCoverStyle);
 
 /***/ }),
@@ -449,9 +449,9 @@ class ThemePicker extends react__WEBPACK_IMPORTED_MODULE_0___default.a.PureCompo
       availableThemes: [{
         name: "default",
         primary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary,
-        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Seconndary,
+        secondary: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Secondary,
         background: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Background,
-        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Foreground
+        foreground: _constants_Theme__WEBPACK_IMPORTED_MODULE_3__["Theme"].Color.Primary
       }, {
         name: "goldenrod",
         primary: "#393349",
@@ -727,7 +727,7 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
     --Radius: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Geometry.Radius};
 
     /* --------- Frame */
-    --FrameSize: 2.5rem;
+    --FrameSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].FrameSize};
 
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__["Theme"].Base.Media.Width.Md}) {
@@ -845,15 +845,13 @@ __webpack_require__.r(__webpack_exports__);
  * Use it in your SC: 'color: ${Theme.Color.Primary}; or simply refer to the object and key when used in functions.'
  */
 // Imports
-//////////////////////////////////////////////////////////////////////
+// ____________________________________________________________________________________
 
 
 
- // Begin Interface
-//////////////////////////////////////////////////////////////////////
+ // Begin Component
+// ____________________________________________________________________________________
 
-// Begin Component
-//////////////////////////////////////////////////////////////////////
 const Theme = {
   // General Site Information & Keywords
   Site: _site_Settings__WEBPACK_IMPORTED_MODULE_0__["Settings"],
@@ -969,9 +967,11 @@ const Theme = {
     }
   },
   // Core Palette & Colors
-  Color: _styles_Color__WEBPACK_IMPORTED_MODULE_3__["Color"]
+  Color: _styles_Color__WEBPACK_IMPORTED_MODULE_3__["Color"],
+  // Frame
+  FrameSize: _styles_Base__WEBPACK_IMPORTED_MODULE_2__["Base"].FrameSize + "rem"
 }; // End Component
-//////////////////////////////////////////////////////////////////////
+// ____________________________________________________________________________________
 
 /***/ }),
 
@@ -1236,7 +1236,10 @@ const Base = {
   Geometry: {
     Radius: 15 // px
 
-  }
+  },
+  // Frame
+  FrameSize: 2.5 // rem
+
 }; // End Component
 //////////////////////////////////////////////////////////////////////
 

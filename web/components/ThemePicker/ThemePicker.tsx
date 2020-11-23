@@ -50,9 +50,9 @@ export class ThemePicker extends React.PureComponent<
         {
           name: "default",
           primary: Theme.Color.Primary,
-          secondary: Theme.Color.Seconndary,
+          secondary: Theme.Color.Secondary,
           background: Theme.Color.Background,
-          foreground: Theme.Color.Foreground,
+          foreground: Theme.Color.Primary,
         },
         {
           name: "goldenrod",

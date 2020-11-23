@@ -28,7 +28,7 @@ export const HomePageClassName = "route__home-page";
  */
 const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => (
   <div className={`${HomePageClassName}`}>
-    <InteractiveFrameHeader />
+    <InteractiveFrameHeader includeType={true} />
   </div>
 );
 

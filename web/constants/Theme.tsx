@@ -15,136 +15,17 @@
  */
 
 // Imports
-//////////////////////////////////////////////////////////////////////
+// ____________________________________________________________________________________
 
 import { Settings } from "./site/Settings";
 import { Font } from "./styles/Font";
 import { Base } from "./styles/Base";
 import { Color } from "./styles/Color";
 
-// Begin Interface
-//////////////////////////////////////////////////////////////////////
-
-interface Theme {
-  Site: any;
-  Font: any;
-
-  Base: {
-    // Core Base Measurement
-    Size: {
-      Lg: string;
-      Md: string;
-      Sm: string;
-    };
-
-    // Root Element Measurement
-    Rem: {
-      Lg: string;
-      Md: string;
-      Sm: string;
-    };
-
-    // Responsive Breakpoints
-    Media: {
-      Width: {
-        Lg: string;
-        Md: string;
-        Sm: string;
-      };
-      Height: {
-        Lg: string;
-        Md: string;
-        Sm: string;
-      };
-    };
-
-    // Site Grid
-    Grid: {
-      SiteWidth: string;
-      Nav: {
-        Size: {
-          Lg: string;
-          Md: string;
-          Sm: string;
-        };
-      };
-
-      Footer: {
-        Size: {
-          Lg: string;
-          Md: string;
-          Sm: string;
-        };
-      };
-
-      Gutter: {
-        Lg: {
-          Top: string;
-          Bottom: string;
-          Right: string;
-          Left: string;
-        };
-        Md: {
-          Top: string;
-          Bottom: string;
-          Right: string;
-          Left: string;
-        };
-        Sm: {
-          Top: string;
-          Bottom: string;
-          Right: string;
-          Left: string;
-        };
-      };
-    };
-
-    // View Width (vw) Based Measurements
-    ViewWidth: {
-      Padding: {
-        Sm: string;
-        Md: string;
-        Lg: string;
-      };
-    };
-
-    // Buttons
-    Button: {
-      Lg: string;
-      Md: string;
-      Sm: string;
-    };
-
-    // Inputs
-    Input: {
-      Lg: string;
-      Md: string;
-      Sm: string;
-    };
-
-    // Transitions
-    Transition: {
-      String: string;
-      Duration: string;
-      Ease: Array<number>;
-      CssEase: string;
-      Page: string;
-    };
-
-    // Geometry
-    Geometry: {
-      Radius: string;
-    };
-  };
-
-  // Core Palette & Colors
-  Color: any;
-}
-
 // Begin Component
-//////////////////////////////////////////////////////////////////////
+// ____________________________________________________________________________________
 
-export const Theme: Theme = {
+export const Theme = {
   // General Site Information & Keywords
   Site: Settings,
 
@@ -157,14 +38,14 @@ export const Theme: Theme = {
     Size: {
       Lg: Base.Size.Lg + "px",
       Md: Base.Size.Md + "px",
-      Sm: Base.Size.Sm + "px"
+      Sm: Base.Size.Sm + "px",
     },
 
     // Root Element Measurement
     Rem: {
       Lg: Base.Rem.Lg + "px", // px
       Md: Base.Rem.Md + "px", // px
-      Sm: Base.Rem.Sm + "px" // px
+      Sm: Base.Rem.Sm + "px", // px
     },
 
     // Responsive Breakpoints
@@ -172,13 +53,13 @@ export const Theme: Theme = {
       Width: {
         Lg: Base.Media.Width.Lg + "px",
         Md: Base.Media.Width.Md + "px",
-        Sm: Base.Media.Width.Sm + "px"
+        Sm: Base.Media.Width.Sm + "px",
       },
       Height: {
         Lg: Base.Media.Height.Lg + "px",
         Md: Base.Media.Height.Md + "px",
-        Sm: Base.Media.Height.Sm + "px"
-      }
+        Sm: Base.Media.Height.Sm + "px",
+      },
     },
 
     // Site Grid
@@ -188,16 +69,16 @@ export const Theme: Theme = {
         Size: {
           Lg: Base.Grid.Nav.Size.Lg + "px",
           Md: Base.Grid.Nav.Size.Md + "px",
-          Sm: Base.Grid.Nav.Size.Sm + "px"
-        }
+          Sm: Base.Grid.Nav.Size.Sm + "px",
+        },
       },
 
       Footer: {
         Size: {
           Lg: Base.Grid.Footer.Size.Lg + "px",
           Md: Base.Grid.Footer.Size.Md + "px",
-          Sm: Base.Grid.Footer.Size.Sm + "px"
-        }
+          Sm: Base.Grid.Footer.Size.Sm + "px",
+        },
       },
 
       // Universal padding from the edge of the browser
@@ -207,21 +88,21 @@ export const Theme: Theme = {
           Top: Base.Grid.Gutter.Lg.Top + "px",
           Bottom: Base.Grid.Gutter.Lg.Bottom + "px",
           Right: Base.Grid.Gutter.Lg.Right + "px",
-          Left: Base.Grid.Gutter.Lg.Left + "px"
+          Left: Base.Grid.Gutter.Lg.Left + "px",
         },
         Md: {
           Top: Base.Grid.Gutter.Md.Top + "px",
           Bottom: Base.Grid.Gutter.Md.Bottom + "px",
           Right: Base.Grid.Gutter.Md.Right + "px",
-          Left: Base.Grid.Gutter.Md.Left + "px"
+          Left: Base.Grid.Gutter.Md.Left + "px",
         },
         Sm: {
           Top: Base.Grid.Gutter.Sm.Top + "px",
           Bottom: Base.Grid.Gutter.Sm.Bottom + "px",
           Right: Base.Grid.Gutter.Sm.Right + "px",
-          Left: Base.Grid.Gutter.Sm.Left + "px"
-        }
-      }
+          Left: Base.Grid.Gutter.Sm.Left + "px",
+        },
+      },
     },
 
     // View Width (vw) Based Measurements
@@ -229,22 +110,22 @@ export const Theme: Theme = {
       Padding: {
         Sm: Base.ViewWidth.Padding.Sm + "vw",
         Md: Base.ViewWidth.Padding.Md + "vw",
-        Lg: Base.ViewWidth.Padding.Lg + "vw"
-      }
+        Lg: Base.ViewWidth.Padding.Lg + "vw",
+      },
     },
 
     // Buttons
     Button: {
       Lg: Base.Button.Lg + "px",
       Md: Base.Button.Md + "px",
-      Sm: Base.Button.Sm + "px"
+      Sm: Base.Button.Sm + "px",
     },
 
     // Inputs
     Input: {
       Lg: Base.Input.Lg + "px",
       Md: Base.Input.Md + "px",
-      Sm: Base.Input.Sm + "px"
+      Sm: Base.Input.Sm + "px",
     },
 
     // Transitions
@@ -262,18 +143,21 @@ export const Theme: Theme = {
         ", " +
         Base.Transition.Ease[3] +
         ")", // Cubic Bezier Ease (CSS String)
-      Page: Base.Transition.Page + "s" // milliseconds. Try to not go lower than 350ms or it gets buggy. TODO.
+      Page: Base.Transition.Page + "s", // milliseconds. Try to not go lower than 350ms or it gets buggy. TODO.
     },
 
     // Geometry
     Geometry: {
-      Radius: Base.Geometry.Radius + "px" // px
-    }
+      Radius: Base.Geometry.Radius + "px", // px
+    },
   },
 
   // Core Palette & Colors
-  Color: Color
+  Color: Color,
+
+  // Frame
+  FrameSize: Base.FrameSize + "rem",
 };
 
 // End Component
-//////////////////////////////////////////////////////////////////////
+// ____________________________________________________________________________________

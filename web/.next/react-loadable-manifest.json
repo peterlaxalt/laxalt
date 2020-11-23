@@ -3,20 +3,20 @@
     {
       "id": "58Bg",
       "name": "./node_modules/react-p5-wrapper/dist/index.js",
-      "file": "static/chunks/2.1703b4891e9617b1b2dc.js",
-      "publicPath": "static/chunks/2.1703b4891e9617b1b2dc.js"
+      "file": "static/chunks/2.81d7212433a35930e807.js",
+      "publicPath": "static/chunks/2.81d7212433a35930e807.js"
     },
     {
-      "id": "I335",
-      "name": "./node_modules/p5/lib/p5.js",
-      "file": "static/chunks/2.1703b4891e9617b1b2dc.js",
-      "publicPath": "static/chunks/2.1703b4891e9617b1b2dc.js"
+      "id": "NCWt",
+      "name": "./node_modules/p5/lib/p5.min.js",
+      "file": "static/chunks/2.81d7212433a35930e807.js",
+      "publicPath": "static/chunks/2.81d7212433a35930e807.js"
     },
     {
       "id": "yLpj",
       "name": "./node_modules/webpack/buildin/global.js",
-      "file": "static/chunks/2.1703b4891e9617b1b2dc.js",
-      "publicPath": "static/chunks/2.1703b4891e9617b1b2dc.js"
+      "file": "static/chunks/2.81d7212433a35930e807.js",
+      "publicPath": "static/chunks/2.81d7212433a35930e807.js"
     }
   ]
 }
