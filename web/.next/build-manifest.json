@@ -34,11 +34,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/next/dist/pages/_error.js"
     ],
-    "/projects/three-with-canvas-texture": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/projects/three-with-canvas-texture.js"
-    ],
     "/projects/water-distort-with-canvas": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

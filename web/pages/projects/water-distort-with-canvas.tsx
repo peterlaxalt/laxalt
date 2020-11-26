@@ -8,7 +8,11 @@ import { InteractiveFrameHeader } from "../../components/_interactive/Interactiv
 // import { ThreeCanvas } from "../../sketches/three/with-canvas-as-texture";
 
 import { NextPage } from "next";
-import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
+import {
+  Color,
+  ColorContext,
+  LXLT_ColorTheme,
+} from "../../constants/styles/Color";
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { LXLT_P5Wrapper } from "./_scaffold-p5";
 import dynamic from "next/dynamic";
@@ -29,7 +33,14 @@ type LXLT_ThreePage_State = {
 
   canvasElement: HTMLCanvasElement;
   canvasTheme: LXLT_ColorTheme;
+  canvasParent: HTMLDivElement;
 };
+
+declare global {
+  interface Window {
+    laxaltUniversalTheme: LXLT_ColorTheme;
+  }
+}
 
 // _________________________________________________________________________________
 
@@ -60,8 +71,10 @@ class ThreePageWithContext extends Component<
       domLoaded: false,
       windowWidth: 0,
       windowHeight: 0,
+
       canvasElement: undefined,
       canvasTheme: undefined,
+      canvasParent: undefined,
     };
   }
 
@@ -85,17 +98,21 @@ class ThreePageWithContext extends Component<
         windowWidth: window.innerWidth - 80,
         windowHeight: window.innerHeight - 80,
         domLoaded: true,
+
         canvasElement: undefined,
         canvasTheme: this.props.colorThemeContext,
+        canvasParent: this.canvasParentRef,
       });
+
+      window.laxaltUniversalTheme = this.props.colorThemeContext;
     }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: LXLT_ThreePage) {
     if (nextProps.colorThemeContext != this.state.canvasTheme) {
-
       this.setState({
         canvasTheme: this.props.colorThemeContext,
+        canvasParent: this.canvasParentRef,
       });
     }
   }
@@ -117,7 +134,7 @@ class ThreePageWithContext extends Component<
       this.state.windowHeight,
       1,
       this.state.canvasTheme,
-      this.canvasParentRef
+      this.state.canvasParent
     );
 
     return <P5Wrapper sketch={sketch} />;

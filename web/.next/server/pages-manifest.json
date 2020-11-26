@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/projects/three-with-canvas-texture": "pages/projects/three-with-canvas-texture.js",
+  "/projects/water-distort-with-canvas": "pages/projects/water-distort-with-canvas.js",
   "/": "pages/index.js",
-  "/projects/water-distort-with-canvas": "pages/projects/water-distort-with-canvas.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }

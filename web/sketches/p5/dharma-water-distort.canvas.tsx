@@ -62,7 +62,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
   // ____________________________
   // Typography
-  let text = "laxalt";
+  let text = "MEEKO";
 
   let splitCharacterArray = text.split("");
   let characters: LXLT_DharmaCanvasChar[] = splitCharacterArray.map(

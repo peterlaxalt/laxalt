@@ -225,7 +225,7 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
         &--top,
         &--right {
-          border-bottom: 1px solid ${Theme.Color.varForeground};
+          /* border-bottom: 1px solid ${Theme.Color.varForeground}; */
 
           .${InteractiveFrameHeaderClassName}__frame-items {
             padding-top: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) / 6);
@@ -233,17 +233,21 @@ export const InteractiveFrameHeaderStyle = styled.div`
 
             position: relative;
 
+            border-bottom: 1px solid ${Theme.Color.varForeground};
+
             animation: marqueeTopRightQuadrants var(--${InteractiveFrameHeaderClassName}__marquee-speed) linear infinite;
           }
         }
 
         &--bottom,
         &--left {
-          border-top: 1px solid ${Theme.Color.varForeground};
+          /* border-top: 1px solid ${Theme.Color.varForeground}; */
 
           .${InteractiveFrameHeaderClassName}__frame-items {
             padding-top: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) / 6);
             padding-bottom: calc(var(--${InteractiveFrameHeaderClassName}__frame-edge-size) / 6);
+
+            border-top: 1px solid ${Theme.Color.varForeground};
 
             animation: marqueeBottomLeftQuadrants var(--${InteractiveFrameHeaderClassName}__marquee-speed) linear infinite;
           }

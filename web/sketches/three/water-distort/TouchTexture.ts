@@ -169,6 +169,7 @@ export class TouchTexture {
     // RG = Unit vector
     let red = ((point.vx + 1) / 2) * 255;
     let green = ((point.vy + 1) / 2) * 255;
+
     // B = Unit vector
     let blue = intensity * 255;
     let color = `${red}, ${green}, ${blue}`;

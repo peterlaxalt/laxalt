@@ -33,7 +33,7 @@ export const ThemePickerStyle = styled.div`
     right: 0;
     top: 0;
 
-    height: calc(${Root.FrameSize} + 2px);
+    height: calc(${Root.FrameSize});
 
     display: flex;
     align-items: center;
