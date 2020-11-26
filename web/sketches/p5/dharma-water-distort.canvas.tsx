@@ -6,7 +6,6 @@
  */
 
 import p5, { Font } from "p5";
-import { LXLT_ColorTheme } from "../../constants/styles/Color";
 import { ThreeWaterCanvas } from "../three/three-water-distort.canvas";
 
 // Begin Component

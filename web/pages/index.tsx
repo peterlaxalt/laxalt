@@ -11,7 +11,7 @@ import { NextPage } from "next";
 import React from "react";
 
 // Components
-import { DharmaCanvasPage } from "./projects/dharma";
+import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -28,7 +28,7 @@ export const HomePageClassName = "route__home-page";
  */
 const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => (
   <div className={`${HomePageClassName}`}>
-    <DharmaCanvasPage />
+    <WaterDistortWithCanvasTexturePage />
   </div>
 );
 

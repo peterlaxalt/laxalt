@@ -8,7 +8,7 @@ import { InteractiveFrameHeader } from "../../components/_interactive/Interactiv
 // import { ThreeCanvas } from "../../sketches/three/with-canvas-as-texture";
 
 import { NextPage } from "next";
-import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
+import { LXLT_ColorTheme } from "../../constants/styles/Color";
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { LXLT_P5Wrapper } from "./_scaffold-p5";
 import dynamic from "next/dynamic";
@@ -16,8 +16,8 @@ import { __DEBUG__ } from "../../constants/site/Settings";
 
 // ______________________________________________________________
 
-type LXLT_ThreePage = {
-  colorThemeContext: LXLT_ColorTheme;
+type LXLT_ThreePage = NextPage & {
+  // colorThemeContext: LXLT_ColorTheme;
 };
 
 type LXLT_CanvasRootElement = HTMLDivElement;
@@ -61,10 +61,10 @@ const P5Wrapper: LXLT_P5Wrapper = dynamic(import("react-p5-wrapper"), {
 
 /**
  *
- * @name ThreePageWithContext
+ * @name WaterDistortWithCanvasTexturePage
  *
  */
-class ThreePageWithContext extends Component<
+class WaterDistortWithCanvasTexturePage extends Component<
   LXLT_ThreePage,
   LXLT_ThreePage_State
 > {
@@ -213,7 +213,7 @@ class ThreePageWithContext extends Component<
 
 //   console.log("themeContext: ", themeContext);
 
-//   return <ThreePageWithContext />;
+//   return <WaterDistortWithCanvasTexturePage />;
 // };
 
-export default ThreePageWithContext;
+export default WaterDistortWithCanvasTexturePage;
