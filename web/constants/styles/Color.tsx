@@ -11,7 +11,13 @@ import { createGlobalStyle } from "styled-components";
 // _______________________________________________________
 
 export type LXLT_ColorTheme = {
-  name?: "default" | "white" | "goldenrod" | "cadetblue" | "orangered" | "galaxy";
+  name?:
+    | "default"
+    | "white"
+    | "goldenrod"
+    | "cadetblue"
+    | "orangered"
+    | "galaxy";
   primary: string;
   secondary: string;
   background: string;
@@ -27,10 +33,10 @@ export const Color = {
   varForeground: "var(--clrForeground)",
 
   // Core Colors
-  Primary: "#111b24",
+  Primary: "#FFF6EE",
   Secondary: "#5D6376",
   Background: "#ff988c",
-  Text: "#111b24",
+  Text: "#FFF6EE",
 
   // Grayscale Palette
   Black: "#000000",
@@ -73,8 +79,8 @@ export const Color = {
 export const ColorContext_Defaults: LXLT_ColorTheme = {
   primary: Color.Primary,
   secondary: Color.Secondary,
-  foreground: Color.White,
-  background: Color.Deepsea,
+  foreground: Color.Text,
+  background: Color.Background,
   setTheme: () => {},
 };
 
@@ -119,14 +125,14 @@ export const ColorContext = React.createContext<LXLT_ColorTheme>(
  *
  */
 export const Palette = createGlobalStyle`
-  ::-moz-selection { background: ${Color.Primary}; color: ${Color.White} }
-  ::selection { background: ${Color.Primary}; color: ${Color.White} }
+  ::-moz-selection { background: ${Color.Primary}; color: ${Color.Cream} }
+  ::selection { background: ${Color.Primary}; color: ${Color.Cream} }
 
   :root {
-    --clrPrimary: ${Color.White};
+    --clrPrimary: ${Color.Primary};
     --clrSecondary: ${Color.Secondary};
-    --clrBackground: ${Color.Deepsea};
-    --clrForeground: ${Color.White};
+    --clrBackground: ${Color.Background};
+    --clrForeground: ${Color.Text};
   }
 `;
 

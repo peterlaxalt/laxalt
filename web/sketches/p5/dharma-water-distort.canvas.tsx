@@ -16,7 +16,7 @@ export type LXLT_DharmaCanvas = {
   W: number;
   H: number;
   ID: number;
-  BG: LXLT_ColorTheme;
+  // BG: LXLT_ColorTheme;
   parentEl: HTMLDivElement;
 };
 
@@ -24,7 +24,7 @@ export type LXLT_DharmaCanvasDisplay = (
   W: number,
   H: number,
   ID: number,
-  BG: LXLT_ColorTheme,
+  // BG: LXLT_ColorTheme,
   parentEl: HTMLDivElement
 ) => (p: p5) => void;
 
@@ -48,7 +48,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   W,
   H,
   ID,
-  DharmaTheme,
+  // DharmaTheme,
   parentEl
 ) => (p: p5) => {
   // _________________________________________________
@@ -62,7 +62,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
   // ____________________________
   // Typography
-  let text = "MEEKO";
+  let text = "LAXALT";
 
   let splitCharacterArray = text.split("");
   let characters: LXLT_DharmaCanvasChar[] = splitCharacterArray.map(
@@ -132,7 +132,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
     // Our Canvas
     canvas = p.createCanvas(W, H);
 
-    ThreeWaterCanvas(parentEl, canvas.elt, DharmaTheme);
+    ThreeWaterCanvas(parentEl, canvas.elt);
 
     p.frameRate(frameRate);
   };
@@ -238,7 +238,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   // _________________________________________________
   // Draw
   p.draw = () => {
-    p.background(DharmaTheme.background);
+    p.background(window.laxaltUniversalTheme.background);
 
     p.textFont(dharmaFont);
 
@@ -246,9 +246,9 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
     p.textAlign(p.CENTER, p.CENTER);
 
-    p.fill(`${DharmaTheme.foreground}`);
+    p.fill(`${window.laxaltUniversalTheme.foreground}`);
     p.strokeWeight(strokeWidth);
-    p.stroke(DharmaTheme.background);
+    p.stroke(window.laxaltUniversalTheme.background);
 
     if (H && W) {
       // _________________________________________

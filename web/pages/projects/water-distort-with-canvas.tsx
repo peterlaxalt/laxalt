@@ -8,11 +8,7 @@ import { InteractiveFrameHeader } from "../../components/_interactive/Interactiv
 // import { ThreeCanvas } from "../../sketches/three/with-canvas-as-texture";
 
 import { NextPage } from "next";
-import {
-  Color,
-  ColorContext,
-  LXLT_ColorTheme,
-} from "../../constants/styles/Color";
+import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { LXLT_P5Wrapper } from "./_scaffold-p5";
 import dynamic from "next/dynamic";
@@ -31,7 +27,7 @@ type LXLT_ThreePage_State = {
   windowWidth: number;
   windowHeight: number;
 
-  canvasElement: HTMLCanvasElement;
+  canvasElement: boolean;
   canvasTheme: LXLT_ColorTheme;
   canvasParent: HTMLDivElement;
 };
@@ -43,6 +39,14 @@ declare global {
 }
 
 // _________________________________________________________________________________
+
+/**
+ *
+ * @name __CANVAS_FILE__
+ * @description The file you want to load
+ *
+ */
+const __CANVAS_FILE__ = "dharma-water-distort.canvas";
 
 /**
  *
@@ -72,10 +76,12 @@ class ThreePageWithContext extends Component<
       windowWidth: 0,
       windowHeight: 0,
 
-      canvasElement: undefined,
+      canvasElement: false,
       canvasTheme: undefined,
       canvasParent: undefined,
     };
+
+    this.renderP5 = this.renderP5.bind(this);
   }
 
   /**
@@ -99,23 +105,23 @@ class ThreePageWithContext extends Component<
         windowHeight: window.innerHeight - 80,
         domLoaded: true,
 
-        canvasElement: undefined,
-        canvasTheme: this.props.colorThemeContext,
+        canvasElement: false,
+        canvasTheme: window.laxaltUniversalTheme,
         canvasParent: this.canvasParentRef,
       });
 
-      window.laxaltUniversalTheme = this.props.colorThemeContext;
+      // window.laxaltUniversalTheme = this.props.colorThemeContext;
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: LXLT_ThreePage) {
-    if (nextProps.colorThemeContext != this.state.canvasTheme) {
-      this.setState({
-        canvasTheme: this.props.colorThemeContext,
-        canvasParent: this.canvasParentRef,
-      });
-    }
-  }
+  // UNSAFE_componentWillReceiveProps(nextProps: LXLT_ThreePage) {
+  //   if (nextProps.colorThemeContext != this.state.canvasTheme) {
+  //     this.setState({
+  //       canvasTheme: this.state.canvasTheme,
+  //       canvasParent: this.canvasParentRef,
+  //     });
+  //   }
+  // }
 
   /**
    *
@@ -124,23 +130,33 @@ class ThreePageWithContext extends Component<
    *
    */
   renderP5 = (filename: string) => {
-    __DEBUG__ &&
-      console.log(`🕓 Initializing p5 file ../../sketches/p5/${filename}`);
+    if (this.state.canvasElement === true && document.querySelector("#defaultCanvas0")) {
+      __DEBUG__ &&
+        console.log(`😌 Canvas Element Exists`, this.state.canvasElement);
 
-    __DEBUG__ && console.log(`👨‍👦 Parent container ref: `, this.canvasParentRef);
+      return null;
+    } else {
+      __DEBUG__ &&
+        console.log(`🕓 Initializing p5 file ../../sketches/p5/${filename}`);
 
-    const sketch: LXLT_GLSL_Canvas = require(`../../sketches/p5/${filename}`).default(
-      this.state.windowWidth,
-      this.state.windowHeight,
-      1,
-      this.state.canvasTheme,
-      this.state.canvasParent
-    );
+      __DEBUG__ &&
+        console.log(`👨‍👦 Parent container ref: `, this.canvasParentRef);
 
-    return <P5Wrapper sketch={sketch} />;
+      const sketch: LXLT_GLSL_Canvas = require(`../../sketches/p5/${filename}`).default(
+        this.state.windowWidth,
+        this.state.windowHeight,
+        1,
+        // this.state.canvasTheme,
+        this.state.canvasParent
+      );
+
+      return <P5Wrapper sketch={sketch} />;
+    }
   };
 
   render() {
+    __DEBUG__ && console.log("👀 this.state", this.state);
+
     const ThreePageGlobalStyles = createGlobalStyle`
       /* body, html {
         overflow: hidden;
@@ -158,18 +174,6 @@ class ThreePageWithContext extends Component<
           display: none !important;
         }
       }
-
-      #drawing-canvas {
-				position: absolute;
-				background-color: #000000;
-				top: 0px;
-				right: 0px;
-				z-index: 3000;
-				cursor: crosshair;
-				touch-action: none;
-
-        display: none;
-			}
 
       canvas {
         animation: ${FadeIn} 1s ease 1;
@@ -197,17 +201,19 @@ class ThreePageWithContext extends Component<
           ref={(element: HTMLDivElement) => (this.canvasParentRef = element)}
           className="canvas-container"
         >
-          {this.renderP5("dharma-water-distort.canvas")}
+          {this.state.canvasParent ? this.renderP5(__CANVAS_FILE__) : null}
         </div>
       </>
     );
   }
 }
 
-export const ThreeCanvasPage: NextPage = () => {
-  const themeContext = React.useContext(ColorContext);
+// export const ThreeCanvasPage: NextPage = () => {
+//   const themeContext = React.useContext(ColorContext);
 
-  return <ThreePageWithContext colorThemeContext={themeContext} />;
-};
+//   console.log("themeContext: ", themeContext);
 
-export default ThreeCanvasPage;
+//   return <ThreePageWithContext />;
+// };
+
+export default ThreePageWithContext;

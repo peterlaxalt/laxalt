@@ -1,6 +1,7 @@
 // Core
 import React, { useContext } from "react";
 import { createGlobalStyle } from "styled-components";
+import { __DEBUG__ } from "../../constants/site/Settings";
 import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
 import { CssUtils } from "../../constants/styles/CssUtils";
 import { Theme } from "../../constants/Theme";
@@ -98,14 +99,26 @@ export class ThemePickerWithHook extends React.PureComponent<
     this.setNewTheme = this.setNewTheme.bind(this);
   }
 
+  componentDidMount() {
+    if (typeof window) {
+      window.laxaltUniversalTheme = this.state.activeTheme;
+
+      __DEBUG__ && console.log("🎨 theme set", window.laxaltUniversalTheme);
+    }
+  }
+
   setNewTheme(theme: LXLT_ColorTheme) {
-    const { setTheme } = this.props;
+    // const { setTheme } = this.props;
 
     this.setState({
       activeTheme: theme,
     });
 
-    setTheme(theme);
+    if (typeof window) {
+      window.laxaltUniversalTheme = theme;
+    }
+
+    // setTheme(theme);
   }
 
   render() {
@@ -153,10 +166,7 @@ export class ThemePickerWithHook extends React.PureComponent<
 }
 
 export const ThemePicker: React.FunctionComponent = () => {
-
   const { setTheme } = useContext(ColorContext);
 
-  return (
-    <ThemePickerWithHook setTheme={setTheme}  />
-  )
-}
+  return <ThemePickerWithHook setTheme={setTheme} />;
+};

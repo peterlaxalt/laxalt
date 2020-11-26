@@ -16,6 +16,7 @@ import {
   TouchTexture,
 } from "./water-distort/TouchTexture";
 import WaterEffect from "./water-distort/WaterEffect";
+import { hexToRGB } from "../../utils/hexToRGB";
 
 // Begin Component
 // __________________________________________________________________________
@@ -23,7 +24,6 @@ import WaterEffect from "./water-distort/WaterEffect";
 export type LXLT_ThreeWaterCanvas = {
   canvasContainer: HTMLDivElement;
   canvasElement: HTMLCanvasElement;
-  canvasTheme: LXLT_ColorTheme;
 };
 
 export class ThreeWaterCanvasClass {
@@ -53,6 +53,7 @@ export class ThreeWaterCanvasClass {
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.domElement.id = "three_canvas";
 
     options.canvasContainer.append(this.renderer.domElement);
 
@@ -66,7 +67,9 @@ export class ThreeWaterCanvasClass {
     this.camera.position.z = 50;
 
     this.scene = new THREE.Scene();
-    // this.scene.background = new THREE.Color(0xffffff);
+    this.scene.background = new THREE.Color(
+      `${hexToRGB(window.laxaltUniversalTheme.background, 1)}`
+    );
 
     this.canvasElement = options.canvasElement;
 
@@ -121,6 +124,10 @@ export class ThreeWaterCanvasClass {
   render() {
     this.material.map.needsUpdate = true;
 
+    this.scene.background = new THREE.Color(
+      `${hexToRGB(window.laxaltUniversalTheme.background, 1)}`
+    );
+
     this.composer.render(this.clock.getDelta());
   }
 
@@ -134,14 +141,23 @@ export class ThreeWaterCanvasClass {
 
 export const ThreeWaterCanvas = (
   canvasContainer: HTMLDivElement,
-  canvasElement: HTMLCanvasElement,
-  canvasTheme: LXLT_ColorTheme
+  canvasElement: HTMLCanvasElement
 ): ThreeWaterCanvasClass => {
-  const myWaterCanvas = new ThreeWaterCanvasClass({
-    canvasContainer,
-    canvasElement,
-    canvasTheme,
-  });
+  if (!document.querySelector("#three_canvas")) {
+    const myWaterCanvas = new ThreeWaterCanvasClass({
+      canvasContainer,
+      canvasElement,
+    });
 
-  return myWaterCanvas;
+    return myWaterCanvas;
+  } else {
+    document.querySelector("#three_canvas").remove();
+
+    const myWaterCanvas = new ThreeWaterCanvasClass({
+      canvasContainer,
+      canvasElement,
+    });
+
+    return myWaterCanvas;
+  }
 };
