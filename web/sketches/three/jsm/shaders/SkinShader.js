@@ -10,7 +10,7 @@ import {
 	UniformsUtils,
 	Vector3,
 	Vector4
-} from "../../core/three.module.js";
+} from "three";
 
 /* ------------------------------------------------------------------------------------------
 //	Basic skin shader

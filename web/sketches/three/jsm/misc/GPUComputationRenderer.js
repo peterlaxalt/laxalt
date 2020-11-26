@@ -110,7 +110,7 @@ import {
 	Scene,
 	ShaderMaterial,
 	WebGLRenderTarget
-} from "../../core/three.module.js";
+} from "three";
 
 var GPUComputationRenderer = function ( sizeX, sizeY, renderer ) {
 

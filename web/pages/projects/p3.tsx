@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { canvas } from "../../sketches/three/t2";
 
-class p3 extends Component<{}, any> {
+class threePage extends Component<{}, any> {
   componentDidMount() {
     if (typeof window) {
       // @ts-ignore
@@ -19,4 +19,4 @@ class p3 extends Component<{}, any> {
   }
 }
 
-export default p3;
+export default threePage;

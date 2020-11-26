@@ -37,3 +37,11 @@ export const Settings = {
     fbAppId: "56639339020281",
   },
 };
+
+/**
+ *
+ * @name __DEBUG__
+ * @description Debug mode for console
+ *
+ */
+export const __DEBUG__ = true;

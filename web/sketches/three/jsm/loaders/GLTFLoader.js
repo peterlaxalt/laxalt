@@ -71,7 +71,7 @@ import {
 	VectorKeyframeTrack,
 	VertexColors,
 	sRGBEncoding
-} from "../../core/three.module.js";
+} from "three";
 
 var GLTFLoader = ( function () {
 

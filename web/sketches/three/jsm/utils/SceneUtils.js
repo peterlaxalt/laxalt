@@ -5,7 +5,7 @@
 import {
 	Group,
 	Mesh
-} from "../../core/three.module.js";
+} from "three";
 
 var SceneUtils = {
 

@@ -22,7 +22,7 @@ import {
 	ShaderMaterial,
 	Vector2,
 	WebGLRenderTarget
-} from "../../core/three.module.js";
+} from "three";
 
 var Fire = function ( geometry, options ) {
 

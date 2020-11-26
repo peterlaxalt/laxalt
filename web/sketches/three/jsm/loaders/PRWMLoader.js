@@ -8,7 +8,7 @@ import {
 	BufferGeometry,
 	FileLoader,
 	Loader
-} from "../../core/three.module.js";
+} from "three";
 
 var PRWMLoader = ( function () {
 

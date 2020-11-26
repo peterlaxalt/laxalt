@@ -8,7 +8,7 @@ import {
 	FileLoader,
 	Loader,
 	Texture
-} from "../../core/three.module.js";
+} from "three";
 
 var TGALoader = function ( manager ) {
 

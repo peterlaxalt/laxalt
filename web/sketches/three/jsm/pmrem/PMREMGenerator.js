@@ -36,7 +36,7 @@ import {
 	Vector3,
 	WebGLRenderTarget,
 	sRGBEncoding
-} from "../../core/three.module.js";
+} from "three";
 
 var PMREMGenerator = ( function () {
 
@@ -578,8 +578,8 @@ void main() {
         float theta = dTheta * float(dir * i);
         float cosTheta = cos(theta);
         // Rodrigues' axis-angle rotation
-        vec3 sampleDirection = vOutputDirection * cosTheta 
-            + cross(axis, vOutputDirection) * sin(theta) 
+        vec3 sampleDirection = vOutputDirection * cosTheta
+            + cross(axis, vOutputDirection) * sin(theta)
             + axis * dot(axis, vOutputDirection) * (1.0 - cosTheta);
         gl_FragColor.rgb +=
             weights[i] * bilinearCubeUV(envMap, sampleDirection, mipInt);

@@ -13,7 +13,7 @@ import {
 	NumberKeyframeTrack,
 	Vector3,
 	VectorKeyframeTrack
-} from "../../core/three.module.js";
+} from "three";
 
 var AnimationClipCreator = function () {};
 

@@ -7,7 +7,7 @@ import {
 	Loader,
 	Matrix4,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 import { Zlib } from "../libs/gunzip.module.min.js";
 import { Volume } from "../misc/Volume.js";
 

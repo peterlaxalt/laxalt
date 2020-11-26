@@ -10,7 +10,7 @@ import {
 	Object3D,
 	TextureLoader,
 	UVMapping
-} from "../../core/three.module.js";
+} from "three";
 import { MD2Loader } from "../loaders/MD2Loader.js";
 
 var MD2Character = function () {

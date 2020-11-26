@@ -6,7 +6,7 @@ import {
 	Object3D,
 	Quaternion,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 var Gyroscope = function () {
 

@@ -5,7 +5,7 @@
 
 import {
 	Math as _Math
-} from "../../core/three.module.js";
+} from "three";
 
 var ColorConverter = {
 

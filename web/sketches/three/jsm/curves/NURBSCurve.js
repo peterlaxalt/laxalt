@@ -12,7 +12,7 @@ import {
 	Curve,
 	Vector3,
 	Vector4
-} from "../../core/three.module.js";
+} from "three";
 import { NURBSUtils } from "../curves/NURBSUtils.js";
 
 

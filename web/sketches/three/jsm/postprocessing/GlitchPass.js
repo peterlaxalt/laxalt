@@ -9,7 +9,7 @@ import {
 	RGBFormat,
 	ShaderMaterial,
 	UniformsUtils
-} from "../../core/three.module.js";
+} from "three";
 import { Pass } from "../postprocessing/Pass.js";
 import { DigitalGlitch } from "../shaders/DigitalGlitch.js";
 

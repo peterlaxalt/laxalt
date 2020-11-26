@@ -62,7 +62,7 @@ import {
 	VectorKeyframeTrack,
 	VertexColors,
 	sRGBEncoding
-} from "../../core/three.module.js";
+} from "three";
 import { Zlib } from "../libs/inflate.module.min.js";
 import { NURBSCurve } from "../curves/NURBSCurve.js";
 

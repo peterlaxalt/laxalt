@@ -18,7 +18,7 @@ import {
 	Vector2,
 	Vector3,
 	WebGLRenderTarget
-} from "../../core/three.module.js";
+} from "three";
 import { Pass } from "../postprocessing/Pass.js";
 import { CopyShader } from "../shaders/CopyShader.js";
 

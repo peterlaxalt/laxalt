@@ -21,7 +21,7 @@
 import {
 	Color,
 	Vector2
-} from "../../core/three.module.js";
+} from "three";
 
 var GodRaysDepthMaskShader = {
 

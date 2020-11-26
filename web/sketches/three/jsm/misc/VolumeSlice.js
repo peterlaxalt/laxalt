@@ -16,7 +16,7 @@ import {
 	MeshBasicMaterial,
 	PlaneBufferGeometry,
 	Texture
-} from "../../core/three.module.js";
+} from "three";
 var VolumeSlice = function ( volume, index, axis ) {
 
 	var slice = this;

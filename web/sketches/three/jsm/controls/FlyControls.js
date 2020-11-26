@@ -5,7 +5,7 @@
 import {
 	Quaternion,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 var FlyControls = function ( object, domElement ) {
 

@@ -87,6 +87,10 @@ const FrameItems = () => {
       label: "Fonts",
       href: "/",
     },
+    {
+      label: "Contact",
+      href: "/",
+    },
   ];
 
   return (

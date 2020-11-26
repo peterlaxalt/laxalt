@@ -16,7 +16,7 @@ import {
 	Float32BufferAttribute,
 	Loader,
 	LoaderUtils
-} from "../../core/three.module.js";
+} from "three";
 import { Zlib } from "../libs/inflate.module.min.js";
 
 var VTKLoader = function ( manager ) {

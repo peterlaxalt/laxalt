@@ -73,8 +73,8 @@ export const Color = {
 export const ColorContext_Defaults: LXLT_ColorTheme = {
   primary: Color.Primary,
   secondary: Color.Secondary,
-  foreground: Color.Text,
-  background: Color.Background,
+  foreground: Color.White,
+  background: Color.Deepsea,
   setTheme: () => {},
 };
 
@@ -123,10 +123,10 @@ export const Palette = createGlobalStyle`
   ::selection { background: ${Color.Primary}; color: ${Color.White} }
 
   :root {
-    --clrPrimary: ${Color.Primary};
+    --clrPrimary: ${Color.White};
     --clrSecondary: ${Color.Secondary};
-    --clrBackground: ${Color.Background};
-    --clrForeground: ${Color.Text};
+    --clrBackground: ${Color.Deepsea};
+    --clrForeground: ${Color.White};
   }
 `;
 

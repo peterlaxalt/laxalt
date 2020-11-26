@@ -18,7 +18,7 @@ import {
 	Vector3,
 	Vector4,
 	WebGLRenderTarget
-} from "../../core/three.module.js";
+} from "three";
 
 var Refractor = function ( geometry, options ) {
 

@@ -14,7 +14,7 @@
 import {
 	Curve,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 var Curves = ( function () {
 

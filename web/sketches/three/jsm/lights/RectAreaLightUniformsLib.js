@@ -23,7 +23,7 @@ import {
 	ShaderLib,
 	UVMapping,
 	UniformsLib
-} from "../../core/three.module.js";
+} from "three";
 
 // Real-Time Polygonal-Light Shading with Linearly Transformed Cosines
 // by Eric Heitz, Jonathan Dupuy, Stephen Hill and David Neubelt

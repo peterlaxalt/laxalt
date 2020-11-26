@@ -20,7 +20,7 @@ import {
 	Vector2,
 	Vector3,
 	WebGLRenderTarget
-} from "../../core/three.module.js";
+} from "three";
 import { OceanShaders } from "../shaders/OceanShaders.js";
 
 var Ocean = function ( renderer, camera, scene, options ) {

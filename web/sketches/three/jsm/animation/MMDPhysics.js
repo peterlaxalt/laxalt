@@ -24,7 +24,7 @@ import {
 	Quaternion,
 	SphereBufferGeometry,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 /* global Ammo */
 

@@ -13,7 +13,7 @@ import {
 	Float32BufferAttribute,
 	Geometry,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 var SimplifyModifier = function () {};
 

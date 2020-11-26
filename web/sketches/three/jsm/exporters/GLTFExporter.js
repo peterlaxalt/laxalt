@@ -26,7 +26,7 @@ import {
 	TriangleFanDrawMode,
 	TriangleStripDrawMode,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 //------------------------------------------------------------------------------
 // Constants

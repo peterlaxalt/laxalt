@@ -5,7 +5,7 @@
 import {
 	Math as _Math,
 	Mesh
-} from "../../core/three.module.js";
+} from "three";
 
 var MorphBlendMesh = function ( geometry, material ) {
 

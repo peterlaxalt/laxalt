@@ -13,7 +13,7 @@
 import {
 	Color,
 	Vector3
-} from "../../core/three.module.js";
+} from "three";
 
 var ToonShader1 = {
 

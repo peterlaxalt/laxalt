@@ -9,7 +9,7 @@ import {
 	RGBA_S3TC_DXT5_Format,
 	RGB_ETC1_Format,
 	RGB_S3TC_DXT1_Format
-} from "../../core/three.module.js";
+} from "three";
 
 var DDSLoader = function ( manager ) {
 

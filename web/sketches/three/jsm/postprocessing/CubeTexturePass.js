@@ -10,7 +10,7 @@ import {
 	Scene,
 	ShaderLib,
 	ShaderMaterial
-} from "../../core/three.module.js";
+} from "three";
 import { Pass } from "../postprocessing/Pass.js";
 
 var CubeTexturePass = function ( camera, envMap, opacity ) {

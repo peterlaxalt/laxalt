@@ -51,7 +51,7 @@ import {
 	Mesh,
 	MeshBasicMaterial,
 	Object3D
-} from "../../core/three.module.js";
+} from "three";
 import { LightningStrike } from "../geometries/LightningStrike.js";
 
 var LightningStorm = function ( stormParams ) {
