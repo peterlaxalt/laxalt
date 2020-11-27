@@ -86,7 +86,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
   let characterCount: number = splitCharacterArray.length;
   let characterWidth: number = W / characterCount;
-  let characterSize: number = H * 1.25;
+  let characterSize: number = H * 1.15;
 
   console.log(characterSize, "characterSize");
 

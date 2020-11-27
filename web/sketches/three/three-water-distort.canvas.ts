@@ -35,6 +35,7 @@ export class ThreeWaterCanvasClass {
   camera: THREE.PerspectiveCamera;
   scene: THREE.Scene;
   composer: any;
+  fov: number;
   clock: THREE.Clock;
   material: THREE.MeshBasicMaterial;
   mesh: THREE.Mesh;
@@ -58,8 +59,10 @@ export class ThreeWaterCanvasClass {
     options.canvasContainer.append(this.renderer.domElement);
 
     // Scene
+    this.fov = 45;
+
     this.camera = new THREE.PerspectiveCamera(
-      45,
+      this.fov,
       window.innerWidth / window.innerHeight,
       0.1,
       10000
@@ -73,7 +76,7 @@ export class ThreeWaterCanvasClass {
 
     this.canvasElement = options.canvasElement;
 
-    this.geometry = new THREE.PlaneBufferGeometry(60, 35, 1, 1);
+    this.geometry = new THREE.PlaneBufferGeometry(window.innerWidth / (this.fov / 1.75), window.innerHeight / (this.fov / 1.75), 1, 1);
     this.material = new THREE.MeshBasicMaterial();
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
