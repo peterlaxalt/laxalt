@@ -1,7 +1,24 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+  "/api/hello": "pages/api/hello.js",
+  "/": "pages/index.html",
+  "/projects/25/13": "pages/projects/25/13.html",
+  "/projects/25/8": "pages/projects/25/8.html",
+  "/projects/_scaffold-p5": "pages/projects/_scaffold-p5.html",
+  "/projects/_scaffold-three": "pages/projects/_scaffold-three.html",
+  "/projects/dharma": "pages/projects/dharma.html",
+  "/projects/p1": "pages/projects/p1.js",
+  "/projects/p2": "pages/projects/p2.js",
+  "/projects/p3": "pages/projects/p3.html",
+  "/projects/p4": "pages/projects/p4.html",
+  "/projects/p5": "pages/projects/p5.html",
+  "/projects/p6": "pages/projects/p6.html",
+  "/projects/three-with-canvas-texture-02": "pages/projects/three-with-canvas-texture-02.html",
+  "/projects/three-with-canvas-texture": "pages/projects/three-with-canvas-texture.html",
+  "/projects/water-distort-with-canvas": "pages/projects/water-distort-with-canvas.html",
+  "/projects/water-distort": "pages/projects/water-distort.html",
+  "/sample": "pages/sample.html",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
-  "/sample": "pages/sample.js"
+  "/404": "pages/404.html"
 }

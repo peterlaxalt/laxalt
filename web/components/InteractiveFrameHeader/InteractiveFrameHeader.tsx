@@ -17,7 +17,7 @@ import {
   InteractiveFrameHeaderClassName,
   InteractiveFrameHeaderStyle,
 } from "./styles.scss";
-import { LayeredSidebarClassName } from "../LayeredSideBar/styles.scss";
+import { LayeredSidebarClassName } from "../LayeredSidebar/styles.scss";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -37,7 +37,7 @@ type LXLT_InteractiveFrameHeaderDisplay = {
 };
 
 type LXLT_InteractiveFrameHeader = {
-  router: NextRouter;
+  router?: NextRouter;
 };
 
 type LXLT_InteractiveFrameHeader_State = LXLT_InteractiveFrameHeaderDisplay & {};
