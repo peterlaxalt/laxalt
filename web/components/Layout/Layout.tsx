@@ -13,7 +13,10 @@ import { GrainCover } from "../GrainCover";
 
 // Components
 import { SiteHead } from "../SiteHead";
-import { ThemePicker } from "../ThemePicker";
+import { InteractiveFrameHeader } from "../InteractiveFrameHeader";
+
+// Utils
+import { NextRouter, useRouter } from "next/router";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -28,13 +31,17 @@ interface Layout {
 
 // Layout
 
-export const Layout = ({ children }: Layout) => (
-  <>
-    <GlobalStyle />
-    <SiteHead title="LAXALT" />
-    <GrainCover />
-    <ThemePicker />
-    <main>{children}</main>
-    {/* <Footer /> */}
-  </>
-);
+export const Layout = ({ children }: Layout) => {
+  const router: NextRouter = useRouter();
+
+  return (
+    <>
+      <GlobalStyle />
+      <SiteHead title="LAXALT" />
+      <GrainCover />
+      <InteractiveFrameHeader router={router} />
+      <main>{children}</main>
+      {/* <Footer /> */}
+    </>
+  );
+};

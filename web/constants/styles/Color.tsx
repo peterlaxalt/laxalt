@@ -125,8 +125,8 @@ export const ColorContext = React.createContext<LXLT_ColorTheme>(
  *
  */
 export const Palette = createGlobalStyle`
-  ::-moz-selection { background: ${Color.Primary}; color: ${Color.Cream} }
-  ::selection { background: ${Color.Primary}; color: ${Color.Cream} }
+  ::-moz-selection { background: ${Color.varForeground}; color: ${Color.varBackground} }
+  ::selection { background: ${Color.varForeground}; color: ${Color.varBackground} }
 
   :root {
     --clrPrimary: ${Color.Primary};

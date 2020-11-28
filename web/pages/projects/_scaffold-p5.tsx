@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 // Types
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { createGlobalStyle } from "styled-components";
-import { InteractiveFrameHeader } from "../../components/_interactive/InteractiveFrameHeader";
+import { InteractiveFrameHeader } from "../../components/InteractiveFrameHeader";
 import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
 import { NextPage } from "next";
 import { FadeIn } from "../../constants/styles/Animation";

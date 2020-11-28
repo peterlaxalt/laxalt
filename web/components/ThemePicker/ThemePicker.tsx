@@ -83,7 +83,7 @@ export class ThemePickerWithHook extends React.PureComponent<
           name: "white",
           primary: Theme.Color.Black,
           secondary: Theme.Color.Black,
-          background: Theme.Color.White,
+          background: "#FFF8DC",
           foreground: Theme.Color.Black,
         },
         {

@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
 import { FadeIn } from "../../constants/styles/Animation";
 
-import { InteractiveFrameHeader } from "../../components/_interactive/InteractiveFrameHeader";
-
 // import { ThreeCanvas } from "../../sketches/three/with-canvas-as-texture";
 
 import { NextPage } from "next";
@@ -114,15 +112,6 @@ class WaterDistortWithCanvasTexturePage extends Component<
     }
   }
 
-  // UNSAFE_componentWillReceiveProps(nextProps: LXLT_ThreePage) {
-  //   if (nextProps.colorThemeContext != this.state.canvasTheme) {
-  //     this.setState({
-  //       canvasTheme: this.state.canvasTheme,
-  //       canvasParent: this.canvasParentRef,
-  //     });
-  //   }
-  // }
-
   /**
    *
    * @name renderP5()
@@ -130,7 +119,10 @@ class WaterDistortWithCanvasTexturePage extends Component<
    *
    */
   renderP5 = (filename: string) => {
-    if (this.state.canvasElement === true && document.querySelector("#defaultCanvas0")) {
+    if (
+      this.state.canvasElement === true &&
+      document.querySelector("#defaultCanvas0")
+    ) {
       __DEBUG__ &&
         console.log(`😌 Canvas Element Exists`, this.state.canvasElement);
 
@@ -157,7 +149,7 @@ class WaterDistortWithCanvasTexturePage extends Component<
   render() {
     __DEBUG__ && console.log("👀 this.state", this.state);
 
-    const ThreePageGlobalStyles = createGlobalStyle`
+    const WaterDistortWithCanvasGlobalStyles = createGlobalStyle`
       /* body, html {
         overflow: hidden;
       } */
@@ -194,8 +186,7 @@ class WaterDistortWithCanvasTexturePage extends Component<
 
     return (
       <>
-        <ThreePageGlobalStyles />
-        <InteractiveFrameHeader />
+        <WaterDistortWithCanvasGlobalStyles />
 
         <div
           ref={(element: HTMLDivElement) => (this.canvasParentRef = element)}
@@ -207,13 +198,5 @@ class WaterDistortWithCanvasTexturePage extends Component<
     );
   }
 }
-
-// export const ThreeCanvasPage: NextPage = () => {
-//   const themeContext = React.useContext(ColorContext);
-
-//   console.log("themeContext: ", themeContext);
-
-//   return <WaterDistortWithCanvasTexturePage />;
-// };
 
 export default WaterDistortWithCanvasTexturePage;

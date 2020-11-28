@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { createGlobalStyle } from "styled-components";
 import { FadeIn } from "../../constants/styles/Animation";
 
-import { InteractiveFrameHeader } from "../../components/_interactive/InteractiveFrameHeader";
+import { InteractiveFrameHeader } from "../../components/InteractiveFrameHeader";
 
 import { ThreeCanvas } from "../../sketches/three/_scaffold-three-canvas";
 

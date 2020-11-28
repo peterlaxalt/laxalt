@@ -26,10 +26,16 @@ export const HomePageClassName = "route__home-page";
  * @author Peter Laxalt
  *
  */
-const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => (
-  <div className={`${HomePageClassName}`}>
-    <WaterDistortWithCanvasTexturePage />
-  </div>
-);
+const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => {
+  return (
+    <div className={`${HomePageClassName}`} style={{ minHeight: "200vh" }}>
+      <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
+        <h1>HOME PAGE</h1>
+      </div>
+
+      {/* <WaterDistortWithCanvasTexturePage /> */}
+    </div>
+  );
+};
 
 export default HomePage;

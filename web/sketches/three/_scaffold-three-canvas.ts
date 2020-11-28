@@ -1,7 +1,5 @@
 import * as THREE from "three";
 import { LXLT_ColorTheme } from "../../constants/styles/Color";
-import { hexToRGB } from "../../utils/hexToRGB";
-// import { GUI } from "./jsm/libs/dat.gui.module.js";
 import { OrbitControls } from "./jsm/controls/OrbitControls.js";
 
 // Begin Component
