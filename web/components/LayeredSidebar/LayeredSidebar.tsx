@@ -11,18 +11,18 @@ import { LayeredSidebarClassName, LayeredSidebarStyle } from "./styles.scss";
 // Begin Types
 // __________________________________________________________________________________________
 
-type LXLT_SidebarPaneItem = {
+export type LXLT_SidebarPaneItem = {
   label: string;
   href: string;
   isMajor: boolean;
 };
 
-type LXLT_SidebarPane = {
+export type LXLT_SidebarPane = {
   header?: string;
   items?: LXLT_SidebarPaneItem[];
 };
 
-type LXLT_LayeredSidebar = {
+export type LXLT_LayeredSidebar = {
   addClass?: string;
 };
 

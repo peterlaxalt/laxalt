@@ -29,11 +29,11 @@ export const HomePageClassName = "route__home-page";
 const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => {
   return (
     <div className={`${HomePageClassName}`} style={{ minHeight: "200vh" }}>
-      <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
+      {/* <div style={{ height: "100vh", display: "grid", placeItems: "center" }}>
         <h1>HOME PAGE</h1>
-      </div>
+      </div> */}
 
-      {/* <WaterDistortWithCanvasTexturePage /> */}
+      <WaterDistortWithCanvasTexturePage />
     </div>
   );
 };
