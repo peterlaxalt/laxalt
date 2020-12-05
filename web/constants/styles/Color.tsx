@@ -48,7 +48,7 @@ export const Color = {
   Gray: "#DAC9BA",
   Blush: "#F6E7D9",
   Cream: "#FFF6EE",
-  White: "#FFFFFF",
+  White: "#FFF6EE",
 
   // Warm Palette
   Clay: "#A33609",

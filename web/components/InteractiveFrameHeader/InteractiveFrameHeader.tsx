@@ -14,33 +14,36 @@ import { ThemePicker } from "../ThemePicker";
 
 // Styles
 import {
+  InteractiveFillBarsClassName,
+  InteractiveFillBarsStyle,
   InteractiveFrameHeaderClassName,
   InteractiveFrameHeaderStyle,
+  InteractiveLogotypeClassName,
+  InteractiveLogotypeStyle,
 } from "./styles.scss";
 import { LayeredSidebarClassName } from "../LayeredSidebar/styles.scss";
 
 // Begin Types
 // __________________________________________________________________________________________
 
-type LXLT_InteractiveFrameHeaderDisplay = {
+type LXLT_InteractiveFrameHeader_State = {
   isInactive?: boolean;
-  isExpanded?: boolean;
+  isFillBarsExpanded?: boolean;
   isOverlayVisible?: boolean;
   isSidebarVisible?: boolean;
+  isLogotypeExpanded?: boolean;
 
   router?: NextRouter;
-
-  eyeball?: {
-    translateX: number;
-    translateY: number;
-  };
 };
 
 type LXLT_InteractiveFrameHeader = {
   router?: NextRouter;
 };
 
-type LXLT_InteractiveFrameHeader_State = LXLT_InteractiveFrameHeaderDisplay & {};
+type LXLT_InteractiveFrameHeaderDisplay = LXLT_InteractiveFrameHeader_State & {
+  toggleOverlayAndFillBarsExpansion?: () => void;
+  toggleOverlayAndLogotypeExpansion?: () => void;
+};
 
 type LXLT_InteractiveFrameItem = {
   label: string;
@@ -164,9 +167,24 @@ export class InteractiveFrameHeader extends Component<
 
     this.state = {
       isInactive: false,
+      isFillBarsExpanded: false,
+      isOverlayVisible: false,
+      isSidebarVisible: false,
+      isLogotypeExpanded: false,
     };
 
     this.listenToScroll = this.listenToScroll.bind(this);
+
+    this.toggleLogotype = this.toggleLogotype.bind(this);
+    this.toggleOverlay = this.toggleOverlay.bind(this);
+    this.toggleFillBars = this.toggleFillBars.bind(this);
+
+    this.toggleOverlayAndFillBarsExpansion = this.toggleOverlayAndFillBarsExpansion.bind(
+      this
+    );
+    this.toggleOverlayAndLogotypeExpansion = this.toggleOverlayAndLogotypeExpansion.bind(
+      this
+    );
   }
 
   /**
@@ -184,6 +202,69 @@ export class InteractiveFrameHeader extends Component<
     if (typeof window) {
       window.removeEventListener("scroll", this.listenToScroll);
     }
+  }
+
+  toggleLogotype() {
+    if (this.state.isLogotypeExpanded) {
+      this.setState({
+        isLogotypeExpanded: false,
+      });
+    } else {
+      this.setState({
+        isLogotypeExpanded: true,
+      });
+    }
+  }
+
+  toggleOverlay() {
+    if (this.state.isOverlayVisible) {
+      this.setState({
+        isOverlayVisible: false,
+      });
+
+      return;
+    } else {
+      this.setState({
+        isOverlayVisible: true,
+      });
+
+      return;
+    }
+  }
+
+  toggleFillBars() {
+    if (this.state.isFillBarsExpanded) {
+      this.setState({
+        isFillBarsExpanded: false,
+      });
+
+      return;
+    } else {
+      this.setState({
+        isFillBarsExpanded: true,
+      });
+
+      return;
+    }
+  }
+
+  toggleOverlayAndLogotypeExpansion() {
+    if (this.state.isFillBarsExpanded) {
+      this.toggleOverlay();
+      this.toggleFillBars();
+    } else {
+      this.toggleLogotype();
+      this.toggleOverlay();
+    }
+
+    return;
+  }
+
+  toggleOverlayAndFillBarsExpansion() {
+    this.toggleFillBars();
+    this.toggleOverlay();
+
+    return;
   }
 
   listenToScroll() {
@@ -208,6 +289,16 @@ export class InteractiveFrameHeader extends Component<
       <InteractiveFrameHeaderDisplay
         router={this.props.router}
         isInactive={this.state.isInactive}
+        isFillBarsExpanded={this.state.isFillBarsExpanded}
+        isOverlayVisible={this.state.isOverlayVisible}
+        isSidebarVisible={this.state.isSidebarVisible}
+        isLogotypeExpanded={this.state.isLogotypeExpanded}
+        toggleOverlayAndFillBarsExpansion={
+          this.toggleOverlayAndFillBarsExpansion
+        }
+        toggleOverlayAndLogotypeExpansion={
+          this.toggleOverlayAndLogotypeExpansion
+        }
       />
     );
   }
@@ -221,6 +312,12 @@ export class InteractiveFrameHeader extends Component<
  */
 const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFrameHeaderDisplay> = ({
   isInactive,
+  isFillBarsExpanded,
+  isLogotypeExpanded,
+
+  toggleOverlayAndFillBarsExpansion,
+  toggleOverlayAndLogotypeExpansion,
+
   router,
 }) => {
   console.log(router);
@@ -239,6 +336,10 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       <InteractiveFrameHeaderStyle
         className={`${InteractiveFrameHeaderClassName} ${InteractiveFrameHeaderClassName}--${
           isInactive ? `inactive` : `active`
+        } ${InteractiveFrameHeaderClassName}--${
+          isFillBarsExpanded
+            ? `fill-bars-is-expanded`
+            : `fill-bars-is-not-expanded`
         }`}
       >
         {/* ______________________________________________ */}
@@ -254,30 +355,49 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
               className={`${InteractiveFrameHeaderClassName}__frame__corner-action ${InteractiveFrameHeaderClassName}__frame__corner-action--top-left`}
             >
               <Link href="/">
-                <a>👁</a>
+                <a
+                  className={`${InteractiveFrameHeaderClassName}__frame__corner-action__wrapper`}
+                >
+                  <span className="icon icon--brandmark">
+                    <span className="icon--brandmark__el icon__el" />
+                  </span>
+                </a>
               </Link>
             </div>
 
             <div
               className={`${InteractiveFrameHeaderClassName}__frame__corner-action ${InteractiveFrameHeaderClassName}__frame__corner-action--top-right`}
+              onClick={() => toggleOverlayAndFillBarsExpansion()}
             >
-              <Link href="/">
-                <a>👁</a>
-              </Link>
+              <span
+                className={`${InteractiveFrameHeaderClassName}__frame__corner-action__wrapper`}
+              >
+                <span className="icon icon--menu">
+                  <span className="icon--menu__el icon__el" />
+                </span>
+              </span>
             </div>
             <div
               className={`${InteractiveFrameHeaderClassName}__frame__corner-action ${InteractiveFrameHeaderClassName}__frame__corner-action--bottom-left`}
             >
-              <Link href="/">
-                <a>👁</a>
-              </Link>
+              <span
+                className={`${InteractiveFrameHeaderClassName}__frame__corner-action__wrapper`}
+              >
+                <span className="icon icon--eye">
+                  <span className="icon--eye__el icon__el" />
+                </span>
+              </span>
             </div>
             <div
               className={`${InteractiveFrameHeaderClassName}__frame__corner-action ${InteractiveFrameHeaderClassName}__frame__corner-action--bottom-right`}
             >
-              <Link href="/">
-                <a>👁</a>
-              </Link>
+              <span
+                className={`${InteractiveFrameHeaderClassName}__frame__corner-action__wrapper`}
+              >
+                <span className="icon icon--star">
+                  <span className="icon--star__el icon__el" />
+                </span>
+              </span>
             </div>
 
             {/* ______________________________________________ */}
@@ -288,8 +408,8 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
               <div
                 className={`${InteractiveFrameHeaderClassName}__frame__edge ${InteractiveFrameHeaderClassName}__frame__edge--top`}
               >
-                <ThemePicker />
                 <FrameItems />
+                <ThemePicker />
               </div>
               <div
                 className={`${InteractiveFrameHeaderClassName}__frame__edge ${InteractiveFrameHeaderClassName}__frame__edge--bottom`}
@@ -318,6 +438,56 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
           </div>
         </div>
       </InteractiveFrameHeaderStyle>
+
+      {/* ______________________________________________ */}
+      {/* Logotype */}
+      <InteractiveLogotypeStyle
+        className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--${
+          isInactive ? `inactive` : `active`
+        } ${InteractiveLogotypeClassName}--${
+          isLogotypeExpanded ? `is-expanded` : `is-not-expanded`
+        } ${InteractiveLogotypeClassName}--${
+          isFillBarsExpanded
+            ? `fill-bars-is-expanded`
+            : `fill-bars-is-not-expanded`
+        }`}
+      >
+        <span className={`${InteractiveLogotypeClassName}__inner`}>
+          <span
+            className={`${InteractiveLogotypeClassName}__el`}
+            onClick={() => toggleOverlayAndLogotypeExpansion()}
+          >
+            <span className={`${InteractiveLogotypeClassName}__el__label`}>
+              LAXALT
+            </span>
+          </span>
+        </span>
+      </InteractiveLogotypeStyle>
+
+      {/* ______________________________________________ */}
+      {/* Overlay Fill Bars */}
+      <InteractiveFillBarsStyle
+        className={`${InteractiveFillBarsClassName} ${InteractiveFillBarsClassName}--${
+          isInactive ? `inactive` : `active`
+        } ${InteractiveFillBarsClassName}--${
+          isFillBarsExpanded ? `is-expanded` : `is-not-expanded`
+        }`}
+      >
+        {/* ______________________________________________ */}
+        {/* Background Fill Bars */}
+        <span
+          className={`${InteractiveFillBarsClassName}__fill-bar ${InteractiveFillBarsClassName}__fill-bar--top`}
+        />
+        <span
+          className={`${InteractiveFillBarsClassName}__fill-bar ${InteractiveFillBarsClassName}__fill-bar--right`}
+        />
+        <span
+          className={`${InteractiveFillBarsClassName}__fill-bar ${InteractiveFillBarsClassName}__fill-bar--bottom`}
+        />
+        <span
+          className={`${InteractiveFillBarsClassName}__fill-bar ${InteractiveFillBarsClassName}__fill-bar--left`}
+        />
+      </InteractiveFillBarsStyle>
 
       {/* ______________________________________________ */}
       {/* Sidebar */}

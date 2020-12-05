@@ -34,6 +34,7 @@ export const ThemePickerStyle = styled.div`
     align-items: center;
 
     border-left: 2px solid ${Theme.Color.varForeground};
+    border-right: 2px solid ${Theme.Color.varForeground};
     border-bottom: 2px solid ${Theme.Color.varForeground};
 
     background: ${Theme.Color.varBackground};

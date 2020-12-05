@@ -257,7 +257,7 @@ export const Base = {
   },
 
   // Frame
-  FrameSize: 2.5 // rem
+  FrameSize: 3 // rem
 };
 
 // End Component
