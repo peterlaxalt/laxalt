@@ -20,8 +20,11 @@ import {
   InteractiveFrameHeaderStyle,
   InteractiveLogotypeClassName,
   InteractiveLogotypeStyle,
+  InteractiveOverlayNavigationClassName,
+  InteractiveOverlayNavigationStyle,
 } from "./styles.scss";
 import { LayeredSidebarClassName } from "../LayeredSidebar/styles.scss";
+import { createGlobalStyle } from "styled-components";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -48,6 +51,16 @@ type LXLT_InteractiveFrameHeaderDisplay = LXLT_InteractiveFrameHeader_State & {
 type LXLT_InteractiveFrameItem = {
   label: string;
   href?: string;
+};
+
+type LXLT_InteractiveOverlayNavigationItem = {
+  label: string;
+  href: string;
+  caption?: string;
+};
+
+type LXLT_InteractiveOverlayNavigation = {
+  addClass?: string;
 };
 
 // Begin Data
@@ -168,7 +181,7 @@ export class InteractiveFrameHeader extends Component<
     this.state = {
       isInactive: false,
       isFillBarsExpanded: false,
-      isOverlayVisible: false,
+      isOverlayVisible: true,
       isSidebarVisible: false,
       isLogotypeExpanded: false,
     };
@@ -306,6 +319,210 @@ export class InteractiveFrameHeader extends Component<
 
 /**
  *
+ * @name InteractiveOverlayNavigation
+ * @author Peter Laxalt
+ *
+ */
+
+const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOverlayNavigation> = ({
+  addClass,
+}) => {
+  let navItems: LXLT_InteractiveOverlayNavigationItem[] = [
+    {
+      label: "Art",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Design",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Code",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Culture",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Learn",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Shop",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Studio",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+    {
+      label: "Contact",
+      href: "/",
+      caption: "Lorem ipsum",
+    },
+  ];
+
+  let socialItems: LXLT_InteractiveOverlayNavigationItem[] = [
+    {
+      label: "Dribbble",
+      href: "/",
+    },
+    {
+      label: "Github",
+      href: "/",
+    },
+    {
+      label: "Instagram",
+      href: "/",
+    },
+    {
+      label: "LinkedIn",
+      href: "/",
+    },
+  ];
+
+  const GlobalScrollLock = createGlobalStyle`
+    body,
+    html {
+      overflow: hidden !important;
+    }
+  `;
+
+  return (
+    <>
+      <GlobalScrollLock />
+      <InteractiveOverlayNavigationStyle
+        className={`${InteractiveOverlayNavigationClassName} ${addClass}`}
+      >
+        <div className={`${InteractiveOverlayNavigationClassName}__inner`}>
+          {/* _______________________________________________ */}
+          {/* Home Button */}
+          <div
+            className={`${InteractiveOverlayNavigationClassName}__oval-btn ${InteractiveOverlayNavigationClassName}__oval-btn--home`}
+          >
+            <Link href={`/`}>
+              <a
+                className={`${InteractiveOverlayNavigationClassName}__oval-btn__el`}
+              >
+                Home
+              </a>
+            </Link>
+          </div>
+
+          {/* _______________________________________________ */}
+          {/* Close Button */}
+          <div
+            className={`${InteractiveOverlayNavigationClassName}__oval-btn ${InteractiveOverlayNavigationClassName}__oval-btn--close`}
+          >
+            <Link href={`/`}>
+              <a
+                className={`${InteractiveOverlayNavigationClassName}__oval-btn__el`}
+              >
+                Close
+              </a>
+            </Link>
+          </div>
+
+          {/* _______________________________________________ */}
+          {/* Social Container */}
+          <div className={`${InteractiveOverlayNavigationClassName}__social`}>
+            <ul
+              className={`${InteractiveOverlayNavigationClassName}__social__list`}
+            >
+              {/* _______________________________________________ */}
+              {/* Subscribe Button */}
+              <li
+                className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
+              >
+                <span
+                  className={`${InteractiveOverlayNavigationClassName}__social__list__item__label ${InteractiveOverlayNavigationClassName}__social__list__item__label--anchor`}
+                >
+                  Subscribe
+                </span>
+              </li>
+
+              {/* _______________________________________________ */}
+              {/* Social List */}
+              {socialItems.map(
+                (item: LXLT_InteractiveOverlayNavigationItem, idx: number) => {
+                  return (
+                    <li
+                      className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
+                    >
+                      <Link href={item.href}>
+                        <a
+                          className={`${InteractiveOverlayNavigationClassName}__social__list__item__label ${InteractiveOverlayNavigationClassName}__social__list__item__label--anchor`}
+                        >
+                          {item.label}
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+
+            <ul
+              className={`${InteractiveOverlayNavigationClassName}__social__minor-list`}
+            >
+              <li className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}>
+                Currently / Brooklyn, NYC
+              </li>
+              <li className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}>
+                Originally / Reno, Nevada
+              </li>
+            </ul>
+          </div>
+
+          {/* _______________________________________________ */}
+          {/* Navigation List */}
+          <ul className={`${InteractiveOverlayNavigationClassName}__nav-list`}>
+            {navItems.map(
+              (item: LXLT_InteractiveOverlayNavigationItem, idx: number) => {
+                return (
+                  <li
+                    key={idx}
+                    className={`${InteractiveOverlayNavigationClassName}__nav-list__item`}
+                  >
+                    <span
+                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__inner`}
+                    >
+                      <Link href={item.href}>
+                        <a
+                          className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
+                        >
+                          <span
+                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}
+                          />
+                          <span
+                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__label`}
+                          >
+                            {item.label}
+                          </span>
+                        </a>
+                      </Link>
+                    </span>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+        </div>
+      </InteractiveOverlayNavigationStyle>
+    </>
+  );
+};
+
+/**
+ *
  * @name InteractiveFrameHeaderDisplay
  * @author Peter Laxalt
  *
@@ -314,13 +531,14 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
   isInactive,
   isFillBarsExpanded,
   isLogotypeExpanded,
+  isOverlayVisible,
 
   toggleOverlayAndFillBarsExpansion,
   toggleOverlayAndLogotypeExpansion,
 
   router,
 }) => {
-  console.log(router);
+  // console.log(router);
 
   let hasSidebar =
     router && router.pathname
@@ -335,9 +553,9 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       {/* Frame itself */}
       <InteractiveFrameHeaderStyle
         className={`${InteractiveFrameHeaderClassName} ${InteractiveFrameHeaderClassName}--${
-          isInactive ? `inactive` : `active`
+          isInactive || isOverlayVisible ? `inactive` : `active`
         } ${InteractiveFrameHeaderClassName}--${
-          isFillBarsExpanded
+          isFillBarsExpanded || isOverlayVisible
             ? `fill-bars-is-expanded`
             : `fill-bars-is-not-expanded`
         }`}
@@ -440,14 +658,24 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       </InteractiveFrameHeaderStyle>
 
       {/* ______________________________________________ */}
+      {/* Overlay Content */}
+      <InteractiveOverlayNavigation
+        addClass={`${InteractiveOverlayNavigationClassName}--${
+          isOverlayVisible ? `is-visible` : `is-hidden`
+        }`}
+      />
+
+      {/* ______________________________________________ */}
       {/* Logotype */}
       <InteractiveLogotypeStyle
         className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--${
           isInactive ? `inactive` : `active`
         } ${InteractiveLogotypeClassName}--${
-          isLogotypeExpanded ? `is-expanded` : `is-not-expanded`
+          isLogotypeExpanded || isOverlayVisible
+            ? `is-expanded`
+            : `is-not-expanded`
         } ${InteractiveLogotypeClassName}--${
-          isFillBarsExpanded
+          isFillBarsExpanded || isOverlayVisible
             ? `fill-bars-is-expanded`
             : `fill-bars-is-not-expanded`
         }`}
@@ -468,9 +696,11 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       {/* Overlay Fill Bars */}
       <InteractiveFillBarsStyle
         className={`${InteractiveFillBarsClassName} ${InteractiveFillBarsClassName}--${
-          isInactive ? `inactive` : `active`
+          isInactive || isOverlayVisible ? `inactive` : `active`
         } ${InteractiveFillBarsClassName}--${
-          isFillBarsExpanded ? `is-expanded` : `is-not-expanded`
+          isFillBarsExpanded || isOverlayVisible
+            ? `is-expanded`
+            : `is-not-expanded`
         }`}
       >
         {/* ______________________________________________ */}

@@ -24,6 +24,7 @@ export type LXLT_SidebarPane = {
 
 export type LXLT_LayeredSidebar = {
   addClass?: string;
+  panes?: LXLT_SidebarPane[];
 };
 
 // Begin Data

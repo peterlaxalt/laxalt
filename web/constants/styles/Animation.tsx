@@ -19,6 +19,17 @@ export const FadeIn = keyframes`
   }
 `;
 
+export const UpAndRotate = keyframes`
+  from {
+    transform: translateY(100%) rotate(3deg);
+    /* opacity: 0; */
+  }
+  to {
+    transform: translateY(0%) rotate(0deg);
+    /* opacity: 1; */
+  }
+`;
+
 export const PulseStroke = keyframes`
   0% {
     stroke-width: .15px;
