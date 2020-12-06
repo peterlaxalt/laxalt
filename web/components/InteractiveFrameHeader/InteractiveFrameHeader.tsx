@@ -1,5 +1,5 @@
 // Core
-import React, { Component } from "react";
+import React, { Component, MouseEventHandler } from "react";
 
 // Types
 import { NextRouter } from "next/router";
@@ -14,6 +14,8 @@ import { ThemePicker } from "../ThemePicker";
 
 // Styles
 import {
+  InteractiveEyeballClassName,
+  InteractiveEyeballStyle,
   InteractiveFillBarsClassName,
   InteractiveFillBarsStyle,
   InteractiveFrameHeaderClassName,
@@ -60,6 +62,27 @@ type LXLT_InteractiveOverlayNavigationItem = {
 };
 
 type LXLT_InteractiveOverlayNavigation = {
+  addClass?: string;
+  toggleOverlayAndLogotypeExpansion?: () => void;
+};
+
+type LXLT_InteractiveEyeball_State = {
+  mouseX: number;
+  mouseY: number;
+
+  scrollX: number;
+  scrollY: number;
+
+  pupilWidth: number;
+  pupilHeight: number;
+
+  pupilOffsetX: number;
+  pupilOffsetY: number;
+
+  rotation: number;
+};
+
+type LXLT_InteractiveEyeball = {
   addClass?: string;
 };
 
@@ -181,7 +204,7 @@ export class InteractiveFrameHeader extends Component<
     this.state = {
       isInactive: false,
       isFillBarsExpanded: false,
-      isOverlayVisible: true,
+      isOverlayVisible: false,
       isSidebarVisible: false,
       isLogotypeExpanded: false,
     };
@@ -319,6 +342,127 @@ export class InteractiveFrameHeader extends Component<
 
 /**
  *
+ * @name InteractiveEyeball
+ * @author Peter Laxalt
+ *
+ */
+export class InteractiveEyeball extends Component<
+  LXLT_InteractiveEyeball,
+  LXLT_InteractiveEyeball_State
+> {
+  constructor(props: LXLT_InteractiveEyeball) {
+    super(props);
+
+    this.state = {
+      mouseX: 0,
+      mouseY: 0,
+
+      scrollX: 0,
+      scrollY: 0,
+
+      pupilWidth: 0,
+      pupilHeight: 0,
+
+      pupilOffsetX: 0,
+      pupilOffsetY: 0,
+
+      rotation: 0,
+    };
+
+    this.handleMouseMovement = this.handleMouseMovement.bind(this);
+
+    this.calculatePupilBoundaries = this.calculatePupilBoundaries.bind(this);
+  }
+
+  /**
+   *
+   * @name componentDidMount()
+   *
+   */
+  componentDidMount() {
+    if (typeof window && this.pupilRef) {
+      this.calculatePupilBoundaries();
+
+      window.addEventListener("mousemove", this.handleMouseMovement);
+    } else {
+      return;
+    }
+  }
+
+  componentWillUnmount() {
+    if (typeof window) {
+      window.removeEventListener("mousemove", this.handleMouseMovement);
+    }
+  }
+
+  calculatePupilBoundaries() {
+    if (this.pupilRef.current) {
+      let pupilClientRect = this.pupilRef.current.getBoundingClientRect();
+
+      this.setState({
+        pupilWidth: pupilClientRect.width,
+        pupilHeight: pupilClientRect.height,
+
+        pupilOffsetX: pupilClientRect.left,
+        pupilOffsetY: pupilClientRect.top,
+      });
+    }
+  }
+
+  handleMouseMovement(e: MouseEvent) {
+    if (e) {
+      // let radians = Math.atan2(
+      //   e.screenY - (this.state.pupilOffsetY - this.state.pupilHeight / 2),
+      //   e.screenX - (this.state.pupilOffsetX - this.state.pupilWidth / 2)
+      // );
+
+      let scrollContainer = document.querySelector(
+        `.${InteractiveOverlayNavigationClassName}`
+      );
+
+      let radians = Math.atan2(
+        e.clientY +
+          scrollContainer.scrollTop -
+          (this.state.pupilOffsetY - this.state.pupilHeight / 2),
+        e.clientX - (this.state.pupilOffsetX - this.state.pupilWidth / 2)
+      );
+
+      let angle = radians * (180 / Math.PI) - 15;
+
+      this.setState({
+        rotation: angle,
+      });
+    } else {
+      return;
+    }
+  }
+
+  pupilRef = React.createRef<HTMLSpanElement>();
+
+  render() {
+    // console.log(this.state);
+
+    return (
+      <InteractiveEyeballStyle
+        className={`${InteractiveEyeballClassName} ${this.props.addClass}`}
+      >
+        <span className={`${InteractiveEyeballClassName}__outline`} />
+        <span className={`${InteractiveEyeballClassName}__pupil-wrapper`}>
+          <span
+            ref={this.pupilRef}
+            className={`${InteractiveEyeballClassName}__pupil`}
+            style={{ transform: `rotate(${this.state.rotation}deg)` }}
+          >
+            <span className={`${InteractiveEyeballClassName}__pupil__el`} />
+          </span>
+        </span>
+      </InteractiveEyeballStyle>
+    );
+  }
+}
+
+/**
+ *
  * @name InteractiveOverlayNavigation
  * @author Peter Laxalt
  *
@@ -326,6 +470,7 @@ export class InteractiveFrameHeader extends Component<
 
 const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOverlayNavigation> = ({
   addClass,
+  toggleOverlayAndLogotypeExpansion,
 }) => {
   let navItems: LXLT_InteractiveOverlayNavigationItem[] = [
     {
@@ -421,14 +566,13 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
           {/* Close Button */}
           <div
             className={`${InteractiveOverlayNavigationClassName}__oval-btn ${InteractiveOverlayNavigationClassName}__oval-btn--close`}
+            onClick={() => toggleOverlayAndLogotypeExpansion()}
           >
-            <Link href={`/`}>
-              <a
-                className={`${InteractiveOverlayNavigationClassName}__oval-btn__el`}
-              >
-                Close
-              </a>
-            </Link>
+            <span
+              className={`${InteractiveOverlayNavigationClassName}__oval-btn__el`}
+            >
+              Close
+            </span>
           </div>
 
           {/* _______________________________________________ */}
@@ -473,10 +617,14 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
             <ul
               className={`${InteractiveOverlayNavigationClassName}__social__minor-list`}
             >
-              <li className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}>
+              <li
+                className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}
+              >
                 Currently / Brooklyn, NYC
               </li>
-              <li className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}>
+              <li
+                className={`${InteractiveOverlayNavigationClassName}__social__minor-list__item`}
+              >
                 Originally / Reno, Nevada
               </li>
             </ul>
@@ -493,22 +641,33 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
                     className={`${InteractiveOverlayNavigationClassName}__nav-list__item`}
                   >
                     <span
-                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__inner`}
+                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__eyeball`}
                     >
-                      <Link href={item.href}>
-                        <a
-                          className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
-                        >
-                          <span
-                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}
-                          />
-                          <span
-                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__label`}
+                      <InteractiveEyeball />
+                    </span>
+                    {/* _______________________________________________ */}
+                    {/* Inner Item */}
+                    <span
+                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__overflow-wrapper`}
+                    >
+                      <span
+                        className={`${InteractiveOverlayNavigationClassName}__nav-list__item__inner`}
+                      >
+                        <Link href={item.href}>
+                          <a
+                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
                           >
-                            {item.label}
-                          </span>
-                        </a>
-                      </Link>
+                            <span
+                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}
+                            />
+                            <span
+                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__label`}
+                            >
+                              {item.label}
+                            </span>
+                          </a>
+                        </Link>
+                      </span>
                     </span>
                   </li>
                 );
@@ -659,11 +818,14 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
 
       {/* ______________________________________________ */}
       {/* Overlay Content */}
-      <InteractiveOverlayNavigation
-        addClass={`${InteractiveOverlayNavigationClassName}--${
-          isOverlayVisible ? `is-visible` : `is-hidden`
-        }`}
-      />
+      {isOverlayVisible ? (
+        <InteractiveOverlayNavigation
+          addClass={`${InteractiveOverlayNavigationClassName}--${
+            isOverlayVisible ? `is-visible` : `is-hidden`
+          }`}
+          toggleOverlayAndLogotypeExpansion={toggleOverlayAndLogotypeExpansion}
+        />
+      ) : null}
 
       {/* ______________________________________________ */}
       {/* Logotype */}
@@ -671,11 +833,9 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
         className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--${
           isInactive ? `inactive` : `active`
         } ${InteractiveLogotypeClassName}--${
-          isLogotypeExpanded || isOverlayVisible
-            ? `is-expanded`
-            : `is-not-expanded`
+          isLogotypeExpanded ? `is-expanded` : `is-not-expanded`
         } ${InteractiveLogotypeClassName}--${
-          isFillBarsExpanded || isOverlayVisible
+          isFillBarsExpanded
             ? `fill-bars-is-expanded`
             : `fill-bars-is-not-expanded`
         }`}
@@ -696,11 +856,9 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       {/* Overlay Fill Bars */}
       <InteractiveFillBarsStyle
         className={`${InteractiveFillBarsClassName} ${InteractiveFillBarsClassName}--${
-          isInactive || isOverlayVisible ? `inactive` : `active`
+          isInactive ? `inactive` : `active`
         } ${InteractiveFillBarsClassName}--${
-          isFillBarsExpanded || isOverlayVisible
-            ? `is-expanded`
-            : `is-not-expanded`
+          isFillBarsExpanded ? `is-expanded` : `is-not-expanded`
         }`}
       >
         {/* ______________________________________________ */}
