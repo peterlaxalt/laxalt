@@ -10,6 +10,7 @@
 import { NextPage } from "next";
 import React from "react";
 import { Root } from "../constants/Root";
+import { Theme } from "../constants/Theme";
 
 // Components
 import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
@@ -69,7 +70,7 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
         <p
           style={{
             maxWidth: 650,
-            fontFamily: "monospace",
+            fontFamily: `${Theme.Font.Code}`,
             fontSize: "1.5rem",
             margin: "20px 0px 20px 0px",
           }}
