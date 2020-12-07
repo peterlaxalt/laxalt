@@ -475,42 +475,42 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
   let navItems: LXLT_InteractiveOverlayNavigationItem[] = [
     {
       label: "Art",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Design",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Code",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Culture",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Learn",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Shop",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Studio",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
     {
       label: "Contact",
-      href: "/",
+      href: "/sample",
       caption: "Lorem ipsum",
     },
   ];
@@ -556,6 +556,7 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
             <Link href={`/`}>
               <a
                 className={`${InteractiveOverlayNavigationClassName}__oval-btn__el`}
+                onClick={() => toggleOverlayAndLogotypeExpansion()}
               >
                 Home
               </a>
@@ -656,6 +657,7 @@ const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_InteractiveOver
                         <Link href={item.href}>
                           <a
                             className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
+                            onClick={() => toggleOverlayAndLogotypeExpansion()}
                           >
                             <span
                               className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}

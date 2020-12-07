@@ -67,10 +67,10 @@ export class ThemePickerWithHook extends React.PureComponent<
         },
         {
           name: "cadetblue",
-          primary: "#FFF8DC",
-          secondary: "#FFF8DC",
-          background: "#5F9EA0",
-          foreground: "#FFF8DC",
+          primary: "#003eff",
+          secondary: "#003eff",
+          background: "#ffb5f9",
+          foreground: "#003eff",
         },
         {
           name: "orangered",
@@ -152,10 +152,19 @@ export class ThemePickerWithHook extends React.PureComponent<
                         ? "active"
                         : "inactive"
                     }`}
-                    style={{ backgroundColor: themeItem.background }}
+                    style={{ backgroundColor: "lime" }}
                     onClick={() => this.setNewTheme(themeItem)}
                     key={idx}
-                  />
+                  >
+                    <span
+                      className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--primary`}
+                      style={{ backgroundColor: themeItem.background }}
+                    />
+                    <span
+                      className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--secondary`}
+                      style={{ backgroundColor: themeItem.foreground }}
+                    />
+                  </div>
                 );
               })
             : null}

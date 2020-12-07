@@ -45,6 +45,10 @@ export const ThemePickerStyle = styled.div`
       width: calc(${Root.FrameSize} * 0.5);
       height: calc(${Root.FrameSize} * 0.5);
 
+      position: relative;
+
+      border: 2px solid ${Theme.Color.varBackground};
+
       border-radius: 50%;
 
       margin: 0 0.5rem;
@@ -65,6 +69,26 @@ export const ThemePickerStyle = styled.div`
 
         &:hover {
           box-shadow: 0px 0px 0px 4px ${Theme.Color.varForeground};
+        }
+      }
+
+      &__el {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        border-radius: 50%;
+
+        &--secondary {
+          clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+
+          transform: rotate(45deg);
         }
       }
     }
