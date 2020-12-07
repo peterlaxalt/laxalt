@@ -119,7 +119,7 @@ export const LayeredSidebarStyle = styled.nav`
               font-size: 1.2rem;
               letter-spacing: .05rem;
 
-              font-family: monospace;
+              font-family: ${Theme.Font.Code};
               font-style: italic;
 
               line-height: 1.5;

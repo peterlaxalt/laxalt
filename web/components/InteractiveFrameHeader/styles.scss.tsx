@@ -1081,7 +1081,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         min-width: 250px;
 
         font-size: 1.5rem;
-        font-family: monospace;
+        font-family: ${Theme.Font.Code};
         font-style: italic;
 
         &__item {
