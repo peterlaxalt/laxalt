@@ -135,10 +135,18 @@ export class ThreeWaterCanvasClass {
   }
 
   tick() {
-    this.render();
-    this.touchTexture.update();
+    if (document.querySelector("#three_canvas")) {
+      this.render();
+      this.touchTexture.update();
 
-    requestAnimationFrame(this.tick);
+      requestAnimationFrame(this.tick);
+    } else {
+      this.renderer = null;
+      this.composer = null;
+      this.scene = null;
+
+      return;
+    }
   }
 }
 
