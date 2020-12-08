@@ -830,7 +830,7 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
       ) : null}
 
       {/* ______________________________________________ */}
-      {/* Logotype */}
+      {/* Logotype / Top */}
       <InteractiveLogotypeStyle
         className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--${
           isInactive ? `inactive` : `active`
@@ -848,6 +848,31 @@ const InteractiveFrameHeaderDisplay: React.FunctionComponent<LXLT_InteractiveFra
             onClick={() => toggleOverlayAndLogotypeExpansion()}
           >
             <span className={`${InteractiveLogotypeClassName}__el__label`}>
+              LAXALT
+            </span>
+          </span>
+        </span>
+      </InteractiveLogotypeStyle>
+
+      {/* ______________________________________________ */}
+      {/* Logotype / Bottom */}
+      <InteractiveLogotypeStyle
+        className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--fill ${InteractiveLogotypeClassName}--${
+          isInactive ? `inactive` : `active`
+        } ${InteractiveLogotypeClassName}--${
+          isLogotypeExpanded ? `is-expanded` : `is-not-expanded`
+        } ${InteractiveLogotypeClassName}--${
+          isFillBarsExpanded
+            ? `fill-bars-is-expanded`
+            : `fill-bars-is-not-expanded`
+        }`}
+      >
+        <span className={`${InteractiveLogotypeClassName}__inner ${InteractiveLogotypeClassName}--fill__inner`}>
+          <span
+            className={`${InteractiveLogotypeClassName}__el ${InteractiveLogotypeClassName}--fill__el`}
+            onClick={() => toggleOverlayAndLogotypeExpansion()}
+          >
+            <span className={`${InteractiveLogotypeClassName}__el__label ${InteractiveLogotypeClassName}--fill__label`}>
               LAXALT
             </span>
           </span>

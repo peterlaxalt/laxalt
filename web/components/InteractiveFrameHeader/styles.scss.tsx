@@ -666,15 +666,21 @@ export const InteractiveLogotypeStyle = styled.div`
 
     pointer-events: none;
 
-    z-index: 800;
+    z-index: 875;
 
-    &.${InteractiveLogotypeClassName}--is-expanded {
-      .${InteractiveLogotypeClassName}__inner {
-        .${InteractiveLogotypeClassName}__el {
-          &:before {
-            transform: translate(-50%, -50%) scale(30);
+    &--fill {
+      z-index: 800
+    }
 
-            pointer-events: none;
+    &--fill {
+      &.${InteractiveLogotypeClassName}--is-expanded {
+        .${InteractiveLogotypeClassName}__inner {
+          .${InteractiveLogotypeClassName}__el {
+            &:before {
+              transform: translate(-50%, -50%) scale(30);
+
+              pointer-events: none;
+            }
           }
         }
       }
@@ -737,7 +743,7 @@ export const InteractiveLogotypeStyle = styled.div`
         &:after {
           background: ${Theme.Color.varForeground};
           border: 2px solid ${Theme.Color.varForeground};
-          box-shadow: 0px 0px 0px 2px ${Theme.Color.varBackground};
+          box-shadow: 0px 0px 0px 2px ${Theme.Color.varBackground}, 0px 0px 0px 4px ${Theme.Color.varForeground};
         }
 
         &:hover {
