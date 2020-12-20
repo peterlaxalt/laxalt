@@ -13,7 +13,7 @@ import { GrainCover } from "../GrainCover";
 
 // Components
 import { SiteHead } from "../SiteHead";
-import { InteractiveFrameHeader } from "../InteractiveFrameHeader";
+import { MellowFrameHeader } from "../MellowFrameHeader";
 
 // Utils
 import { NextRouter, useRouter } from "next/router";
@@ -41,7 +41,7 @@ export const Layout = ({ children }: Layout) => {
       <GlobalStyle />
       <SiteHead title="LAXALT" />
       <GrainCover />
-      <InteractiveFrameHeader router={router} />
+      <MellowFrameHeader router={router} />
       <main>{children}</main>
       <Footer />
     </>

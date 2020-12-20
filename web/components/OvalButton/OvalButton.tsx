@@ -55,7 +55,7 @@ export const OvalButton: React.FunctionComponent<LXLT_OvalButton> = ({
         {/* _________________________________________________ */}
         {/* Links */}
         {href && (
-          <Link href={`/`}>
+          <Link href={href}>
             <a
               className={`${OvalButtonClassName}__el ${OvalButtonClassName}__el--is-${
                 invert ? `inverted` : `not-inverted`

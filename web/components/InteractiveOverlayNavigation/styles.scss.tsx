@@ -10,6 +10,7 @@ import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
 import { UpAndRotate } from "../../constants/styles/Animation";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
+import { CssFramePaddingString } from "../MellowFrameHeader/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -47,6 +48,8 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
     z-index: 850;
 
+    background: ${Theme.Color.varForeground};
+
     /* _________________________________________________ */
     /* Inner Grid */
     .${InteractiveOverlayNavigationClassName}__inner {
@@ -69,17 +72,17 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
       &--close {
         position: fixed;
 
-        top: 1rem;
+        top: calc((${CssFramePaddingString}) * 2);
 
         z-index: 10;
       }
 
       &--home {
-        left: 1rem;
+        left: calc((${CssFramePaddingString}) * 2);
       }
 
       &--close {
-        right: 1rem;
+        right: calc((${CssFramePaddingString}) * 2);
       }
     }
 
@@ -88,7 +91,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
     .${InteractiveOverlayNavigationClassName}__social {
       position: fixed;
 
-      bottom: 1rem;
+      bottom: calc((${CssFramePaddingString}) * 2);
       right: 0;
 
       z-index: 50;
@@ -139,7 +142,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
     .${InteractiveOverlayNavigationClassName}__nav-list {
       width: 100%;
 
-      margin-left: ${Root.Grid.Gutter.Left};
+      margin-left: calc((${CssFramePaddingString}) * 1.5);
 
       &__item {
         overflow: hidden;

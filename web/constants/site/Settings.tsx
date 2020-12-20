@@ -140,30 +140,30 @@ export const SiteNavigation: LXLT_SiteNavigation = {
         caption: "Lorem ipsum",
       },
       {
-        label: "Culture",
-        href: "/sample",
-        caption: "Lorem ipsum",
-      },
-      {
-        label: "Learn",
-        href: "/sample",
-        caption: "Lorem ipsum",
-      },
-      {
-        label: "Shop",
-        href: "/sample",
-        caption: "Lorem ipsum",
-      },
-      {
         label: "Studio",
         href: "/sample",
         caption: "Lorem ipsum",
       },
       {
-        label: "Contact",
+        label: "Thoughts",
         href: "/sample",
         caption: "Lorem ipsum",
       },
+      // {
+      //   label: "Learn",
+      //   href: "/sample",
+      //   caption: "Lorem ipsum",
+      // },
+      // {
+      //   label: "Shop",
+      //   href: "/sample",
+      //   caption: "Lorem ipsum",
+      // },
+      // {
+      //   label: "Contact",
+      //   href: "/sample",
+      //   caption: "Lorem ipsum",
+      // },
     ],
     SocialItems: [
       {
