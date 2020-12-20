@@ -40,6 +40,8 @@ export const LayeredSidebarStyle = styled.nav`
     will-change: transform;
     transition: transform .5s ease-in-out;
 
+    z-index: 5;
+
     &.${LayeredSidebarClassName}--frame-inactive {
       transform: translateX(0);
     }

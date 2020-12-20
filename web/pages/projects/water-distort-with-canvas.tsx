@@ -121,7 +121,7 @@ class WaterDistortWithCanvasTexturePage extends Component<
   renderP5 = (filename: string) => {
     if (
       this.state.canvasElement === true &&
-      document.querySelector("#defaultCanvas0")
+      document.querySelector("#defaultCanvas1")
     ) {
       __DEBUG__ &&
         console.log(`😌 Canvas Element Exists`, this.state.canvasElement);
@@ -174,7 +174,7 @@ class WaterDistortWithCanvasTexturePage extends Component<
       }
 
       .canvas-container {
-        #defaultCanvas0 {
+        #defaultCanvas1 {
           display: none;
         }
       }

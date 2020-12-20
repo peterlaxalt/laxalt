@@ -17,6 +17,8 @@ import { InteractiveFrameHeader } from "../InteractiveFrameHeader";
 
 // Utils
 import { NextRouter, useRouter } from "next/router";
+import { Footer } from "../Footer";
+import { Cursor } from "../Cursor";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -41,7 +43,7 @@ export const Layout = ({ children }: Layout) => {
       <GrainCover />
       <InteractiveFrameHeader router={router} />
       <main>{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

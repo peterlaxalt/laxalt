@@ -33,12 +33,12 @@ export const Color = {
   varForeground: "var(--clrForeground)",
 
   // Core Colors
-  Primary: "#FFF6EE",
+  Primary: "#000000",
   Secondary: "#5D6376",
-  Background: "#FC6376",
+  Background: "#FF8760",
   // Background: "#ff988c",
   // Background: "#ffe970",
-  Text: "#FFF6EE",
+  Text: "#000000",
 
   // Grayscale Palette
   Black: "#000000",
@@ -68,7 +68,7 @@ export const Color = {
   Lilac: "#874BB4",
 
   // Feedback Palette
-  Warning: "#FC6376",
+  Warning: "#FF8760",
   Success: "#40DA33",
 };
 

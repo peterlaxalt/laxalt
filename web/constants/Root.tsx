@@ -88,9 +88,9 @@ export const RootVariables = createGlobalStyle`
     /* ----------------------------------- Large Width Viewports */
 
     /* --------------- Palette*/
-    --BgColor: ${Theme.Color.Background}
-    --TextColor: ${Theme.Color.Primary}
-    --MbmColor: ${Theme.Color.White}
+    --BgColor: ${Theme.Color.Background};
+    --TextColor: ${Theme.Color.Primary};
+    --MbmColor: ${Theme.Color.White};
 
     /* --------------- Base Measurements*/
 

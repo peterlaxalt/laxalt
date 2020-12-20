@@ -12,6 +12,23 @@
 //////////////////////////////////////////////////////////////////////
 import { Color } from "../styles/Color";
 
+export type LXLT_LinkItem = {
+  label: string;
+  href?: string;
+};
+
+export type LXLT_LinkItemWithCaption = LXLT_LinkItem & {
+  caption?: string;
+};
+
+export type LXLT_SiteNavigation = {
+  FrameItems: LXLT_LinkItem[];
+  OverlayNav: {
+    SocialItems: LXLT_LinkItem[];
+    NavItems: LXLT_LinkItemWithCaption[];
+  };
+};
+
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
@@ -35,6 +52,137 @@ export const Settings = {
     facebook: "PlayWellTEK",
     instagram: "playwellteknologies",
     fbAppId: "56639339020281",
+  },
+};
+
+export const SiteNavigation: LXLT_SiteNavigation = {
+  FrameItems: [
+    {
+      label: "Studio",
+      href: "/sample",
+    },
+    {
+      label: "Art",
+      href: "/sample",
+    },
+    {
+      label: "Design",
+      href: "/sample",
+    },
+    {
+      label: "Strategy",
+      href: "/sample",
+    },
+    {
+      label: "Interactive",
+      href: "/sample",
+    },
+    {
+      label: "Murals",
+      href: "/sample",
+    },
+    {
+      label: "Code",
+      href: "/sample",
+    },
+    {
+      label: "Lab",
+      href: "/sample",
+    },
+    {
+      label: "Products",
+      href: "/sample",
+    },
+    {
+      label: "Music",
+      href: "/sample",
+    },
+    {
+      label: "Tattoo",
+      href: "/sample",
+    },
+    {
+      label: "Shop",
+      href: "/sample",
+    },
+    {
+      label: "Resources",
+      href: "/sample",
+    },
+    {
+      label: "Advice",
+      href: "/sample",
+    },
+    {
+      label: "Fonts",
+      href: "/sample",
+    },
+    {
+      label: "Contact",
+      href: "/sample",
+    },
+  ],
+  OverlayNav: {
+    NavItems: [
+      {
+        label: "Art",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Design",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Code",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Culture",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Learn",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Shop",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Studio",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+      {
+        label: "Contact",
+        href: "/sample",
+        caption: "Lorem ipsum",
+      },
+    ],
+    SocialItems: [
+      {
+        label: "Dribbble",
+        href: "/",
+      },
+      {
+        label: "Github",
+        href: "/",
+      },
+      {
+        label: "Instagram",
+        href: "/",
+      },
+      {
+        label: "LinkedIn",
+        href: "/",
+      },
+    ],
   },
 };
 

@@ -24,13 +24,14 @@ const GrainCoverStyle = styled.div`
   display: flex;
   /* display: none; */
   z-index: 999;
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; */
+  opacity: .06;
 
   .grain-cover-inner {
     width: 1000vw;
     height: 1000vh;
     /* animation: grain 8s steps(10) infinite; */
-    background-image: url('/noise.png');
+    background-image: url('/noise-anim.gif');
     /* animation: ${Grain} 8s steps(10) infinite; */
   }
 `;
