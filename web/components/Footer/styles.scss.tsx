@@ -15,6 +15,7 @@ import { Root } from "../../constants/Root";
 import { UpAndRotate } from "../../constants/styles/Animation";
 import { Theme } from "../../constants/Theme";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
+import { CssFramePaddingString } from "../MellowFrameHeader/styles.scss";
 
 // Constants
 // import { Root } from "../../constants/Theme";
@@ -36,6 +37,10 @@ export const FooterStyle = styled.footer`
 
     background: ${Theme.Color.varBackground};
     color: ${Theme.Color.varForeground};
+
+    padding: ${CssFramePaddingString};
+
+    overflow: hidden;
 
     &:after {
       content: "";

@@ -73,7 +73,8 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           {/* _______________________________________________ */}
           {/* Close Button */}
           <OvalButton
-            label={`Close`}
+            label={`Misc`}
+            href={`/sample`}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
             addClass={`${InteractiveOverlayNavigationClassName}__oval-btn--close`}
             invert={true}

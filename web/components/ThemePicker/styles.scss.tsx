@@ -33,17 +33,13 @@ export const ThemePickerStyle = styled.div`
     display: flex;
     align-items: center;
 
-    border-left: 2px solid ${Theme.Color.varForeground};
-    border-right: 2px solid ${Theme.Color.varForeground};
-    border-bottom: 2px solid ${Theme.Color.varForeground};
-
-    background: ${Theme.Color.varBackground};
-
     z-index: 990;
 
     .${ThemePickerClassName}__option {
-      width: calc(${Root.FrameSize} * 0.5);
-      height: calc(${Root.FrameSize} * 0.5);
+      width: calc(${Root.FrameSize} * 0.35);
+      height: calc(${Root.FrameSize} * 0.35);
+
+      flex-shrink: 0;
 
       position: relative;
 
@@ -53,22 +49,22 @@ export const ThemePickerStyle = styled.div`
 
       margin: 0 0.5rem;
 
-      box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
+      box-shadow: 0px 0px 0px 1px ${Theme.Color.varForeground};
 
       &:hover {
-        box-shadow: 0px 0px 0px 3px ${Theme.Color.varForeground};
+        box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
       }
 
       &:focus,
       &:active {
-        box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
+        box-shadow: 0px 0px 0px 1px ${Theme.Color.varForeground};
       }
 
       &--active {
-        box-shadow: 0px 0px 0px 4px ${Theme.Color.varForeground};
+        box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
 
         &:hover {
-          box-shadow: 0px 0px 0px 4px ${Theme.Color.varForeground};
+          box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
         }
       }
 

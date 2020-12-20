@@ -13,11 +13,12 @@ import { createGlobalStyle } from "styled-components";
 export type LXLT_ColorTheme = {
   name?:
     | "default"
-    | "white"
     | "goldenrod"
     | "cadetblue"
     | "orangered"
-    | "galaxy";
+    | "galaxy"
+    | "lemon"
+    | "salmon";
   primary: string;
   secondary: string;
   background: string;
@@ -34,10 +35,8 @@ export const Color = {
 
   // Core Colors
   Primary: "#000000",
-  Secondary: "#5D6376",
-  Background: "#FF8760",
-  // Background: "#ff988c",
-  // Background: "#ffe970",
+  Secondary: "#000000",
+  Background: "#FFF8DC",
   Text: "#000000",
 
   // Grayscale Palette

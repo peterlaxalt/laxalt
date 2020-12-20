@@ -59,6 +59,27 @@ export class ThemePickerWithHook extends React.PureComponent<
           foreground: Theme.Color.Primary,
         },
         {
+          name: "galaxy",
+          primary: "#FFF8DC",
+          secondary: "#FFF8DC",
+          background: Theme.Color.Galaxy,
+          foreground: "#FFF8DC",
+        },
+        {
+          name: "salmon",
+          primary: "#000000",
+          secondary: "#000000",
+          background: "#FF8760",
+          foreground: "#000000",
+        },
+        {
+          name: "lemon",
+          primary: "#003eff",
+          secondary: "#003eff",
+          background: "#F4FF5E",
+          foreground: "#003eff",
+        },
+        {
           name: "goldenrod",
           primary: "#393349",
           secondary: "#393349",
@@ -77,20 +98,6 @@ export class ThemePickerWithHook extends React.PureComponent<
           primary: "#FFF8DC",
           secondary: "#FFF8DC",
           background: "#FF4500",
-          foreground: "#FFF8DC",
-        },
-        {
-          name: "white",
-          primary: Theme.Color.Black,
-          secondary: Theme.Color.Black,
-          background: "#FFF8DC",
-          foreground: Theme.Color.Black,
-        },
-        {
-          name: "galaxy",
-          primary: "#FFF8DC",
-          secondary: "#FFF8DC",
-          background: Theme.Color.Galaxy,
           foreground: "#FFF8DC",
         },
       ],
@@ -152,13 +159,12 @@ export class ThemePickerWithHook extends React.PureComponent<
                         ? "active"
                         : "inactive"
                     }`}
-                    style={{ backgroundColor: "lime" }}
                     onClick={() => this.setNewTheme(themeItem)}
                     key={idx}
                   >
                     <span
                       className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--primary`}
-                      style={{ backgroundColor: themeItem.background }}
+                      style={{ backgroundColor: themeItem.background, border: `1px solid ${themeItem.foreground}` }}
                     />
                     <span
                       className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--secondary`}
