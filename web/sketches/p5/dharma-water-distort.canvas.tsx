@@ -134,6 +134,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
     ThreeWaterCanvas(parentEl, canvas.elt);
 
     p.frameRate(frameRate);
+    p.pixelDensity(1.25);
   };
 
   // _________________________________________________
