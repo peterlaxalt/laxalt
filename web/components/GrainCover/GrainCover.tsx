@@ -3,7 +3,9 @@
 
 // Core
 import React from "react";
-import GrainCoverStyle from "./styles.scss";
+
+// Styles
+import GrainCoverStyle, { GrainCoverClassName } from "./styles.scss";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -18,8 +20,8 @@ import GrainCoverStyle from "./styles.scss";
  */
 export const GrainCover: React.FunctionComponent = () => {
   return (
-    <GrainCoverStyle>
-      <div className="grain-cover-inner" />
+    <GrainCoverStyle className={`${GrainCoverClassName}`}>
+      <div className={`${GrainCoverClassName}__inner`} />
     </GrainCoverStyle>
   );
 };

@@ -1,22 +1,16 @@
 {
-  "./dev/noop": [
-    {
-      "id": "./node_modules/next/dist/client/dev/noop.js",
-      "file": "static/chunks/1.js"
-    }
-  ],
   "react-p5-wrapper": [
     {
-      "id": "./node_modules/p5/lib/p5.min.js",
-      "file": "static/chunks/0.js"
+      "id": "NCWt",
+      "file": "static/chunks/0df2afdd.0762c7a846aed70411ea.js"
     },
     {
-      "id": "./node_modules/react-p5-wrapper/dist/index.js",
-      "file": "static/chunks/0.js"
+      "id": "58Bg",
+      "file": "static/chunks/10.f3d0d5dc7aa09b81f047.js"
     },
     {
-      "id": "./node_modules/webpack/buildin/global.js",
-      "file": "static/chunks/0.js"
+      "id": "yLpj",
+      "file": "static/chunks/10.f3d0d5dc7aa09b81f047.js"
     }
   ]
 }

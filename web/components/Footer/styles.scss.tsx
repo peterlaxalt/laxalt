@@ -38,7 +38,7 @@ export const FooterStyle = styled.footer`
     background: ${Theme.Color.varBackground};
     color: ${Theme.Color.varForeground};
 
-    padding: ${CssFramePaddingString};
+    padding: 0 ${CssFramePaddingString} ${CssFramePaddingString} ${CssFramePaddingString};
 
     overflow: hidden;
 
@@ -246,6 +246,8 @@ export const FooterStyle = styled.footer`
       border-top: 2px solid ${Theme.Color.varForeground};
 
       align-items: center;
+
+      background: ${Theme.Color.varBackground};
 
       &__col {
         width: calc(100% / 3);

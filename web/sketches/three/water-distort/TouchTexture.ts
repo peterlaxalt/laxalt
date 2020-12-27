@@ -175,15 +175,16 @@ export class TouchTexture {
     let color = `${red}, ${green}, ${blue}`;
 
     let offset = this.size * 5;
-    ctx.shadowOffsetX = offset;
-    ctx.shadowOffsetY = offset;
-    ctx.shadowBlur = radius * 1;
-    ctx.shadowColor = `rgba(${color},${0.2 * intensity})`;
 
     this.ctx.beginPath();
-    this.ctx.fillStyle = "rgba(255,0,0,1)";
+    this.ctx.fillStyle = "rgba(0,255,0,1)";
     this.ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
     this.ctx.fill();
+
+    this.ctx.shadowOffsetX = offset;
+    this.ctx.shadowOffsetY = offset;
+    this.ctx.shadowBlur = radius * 2;
+    this.ctx.shadowColor = `rgba(${color},${0.2 * intensity})`;
   }
 
   clear() {

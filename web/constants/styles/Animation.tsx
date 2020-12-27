@@ -117,7 +117,6 @@ export const SlideUp = keyframes`
   }
 `;
 
-
 export const LoaderDot = keyframes`
  0% {
     background: #f7fafc;

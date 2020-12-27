@@ -9,14 +9,13 @@
 // Core
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import {
   LXLT_LinkItemWithCaption,
   SiteNavigation,
 } from "../../constants/site/Settings";
 import { LXLT_P5Wrapper } from "../../pages/projects/_scaffold-p5";
 import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
-import { InteractiveEyeball } from "../InteractiveEyeball";
 import { OvalButton } from "../OvalButton";
 
 // Styles
@@ -102,6 +101,14 @@ class FooterP5Canvas extends Component<any, any> {
 }
 
 export const Footer = () => {
+  let scrollToTop: () => void;
+
+  useEffect(() => {
+    scrollToTop = function () {
+      window.scrollTo(0, 0);
+    };
+  });
+
   return (
     <FooterStyle className={`${FooterClassName}`}>
       <div className={`${FooterClassName}__inner`}>
@@ -194,6 +201,7 @@ export const Footer = () => {
           {/* Footer Bottom Column */}
           <div
             className={`${FooterClassName}__bottom__col ${FooterClassName}__bottom__col--three`}
+            onClick={() => scrollToTop()}
           >
             <OvalButton
               label={`Back to top`}

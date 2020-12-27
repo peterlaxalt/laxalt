@@ -1,9 +1,7 @@
 // Core
 import Link from "next/link";
-import { NextRouter } from "next/router";
-import React, { Component } from "react";
+import React from "react";
 import { __DEBUG__ } from "../../constants/site/Settings";
-import { ThemePicker } from "../ThemePicker";
 
 // Styles
 import { LayeredSidebarClassName, LayeredSidebarStyle } from "./styles.scss";
@@ -32,123 +30,8 @@ export type LXLT_LayeredSidebar = {
 
 export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
   addClass,
+  panes,
 }) => {
-  let panes: LXLT_SidebarPane[] = [
-    {
-      header: "Design",
-      items: [
-        {
-          label: "Strategy",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Branding",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Illustration",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Packaging",
-          href: "/",
-          isMajor: true,
-        },
-
-        {
-          label: "Creative Direction",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Linework",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Hospitality",
-          href: "/",
-          isMajor: false,
-        },
-      ],
-    },
-
-    {
-      // header: "Pane 02",
-      items: [
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-      ],
-    },
-
-    {
-      // header: "Pane 02",
-      items: [
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: true,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
-        },
-      ],
-    },
-  ];
-
   if (panes) {
     return (
       <LayeredSidebarStyle

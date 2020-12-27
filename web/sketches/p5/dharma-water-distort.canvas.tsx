@@ -88,6 +88,9 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   let characterWidth: number = W / characterCount;
   let characterSize: number = H * 1.15;
 
+  let verticalSkewDivisible: number = 2.75;
+  let characterSkewDivisible: number = 1.36;
+
   console.log(characterSize, "characterSize");
 
   // ____________________________
@@ -134,7 +137,10 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
     ThreeWaterCanvas(parentEl, canvas.elt);
 
     p.frameRate(frameRate);
-    p.pixelDensity(1.25);
+
+    if (window.devicePixelRatio > 1 && window.devicePixelRatio < 3) {
+      p.pixelDensity(1.25);
+    }
   };
 
   // _________________________________________________
@@ -276,9 +282,6 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
         // Duplicate positions
         countArray.map((countNumber: number, idxx: number) => {
           let verticalScale = 1 / (char.count * 0.95);
-
-          let verticalSkewDivisible: number = 2.75;
-          let characterSkewDivisible: number = 1.36;
 
           let duplicateVerticalPosition: number =
             char.count == 1

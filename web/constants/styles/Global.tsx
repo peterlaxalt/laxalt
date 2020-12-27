@@ -103,8 +103,6 @@ html {
     display: block;
     position: relative;
     z-index: 10;
-
-    pointer-events: none;
   }
 
 

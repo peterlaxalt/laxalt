@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
+import { hexToRGB } from "../../utils/hexToRGB";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -19,8 +20,10 @@ import {} from "../../constants/styles/CssUtils";
  *
  */
 export const MellowFrameHeaderClassName = "mellow-frame-header";
-export const CssFrameBorderString = `2px solid ${Theme.Color.varForeground}`;
+export const CssFrameBorderWidth = `2px`;
+export const CssFrameBorderString = `${CssFrameBorderWidth} solid ${Theme.Color.varForeground}`;
 export const CssFramePaddingString = `calc(${Root.FrameSize} / 2)`;
+export const CssFrameSizeWithBorderString = `calc(${CssFramePaddingString} + ${CssFrameBorderWidth})`;
 
 /**
  *
@@ -313,6 +316,11 @@ export const InteractiveLogotypeClassName = "interactive-logotype";
  */
 export const InteractiveLogotypeStyle = styled.div`
   &.${InteractiveLogotypeClassName} {
+    --${InteractiveLogotypeClassName}__icon-size: calc(${Root.FrameSize} / 1.75);
+    --${InteractiveLogotypeClassName}__circle-size: calc(var(--${InteractiveLogotypeClassName}__icon-size) * 1.2);
+    --${InteractiveLogotypeClassName}__circle-radius: calc(var(--${InteractiveLogotypeClassName}__circle-size) / 2);
+    --${InteractiveLogotypeClassName}__circle-circumference: calc(2 * ${Math.PI} * var(--${InteractiveLogotypeClassName}__circle-radius));
+
     position: fixed;
 
     top: 50%;
@@ -329,10 +337,38 @@ export const InteractiveLogotypeStyle = styled.div`
 
     z-index: 900;
 
-    &--is-expanded {
+    &--inactive {
       .${InteractiveLogotypeClassName}__el {
+        .${InteractiveLogotypeClassName}__el__circle {
+          stroke-dashoffset: 0 !important;
+        }
+      }
+    }
+
+    &--is-expanded {
+
+      .${InteractiveLogotypeClassName}__inner {
+        transform: translate(-50%, 90%) !important;
+      }
+
+      .${InteractiveLogotypeClassName}__el {
+
+        .${InteractiveLogotypeClassName}__el__circle {
+          stroke-dashoffset: 0 !important;
+          stroke-width: calc(${CssFrameBorderWidth} / 1.5) !important;
+
+          transform: translate(-50%, -50%) scale(1.5) !important;
+
+          fill: ${Theme.Color.varForeground} !important;
+          stroke: ${Theme.Color.varBackground} !important;
+        }
+
         &__icon {
-          transform: scale(1.25) !important;
+          transform: scale(1.25) rotate(90deg) !important;
+
+          /* &:hover {
+            transform: scale(1.25) rotate(0deg) !important;
+          } */
 
           &:before {
             transform: translate(-50%, -50%) scaleY(0) !important;
@@ -364,7 +400,7 @@ export const InteractiveLogotypeStyle = styled.div`
     .${InteractiveLogotypeClassName}__inner {
       position: absolute;
 
-      top: calc(${Root.FrameSize} / 5);
+      top: calc(${Root.FrameSize} / 4.35);
       left: 50%;
 
       transform: translate(-50%, 0%);
@@ -376,12 +412,49 @@ export const InteractiveLogotypeStyle = styled.div`
       .${InteractiveLogotypeClassName}__el {
         display: block;
 
-        width: calc(${Root.FrameSize} / 1.5);
-        height: calc(${Root.FrameSize} / 1.5);
+        width: var(--${InteractiveLogotypeClassName}__icon-size);
+        height: var(--${InteractiveLogotypeClassName}__icon-size);
+
+        transform: scale(1);
 
         color: ${Theme.Color.varBackground};
 
         pointer-events: all;
+
+        position: relative;
+
+        transition: transform 1s ease;
+
+        &:hover {
+          .${InteractiveLogotypeClassName}__el__circle {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        &__circle {
+          position: absolute;
+
+          left: 50%;
+          top: 50%;
+
+          transform: translate(-50%, -50%);
+
+          overflow: visible;
+
+          stroke: ${Theme.Color.varForeground};
+          stroke-width: ${CssFrameBorderWidth};
+          stroke-dasharray: var(--${InteractiveLogotypeClassName}__circle-circumference);
+          stroke-dashoffset: var(--${InteractiveLogotypeClassName}__circle-circumference);
+
+          fill: ${Theme.Color.varBackground};
+
+          width: calc(var(--${InteractiveLogotypeClassName}__circle-radius) * 2);
+          height: calc(var(--${InteractiveLogotypeClassName}__circle-radius) * 2);
+
+          transition: stroke-dasharray 1s ease, stroke-dashoffset 1s ease, transform 1s ease, stroke-width 1s ease;
+
+
+        }
 
         &:before,
         &:after {
@@ -411,8 +484,8 @@ export const InteractiveLogotypeStyle = styled.div`
         &__icon {
           position: relative;
 
-          width: calc(${Root.FrameSize} / 1.5);
-          height: calc(${Root.FrameSize} / 1.5);
+          width: var(--${InteractiveLogotypeClassName}__icon-size);
+          height: var(--${InteractiveLogotypeClassName}__icon-size);
 
           display: block;
 

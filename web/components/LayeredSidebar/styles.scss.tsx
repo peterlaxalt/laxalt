@@ -7,6 +7,7 @@ import styled from "styled-components";
 // Constants
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
+import { CssFrameBorderWidth } from "../MellowFrameHeader/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -18,6 +19,10 @@ import { Root } from "../../constants/Root";
  *
  */
 export const LayeredSidebarClassName = "layered-sidebar";
+export const LayeredSidebarWidth = "350px";
+export const LayeredPaneWidth = "180px";
+export const LayeredCollapsedRatio = -.65;
+export const LayeredPaneCollapsedPaneWidth = `calc(${LayeredPaneWidth} - (${LayeredPaneWidth} * ${LayeredCollapsedRatio}))`;
 
 /**
  *
@@ -27,20 +32,18 @@ export const LayeredSidebarClassName = "layered-sidebar";
  */
 export const LayeredSidebarStyle = styled.nav`
   &.${LayeredSidebarClassName} {
-    --${LayeredSidebarClassName}__pane-width: 200px;
+    --${LayeredSidebarClassName}__pane-width: ${LayeredPaneWidth};
     --${LayeredSidebarClassName}__pane-padding: calc(${Root.FrameSize} * .5);
 
-    position: fixed;
+    /* position: fixed;
 
     left: 0;
-    top: 0;
+    top: 0; */
 
-    transform: translateX(${Root.FrameSize});
+    /* transform: translateX(${Root.FrameSize}); */
 
-    will-change: transform;
-    transition: transform .5s ease-in-out;
-
-    z-index: 5;
+    /* will-change: transform; */
+    /* transition: transform .5s ease-in-out; */
 
     &.${LayeredSidebarClassName}--frame-inactive {
       transform: translateX(0);
@@ -59,9 +62,9 @@ export const LayeredSidebarStyle = styled.nav`
         padding-top: calc(${Root.FrameSize} * 2.5);
 
         &:not(:first-child) {
-          border-left: 2px solid ${Theme.Color.varForeground};
+          border-left: ${CssFrameBorderWidth} solid ${Theme.Color.varForeground};
           /* transform: translateX(-50%); */
-          margin-left: calc(var(--${LayeredSidebarClassName}__pane-width) * -.65);
+          margin-left: calc(var(--${LayeredSidebarClassName}__pane-width) * ${LayeredCollapsedRatio});
 
           will-change: margin-left;
           transition: margin-left .25s ease-in-out;
@@ -87,7 +90,7 @@ export const LayeredSidebarStyle = styled.nav`
           /* font-family: dharma; */
           /* font-size: 5rem; */
 
-          font-size: 2rem;
+          font-size: 1.9rem;
           font-weight: bold;
 
           padding-left: var(--${LayeredSidebarClassName}__pane-padding);
@@ -118,7 +121,7 @@ export const LayeredSidebarStyle = styled.nav`
 
 
             &--major {
-              font-size: 1.2rem;
+              font-size: 1.1rem;
               letter-spacing: .05rem;
 
               font-family: ${Theme.Font.Code};

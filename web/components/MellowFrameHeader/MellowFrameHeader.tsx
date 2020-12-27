@@ -14,9 +14,7 @@ import {
 
 // Components
 import Link from "next/link";
-import { LayeredSidebar } from "../LayeredSidebar";
 import { ThemePicker } from "../ThemePicker";
-import { LayeredSidebarClassName } from "../LayeredSidebar/styles.scss";
 import { InteractiveOverlayNavigation } from "../InteractiveOverlayNavigation";
 
 // Styles
@@ -388,7 +386,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                       <span
                         className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__time`}
                       >
-                        Brooklyn / 04:21:21
+                        NYC / 04:21:21
                       </span>
                     </li>
 
@@ -472,6 +470,15 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
             className={`${InteractiveLogotypeClassName}__el`}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
           >
+            <svg
+              className={`${InteractiveLogotypeClassName}__el__circle`}
+            >
+              <circle
+                cx="50%"
+                cy="50%"
+                r="50%"
+              />
+            </svg>
             <span className={`${InteractiveLogotypeClassName}__el__icon`}>
               <span
                 className={`${InteractiveLogotypeClassName}__el__icon__diagonal ${InteractiveLogotypeClassName}__el__icon__diagonal--down`}
@@ -508,16 +515,6 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
           className={`${InteractiveFillBarsClassName}__fill-bar ${InteractiveFillBarsClassName}__fill-bar--left`}
         />
       </InteractiveFillBarsStyle>
-
-      {/* ______________________________________________ */}
-      {/* Sidebar */}
-      {hasSidebar ? (
-        <LayeredSidebar
-          addClass={`${LayeredSidebarClassName}--${
-            isInactive ? `frame-inactive` : `frame-active`
-          }`}
-        />
-      ) : null}
     </>
   );
 };
