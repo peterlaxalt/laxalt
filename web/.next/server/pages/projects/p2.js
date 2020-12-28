@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		13: 0
+/******/ 		19: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -101,7 +101,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -241,7 +241,7 @@ const Palette = styled_components__WEBPACK_IMPORTED_MODULE_1__["createGlobalStyl
 
 /***/ }),
 
-/***/ 10:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("EDeK");
@@ -434,7 +434,7 @@ class TouchTexture_TouchTexture {
     let color = `${red}, ${green}, ${blue}`;
     let offset = this.size * 5;
     this.ctx.beginPath();
-    this.ctx.fillStyle = "rgba(0,255,0,1)";
+    this.ctx.fillStyle = "rgba(255,0,0,1)";
     this.ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
     this.ctx.fill();
     this.ctx.shadowOffsetX = offset;
@@ -1204,7 +1204,9 @@ const Settings = {
     facebook: "PlayWellTEK",
     instagram: "playwellteknologies",
     fbAppId: "56639339020281"
-  }
+  },
+  contactPage: "/contact",
+  miscPage: "/misc"
 };
 const SiteNavigation = {
   FrameItems: [{
@@ -1259,7 +1261,7 @@ const SiteNavigation = {
   OverlayNav: {
     NavItems: [{
       label: "Art",
-      href: "/sample",
+      href: "/art",
       caption: "Lorem ipsum"
     }, {
       label: "Design",
@@ -1267,15 +1269,15 @@ const SiteNavigation = {
       caption: "Lorem ipsum"
     }, {
       label: "Code",
-      href: "/sample",
+      href: "/code",
       caption: "Lorem ipsum"
     }, {
       label: "Studio",
-      href: "/sample",
+      href: "/studio",
       caption: "Lorem ipsum"
     }, {
       label: "Thoughts",
-      href: "/sample",
+      href: "/thoughts",
       caption: "Lorem ipsum"
     } // {
     //   label: "Learn",

@@ -53,6 +53,9 @@ export const Settings = {
     instagram: "playwellteknologies",
     fbAppId: "56639339020281",
   },
+
+  contactPage: "/contact",
+  miscPage: "/misc"
 };
 
 export const SiteNavigation: LXLT_SiteNavigation = {
@@ -126,7 +129,7 @@ export const SiteNavigation: LXLT_SiteNavigation = {
     NavItems: [
       {
         label: "Art",
-        href: "/sample",
+        href: "/art",
         caption: "Lorem ipsum",
       },
       {
@@ -136,17 +139,17 @@ export const SiteNavigation: LXLT_SiteNavigation = {
       },
       {
         label: "Code",
-        href: "/sample",
+        href: "/code",
         caption: "Lorem ipsum",
       },
       {
         label: "Studio",
-        href: "/sample",
+        href: "/studio",
         caption: "Lorem ipsum",
       },
       {
         label: "Thoughts",
-        href: "/sample",
+        href: "/thoughts",
         caption: "Lorem ipsum",
       },
       // {

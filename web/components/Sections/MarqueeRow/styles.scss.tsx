@@ -15,7 +15,9 @@ import styled, { keyframes } from "styled-components";
 // Constants
 import {} from "../../../constants/Root";
 import {} from "../../../constants/styles/Animation";
-import {} from "../../../constants/Theme";
+import { Theme } from "../../../constants/Theme";
+import { LayeredSidebarClassName, LayeredSidebarTransitionTime, LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
+import { CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
 
 // Helpers
 
@@ -46,6 +48,14 @@ export const MarqueeRowStyle = styled.section`
   position: relative;
   overflow: hidden;
 
+  padding-top: 1.5rem;
+
+  /* background: pink; */
+
+  &.${MarqueeRowClassName}--has-sidebar {
+    ${SidebarFullwidthCss}
+  }
+
   .${MarqueeRowClassName}__inner {
     width: fit-content;
     display: flex;
@@ -56,9 +66,42 @@ export const MarqueeRowStyle = styled.section`
   }
 
   .${MarqueeRowClassName}__list {
+    --${MarqueeRowClassName}__bullet-size: .15em;
+
+    white-space: nowrap;
+
+    /* display: flex;
+    flex-wrap: nowrap; */
+
     &__item {
-      font-size: 10vw;
-      padding: 0 2vw;
+      display: inline-block;
+      white-space: nowrap;
+
+      font-size: 11rem;
+      padding: 0 calc(var(--${MarqueeRowClassName}__bullet-size) * 2);
+
+      position: relative;
+
+      flex-shrink: 0;
+
+      &:after {
+        content: '';
+
+        position: absolute;
+
+        top: 50%;
+        right: calc(var(--${MarqueeRowClassName}__bullet-size) * -.5);
+
+        transform: translate3d(0%, -50%, 0);
+        transform-style: preserve-3d;
+
+        width: calc(var(--${MarqueeRowClassName}__bullet-size) * 1);
+        height: calc(var(--${MarqueeRowClassName}__bullet-size) * 1);
+
+        border-radius: 50%;
+
+        background: ${Theme.Color.varForeground};
+      }
     }
   }
 

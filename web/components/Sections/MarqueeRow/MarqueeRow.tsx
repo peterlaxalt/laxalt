@@ -1,6 +1,7 @@
 // Core
 import React from "react";
 import { CSSProperties } from "styled-components";
+import { LXLT_SimpleContentNode } from "../../SimpleContentTemplate";
 
 // Styles
 import { MarqueeRowClassName, MarqueeRowStyle } from "./styles.scss";
@@ -8,10 +9,9 @@ import { MarqueeRowClassName, MarqueeRowStyle } from "./styles.scss";
 // Begin Component
 // __________________________________________________________________________________________
 
-export type LMNTS_Section_MarqueeRow = {
+export type LMNTS_Section_MarqueeRow = LXLT_SimpleContentNode & {
   strings: string[];
-  addClass?: string;
-  style?: CSSProperties;
+  hasSidebar?: boolean;
 };
 
 /**
@@ -25,12 +25,18 @@ export type LMNTS_Section_MarqueeRow = {
 export const MarqueeRow: React.FunctionComponent<LMNTS_Section_MarqueeRow> = ({
   strings,
   style,
+  hasSidebar,
 }) => {
   let items = Array.from(Array(4));
 
   if (strings) {
     return (
-      <MarqueeRowStyle style={style} className={`${MarqueeRowClassName}`}>
+      <MarqueeRowStyle
+        style={style}
+        className={`${MarqueeRowClassName} ${MarqueeRowClassName}--${
+          hasSidebar ? `has-sidebar` : `sans-sidebar`
+        }`}
+      >
         <div className={`${MarqueeRowClassName}__inner`} aria-hidden="true">
           {items.map((_, idx: number) => {
             return (
@@ -43,11 +49,7 @@ export const MarqueeRow: React.FunctionComponent<LMNTS_Section_MarqueeRow> = ({
                           className={`${MarqueeRowClassName}__list__item`}
                           data-marquee-item={idx}
                         >
-                          <span
-                            className={`${MarqueeRowClassName}__list__item__label`}
-                          >
-                            {string}
-                          </span>
+                          {string}
                         </li>
                       );
                     })

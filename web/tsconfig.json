@@ -22,5 +22,5 @@
     "isolatedModules": true
   },
   "exclude": ["node_modules", "sketches/three/*.js"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Sections/HorizontalScrollSection/HorizontalScrollSection.jsx"]
 }

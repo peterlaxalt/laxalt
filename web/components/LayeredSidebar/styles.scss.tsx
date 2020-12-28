@@ -2,12 +2,12 @@
 // _________________________________________________________________________
 
 // Core
-import styled from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 
 // Constants
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
-import { CssFrameBorderWidth } from "../MellowFrameHeader/styles.scss";
+import { CssFrameBorderWidth, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -21,8 +21,33 @@ import { CssFrameBorderWidth } from "../MellowFrameHeader/styles.scss";
 export const LayeredSidebarClassName = "layered-sidebar";
 export const LayeredSidebarWidth = "350px";
 export const LayeredPaneWidth = "180px";
-export const LayeredCollapsedRatio = -.65;
-export const LayeredPaneCollapsedPaneWidth = `calc(${LayeredPaneWidth} - (${LayeredPaneWidth} * ${LayeredCollapsedRatio}))`;
+export const LayeredSidebarTransitionTime = ".25s";
+export const LayeredCollapsedRatio = -0.65;
+export const LayeredPaneCollapsedPaneWidth = `calc(${LayeredPaneWidth} + (${LayeredPaneWidth} * ${LayeredCollapsedRatio}))`;
+
+export const GlobalSidebarPaneOffsetVariables = createGlobalStyle<{ panes: number, isHovered: boolean }>`
+  :root {
+    /* --${LayeredSidebarClassName}__global-pane-offset: calc(${props => props.panes - 1} * (${LayeredPaneCollapsedPaneWidth}) + ${CssFrameBorderWidth}); */
+
+    // Hovered
+    --${LayeredSidebarClassName}__global-pane-offset: ${props => props.isHovered ? `calc(${LayeredPaneWidth} + (${props.panes - 2} * (${LayeredPaneCollapsedPaneWidth})) + ${CssFrameBorderWidth})` : `calc(${props.panes - 1} * (${LayeredPaneCollapsedPaneWidth}) + ${CssFrameBorderWidth})`};
+  }
+`;
+
+export const SidebarFullwidthCss = css`
+  width: calc(100vw - (${CssFrameSizeWithBorderString} * 2));
+
+  clip-path: polygon(
+      var(--${LayeredSidebarClassName}__global-pane-offset) 0%,
+      100% 0%,
+      100% 100%,
+      var(--${LayeredSidebarClassName}__global-pane-offset) 100%
+  );
+
+  transition: clip-path ${LayeredSidebarTransitionTime} ease-in-out;
+
+  margin-left: calc(${LayeredSidebarWidth} * -1);
+`;
 
 /**
  *
@@ -67,7 +92,7 @@ export const LayeredSidebarStyle = styled.nav`
           margin-left: calc(var(--${LayeredSidebarClassName}__pane-width) * ${LayeredCollapsedRatio});
 
           will-change: margin-left;
-          transition: margin-left .25s ease-in-out;
+          transition: margin-left ${LayeredSidebarTransitionTime} ease-in-out;
         }
 
 
@@ -118,6 +143,7 @@ export const LayeredSidebarStyle = styled.nav`
           }
 
           &__item {
+            white-space: nowrap;
 
 
             &--major {

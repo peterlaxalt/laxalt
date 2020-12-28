@@ -1,10 +1,16 @@
 // Core
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { createGlobalStyle } from "styled-components";
 import { __DEBUG__ } from "../../constants/site/Settings";
 
 // Styles
-import { LayeredSidebarClassName, LayeredSidebarStyle } from "./styles.scss";
+import {
+  GlobalSidebarPaneOffsetVariables,
+  LayeredPaneCollapsedPaneWidth,
+  LayeredSidebarClassName,
+  LayeredSidebarStyle,
+} from "./styles.scss";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -33,10 +39,17 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
   panes,
 }) => {
   if (panes) {
+    const [isHovered, setHover] = useState(false);
+
     return (
       <LayeredSidebarStyle
         className={`${LayeredSidebarClassName} ${addClass && addClass}`}
       >
+        <GlobalSidebarPaneOffsetVariables
+          panes={panes.length}
+          isHovered={isHovered}
+        />
+
         <div className={`${LayeredSidebarClassName}__inner`}>
           {panes.map((pane: LXLT_SidebarPane, idx: number) => {
             let paneItemsMajor: LXLT_SidebarPaneItem[] = pane.items
@@ -51,7 +64,12 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
               <>
                 {/* ____________________________________________________________ */}
                 {/* Navigaton Pane */}
-                <div className={`${LayeredSidebarClassName}__pane`} key={idx}>
+                <div
+                  className={`${LayeredSidebarClassName}__pane`}
+                  onMouseEnter={() => idx == panes.length - 1 ? null : setHover(true)}
+                  onMouseLeave={() => idx == panes.length - 1 ? null : setHover(false)}
+                  key={idx}
+                >
                   {/* ____________________________________________________________ */}
                   {/* List header */}
                   {pane.header && (

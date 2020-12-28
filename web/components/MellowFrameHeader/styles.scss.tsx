@@ -466,6 +466,7 @@ export const InteractiveLogotypeStyle = styled.div`
           top: 50%;
 
           transform: translate(-50%, -50%) scale(1);
+          transform-style: preserve-3d;
           transform-origin: center center;
           transition: transform 1.5s ease;
           will-change: transform;
@@ -494,6 +495,7 @@ export const InteractiveLogotypeStyle = styled.div`
           transform: scale(1);
 
           transform-origin: center center;
+          transform-style: preserve-3d;
 
           transition: transform 1s ease;
           will-change: transform;

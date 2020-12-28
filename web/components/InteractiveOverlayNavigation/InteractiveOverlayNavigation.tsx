@@ -5,6 +5,7 @@ import React from "react";
 import {
   LXLT_LinkItem,
   LXLT_LinkItemWithCaption,
+  Settings,
   SiteNavigation,
   __DEBUG__,
 } from "../../constants/site/Settings";
@@ -74,7 +75,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           {/* Close Button */}
           <OvalButton
             label={`Misc`}
-            href={`/sample`}
+            href={Settings.miscPage}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
             addClass={`${InteractiveOverlayNavigationClassName}__oval-btn--close`}
             invert={true}

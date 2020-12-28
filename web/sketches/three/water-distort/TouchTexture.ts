@@ -177,7 +177,7 @@ export class TouchTexture {
     let offset = this.size * 5;
 
     this.ctx.beginPath();
-    this.ctx.fillStyle = "rgba(0,255,0,1)";
+    this.ctx.fillStyle = "rgba(255,0,0,1)";
     this.ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
     this.ctx.fill();
 

@@ -1,5 +1,5 @@
 // Core
-import React from "react";
+import React, { CSSProperties } from "react";
 
 // Constants
 import { __DEBUG__ } from "../../constants/site/Settings";
@@ -23,6 +23,12 @@ export type LXLT_SimpleContentTemplate = {
   globalSidebarPanes?: LXLT_SidebarPane[];
   children: React.ReactNode;
 };
+
+export type LXLT_SimpleContentNode = {
+  isFirstNode?: boolean;
+  addClass?: boolean;
+  style?: CSSProperties;
+}
 
 // Begin Data
 // __________________________________________________________________________________________

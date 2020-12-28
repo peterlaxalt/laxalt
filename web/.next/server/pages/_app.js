@@ -459,7 +459,7 @@ const InteractiveOverlayNavigation = ({
           invert: true
         }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(OvalButton["a" /* OvalButton */], {
           label: `Misc`,
-          href: `/sample`,
+          href: Settings["a" /* Settings */].miscPage,
           onClick: () => toggleOverlayAndLogotypeExpansion(),
           addClass: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__oval-btn--close`,
           invert: true
@@ -1029,7 +1029,7 @@ class TouchTexture_TouchTexture {
     let color = `${red}, ${green}, ${blue}`;
     let offset = this.size * 5;
     this.ctx.beginPath();
-    this.ctx.fillStyle = "rgba(0,255,0,1)";
+    this.ctx.fillStyle = "rgba(255,0,0,1)";
     this.ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
     this.ctx.fill();
     this.ctx.shadowOffsetX = offset;
@@ -1695,7 +1695,9 @@ var map = {
 	"./footer-canvas": "jOaG",
 	"./footer-canvas.tsx": "jOaG",
 	"./glsl": "iRSi",
-	"./glsl.tsx": "iRSi"
+	"./glsl.tsx": "iRSi",
+	"./no-water-distort.canvas": "ChSm",
+	"./no-water-distort.canvas.tsx": "ChSm"
 };
 
 
@@ -1958,6 +1960,253 @@ const InteractiveOverlayNavigationStyle = styled_components__WEBPACK_IMPORTED_MO
 
 /***/ }),
 
+/***/ "ChSm":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ *
+ * Shader fun
+ * @author Peter Laxalt
+ *
+ */
+// Begin Component
+// __________________________________________________________________________
+const DharmaCanvasDisplay = (W, H, ID, // DharmaTheme,
+parentEl) => p => {
+  // _________________________________________________
+  // Config
+  let canvas; // ____________________________
+  // Fonts
+
+  let dharmaFont; // ____________________________
+  // Typography
+
+  let text = "LAXALT";
+  let splitCharacterArray = text.split("");
+  let characters = splitCharacterArray.map((character, idx) => {
+    return {
+      letter: character,
+      count: 1,
+      idx: idx,
+      copies: 5,
+      copiesLastVisible: 0,
+      copiesAreVisible: false,
+      countIsIncrementing: true,
+      countIsDecrementing: false,
+      copiesAreIncrementing: true,
+      copiesAreDecrementing: false
+    };
+  });
+  let characterCount = splitCharacterArray.length;
+  let characterWidth = W / characterCount;
+  let characterSize = H * 1.15;
+  let verticalSkewDivisible = 2.75;
+  let characterSkewDivisible = 1.36;
+  console.log(characterSize, "characterSize"); // ____________________________
+  // Counts
+  // let renderCount: number = 0;
+
+  let previousCountUpdateTime = 0;
+  let previousCopyUpdateTime = 0; // ____________________________
+  // Strokes
+
+  let strokeWidth = 4;
+  let strokeOffset = strokeWidth * 1.5; // ____________________________
+  // Limits
+
+  let maxCount = 3;
+  let minCount = 1;
+  let maxCopies = 12;
+  let minCopies = 1;
+  let frameRate = 10; // ____________________________
+  // Translation
+  // let previousVerticalTranslation: number = H / 2.25;
+
+  let verticalTranslationWhitespaceCompensation = 2.25;
+
+  const previousHorizontalTranslation = idx => -60 + (characterWidth * idx + characterWidth / 1.5 + strokeOffset); // _________________________________________________
+  // Preload
+
+
+  p.preload = () => {
+    dharmaFont = p.loadFont(`/fonts/dharma/dharma_regular.ttf`);
+  }; // _________________________________________________
+  // Setup
+
+
+  p.setup = () => {
+    // Our Canvas
+    canvas = p.createCanvas(W, H); // ThreeWaterCanvas(parentEl, canvas.elt);
+
+    p.frameRate(frameRate);
+
+    if (window.devicePixelRatio > 1 && window.devicePixelRatio < 3) {
+      p.pixelDensity(1.25);
+    }
+  }; // _________________________________________________
+  // Update Character
+
+
+  const updateCharacter = (char, idx) => {
+    if (char.count < maxCount && char.countIsIncrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        count: char.count + 1
+      });
+      previousCountUpdateTime = p.millis();
+      return;
+    } else if (char.count === maxCount) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        count: char.count - 1,
+        countIsIncrementing: false,
+        countIsDecrementing: true
+      });
+      previousCountUpdateTime = p.millis();
+      return;
+    } else if (char.count > minCount && char.countIsDecrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        count: char.count - 1,
+        countIsDecrementing: true
+      });
+      previousCountUpdateTime = p.millis();
+      return;
+    } else if (char.count === minCount && char.countIsDecrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        count: char.count + 1,
+        countIsIncrementing: true,
+        countIsDecrementing: false
+      });
+      previousCountUpdateTime = p.millis();
+      return;
+    }
+
+    return;
+  }; // _________________________________________________
+  // Update Copies
+
+
+  const updateCopies = (char, idx) => {
+    if (char.copies < maxCopies && char.copiesAreIncrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        copies: char.copies + 1
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies === maxCopies) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        copies: char.copies - 1,
+        copiesAreIncrementing: false,
+        copiesAreDecrementing: true
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies > minCopies && char.copiesAreDecrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        copies: char.copies - 1,
+        copiesAreDecrementing: true
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    } else if (char.copies === minCopies && char.copiesAreDecrementing) {
+      characters[idx] = _objectSpread(_objectSpread({}, char), {}, {
+        copies: char.copies + 1,
+        copiesAreIncrementing: true,
+        copiesAreDecrementing: false
+      });
+      previousCopyUpdateTime = p.millis();
+      return;
+    }
+
+    return;
+  }; // _________________________________________________
+  // Draw
+
+
+  p.draw = () => {
+    p.background(window.laxaltUniversalTheme.background);
+    p.textFont(dharmaFont);
+    p.textSize(characterSize);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.fill(`${window.laxaltUniversalTheme.foreground}`);
+    p.strokeWeight(strokeWidth);
+    p.stroke(window.laxaltUniversalTheme.background);
+
+    if (H && W) {
+      // _________________________________________
+      // Loop through our copies
+      characters.map((char, idx) => {
+        p.scale(1, 1);
+        let randomCharPick = Math.random() <= 0.5;
+
+        if (randomCharPick) {
+          updateCopies(char, idx);
+        }
+
+        if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
+          updateCharacter(char, idx);
+        }
+
+        let countArray = Array.from(Array(char.count).keys());
+        countArray = countArray.map(countNumber => {
+          return countNumber + 1;
+        }); // _________________________________________
+        // Duplicate positions
+
+        countArray.map((countNumber, idxx) => {
+          let verticalScale = 1 / (char.count * 0.95);
+          let duplicateVerticalPosition = char.count == 1 ? H / verticalTranslationWhitespaceCompensation : characterSize / verticalSkewDivisible + characterSize / characterSkewDivisible * idxx; // _________________________________________
+          // Make copies
+
+          let copiesArray = Array.from(Array(char.copies).keys()); // let randomCopyPick = Math.random() <= 0.5;
+
+          copiesArray = copiesArray.map(copyNumber => {
+            return copyNumber + 1;
+          }); // let randomCopyPick = Math.random() <= 0.5;
+          // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
+
+          previousCopyUpdateTime; // let isFirstCount = true;
+
+          copiesArray.map((copyNumber, idxxx) => {
+            // let centerCoordsX = W / 2;
+            // let centerCoordsY = H / 2;
+            // let horizontalTranslate =
+            //   copyNumber !== 1
+            //     ? (previousHorizontalTranslation(idx) +
+            //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
+            //     : previousHorizontalTranslation(idx) +
+            //       strokeOffset * copyNumber;
+            // let verticalTranslate =
+            //   copyNumber !== 1
+            //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
+            //     : duplicateVerticalPosition - strokeOffset * copyNumber;
+            let horizontalTranslate = previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+            let verticalTranslate = duplicateVerticalPosition - strokeOffset * copyNumber;
+            p.push();
+            p.scale(1, verticalScale);
+            p.text(char.letter, horizontalTranslate, verticalTranslate);
+            p.pop();
+          });
+        });
+      });
+    }
+  };
+
+  p.windowResized = () => {
+    p.resizeCanvas(W, H);
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DharmaCanvasDisplay);
+
+/***/ }),
+
 /***/ "Dtiu":
 /***/ (function(module, exports) {
 
@@ -2154,7 +2403,7 @@ const InteractiveLogotypeClassName = "interactive-logotype";
 const InteractiveLogotypeStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__InteractiveLogotypeStyle",
   componentId: "sc-1d6kx9a-1"
-})(["&.", "{--", "__icon-size:calc(", " / 1.75);--", "__circle-size:calc(var(--", "__icon-size) * 1.2);--", "__circle-radius:calc(var(--", "__circle-size) / 2);--", "__circle-circumference:calc(2 * ", " * var(--", "__circle-radius));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100vw - (", " * 2));height:calc(100vh - (", " * 2));overflow:hidden;pointer-events:none;z-index:900;&--inactive{.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;}}}&--is-expanded{.", "__inner{transform:translate(-50%,90%) !important;}.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;stroke-width:calc(", " / 1.5) !important;transform:translate(-50%,-50%) scale(1.5) !important;fill:", " !important;stroke:", " !important;}&__icon{transform:scale(1.25) rotate(90deg) !important;&:before{transform:translate(-50%,-50%) scaleY(0) !important;background:", " !important;}&:after{transform:translate(-50%,-50%) scaleX(0) !important;background:", " !important;}&__diagonal{&:before,&:after{transform:scaleY(1) !important;background:", " !important;}}}}}&--fill{z-index:800;}.", "__inner{position:absolute;top:calc(", " / 4.35);left:50%;transform:translate(-50%,0%);transition:transform 1s ease;will-change:transform;z-index:800;.", "__el{display:block;width:var(--", "__icon-size);height:var(--", "__icon-size);transform:scale(1);color:", ";pointer-events:all;position:relative;transition:transform 1s ease;&:hover{.", "__el__circle{stroke-dashoffset:0;}}&__circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible;stroke:", ";stroke-width:", ";stroke-dasharray:var(--", "__circle-circumference);stroke-dashoffset:var(--", "__circle-circumference);fill:", ";width:calc(var(--", "__circle-radius) * 2);height:calc(var(--", "__circle-radius) * 2);transition:stroke-dasharray 1s ease,stroke-dashoffset 1s ease,transform 1s ease,stroke-width 1s ease;}&:before,&:after{content:\"\";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transform-origin:center center;transition:transform 1.5s ease;will-change:transform;width:100%;height:100%;}&:after{}&__icon{position:relative;width:var(--", "__icon-size);height:var(--", "__icon-size);display:block;z-index:10;transform:scale(1);transform-origin:center center;transition:transform 1s ease;will-change:transform;&:hover{transform:scale(1.25);&:before{transform:translate(-50%,-50%) scaleY(0);}&:after{transform:translate(-50%,-50%) scaleX(0);}}&:before,&:after{content:'';position:absolute;background:", ";left:50%;top:50%;transform-origin:center center;transition:transform 1s ease;will-change:transform;}&:before{width:2px;height:80%;transform:translate(-50%,-50%) scaleY(1);}&:after{width:80%;height:2px;transform:translate(-50%,-50%) scaleX(1);}&__diagonal{position:absolute;z-index:15;display:block;left:50%;top:50%;width:2px;height:80%;transform-origin:center center;&--down{transform:translate(-50%,-50%) rotate(45deg);}&--up{transform:translate(-50%,-50%) rotate(-45deg);}&:before,&:after{content:'';position:absolute;width:100%;height:100%;transform:scaleY(.25);transition:transform 1s ease;will-change:transform;background:", ";}&:before{top:0;left:0;transform-origin:top center;}&:after{bottom:0;left:0;transform-origin:bottom center;}}}}}&--inactive,&--fill-bars-is-expanded{.", "__inner{transform:translate(-50%,0%);}}@media (max-width:", "){.", "__inner{transform:translate(-50%,0%);}}}"], InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, Math.PI, InteractiveLogotypeClassName, CssFramePaddingString, CssFramePaddingString, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, CssFrameBorderWidth, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, CssFrameBorderWidth, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName);
+})(["&.", "{--", "__icon-size:calc(", " / 1.75);--", "__circle-size:calc(var(--", "__icon-size) * 1.2);--", "__circle-radius:calc(var(--", "__circle-size) / 2);--", "__circle-circumference:calc(2 * ", " * var(--", "__circle-radius));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100vw - (", " * 2));height:calc(100vh - (", " * 2));overflow:hidden;pointer-events:none;z-index:900;&--inactive{.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;}}}&--is-expanded{.", "__inner{transform:translate(-50%,90%) !important;}.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;stroke-width:calc(", " / 1.5) !important;transform:translate(-50%,-50%) scale(1.5) !important;fill:", " !important;stroke:", " !important;}&__icon{transform:scale(1.25) rotate(90deg) !important;&:before{transform:translate(-50%,-50%) scaleY(0) !important;background:", " !important;}&:after{transform:translate(-50%,-50%) scaleX(0) !important;background:", " !important;}&__diagonal{&:before,&:after{transform:scaleY(1) !important;background:", " !important;}}}}}&--fill{z-index:800;}.", "__inner{position:absolute;top:calc(", " / 4.35);left:50%;transform:translate(-50%,0%);transition:transform 1s ease;will-change:transform;z-index:800;.", "__el{display:block;width:var(--", "__icon-size);height:var(--", "__icon-size);transform:scale(1);color:", ";pointer-events:all;position:relative;transition:transform 1s ease;&:hover{.", "__el__circle{stroke-dashoffset:0;}}&__circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible;stroke:", ";stroke-width:", ";stroke-dasharray:var(--", "__circle-circumference);stroke-dashoffset:var(--", "__circle-circumference);fill:", ";width:calc(var(--", "__circle-radius) * 2);height:calc(var(--", "__circle-radius) * 2);transition:stroke-dasharray 1s ease,stroke-dashoffset 1s ease,transform 1s ease,stroke-width 1s ease;}&:before,&:after{content:\"\";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transform-style:preserve-3d;transform-origin:center center;transition:transform 1.5s ease;will-change:transform;width:100%;height:100%;}&:after{}&__icon{position:relative;width:var(--", "__icon-size);height:var(--", "__icon-size);display:block;z-index:10;transform:scale(1);transform-origin:center center;transform-style:preserve-3d;transition:transform 1s ease;will-change:transform;&:hover{transform:scale(1.25);&:before{transform:translate(-50%,-50%) scaleY(0);}&:after{transform:translate(-50%,-50%) scaleX(0);}}&:before,&:after{content:'';position:absolute;background:", ";left:50%;top:50%;transform-origin:center center;transition:transform 1s ease;will-change:transform;}&:before{width:2px;height:80%;transform:translate(-50%,-50%) scaleY(1);}&:after{width:80%;height:2px;transform:translate(-50%,-50%) scaleX(1);}&__diagonal{position:absolute;z-index:15;display:block;left:50%;top:50%;width:2px;height:80%;transform-origin:center center;&--down{transform:translate(-50%,-50%) rotate(45deg);}&--up{transform:translate(-50%,-50%) rotate(-45deg);}&:before,&:after{content:'';position:absolute;width:100%;height:100%;transform:scaleY(.25);transition:transform 1s ease;will-change:transform;background:", ";}&:before{top:0;left:0;transform-origin:top center;}&:after{bottom:0;left:0;transform-origin:bottom center;}}}}}&--inactive,&--fill-bars-is-expanded{.", "__inner{transform:translate(-50%,0%);}}@media (max-width:", "){.", "__inner{transform:translate(-50%,0%);}}}"], InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, Math.PI, InteractiveLogotypeClassName, CssFramePaddingString, CssFramePaddingString, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, CssFrameBorderWidth, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, CssFrameBorderWidth, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName);
 /**
  *
  * @name InteractiveFillBarsClassName
@@ -2484,7 +2733,9 @@ const Settings = {
     facebook: "PlayWellTEK",
     instagram: "playwellteknologies",
     fbAppId: "56639339020281"
-  }
+  },
+  contactPage: "/contact",
+  miscPage: "/misc"
 };
 const SiteNavigation = {
   FrameItems: [{
@@ -2539,7 +2790,7 @@ const SiteNavigation = {
   OverlayNav: {
     NavItems: [{
       label: "Art",
-      href: "/sample",
+      href: "/art",
       caption: "Lorem ipsum"
     }, {
       label: "Design",
@@ -2547,15 +2798,15 @@ const SiteNavigation = {
       caption: "Lorem ipsum"
     }, {
       label: "Code",
-      href: "/sample",
+      href: "/code",
       caption: "Lorem ipsum"
     }, {
       label: "Studio",
-      href: "/sample",
+      href: "/studio",
       caption: "Lorem ipsum"
     }, {
       label: "Thoughts",
-      href: "/sample",
+      href: "/thoughts",
       caption: "Lorem ipsum"
     } // {
     //   label: "Learn",
@@ -4697,7 +4948,7 @@ const MellowFrameHeaderDisplay = ({
                   children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
                     className: `${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__linklist__item ${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__misc-wrapper__el`,
                     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
-                      href: "/sample",
+                      href: Settings["a" /* Settings */].miscPage,
                       children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                         className: `${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__linklist__item__el`,
                         children: "Misc"
@@ -4743,7 +4994,7 @@ const MellowFrameHeaderDisplay = ({
                 }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
                   className: `${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__inner-col ${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__inner-col--contact-btn`,
                   children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
-                    href: "/sample",
+                    href: Settings["a" /* Settings */].contactPage,
                     children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
                       className: `${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__linklist__item__el ${MellowFrameHeader_styles_scss["h" /* MellowFrameHeaderClassName */]}__frame__nav__linklist__item__el--contact-btn`,
                       children: "Contact"

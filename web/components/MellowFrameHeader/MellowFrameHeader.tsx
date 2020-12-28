@@ -8,6 +8,7 @@ import { NextRouter } from "next/router";
 import {
   LXLT_LinkItem,
   LXLT_LinkItemWithCaption,
+  Settings,
   SiteNavigation,
   __DEBUG__,
 } from "../../constants/site/Settings";
@@ -351,7 +352,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                     <div
                       className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item ${MellowFrameHeaderClassName}__frame__nav__misc-wrapper__el`}
                     >
-                      <Link href="/sample">
+                      <Link href={Settings.miscPage}>
                         <a
                           className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__el`}
                         >
@@ -426,7 +427,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                   <div
                     className={`${MellowFrameHeaderClassName}__frame__nav__inner-col ${MellowFrameHeaderClassName}__frame__nav__inner-col--contact-btn`}
                   >
-                    <Link href="/sample">
+                    <Link href={Settings.contactPage}>
                       <a
                         className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__el ${MellowFrameHeaderClassName}__frame__nav__linklist__item__el--contact-btn`}
                       >
