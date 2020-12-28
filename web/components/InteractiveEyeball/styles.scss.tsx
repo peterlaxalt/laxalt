@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Theme } from "../../constants/Theme";
 import {} from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
+import { CssFrameBorderWidth } from "../MellowFrameHeader/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -48,6 +49,10 @@ export const InteractiveEyeballStyle = styled.span`
       transform: rotate(-45deg);
 
       border: 4px solid ${Theme.Color.varBackground};
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        border: ${CssFrameBorderWidth} solid ${Theme.Color.varBackground};
+      }
     }
 
     .${InteractiveEyeballClassName}__pupil-wrapper {
@@ -83,6 +88,10 @@ export const InteractiveEyeballStyle = styled.span`
         position: relative;
 
         border: 4px solid ${Theme.Color.varBackground};
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          border: ${CssFrameBorderWidth} solid ${Theme.Color.varBackground};
+        }
 
         &:before {
           content: '';
@@ -129,11 +138,19 @@ export const InteractiveEyeballStyle = styled.span`
     &.${InteractiveEyeballClassName}--is-inverted {
       .${InteractiveEyeballClassName}__outline {
         border: 4px solid ${Theme.Color.varForeground};
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          border: ${CssFrameBorderWidth} solid ${Theme.Color.varBackground};
+        }
       }
 
       .${InteractiveEyeballClassName}__pupil {
         &__el {
           border: 4px solid ${Theme.Color.varForeground};
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            border: ${CssFrameBorderWidth} solid ${Theme.Color.varBackground};
+          }
 
           &:before {
             background: ${Theme.Color.varForeground};

@@ -51,6 +51,13 @@ export const OvalButtonStyle = styled.span`
       letter-spacing: 1px;
       font-size: 1.5rem;
 
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        min-width: 100px;
+        font-size: 1rem;
+
+        height: 2.5rem;
+      }
+
       &:hover {
         background: ${Theme.Color.varForeground};
         color: ${Theme.Color.varBackground};

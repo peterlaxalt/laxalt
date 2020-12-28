@@ -16,6 +16,7 @@ import { UpAndRotate } from "../../constants/styles/Animation";
 import { Theme } from "../../constants/Theme";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
 import { CssFramePaddingString } from "../MellowFrameHeader/styles.scss";
+import { OvalButtonClassName } from "../OvalButton/styles.scss";
 
 // Constants
 // import { Root } from "../../constants/Theme";
@@ -42,6 +43,10 @@ export const FooterStyle = styled.footer`
 
     overflow: hidden;
 
+    @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+      padding: 0;
+    }
+
     &:after {
       content: "";
 
@@ -58,6 +63,10 @@ export const FooterStyle = styled.footer`
 
     font-size: 1.5rem;
     font-weight: 200;
+
+    @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+      font-size: 1rem;
+    }
 
     .${FooterClassName}__inner {
       position: relative;
@@ -116,6 +125,10 @@ export const FooterStyle = styled.footer`
         display: flex;
         align-items: center;
 
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          font-size: 3.5rem;
+        }
+
         .${InteractiveEyeballClassName}__outline {
           border: 3px solid ${Theme.Color.varForeground};
         }
@@ -158,6 +171,10 @@ export const FooterStyle = styled.footer`
           will-change: transform;
 
           transition: transform 0.5s ease-in-out;
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            transform: unset;
+          }
         }
 
         &:hover {
@@ -201,6 +218,10 @@ export const FooterStyle = styled.footer`
             will-change: transform;
 
             transition: transform 1.5s ease-in-out;
+
+            @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+              display: none;
+            }
 
             &:before,
             &:after {
@@ -262,6 +283,36 @@ export const FooterStyle = styled.footer`
 
         &--three {
           text-align: right;
+        }
+      }
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        flex-wrap: wrap;
+
+        .${FooterClassName}__bottom__col {
+          width: calc(100% / 2);
+
+          &--one {
+            width: 66%;
+            line-height: 1.2;
+          }
+
+          &--two {
+            order: 3;
+            width: 100%;
+
+            margin-top: 2rem;
+          }
+
+          &--three {
+            width: calc(100% / 3);
+
+            .${OvalButtonClassName} {
+              &__el {
+                font-size: .65rem;
+              }
+            }
+          }
         }
       }
     }

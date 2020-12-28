@@ -84,6 +84,10 @@ export const MarqueeRowStyle = styled.section`
 
       flex-shrink: 0;
 
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        font-size: 5rem;
+      }
+
       &:after {
         content: '';
 

@@ -10,7 +10,7 @@ import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
 import { UpAndRotate } from "../../constants/styles/Animation";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
-import { CssFramePaddingString } from "../MellowFrameHeader/styles.scss";
+import { CssFrameBorderWidth, CssFramePaddingString, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -61,6 +61,10 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
       padding-bottom: 250px;
       padding-top: var(--${InteractiveOverlayNavigationClassName}__top-offset);
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        display: block;
+      }
     }
 
     /* _________________________________________________ */
@@ -75,14 +79,26 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         top: calc((${CssFramePaddingString}) * 2);
 
         z-index: 10;
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          top: 1rem;
+        }
       }
 
       &--home {
         left: calc((${CssFramePaddingString}) * 2);
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          left: 1rem;
+        }
       }
 
       &--close {
         right: calc((${CssFramePaddingString}) * 2);
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          right: 1rem;
+        }
       }
     }
 
@@ -95,6 +111,14 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
       right: 0;
 
       z-index: 50;
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        position: relative;
+        bottom: 0;
+
+        margin-top: 2rem;
+        margin-left: calc(${CssFrameSizeWithBorderString} + 1rem);
+      }
 
       &__list {
         min-width: 250px;
@@ -162,6 +186,16 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
               &:after {
                 transform: translate(-50%, -50%) scale(1);
+              }
+
+              @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+                &:before {
+                  transform: translate(-50%, -50%) scale(1.1);
+                }
+
+                &:after {
+                  transform: translate(-50%, -50%) scale(1);
+                }
               }
             }
           }
@@ -249,6 +283,15 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
               border-top-left-radius: 100%;
 
               top: 50%;
+            }
+
+            @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+              height: ${CssFrameBorderWidth};
+
+              &:before,
+              &:after {
+                border-width: ${CssFrameBorderWidth};
+              }
             }
           }
         }

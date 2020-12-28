@@ -82,6 +82,54 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           />
 
           {/* _______________________________________________ */}
+          {/* Navigation List */}
+          <ul className={`${InteractiveOverlayNavigationClassName}__nav-list`}>
+            {SiteNavigation.OverlayNav.NavItems.map(
+              (item: LXLT_LinkItemWithCaption, idx: number) => {
+                return (
+                  <li
+                    key={idx}
+                    className={`${InteractiveOverlayNavigationClassName}__nav-list__item`}
+                  >
+                    <span
+                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__eyeball`}
+                    >
+                      <InteractiveEyeball
+                        scrollContainer={InteractiveOverlayRef}
+                      />
+                    </span>
+                    {/* _______________________________________________ */}
+                    {/* Inner Item */}
+                    <span
+                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__overflow-wrapper`}
+                    >
+                      <span
+                        className={`${InteractiveOverlayNavigationClassName}__nav-list__item__inner`}
+                      >
+                        <Link href={item.href}>
+                          <a
+                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
+                            onClick={() => toggleOverlayAndLogotypeExpansion()}
+                          >
+                            <span
+                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}
+                            />
+                            <span
+                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__label`}
+                            >
+                              {item.label}
+                            </span>
+                          </a>
+                        </Link>
+                      </span>
+                    </span>
+                  </li>
+                );
+              }
+            )}
+          </ul>
+
+          {/* _______________________________________________ */}
           {/* Social Container */}
           <div className={`${InteractiveOverlayNavigationClassName}__social`}>
             <ul
@@ -135,54 +183,6 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
               </li>
             </ul>
           </div>
-
-          {/* _______________________________________________ */}
-          {/* Navigation List */}
-          <ul className={`${InteractiveOverlayNavigationClassName}__nav-list`}>
-            {SiteNavigation.OverlayNav.NavItems.map(
-              (item: LXLT_LinkItemWithCaption, idx: number) => {
-                return (
-                  <li
-                    key={idx}
-                    className={`${InteractiveOverlayNavigationClassName}__nav-list__item`}
-                  >
-                    <span
-                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__eyeball`}
-                    >
-                      <InteractiveEyeball
-                        scrollContainer={InteractiveOverlayRef}
-                      />
-                    </span>
-                    {/* _______________________________________________ */}
-                    {/* Inner Item */}
-                    <span
-                      className={`${InteractiveOverlayNavigationClassName}__nav-list__item__overflow-wrapper`}
-                    >
-                      <span
-                        className={`${InteractiveOverlayNavigationClassName}__nav-list__item__inner`}
-                      >
-                        <Link href={item.href}>
-                          <a
-                            className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor`}
-                            onClick={() => toggleOverlayAndLogotypeExpansion()}
-                          >
-                            <span
-                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__indicator`}
-                            />
-                            <span
-                              className={`${InteractiveOverlayNavigationClassName}__nav-list__item__anchor__label`}
-                            >
-                              {item.label}
-                            </span>
-                          </a>
-                        </Link>
-                      </span>
-                    </span>
-                  </li>
-                );
-              }
-            )}
-          </ul>
         </div>
       </InteractiveOverlayNavigationStyle>
     </>

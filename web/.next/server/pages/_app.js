@@ -405,7 +405,7 @@ var InteractiveOverlayNavigation_styles_scss = __webpack_require__("97/L");
 // EXTERNAL MODULE: external "styled-components"
 var external_styled_components_ = __webpack_require__("Dtiu");
 
-// EXTERNAL MODULE: ./components/OvalButton/index.tsx + 2 modules
+// EXTERNAL MODULE: ./components/OvalButton/index.tsx + 1 modules
 var OvalButton = __webpack_require__("wFD6");
 
 // CONCATENATED MODULE: ./components/InteractiveOverlayNavigation/InteractiveOverlayNavigation.tsx
@@ -463,6 +463,37 @@ const InteractiveOverlayNavigation = ({
           onClick: () => toggleOverlayAndLogotypeExpansion(),
           addClass: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__oval-btn--close`,
           invert: true
+        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("ul", {
+          className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list`,
+          children: Settings["b" /* SiteNavigation */].OverlayNav.NavItems.map((item, idx) => {
+            return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
+              className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item`,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__eyeball`,
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(InteractiveEyeball_InteractiveEyeball, {
+                  scrollContainer: InteractiveOverlayRef
+                })
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__overflow-wrapper`,
+                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                  className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__inner`,
+                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
+                    href: item.href,
+                    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
+                      className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor`,
+                      onClick: () => toggleOverlayAndLogotypeExpansion(),
+                      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                        className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor__indicator`
+                      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
+                        className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor__label`,
+                        children: item.label
+                      })]
+                    })
+                  })
+                })
+              })]
+            }, idx);
+          })
         }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
           className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__social`,
           children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
@@ -495,37 +526,6 @@ const InteractiveOverlayNavigation = ({
               children: "Originally / Reno, Nevada"
             })]
           })]
-        }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("ul", {
-          className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list`,
-          children: Settings["b" /* SiteNavigation */].OverlayNav.NavItems.map((item, idx) => {
-            return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
-              className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item`,
-              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__eyeball`,
-                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(InteractiveEyeball_InteractiveEyeball, {
-                  scrollContainer: InteractiveOverlayRef
-                })
-              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__overflow-wrapper`,
-                children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                  className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__inner`,
-                  children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
-                    href: item.href,
-                    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
-                      className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor`,
-                      onClick: () => toggleOverlayAndLogotypeExpansion(),
-                      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                        className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor__indicator`
-                      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-                        className: `${InteractiveOverlayNavigation_styles_scss["a" /* InteractiveOverlayNavigationClassName */]}__nav-list__item__anchor__label`,
-                        children: item.label
-                      })]
-                    })
-                  })
-                })
-              })]
-            }, idx);
-          })
         })]
       })
     })]
@@ -1956,7 +1956,7 @@ const InteractiveOverlayNavigationClassName = "interactive-overlay-nav";
 const InteractiveOverlayNavigationStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.nav.withConfig({
   displayName: "stylesscss__InteractiveOverlayNavigationStyle",
   componentId: "sc-1k6qfxc-0"
-})(["&.", "{--", "__top-offset:123px;--", "__arrow-width:1em;--", "__arrow-margin:.25em;--", "__arrow-total-size:calc(var(--", "__arrow-width) + var(--", "__arrow-margin));position:fixed;left:0;top:0;width:100vw;height:100vh;overflow-x:hidden;z-index:850;background:", ";.", "__inner{display:flex;align-items:center;justify-content:center;width:100vw;padding-bottom:250px;padding-top:var(--", "__top-offset);}.", "__oval-btn{position:relative;&--home,&--close{position:fixed;top:calc((", ") * 2);z-index:10;}&--home{left:calc((", ") * 2);}&--close{right:calc((", ") * 2);}}.", "__social{position:fixed;bottom:calc((", ") * 2);right:0;z-index:50;&__list{min-width:250px;font-size:1.5rem;font-family:", ";font-style:italic;&__item{position:relative;&__label{color:", ";display:block;padding:.5rem 0;&:hover{text-decoration:none;color:", ";background:", ";}}}}&__minor-list{margin-top:1rem;font-size:.6rem;font-weight:bold;text-transform:uppercase;letter-spacing:.1rem;line-height:2.25;color:", "}}.", "__nav-list{width:100%;margin-left:calc((", ") * 1.5);&__item{overflow:hidden;font-size:10vw;text-transform:uppercase;display:flex;align-items:center;&:hover{.", "{.", "__pupil__el{&:before{transform:translate(-50%,-50%) scale(1.5);}&:after{transform:translate(-50%,-50%) scale(1);}}}}&__overflow-wrapper{overflow:hidden;}&__inner{display:block;transform:translateX(calc(var(--", "__arrow-total-size) * -1));will-change:transform;transition:transform .5s ease-in-out;}&:hover{.", "__nav-list__item__inner{transform:translateX(0);}.", "__nav-list__item__anchor__indicator{transform:translateX(0%);}}&__anchor{color:", ";pointer-events:all;position:relative;display:flex;align-items:center;animation:", " 1s ease 1;&:hover{text-decoration:none;}&__indicator{width:var(--", "__arrow-width);display:block;margin-right:var(--", "__arrow-margin);height:4px;background:", ";position:relative;transform:translateX(-20%);will-change:transform;transition:transform 1.5s ease-in-out;&:before,&:after{content:\"\";position:absolute;right:0;height:.5em;width:.5em;}&:before{border-left:4px solid ", ";border-bottom:4px solid ", ";border-bottom-left-radius:100%;bottom:50%;}&:after{border-left:4px solid ", ";border-top:4px solid ", ";border-top-left-radius:100%;top:50%;}}}}}}"], InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Font.Code, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _InteractiveEyeball_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* InteractiveEyeballClassName */ "a"], _InteractiveEyeball_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* InteractiveEyeballClassName */ "a"], InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_3__[/* UpAndRotate */ "b"], InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground);
+})(["&.", "{--", "__top-offset:123px;--", "__arrow-width:1em;--", "__arrow-margin:.25em;--", "__arrow-total-size:calc(var(--", "__arrow-width) + var(--", "__arrow-margin));position:fixed;left:0;top:0;width:100vw;height:100vh;overflow-x:hidden;z-index:850;background:", ";.", "__inner{display:flex;align-items:center;justify-content:center;width:100vw;padding-bottom:250px;padding-top:var(--", "__top-offset);@media(max-width:", "){display:block;}}.", "__oval-btn{position:relative;&--home,&--close{position:fixed;top:calc((", ") * 2);z-index:10;@media(max-width:", "){top:1rem;}}&--home{left:calc((", ") * 2);@media(max-width:", "){left:1rem;}}&--close{right:calc((", ") * 2);@media(max-width:", "){right:1rem;}}}.", "__social{position:fixed;bottom:calc((", ") * 2);right:0;z-index:50;@media(max-width:", "){position:relative;bottom:0;margin-top:2rem;margin-left:calc(", " + 1rem);}&__list{min-width:250px;font-size:1.5rem;font-family:", ";font-style:italic;&__item{position:relative;&__label{color:", ";display:block;padding:.5rem 0;&:hover{text-decoration:none;color:", ";background:", ";}}}}&__minor-list{margin-top:1rem;font-size:.6rem;font-weight:bold;text-transform:uppercase;letter-spacing:.1rem;line-height:2.25;color:", "}}.", "__nav-list{width:100%;margin-left:calc((", ") * 1.5);&__item{overflow:hidden;font-size:10vw;text-transform:uppercase;display:flex;align-items:center;&:hover{.", "{.", "__pupil__el{&:before{transform:translate(-50%,-50%) scale(1.5);}&:after{transform:translate(-50%,-50%) scale(1);}@media(max-width:", "){&:before{transform:translate(-50%,-50%) scale(1.1);}&:after{transform:translate(-50%,-50%) scale(1);}}}}}&__overflow-wrapper{overflow:hidden;}&__inner{display:block;transform:translateX(calc(var(--", "__arrow-total-size) * -1));will-change:transform;transition:transform .5s ease-in-out;}&:hover{.", "__nav-list__item__inner{transform:translateX(0);}.", "__nav-list__item__anchor__indicator{transform:translateX(0%);}}&__anchor{color:", ";pointer-events:all;position:relative;display:flex;align-items:center;animation:", " 1s ease 1;&:hover{text-decoration:none;}&__indicator{width:var(--", "__arrow-width);display:block;margin-right:var(--", "__arrow-margin);height:4px;background:", ";position:relative;transform:translateX(-20%);will-change:transform;transition:transform 1.5s ease-in-out;&:before,&:after{content:\"\";position:absolute;right:0;height:.5em;width:.5em;}&:before{border-left:4px solid ", ";border-bottom:4px solid ", ";border-bottom-left-radius:100%;bottom:50%;}&:after{border-left:4px solid ", ";border-top:4px solid ", ";border-top-left-radius:100%;top:50%;}@media(max-width:", "){height:", ";&:before,&:after{border-width:", ";}}}}}}}"], InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFrameSizeWithBorderString */ "c"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Font.Code, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveOverlayNavigationClassName, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFramePaddingString */ "b"], _InteractiveEyeball_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* InteractiveEyeballClassName */ "a"], _InteractiveEyeball_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* InteractiveEyeballClassName */ "a"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_styles_Animation__WEBPACK_IMPORTED_MODULE_3__[/* UpAndRotate */ "b"], InteractiveOverlayNavigationClassName, InteractiveOverlayNavigationClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFrameBorderWidth */ "a"], _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_5__[/* CssFrameBorderWidth */ "a"]);
 
 /***/ }),
 
@@ -2026,7 +2026,7 @@ parentEl) => p => {
   let minCount = 1;
   let maxCopies = 12;
   let minCopies = 1;
-  let frameRate = 10; // ____________________________
+  let frameRate = 60; // ____________________________
   // Translation
   // let previousVerticalTranslation: number = H / 2.25;
 
@@ -2130,71 +2130,73 @@ parentEl) => p => {
 
 
   p.draw = () => {
-    p.background(window.laxaltUniversalTheme.background);
-    p.textFont(dharmaFont);
-    p.textSize(characterSize);
-    p.textAlign(p.CENTER, p.CENTER);
-    p.fill(`${window.laxaltUniversalTheme.foreground}`);
-    p.strokeWeight(strokeWidth);
-    p.stroke(window.laxaltUniversalTheme.background);
+    if (p.frameCount % 10 === 0) {
+      p.background(window.laxaltUniversalTheme.background);
+      p.textFont(dharmaFont);
+      p.textSize(characterSize);
+      p.textAlign(p.CENTER, p.CENTER);
+      p.fill(`${window.laxaltUniversalTheme.foreground}`);
+      p.strokeWeight(strokeWidth);
+      p.stroke(window.laxaltUniversalTheme.background);
 
-    if (H && W) {
-      // _________________________________________
-      // Loop through our copies
-      characters.map((char, idx) => {
-        p.scale(1, 1);
-        let randomCharPick = Math.random() <= 0.5;
+      if (H && W) {
+        // _________________________________________
+        // Loop through our copies
+        characters.map((char, idx) => {
+          p.scale(1, 1);
+          let randomCharPick = Math.random() <= 0.5;
 
-        if (randomCharPick) {
-          updateCopies(char, idx);
-        }
+          if (randomCharPick) {
+            updateCopies(char, idx);
+          }
 
-        if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
-          updateCharacter(char, idx);
-        }
+          if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
+            updateCharacter(char, idx);
+          }
 
-        let countArray = Array.from(Array(char.count).keys());
-        countArray = countArray.map(countNumber => {
-          return countNumber + 1;
-        }); // _________________________________________
-        // Duplicate positions
+          let countArray = Array.from(Array(char.count).keys());
+          countArray = countArray.map(countNumber => {
+            return countNumber + 1;
+          }); // _________________________________________
+          // Duplicate positions
 
-        countArray.map((countNumber, idxx) => {
-          let verticalScale = 1 / (char.count * 0.95);
-          let duplicateVerticalPosition = char.count == 1 ? H / verticalTranslationWhitespaceCompensation : characterSize / verticalSkewDivisible + characterSize / characterSkewDivisible * idxx; // _________________________________________
-          // Make copies
+          countArray.map((countNumber, idxx) => {
+            let verticalScale = 1 / (char.count * 0.95);
+            let duplicateVerticalPosition = char.count == 1 ? H / verticalTranslationWhitespaceCompensation : characterSize / verticalSkewDivisible + characterSize / characterSkewDivisible * idxx; // _________________________________________
+            // Make copies
 
-          let copiesArray = Array.from(Array(char.copies).keys()); // let randomCopyPick = Math.random() <= 0.5;
+            let copiesArray = Array.from(Array(char.copies).keys()); // let randomCopyPick = Math.random() <= 0.5;
 
-          copiesArray = copiesArray.map(copyNumber => {
-            return copyNumber + 1;
-          }); // let randomCopyPick = Math.random() <= 0.5;
-          // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
+            copiesArray = copiesArray.map(copyNumber => {
+              return copyNumber + 1;
+            }); // let randomCopyPick = Math.random() <= 0.5;
+            // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
 
-          previousCopyUpdateTime; // let isFirstCount = true;
+            previousCopyUpdateTime; // let isFirstCount = true;
 
-          copiesArray.map((copyNumber, idxxx) => {
-            // let centerCoordsX = W / 2;
-            // let centerCoordsY = H / 2;
-            // let horizontalTranslate =
-            //   copyNumber !== 1
-            //     ? (previousHorizontalTranslation(idx) +
-            //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
-            //     : previousHorizontalTranslation(idx) +
-            //       strokeOffset * copyNumber;
-            // let verticalTranslate =
-            //   copyNumber !== 1
-            //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
-            //     : duplicateVerticalPosition - strokeOffset * copyNumber;
-            let horizontalTranslate = previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
-            let verticalTranslate = duplicateVerticalPosition - strokeOffset * copyNumber;
-            p.push();
-            p.scale(1, verticalScale);
-            p.text(char.letter, horizontalTranslate, verticalTranslate);
-            p.pop();
+            copiesArray.map((copyNumber, idxxx) => {
+              // let centerCoordsX = W / 2;
+              // let centerCoordsY = H / 2;
+              // let horizontalTranslate =
+              //   copyNumber !== 1
+              //     ? (previousHorizontalTranslation(idx) +
+              //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : previousHorizontalTranslation(idx) +
+              //       strokeOffset * copyNumber;
+              // let verticalTranslate =
+              //   copyNumber !== 1
+              //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : duplicateVerticalPosition - strokeOffset * copyNumber;
+              let horizontalTranslate = previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+              let verticalTranslate = duplicateVerticalPosition - strokeOffset * copyNumber;
+              p.push();
+              p.scale(1, verticalScale);
+              p.text(char.letter, horizontalTranslate, verticalTranslate);
+              p.pop();
+            });
           });
         });
-      });
+      }
     }
   };
 
@@ -2384,7 +2386,7 @@ const CssFrameSizeWithBorderString = `calc(${CssFramePaddingString} + ${CssFrame
 const MellowFrameHeaderStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__MellowFrameHeaderStyle",
   componentId: "sc-1d6kx9a-0"
-})(["&.", "{--", "__frame-edge-size:", ";--", "__frame-padding:", ";--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:", ";}overflow:hidden;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:900;pointer-events:none;&.", "--inactive,&.", "--fill-bars-is-expanded{.", "__frame__nav--top{transform:translateY(-100%);}.", "__frame__nav--bottom{transform:translateY(100%);}}.", "__inner{width:100vw;height:100vh;position:relative;z-index:999;pointer-events:none;border:var(--", "__frame-padding) solid ", ";display:flex;}.", "__frame{border:", ";width:100%;z-index:500;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;&__nav{width:100%;height:", ";background:", ";pointer-events:all;text-transform:uppercase;transform:translateY(0%);will-change:transform;transition:transform .5s ease-in-out;&--top{border-bottom:", ";transform-origin:top center;}&--bottom{border-top:", ";transform-origin:bottom center;}&__inner{display:flex;align-items:center;}&__col{width:50%;height:", ";display:flex;align-items:center;&--time{flex:1;}&--contact{width:auto;flex-shrink:0;}&--left{padding-left:1rem;padding-right:1rem;}&--right{padding-right:1rem;}}&__inner-col{width:50%;&--misc{text-align:right;font-weight:800;}&--contact-btn,&--theme-picker{width:auto;flex-shrink:0;}&--contact-btn{font-weight:800;padding-left:1.5rem;}}&__misc-wrapper,&__linklist{position:relative;&:before{content:'';position:absolute;top:50%;width:1.5rem;height:1px;background:", ";transform:translateY(-50%);}}&__linklist{padding-left:2.5rem;&:before{left:0;}}&__misc-wrapper{padding-right:2.5rem;display:flex;justify-content:flex-end;&:before{right:0;}&__el{margin-right:0 !important;}}&__brandmark{font-weight:800;padding-left:2rem;&__label{width:auto;}}&__linklist{display:flex;position:relative;&__item{margin-right:2rem;&__el{color:", ";height:", ";display:inline-flex;align-items:center;position:relative;overflow:hidden;&--contact-btn{&:before{bottom:unset;top:0;}}&:before{content:'';position:absolute;left:0;right:0;bottom:0;width:100%;height:3px;background:", ";opacity:0;}&:hover{text-decoration:none;&:before{opacity:1;}}}&__time{font-size:.6rem;font-weight:bold;text-transform:uppercase;letter-spacing:.1rem;line-height:2.25;}}}}}}"], MellowFrameHeaderClassName, MellowFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, MellowFrameHeaderClassName, CssFramePaddingString, MellowFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Md, MellowFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, MellowFrameHeaderClassName, CssFrameBorderString, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, CssFrameBorderString, CssFrameBorderString, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground);
+})(["&.", "{--", "__frame-edge-size:", ";--", "__frame-padding:", ";--", "__marquee-speed:60s;@media(max-width:", "){--", "__frame-edge-size:", ";}overflow:hidden;position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:900;pointer-events:none;&.", "--inactive,&.", "--fill-bars-is-expanded{.", "__frame__nav--top{transform:translateY(-100%);}.", "__frame__nav--bottom{transform:translateY(100%);}}.", "__inner{width:100vw;height:100vh;position:relative;z-index:999;pointer-events:none;border:var(--", "__frame-padding) solid ", ";display:flex;@media(max-width:", "){border:unset;}}.", "__frame{border:", ";width:100%;z-index:500;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;&__nav{width:100%;height:", ";background:", ";pointer-events:all;text-transform:uppercase;transform:translateY(0%);will-change:transform;transition:transform .5s ease-in-out;&--top{border-bottom:", ";transform-origin:top center;}&--bottom{border-top:", ";transform-origin:bottom center;@media(max-width:", "){display:none;}}&__inner{display:flex;align-items:center;}&__col{width:50%;height:", ";display:flex;align-items:center;&--time{flex:1;}&--contact{width:auto;flex-shrink:0;}&--left{padding-left:1rem;padding-right:1rem;@media(max-width:", "){display:none;}}&--right{padding-right:1rem;@media(max-width:", "){width:100%;}}}&__inner-col{width:50%;&--misc{text-align:right;font-weight:800;@media(max-width:", "){display:none;}}&--contact-btn,&--theme-picker{width:auto;flex-shrink:0;}&--contact-btn{font-weight:800;padding-left:1.5rem;}}&__misc-wrapper,&__linklist{position:relative;&:before{content:'';position:absolute;top:50%;width:1.5rem;height:1px;background:", ";transform:translateY(-50%);}}&__linklist{padding-left:2.5rem;&:before{left:0;}}&__misc-wrapper{padding-right:2.5rem;display:flex;justify-content:flex-end;&:before{right:0;}&__el{margin-right:0 !important;}@media(max-width:", "){display:none;}}&__brandmark{font-weight:800;padding-left:2rem;&__label{width:auto;}@media(max-width:", "){padding-left:.5rem;}}&__linklist{display:flex;position:relative;&__item{margin-right:2rem;&__el{color:", ";height:", ";display:inline-flex;align-items:center;position:relative;overflow:hidden;&--contact-btn{&:before{bottom:unset;top:0;}}&:before{content:'';position:absolute;left:0;right:0;bottom:0;width:100%;height:3px;background:", ";opacity:0;}&:hover{text-decoration:none;&:before{opacity:1;}}}&__time{font-size:.6rem;font-weight:bold;text-transform:uppercase;letter-spacing:.1rem;line-height:2.25;}}@media(max-width:", "){display:none;}}}}}"], MellowFrameHeaderClassName, MellowFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, MellowFrameHeaderClassName, CssFramePaddingString, MellowFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Md, MellowFrameHeaderClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, MellowFrameHeaderClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, MellowFrameHeaderClassName, CssFrameBorderString, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, CssFrameBorderString, CssFrameBorderString, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm);
 /**
  *
  * @name InteractiveLogotypeClassName
@@ -2403,7 +2405,7 @@ const InteractiveLogotypeClassName = "interactive-logotype";
 const InteractiveLogotypeStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "stylesscss__InteractiveLogotypeStyle",
   componentId: "sc-1d6kx9a-1"
-})(["&.", "{--", "__icon-size:calc(", " / 1.75);--", "__circle-size:calc(var(--", "__icon-size) * 1.2);--", "__circle-radius:calc(var(--", "__circle-size) / 2);--", "__circle-circumference:calc(2 * ", " * var(--", "__circle-radius));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100vw - (", " * 2));height:calc(100vh - (", " * 2));overflow:hidden;pointer-events:none;z-index:900;&--inactive{.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;}}}&--is-expanded{.", "__inner{transform:translate(-50%,90%) !important;}.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;stroke-width:calc(", " / 1.5) !important;transform:translate(-50%,-50%) scale(1.5) !important;fill:", " !important;stroke:", " !important;}&__icon{transform:scale(1.25) rotate(90deg) !important;&:before{transform:translate(-50%,-50%) scaleY(0) !important;background:", " !important;}&:after{transform:translate(-50%,-50%) scaleX(0) !important;background:", " !important;}&__diagonal{&:before,&:after{transform:scaleY(1) !important;background:", " !important;}}}}}&--fill{z-index:800;}.", "__inner{position:absolute;top:calc(", " / 4.35);left:50%;transform:translate(-50%,0%);transition:transform 1s ease;will-change:transform;z-index:800;.", "__el{display:block;width:var(--", "__icon-size);height:var(--", "__icon-size);transform:scale(1);color:", ";pointer-events:all;position:relative;transition:transform 1s ease;&:hover{.", "__el__circle{stroke-dashoffset:0;}}&__circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible;stroke:", ";stroke-width:", ";stroke-dasharray:var(--", "__circle-circumference);stroke-dashoffset:var(--", "__circle-circumference);fill:", ";width:calc(var(--", "__circle-radius) * 2);height:calc(var(--", "__circle-radius) * 2);transition:stroke-dasharray 1s ease,stroke-dashoffset 1s ease,transform 1s ease,stroke-width 1s ease;}&:before,&:after{content:\"\";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transform-style:preserve-3d;transform-origin:center center;transition:transform 1.5s ease;will-change:transform;width:100%;height:100%;}&:after{}&__icon{position:relative;width:var(--", "__icon-size);height:var(--", "__icon-size);display:block;z-index:10;transform:scale(1);transform-origin:center center;transform-style:preserve-3d;transition:transform 1s ease;will-change:transform;&:hover{transform:scale(1.25);&:before{transform:translate(-50%,-50%) scaleY(0);}&:after{transform:translate(-50%,-50%) scaleX(0);}}&:before,&:after{content:'';position:absolute;background:", ";left:50%;top:50%;transform-origin:center center;transition:transform 1s ease;will-change:transform;}&:before{width:2px;height:80%;transform:translate(-50%,-50%) scaleY(1);}&:after{width:80%;height:2px;transform:translate(-50%,-50%) scaleX(1);}&__diagonal{position:absolute;z-index:15;display:block;left:50%;top:50%;width:2px;height:80%;transform-origin:center center;&--down{transform:translate(-50%,-50%) rotate(45deg);}&--up{transform:translate(-50%,-50%) rotate(-45deg);}&:before,&:after{content:'';position:absolute;width:100%;height:100%;transform:scaleY(.25);transition:transform 1s ease;will-change:transform;background:", ";}&:before{top:0;left:0;transform-origin:top center;}&:after{bottom:0;left:0;transform-origin:bottom center;}}}}}&--inactive,&--fill-bars-is-expanded{.", "__inner{transform:translate(-50%,0%);}}@media (max-width:", "){.", "__inner{transform:translate(-50%,0%);}}}"], InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, Math.PI, InteractiveLogotypeClassName, CssFramePaddingString, CssFramePaddingString, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, CssFrameBorderWidth, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, CssFrameBorderWidth, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName);
+})(["&.", "{--", "__icon-size:calc(", " / 1.75);--", "__circle-size:calc(var(--", "__icon-size) * 1.2);--", "__circle-radius:calc(var(--", "__circle-size) / 2);--", "__circle-circumference:calc(2 * ", " * var(--", "__circle-radius));position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100vw - (", " * 2));height:calc(100vh - (", " * 2));overflow:hidden;pointer-events:none;z-index:900;@media(max-width:", "){height:100vh;}&--inactive{.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;}}}&--is-expanded{.", "__inner{transform:translate(-50%,90%) !important;}.", "__el{.", "__el__circle{stroke-dashoffset:0 !important;stroke-width:calc(", " / 1.5) !important;transform:translate(-50%,-50%) scale(1.5) !important;fill:", " !important;stroke:", " !important;}&__icon{transform:scale(1.25) rotate(90deg) !important;&:before{transform:translate(-50%,-50%) scaleY(0) !important;background:", " !important;}&:after{transform:translate(-50%,-50%) scaleX(0) !important;background:", " !important;}&__diagonal{&:before,&:after{transform:scaleY(1) !important;background:", " !important;}}}}}&--fill{z-index:800;}.", "__inner{position:absolute;top:calc(", " / 4.35);left:50%;transform:translate(-50%,0%);transition:transform 1s ease;will-change:transform;z-index:800;@media(max-width:", "){top:.75rem;}.", "__el{display:block;width:var(--", "__icon-size);height:var(--", "__icon-size);transform:scale(1);color:", ";pointer-events:all;position:relative;transition:transform 1s ease;&:hover{.", "__el__circle{stroke-dashoffset:0;}}&__circle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:visible;stroke:", ";stroke-width:", ";stroke-dasharray:var(--", "__circle-circumference);stroke-dashoffset:var(--", "__circle-circumference);fill:", ";width:calc(var(--", "__circle-radius) * 2);height:calc(var(--", "__circle-radius) * 2);transition:stroke-dasharray 1s ease,stroke-dashoffset 1s ease,transform 1s ease,stroke-width 1s ease;}&:before,&:after{content:\"\";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transform-style:preserve-3d;transform-origin:center center;transition:transform 1.5s ease;will-change:transform;width:100%;height:100%;}&:after{}&__icon{position:relative;width:var(--", "__icon-size);height:var(--", "__icon-size);display:block;z-index:10;transform:scale(1);transform-origin:center center;transform-style:preserve-3d;transition:transform 1s ease;will-change:transform;&:hover{transform:scale(1.25);&:before{transform:translate(-50%,-50%) scaleY(0);}&:after{transform:translate(-50%,-50%) scaleX(0);}}&:before,&:after{content:'';position:absolute;background:", ";left:50%;top:50%;transform-origin:center center;transition:transform 1s ease;will-change:transform;}&:before{width:2px;height:80%;transform:translate(-50%,-50%) scaleY(1);}&:after{width:80%;height:2px;transform:translate(-50%,-50%) scaleX(1);}&__diagonal{position:absolute;z-index:15;display:block;left:50%;top:50%;width:2px;height:80%;transform-origin:center center;&--down{transform:translate(-50%,-50%) rotate(45deg);}&--up{transform:translate(-50%,-50%) rotate(-45deg);}&:before,&:after{content:'';position:absolute;width:100%;height:100%;transform:scaleY(.25);transition:transform 1s ease;will-change:transform;background:", ";}&:before{top:0;left:0;transform-origin:top center;}&:after{bottom:0;left:0;transform-origin:bottom center;}}}}}&--inactive,&--fill-bars-is-expanded{.", "__inner{transform:translate(-50%,0%);}}@media (max-width:", "){.", "__inner{transform:translate(-50%,0%);}}}"], InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, Math.PI, InteractiveLogotypeClassName, CssFramePaddingString, CssFramePaddingString, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, CssFrameBorderWidth, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Root__WEBPACK_IMPORTED_MODULE_2__[/* Root */ "a"].FrameSize, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, CssFrameBorderWidth, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveLogotypeClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, InteractiveLogotypeClassName);
 /**
  *
  * @name InteractiveFillBarsClassName
@@ -3779,7 +3781,11 @@ const Theme = {
   // Core Palette & Colors
   Color: _styles_Color__WEBPACK_IMPORTED_MODULE_3__[/* Color */ "a"],
   // Frame
-  FrameSize: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize + "rem"
+  FrameSize: {
+    Sm: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Sm + "rem",
+    Md: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Md + "rem",
+    Lg: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Lg + "rem"
+  }
 }; // End Component
 // ____________________________________________________________________________________
 
@@ -5057,11 +5063,14 @@ var router_ = __webpack_require__("4Q3z");
 var dynamic_ = __webpack_require__("/T1H");
 var dynamic_default = /*#__PURE__*/__webpack_require__.n(dynamic_);
 
-// EXTERNAL MODULE: ./components/OvalButton/index.tsx + 2 modules
+// EXTERNAL MODULE: ./components/OvalButton/index.tsx + 1 modules
 var OvalButton = __webpack_require__("wFD6");
 
 // EXTERNAL MODULE: ./components/InteractiveEyeball/styles.scss.tsx
 var InteractiveEyeball_styles_scss = __webpack_require__("sUW2");
+
+// EXTERNAL MODULE: ./components/OvalButton/styles.scss.tsx
+var OvalButton_styles_scss = __webpack_require__("qAPe");
 
 // CONCATENATED MODULE: ./components/Footer/styles.scss.tsx
 /**
@@ -5079,6 +5088,7 @@ var InteractiveEyeball_styles_scss = __webpack_require__("sUW2");
 
 
 
+
  // Constants
 // import { Root } from "../../constants/Theme";
 // Begin Styles
@@ -5088,7 +5098,7 @@ const FooterClassName = "footer";
 const FooterStyle = external_styled_components_default.a.footer.withConfig({
   displayName: "stylesscss__FooterStyle",
   componentId: "sc-1eymw0g-0"
-})(["&.", "{--", "__arrow-width:1em;--", "__arrow-margin:.25em;--", "__arrow-total-size:calc(var(--", "__arrow-width) + var(--", "__arrow-margin));position:relative;z-index:10;background:", ";color:", ";padding:0 ", " ", " ", ";overflow:hidden;&:after{content:\"\";position:absolute;top:0;left:0;height:2px;width:100%;background:", ";}font-size:1.5rem;font-weight:200;.", "__inner{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;}.", "__canvas{position:absolute;left:0%;top:0%;width:100%;height:100%;.__footer-canvas-container{position:sticky;top:0;div{font-size:0;}}canvas{width:100vw !important;height:100vh !important;}}.", "__bottom,.", "__top{padding:", ";width:100%;}.", "__nav-list{width:100%;margin-left:calc(", " * -.5);&__item{overflow:hidden;font-size:6vw;text-transform:uppercase;display:flex;align-items:center;.", "__outline{border:3px solid ", ";}.", "__pupil{&__el{border:3px solid ", ";&:before{background:", ";border-radius:50%;}}}&:hover{.", "{.", "__pupil__el{&:before{transform:translate(-50%,-50%) scale(1.5);}&:after{transform:translate(-50%,-50%) scale(1);}}}}&__overflow-wrapper{overflow:hidden;}&__inner{display:block;transform:translateX( calc(var(--", "__arrow-total-size) * -1) );will-change:transform;transition:transform 0.5s ease-in-out;}&:hover{.", "__nav-list__item__inner{transform:translateX(0);}.", "__nav-list__item__anchor__indicator{transform:translateX(0%);}}&__anchor{color:", ";pointer-events:all;position:relative;display:flex;align-items:center;animation:", " 1s ease 1;&:hover{text-decoration:none;}&__indicator{width:var(--", "__arrow-width);display:block;margin-right:var(--", "__arrow-margin);height:4px;background:", ";position:relative;transform:translateX(-20%);will-change:transform;transition:transform 1.5s ease-in-out;&:before,&:after{content:\"\";position:absolute;right:0;height:0.5em;width:0.5em;}&:before{border-left:4px solid ", ";border-bottom:4px solid ", ";border-bottom-left-radius:100%;bottom:50%;}&:after{border-left:4px solid ", ";border-top:4px solid ", ";border-top-left-radius:100%;top:50%;}}}}}.", "__bottom{z-index:10;position:relative;display:flex;justify-content:space-between;border-top:2px solid ", ";align-items:center;background:", ";&__col{width:calc(100% / 3);&__label{display:block;}strong{font-weight:600;}&--three{text-align:right;}}}}"], FooterClassName, FooterClassName, FooterClassName, FooterClassName, FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], Theme["a" /* Theme */].Color.varForeground, FooterClassName, FooterClassName, FooterClassName, FooterClassName, Root["a" /* Root */].Size, FooterClassName, Root["a" /* Root */].Size, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], Theme["a" /* Theme */].Color.varForeground, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], FooterClassName, FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Animation["b" /* UpAndRotate */], FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground);
+})(["&.", "{--", "__arrow-width:1em;--", "__arrow-margin:.25em;--", "__arrow-total-size:calc(var(--", "__arrow-width) + var(--", "__arrow-margin));position:relative;z-index:10;background:", ";color:", ";padding:0 ", " ", " ", ";overflow:hidden;@media(max-width:", "){padding:0;}&:after{content:\"\";position:absolute;top:0;left:0;height:2px;width:100%;background:", ";}font-size:1.5rem;font-weight:200;@media(max-width:", "){font-size:1rem;}.", "__inner{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;}.", "__canvas{position:absolute;left:0%;top:0%;width:100%;height:100%;.__footer-canvas-container{position:sticky;top:0;div{font-size:0;}}canvas{width:100vw !important;height:100vh !important;}}.", "__bottom,.", "__top{padding:", ";width:100%;}.", "__nav-list{width:100%;margin-left:calc(", " * -.5);&__item{overflow:hidden;font-size:6vw;text-transform:uppercase;display:flex;align-items:center;@media(max-width:", "){font-size:3.5rem;}.", "__outline{border:3px solid ", ";}.", "__pupil{&__el{border:3px solid ", ";&:before{background:", ";border-radius:50%;}}}&:hover{.", "{.", "__pupil__el{&:before{transform:translate(-50%,-50%) scale(1.5);}&:after{transform:translate(-50%,-50%) scale(1);}}}}&__overflow-wrapper{overflow:hidden;}&__inner{display:block;transform:translateX( calc(var(--", "__arrow-total-size) * -1) );will-change:transform;transition:transform 0.5s ease-in-out;@media(max-width:", "){transform:unset;}}&:hover{.", "__nav-list__item__inner{transform:translateX(0);}.", "__nav-list__item__anchor__indicator{transform:translateX(0%);}}&__anchor{color:", ";pointer-events:all;position:relative;display:flex;align-items:center;animation:", " 1s ease 1;&:hover{text-decoration:none;}&__indicator{width:var(--", "__arrow-width);display:block;margin-right:var(--", "__arrow-margin);height:4px;background:", ";position:relative;transform:translateX(-20%);will-change:transform;transition:transform 1.5s ease-in-out;@media(max-width:", "){display:none;}&:before,&:after{content:\"\";position:absolute;right:0;height:0.5em;width:0.5em;}&:before{border-left:4px solid ", ";border-bottom:4px solid ", ";border-bottom-left-radius:100%;bottom:50%;}&:after{border-left:4px solid ", ";border-top:4px solid ", ";border-top-left-radius:100%;top:50%;}}}}}.", "__bottom{z-index:10;position:relative;display:flex;justify-content:space-between;border-top:2px solid ", ";align-items:center;background:", ";&__col{width:calc(100% / 3);&__label{display:block;}strong{font-weight:600;}&--three{text-align:right;}}@media(max-width:", "){flex-wrap:wrap;.", "__bottom__col{width:calc(100% / 2);&--one{width:66%;line-height:1.2;}&--two{order:3;width:100%;margin-top:2rem;}&--three{width:calc(100% / 3);.", "{&__el{font-size:.65rem;}}}}}}}"], FooterClassName, FooterClassName, FooterClassName, FooterClassName, FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], MellowFrameHeader_styles_scss["b" /* CssFramePaddingString */], Theme["a" /* Theme */].Base.Media.Width.Sm, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Base.Media.Width.Sm, FooterClassName, FooterClassName, FooterClassName, FooterClassName, Root["a" /* Root */].Size, FooterClassName, Root["a" /* Root */].Size, Theme["a" /* Theme */].Base.Media.Width.Sm, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], Theme["a" /* Theme */].Color.varForeground, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], InteractiveEyeball_styles_scss["a" /* InteractiveEyeballClassName */], FooterClassName, Theme["a" /* Theme */].Base.Media.Width.Sm, FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Animation["b" /* UpAndRotate */], FooterClassName, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Base.Media.Width.Sm, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, FooterClassName, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Base.Media.Width.Sm, FooterClassName, OvalButton_styles_scss["a" /* OvalButtonClassName */]);
 // CONCATENATED MODULE: ./components/Footer/Footer.tsx
 
 
@@ -5523,8 +5533,14 @@ const Base = {
 
   },
   // Frame
-  FrameSize: 3 // rem
+  FrameSize: {
+    Lg: 3,
+    // rem
+    Md: 3.25,
+    // rem
+    Sm: 3.5 // rem
 
+  }
 }; // End Component
 //////////////////////////////////////////////////////////////////////
 
@@ -7479,14 +7495,14 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
     --Radius: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Geometry.Radius};
 
     /* --------- Frame */
-    --FrameSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].FrameSize};
+    --FrameSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].FrameSize.Lg};
 
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Md}) {
       /* --------------- Base Measurements*/
 
         /* --------- Frame */
-        --FrameSize: 2rem;
+        --FrameSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].FrameSize.Md};
 
         /* -------- Base Measurement */
         --Size: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Size.Md};
@@ -7560,6 +7576,9 @@ const RootVariables = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlob
 
         /* --------- Geometry */
         --Radius: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Geometry.Radius};
+
+        /* --------- Frame */
+        --FrameSize: ${_constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].FrameSize.Sm};
     }
   }
 `; // End Component
@@ -7774,6 +7793,47 @@ module.exports = require("react-p5-wrapper");
 
 /***/ }),
 
+/***/ "qAPe":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OvalButtonClassName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return OvalButtonStyle; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Dtiu");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("agJb");
+/* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("59zH");
+// Imports
+// _________________________________________________________________________
+// Core
+ // Constants
+
+
+ // Begin Styles
+// _________________________________________________________________________
+
+/**
+ *
+ * @name OvalButtonClassName
+ * @description The root class name for styling. BEM naming conventions.
+ *
+ */
+
+const OvalButtonClassName = "oval-btn";
+/**
+ *
+ * @name OvalButtonStyle
+ * @author Peter Laxalt
+ *
+ */
+
+const OvalButtonStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.span.withConfig({
+  displayName: "stylesscss__OvalButtonStyle",
+  componentId: "sc-8pljc2-0"
+})(["&.", "{display:inline-flex;.", "__el{display:inline-flex;align-items:center;justify-content:center;min-width:200px;height:4rem;padding-left:1.5em;padding-right:1.5em;border-radius:100%;background:", ";color:", ";border:2px solid ", ";box-shadow:0px 0px 0px 2px ", ";text-transform:uppercase;letter-spacing:1px;font-size:1.5rem;@media(max-width:", "){min-width:100px;font-size:1rem;height:2.5rem;}&:hover{background:", ";color:", ";border:2px solid ", ";text-decoration:none;}&--is-inverted{background:", ";color:", ";border:2px solid ", ";box-shadow:0px 0px 0px 2px ", ";&:hover{background:", ";color:", ";border:2px solid ", ";}}}}"], OvalButtonClassName, OvalButtonClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground);
+
+/***/ }),
+
 /***/ "sUW2":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7785,10 +7845,12 @@ module.exports = require("react-p5-wrapper");
 /* harmony import */ var _constants_Theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("agJb");
 /* harmony import */ var _constants_Root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("io+v");
 /* harmony import */ var _constants_styles_CssUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("59zH");
+/* harmony import */ var _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("LHK9");
 // Imports
 // _________________________________________________________________________
 // Core
  // Constants
+
 
 
 
@@ -7813,7 +7875,7 @@ const InteractiveEyeballClassName = "interactive-eyeball";
 const InteractiveEyeballStyle = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.span.withConfig({
   displayName: "stylesscss__InteractiveEyeballStyle",
   componentId: "sc-14032li-0"
-})(["&.", "{--", "__eye-size:.8em;display:block;margin-left:calc(var(--", "__eye-size) * .3);margin-right:calc(var(--", "__eye-size) * .3);position:relative;.", "__outline{display:block;width:var(--", "__eye-size);height:var(--", "__eye-size);border-top-right-radius:50%;border-bottom-left-radius:50%;transform:rotate(-45deg);border:4px solid ", ";}.", "__pupil-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center center;}.", "__pupil{height:calc(var(--", "__eye-size) * .85);width:calc(var(--", "__eye-size) * .85);display:flex;align-items:center;justify-content:flex-end;transition:.5s transform ease;will-change:transform;&__el{display:block;height:calc(var(--", "__eye-size) * .65);width:calc(var(--", "__eye-size) * .65);border-radius:50%;position:relative;border:4px solid ", ";&:before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transition:.5s transform ease;will-change:transform;width:calc(var(--", "__eye-size) * .35);height:calc(var(--", "__eye-size) * .35);background:", ";border-radius:50%;}}}&.", "--is-inverted{.", "__outline{border:4px solid ", ";}.", "__pupil{&__el{border:4px solid ", ";&:before{background:", ";}}}}}"], InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground);
+})(["&.", "{--", "__eye-size:.8em;display:block;margin-left:calc(var(--", "__eye-size) * .3);margin-right:calc(var(--", "__eye-size) * .3);position:relative;.", "__outline{display:block;width:var(--", "__eye-size);height:var(--", "__eye-size);border-top-right-radius:50%;border-bottom-left-radius:50%;transform:rotate(-45deg);border:4px solid ", ";@media(max-width:", "){border:", " solid ", ";}}.", "__pupil-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center center;}.", "__pupil{height:calc(var(--", "__eye-size) * .85);width:calc(var(--", "__eye-size) * .85);display:flex;align-items:center;justify-content:flex-end;transition:.5s transform ease;will-change:transform;&__el{display:block;height:calc(var(--", "__eye-size) * .65);width:calc(var(--", "__eye-size) * .65);border-radius:50%;position:relative;border:4px solid ", ";@media(max-width:", "){border:", " solid ", ";}&:before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1);transition:.5s transform ease;will-change:transform;width:calc(var(--", "__eye-size) * .35);height:calc(var(--", "__eye-size) * .35);background:", ";border-radius:50%;}}}&.", "--is-inverted{.", "__outline{border:4px solid ", ";@media(max-width:", "){border:", " solid ", ";}}.", "__pupil{&__el{border:4px solid ", ";@media(max-width:", "){border:", " solid ", ";}&:before{background:", ";}}}}}"], InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* CssFrameBorderWidth */ "a"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* CssFrameBorderWidth */ "a"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* CssFrameBorderWidth */ "a"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, InteractiveEyeballClassName, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Base.Media.Width.Sm, _MellowFrameHeader_styles_scss__WEBPACK_IMPORTED_MODULE_4__[/* CssFrameBorderWidth */ "a"], _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varBackground, _constants_Theme__WEBPACK_IMPORTED_MODULE_1__[/* Theme */ "a"].Color.varForeground);
 
 /***/ }),
 
@@ -7930,45 +7992,9 @@ var external_react_ = __webpack_require__("cDcd");
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
-// EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__("Dtiu");
-var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
+// EXTERNAL MODULE: ./components/OvalButton/styles.scss.tsx
+var styles_scss = __webpack_require__("qAPe");
 
-// EXTERNAL MODULE: ./constants/Theme.tsx
-var Theme = __webpack_require__("agJb");
-
-// EXTERNAL MODULE: ./constants/styles/CssUtils.tsx
-var CssUtils = __webpack_require__("59zH");
-
-// CONCATENATED MODULE: ./components/OvalButton/styles.scss.tsx
-// Imports
-// _________________________________________________________________________
-// Core
- // Constants
-
-
- // Begin Styles
-// _________________________________________________________________________
-
-/**
- *
- * @name OvalButtonClassName
- * @description The root class name for styling. BEM naming conventions.
- *
- */
-
-const OvalButtonClassName = "oval-btn";
-/**
- *
- * @name OvalButtonStyle
- * @author Peter Laxalt
- *
- */
-
-const OvalButtonStyle = external_styled_components_default.a.span.withConfig({
-  displayName: "stylesscss__OvalButtonStyle",
-  componentId: "sc-8pljc2-0"
-})(["&.", "{display:inline-flex;.", "__el{display:inline-flex;align-items:center;justify-content:center;min-width:200px;height:4rem;padding-left:1.5em;padding-right:1.5em;border-radius:100%;background:", ";color:", ";border:2px solid ", ";box-shadow:0px 0px 0px 2px ", ";text-transform:uppercase;letter-spacing:1px;font-size:1.5rem;&:hover{background:", ";color:", ";border:2px solid ", ";text-decoration:none;}&--is-inverted{background:", ";color:", ";border:2px solid ", ";box-shadow:0px 0px 0px 2px ", ";&:hover{background:", ";color:", ";border:2px solid ", ";}}}}"], OvalButtonClassName, OvalButtonClassName, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground, Theme["a" /* Theme */].Color.varForeground, Theme["a" /* Theme */].Color.varBackground);
 // CONCATENATED MODULE: ./components/OvalButton/OvalButton.tsx
 
 
@@ -7999,16 +8025,16 @@ const OvalButton = ({
   invert = false
 }) => {
   return /*#__PURE__*/Object(jsx_runtime_["jsx"])(jsx_runtime_["Fragment"], {
-    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(OvalButtonStyle, {
-      className: `${OvalButtonClassName} ${addClass}`,
+    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(styles_scss["b" /* OvalButtonStyle */], {
+      className: `${styles_scss["a" /* OvalButtonClassName */]} ${addClass}`,
       children: [!href && /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-        className: `${OvalButtonClassName}__el ${OvalButtonClassName}__el--is-${invert ? `inverted` : `not-inverted`}`,
+        className: `${styles_scss["a" /* OvalButtonClassName */]}__el ${styles_scss["a" /* OvalButtonClassName */]}__el--is-${invert ? `inverted` : `not-inverted`}`,
         onClick: onClick,
         children: label
       }), href && /*#__PURE__*/Object(jsx_runtime_["jsx"])(link_default.a, {
         href: href,
         children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-          className: `${OvalButtonClassName}__el ${OvalButtonClassName}__el--is-${invert ? `inverted` : `not-inverted`}`,
+          className: `${styles_scss["a" /* OvalButtonClassName */]}__el ${styles_scss["a" /* OvalButtonClassName */]}__el--is-${invert ? `inverted` : `not-inverted`}`,
           onClick: onClick,
           children: label
         })

@@ -112,7 +112,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   let maxCopies = 12;
   let minCopies = 1;
 
-  let frameRate = 10;
+  let frameRate = 60;
 
   // ____________________________
   // Translation
@@ -244,95 +244,93 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   // _________________________________________________
   // Draw
   p.draw = () => {
-    p.background(window.laxaltUniversalTheme.background);
+    if (p.frameCount % 10 === 0) {
+      p.background(window.laxaltUniversalTheme.background);
+      p.textFont(dharmaFont);
+      p.textSize(characterSize);
+      p.textAlign(p.CENTER, p.CENTER);
+      p.fill(`${window.laxaltUniversalTheme.foreground}`);
+      p.strokeWeight(strokeWidth);
+      p.stroke(window.laxaltUniversalTheme.background);
 
-    p.textFont(dharmaFont);
-
-    p.textSize(characterSize);
-
-    p.textAlign(p.CENTER, p.CENTER);
-
-    p.fill(`${window.laxaltUniversalTheme.foreground}`);
-    p.strokeWeight(strokeWidth);
-    p.stroke(window.laxaltUniversalTheme.background);
-
-    if (H && W) {
-      // _________________________________________
-      // Loop through our copies
-      characters.map((char: LXLT_DharmaCanvasChar, idx: number) => {
-        p.scale(1, 1);
-
-        let randomCharPick = Math.random() <= 0.5;
-
-        if (randomCharPick) {
-          updateCopies(char, idx);
-        }
-
-        if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
-          updateCharacter(char, idx);
-        }
-
-        let countArray: number[] = Array.from(Array(char.count).keys());
-
-        countArray = countArray.map((countNumber: number) => {
-          return countNumber + 1;
-        });
-
+      if (H && W) {
         // _________________________________________
-        // Duplicate positions
-        countArray.map((countNumber: number, idxx: number) => {
-          let verticalScale = 1 / (char.count * 0.95);
+        // Loop through our copies
+        characters.map((char: LXLT_DharmaCanvasChar, idx: number) => {
+          p.scale(1, 1);
 
-          let duplicateVerticalPosition: number =
-            char.count == 1
-              ? H / verticalTranslationWhitespaceCompensation
-              : characterSize / verticalSkewDivisible +
-                (characterSize / characterSkewDivisible) * idxx;
+          let randomCharPick = Math.random() <= 0.5;
+
+          if (randomCharPick) {
+            updateCopies(char, idx);
+          }
+
+          if (randomCharPick && p.millis() - previousCountUpdateTime > 3000) {
+            updateCharacter(char, idx);
+          }
+
+          let countArray: number[] = Array.from(Array(char.count).keys());
+
+          countArray = countArray.map((countNumber: number) => {
+            return countNumber + 1;
+          });
 
           // _________________________________________
-          // Make copies
-          let copiesArray: number[] = Array.from(Array(char.copies).keys());
-          // let randomCopyPick = Math.random() <= 0.5;
+          // Duplicate positions
+          countArray.map((countNumber: number, idxx: number) => {
+            let verticalScale = 1 / (char.count * 0.95);
 
-          copiesArray = copiesArray.map((copyNumber: number) => {
-            return copyNumber + 1;
-          });
+            let duplicateVerticalPosition: number =
+              char.count == 1
+                ? H / verticalTranslationWhitespaceCompensation
+                : characterSize / verticalSkewDivisible +
+                  (characterSize / characterSkewDivisible) * idxx;
 
-          // let randomCopyPick = Math.random() <= 0.5;
-          // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
-          previousCopyUpdateTime;
+            // _________________________________________
+            // Make copies
+            let copiesArray: number[] = Array.from(Array(char.copies).keys());
+            // let randomCopyPick = Math.random() <= 0.5;
 
-          // let isFirstCount = true;
+            copiesArray = copiesArray.map((copyNumber: number) => {
+              return copyNumber + 1;
+            });
 
-          copiesArray.map((copyNumber: number, idxxx: number) => {
-            // let centerCoordsX = W / 2;
-            // let centerCoordsY = H / 2;
+            // let randomCopyPick = Math.random() <= 0.5;
+            // let copyTimer = p.millis() - previousCopiesVisibleTime > 2000;
+            previousCopyUpdateTime;
 
-            // let horizontalTranslate =
-            //   copyNumber !== 1
-            //     ? (previousHorizontalTranslation(idx) +
-            //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
-            //     : previousHorizontalTranslation(idx) +
-            //       strokeOffset * copyNumber;
+            // let isFirstCount = true;
 
-            // let verticalTranslate =
-            //   copyNumber !== 1
-            //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
-            //     : duplicateVerticalPosition - strokeOffset * copyNumber;
+            copiesArray.map((copyNumber: number, idxxx: number) => {
+              // let centerCoordsX = W / 2;
+              // let centerCoordsY = H / 2;
 
-            let horizontalTranslate =
-              previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+              // let horizontalTranslate =
+              //   copyNumber !== 1
+              //     ? (previousHorizontalTranslation(idx) +
+              //         (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : previousHorizontalTranslation(idx) +
+              //       strokeOffset * copyNumber;
 
-            let verticalTranslate =
-              duplicateVerticalPosition - strokeOffset * copyNumber;
+              // let verticalTranslate =
+              //   copyNumber !== 1
+              //     ? (duplicateVerticalPosition - (strokeOffset / (p.mouseX / 100)) * copyNumber)
+              //     : duplicateVerticalPosition - strokeOffset * copyNumber;
 
-            p.push();
-            p.scale(1, verticalScale);
-            p.text(char.letter, horizontalTranslate, verticalTranslate);
-            p.pop();
+              let horizontalTranslate =
+                previousHorizontalTranslation(idx) + strokeOffset * copyNumber;
+
+              let verticalTranslate =
+                duplicateVerticalPosition - strokeOffset * copyNumber;
+
+              p.push();
+              p.scale(1, verticalScale);
+              p.text(char.letter, horizontalTranslate, verticalTranslate);
+              p.pop();
+            });
           });
         });
-      });
+      }
     }
   };
 

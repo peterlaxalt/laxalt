@@ -85,6 +85,11 @@ export const MellowFrameHeaderStyle = styled.div`
       border: var(--${MellowFrameHeaderClassName}__frame-padding) solid ${Theme.Color.varBackground};
 
       display: flex;
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        border: unset;
+      }
+
     }
 
     // __________________________
@@ -123,6 +128,10 @@ export const MellowFrameHeaderStyle = styled.div`
         &--bottom {
           border-top: ${CssFrameBorderString};
           transform-origin: bottom center;
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: none;
+          }
         }
 
         &__inner {
@@ -149,10 +158,18 @@ export const MellowFrameHeaderStyle = styled.div`
           &--left {
             padding-left: 1rem;
             padding-right: 1rem;
+
+            @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+              display: none;
+            }
           }
 
           &--right {
             padding-right: 1rem;
+
+            @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+              width: 100%;
+            }
           }
         }
 
@@ -162,6 +179,10 @@ export const MellowFrameHeaderStyle = styled.div`
           &--misc {
             text-align: right;
             font-weight: 800;
+
+            @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+              display: none;
+            }
           }
 
           &--contact-btn,
@@ -215,6 +236,10 @@ export const MellowFrameHeaderStyle = styled.div`
           &__el {
             margin-right: 0 !important;
           }
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: none;
+          }
         }
 
         &__brandmark {
@@ -224,6 +249,10 @@ export const MellowFrameHeaderStyle = styled.div`
 
           &__label {
             width: auto;
+          }
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            padding-left: .5rem;
           }
         }
 
@@ -292,6 +321,10 @@ export const MellowFrameHeaderStyle = styled.div`
               line-height: 2.25;
             }
           }
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: none;
+          }
         }
       }
     }
@@ -336,6 +369,10 @@ export const InteractiveLogotypeStyle = styled.div`
     pointer-events: none;
 
     z-index: 900;
+
+    @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+      height: 100vh;
+    }
 
     &--inactive {
       .${InteractiveLogotypeClassName}__el {
@@ -408,6 +445,10 @@ export const InteractiveLogotypeStyle = styled.div`
       will-change: transform;
 
       z-index: 800;
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        top: .75rem;
+      }
 
       .${InteractiveLogotypeClassName}__el {
         display: block;

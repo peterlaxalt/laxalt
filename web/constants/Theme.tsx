@@ -156,7 +156,11 @@ export const Theme = {
   Color: Color,
 
   // Frame
-  FrameSize: Base.FrameSize + "rem",
+  FrameSize: {
+    Sm: Base.FrameSize.Sm + "rem",
+    Md: Base.FrameSize.Md + "rem",
+    Lg: Base.FrameSize.Lg + "rem",
+  },
 };
 
 // End Component

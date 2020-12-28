@@ -129,14 +129,14 @@ export const RootVariables = createGlobalStyle`
     --Radius: ${Theme.Base.Geometry.Radius};
 
     /* --------- Frame */
-    --FrameSize: ${Theme.FrameSize};
+    --FrameSize: ${Theme.FrameSize.Lg};
 
     /* ----------------------------------- Medium Width Viewports */
     @media (max-width: ${Theme.Base.Media.Width.Md}) {
       /* --------------- Base Measurements*/
 
         /* --------- Frame */
-        --FrameSize: 2rem;
+        --FrameSize: ${Theme.FrameSize.Md};
 
         /* -------- Base Measurement */
         --Size: ${Theme.Base.Size.Md};
@@ -210,6 +210,9 @@ export const RootVariables = createGlobalStyle`
 
         /* --------- Geometry */
         --Radius: ${Theme.Base.Geometry.Radius};
+
+        /* --------- Frame */
+        --FrameSize: ${Theme.FrameSize.Sm};
     }
   }
 `;

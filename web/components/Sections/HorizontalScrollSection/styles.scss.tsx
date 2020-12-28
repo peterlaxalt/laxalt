@@ -35,6 +35,16 @@ export const HorizontalScrollSectionStyle = styled.section`
       margin-left: calc(${LayeredSidebarWidth} * -1);
 
       /* padding-left: ${LayeredSidebarWidth}; */
+
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+
+        .spacer {
+          display: none;
+        }
+      }
     }
   }
 `;

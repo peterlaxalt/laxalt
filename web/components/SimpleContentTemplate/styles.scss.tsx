@@ -45,6 +45,14 @@ export const SimpleContentTemplateStyle = styled.nav`
         flex: 1;
 
         max-width: calc(100% - ${LayeredSidebarWidth});
+
+        img {
+          max-width: 100%;
+        }
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          max-width: 100%;
+        }
       }
 
       .${SimpleContentTemplateClassName}__sidebar {
@@ -62,6 +70,10 @@ export const SimpleContentTemplateStyle = styled.nav`
           position: absolute;
           left: 0;
           top: 0;
+        }
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          display: none;
         }
       }
     }

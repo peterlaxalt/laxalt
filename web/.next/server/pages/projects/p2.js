@@ -2025,7 +2025,11 @@ const Theme = {
   // Core Palette & Colors
   Color: _styles_Color__WEBPACK_IMPORTED_MODULE_3__[/* Color */ "a"],
   // Frame
-  FrameSize: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize + "rem"
+  FrameSize: {
+    Sm: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Sm + "rem",
+    Md: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Md + "rem",
+    Lg: _styles_Base__WEBPACK_IMPORTED_MODULE_2__[/* Base */ "a"].FrameSize.Lg + "rem"
+  }
 }; // End Component
 // ____________________________________________________________________________________
 
@@ -2269,8 +2273,14 @@ const Base = {
 
   },
   // Frame
-  FrameSize: 3 // rem
+  FrameSize: {
+    Lg: 3,
+    // rem
+    Md: 3.25,
+    // rem
+    Sm: 3.5 // rem
 
+  }
 }; // End Component
 //////////////////////////////////////////////////////////////////////
 

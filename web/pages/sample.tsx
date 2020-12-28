@@ -221,7 +221,7 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
       </p>
 
       <HorizontalScrollSection hasSidebar={true}>
-        <div style={{ width: LayeredSidebarWidth }} />
+        <div className="spacer" style={{ width: LayeredSidebarWidth }} />
         {arr.map((i: any, idx: number) => {
           return (
             <div

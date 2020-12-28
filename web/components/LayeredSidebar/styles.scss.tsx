@@ -47,6 +47,13 @@ export const SidebarFullwidthCss = css`
   transition: clip-path ${LayeredSidebarTransitionTime} ease-in-out;
 
   margin-left: calc(${LayeredSidebarWidth} * -1);
+
+  @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    clip-path: unset;
+  }
 `;
 
 /**
