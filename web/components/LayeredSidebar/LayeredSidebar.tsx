@@ -1,13 +1,11 @@
 // Core
 import Link from "next/link";
 import React, { useState } from "react";
-import { createGlobalStyle } from "styled-components";
 import { __DEBUG__ } from "../../constants/site/Settings";
 
 // Styles
 import {
   GlobalSidebarPaneOffsetVariables,
-  LayeredPaneCollapsedPaneWidth,
   LayeredSidebarClassName,
   LayeredSidebarStyle,
 } from "./styles.scss";

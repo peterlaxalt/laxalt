@@ -2700,8 +2700,9 @@ module.exports = require("next/dist/next-server/lib/router-context.js");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Settings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SiteProjects; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SiteNavigation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __DEBUG__; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __DEBUG__; });
 /* harmony import */ var _styles_Color__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("/YLk");
 /**
  *
@@ -2739,6 +2740,120 @@ const Settings = {
   contactPage: "/contact",
   miscPage: "/misc"
 };
+const SiteProjects = [{
+  name: "Craftlog",
+  slug: "/projects/craftlog",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "UI",
+    slug: "/browse/ui"
+  }, {
+    name: "UX",
+    slug: "/browse/ux"
+  }],
+  type: "Project",
+  location: "San Francisco, CA",
+  duration: "2016 - Present"
+}, {
+  name: "Nonvector",
+  slug: "/projects/nonvector",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}, {
+  name: "Communion",
+  slug: "/projects/communion",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}, {
+  name: "Dribbble",
+  slug: "/projects/dribbble",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}, // ______________________________________________________________________________________________________________________________________________________________
+{
+  name: "Craftlog",
+  slug: "/projects/craftlog",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "UI",
+    slug: "/browse/ui"
+  }, {
+    name: "UX",
+    slug: "/browse/ux"
+  }],
+  type: "Project",
+  location: "San Francisco, CA",
+  duration: "2016 - Present"
+}, {
+  name: "Nonvector",
+  slug: "/projects/nonvector",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}, {
+  name: "Communion",
+  slug: "/projects/communion",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}, {
+  name: "Dribbble",
+  slug: "/projects/dribbble",
+  cover: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+  categories: [{
+    name: "Illustration",
+    slug: "/browse/illustration"
+  }, {
+    name: "Music",
+    slug: "/browse/music"
+  }],
+  type: "Project",
+  location: "Los Angeles, CA",
+  duration: "2019"
+}];
 const SiteNavigation = {
   FrameItems: [{
     label: "Studio",
@@ -5870,7 +5985,7 @@ class ThemePicker_ThemePickerWithHook extends external_react_default.a.PureCompo
   componentDidMount() {
     if ("undefined") {
       window.laxaltUniversalTheme = this.state.activeTheme;
-      Settings["c" /* __DEBUG__ */] && console.log("🎨 theme set", window.laxaltUniversalTheme);
+      Settings["d" /* __DEBUG__ */] && console.log("🎨 theme set", window.laxaltUniversalTheme);
     }
   }
 
@@ -7192,7 +7307,7 @@ function getRouteMatcher(routeRegex) {
 
 
 const ThreeCanvas = (container, CanvasElement, CanvasTheme) => {
-  _constants_site_Settings__WEBPACK_IMPORTED_MODULE_1__[/* __DEBUG__ */ "c"] && console.log("🤙 Three.js Canvas received:", CanvasElement);
+  _constants_site_Settings__WEBPACK_IMPORTED_MODULE_1__[/* __DEBUG__ */ "d"] && console.log("🤙 Three.js Canvas received:", CanvasElement);
   let camera, scene, renderer, mesh, material, sketch;
   init();
   setupCanvasDrawing();

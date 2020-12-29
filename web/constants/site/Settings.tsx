@@ -29,6 +29,23 @@ export type LXLT_SiteNavigation = {
   };
 };
 
+export type LXLT_Category = {
+  name: string;
+  slug: string;
+};
+
+export type LXLT_Project = {
+  name: string;
+  slug: string;
+  cover: string;
+  categories: LXLT_Category[];
+  type: string;
+  location?: string;
+  duration?: string;
+};
+
+export type LXLT_SiteProjects = LXLT_Project[];
+
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
@@ -55,8 +72,165 @@ export const Settings = {
   },
 
   contactPage: "/contact",
-  miscPage: "/misc"
+  miscPage: "/misc",
 };
+
+export const SiteProjects: LXLT_SiteProjects = [
+  {
+    name: "Craftlog",
+    slug: "/projects/craftlog",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "UI",
+        slug: "/browse/ui",
+      },
+      {
+        name: "UX",
+        slug: "/browse/ux",
+      },
+    ],
+    type: "Project",
+    location: "San Francisco, CA",
+    duration: "2016 - Present",
+  },
+  {
+    name: "Nonvector",
+    slug: "/projects/nonvector",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+  {
+    name: "Communion",
+    slug: "/projects/communion",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+  {
+    name: "Dribbble",
+    slug: "/projects/dribbble",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+
+  // ______________________________________________________________________________________________________________________________________________________________
+  {
+    name: "Craftlog",
+    slug: "/projects/craftlog",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "UI",
+        slug: "/browse/ui",
+      },
+      {
+        name: "UX",
+        slug: "/browse/ux",
+      },
+    ],
+    type: "Project",
+    location: "San Francisco, CA",
+    duration: "2016 - Present",
+  },
+  {
+    name: "Nonvector",
+    slug: "/projects/nonvector",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+  {
+    name: "Communion",
+    slug: "/projects/communion",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+  {
+    name: "Dribbble",
+    slug: "/projects/dribbble",
+    cover:
+      "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "/browse/illustration",
+      },
+      {
+        name: "Music",
+        slug: "/browse/music",
+      },
+    ],
+    type: "Project",
+    location: "Los Angeles, CA",
+    duration: "2019",
+  },
+];
 
 export const SiteNavigation: LXLT_SiteNavigation = {
   FrameItems: [

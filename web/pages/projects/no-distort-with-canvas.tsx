@@ -38,6 +38,8 @@ declare global {
 
 // _________________________________________________________________________________
 
+export const NoDistortCanvasClassName = "no-distort-canvas";
+
 /**
  *
  * @name __CANVAS_FILE__
@@ -161,11 +163,16 @@ class NoWaterDistortCanvas extends Component<
         animation-iteration-count: 1;
       }
 
-      .canvas-container {
+      .${NoDistortCanvasClassName} {
         height: 100vh;
 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         canvas {
-          transform: scale(.9) translate(0%, 5%);
+          transform: scale(.85) translate(0%, 2%);
+          /* transform: scale(.9) translate(0%, 5%); */
           /* display: none; */
         }
       }
@@ -181,7 +188,7 @@ class NoWaterDistortCanvas extends Component<
 
         <div
           ref={(element: HTMLDivElement) => (this.canvasParentRef = element)}
-          className="canvas-container"
+          className={`${NoDistortCanvasClassName}`}
         >
           {this.state.canvasParent ? this.renderP5(__CANVAS_FILE__) : null}
         </div>
