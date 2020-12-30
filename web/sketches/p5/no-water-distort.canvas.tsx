@@ -244,7 +244,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   // _________________________________________________
   // Draw
   p.draw = () => {
-    if (p.frameCount % 10 === 0) {
+    if (p.frameCount % 10 === 0 && !window.dharmaPaused) {
       p.background(window.laxaltUniversalTheme.background);
       p.textFont(dharmaFont);
       p.textSize(characterSize);

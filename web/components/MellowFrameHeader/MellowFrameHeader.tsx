@@ -59,35 +59,35 @@ type LXLT_MellowFrameHeaderDisplay = LXLT_MellowFrameHeader_State & {
  * @name InteractiveFrameItemsDisplay
  *
  */
-const InteractiveFrameItemsDisplay = () => {
-  return (
-    <div className={`${MellowFrameHeaderClassName}__marquee-container`}>
-      <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
-        {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
-          return (
-            <li key={idx}>
-              <Link href={item.href}>
-                <a>{item.label}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+// const InteractiveFrameItemsDisplay = () => {
+//   return (
+//     <div className={`${MellowFrameHeaderClassName}__marquee-container`}>
+//       <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
+//         {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
+//           return (
+//             <li key={idx}>
+//               <Link href={item.href}>
+//                 <a>{item.label}</a>
+//               </Link>
+//             </li>
+//           );
+//         })}
+//       </ul>
 
-      <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
-        {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
-          return (
-            <li key={idx}>
-              <Link href={item.href}>
-                <a>{item.label}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
+//       <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
+//         {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
+//           return (
+//             <li key={idx}>
+//               <Link href={item.href}>
+//                 <a>{item.label}</a>
+//               </Link>
+//             </li>
+//           );
+//         })}
+//       </ul>
+//     </div>
+//   );
+// };
 
 /**
  *
@@ -258,12 +258,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
 }) => {
   // console.log(router);
 
-  let hasSidebar =
-    router && router.pathname
-      ? router.pathname.includes("sample")
-        ? true
-        : false
-      : false;
+  let currentRouteClass = router.pathname == "/" ? "route__home" : "";
 
   return (
     <>
@@ -276,7 +271,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
           isFillBarsExpanded || isOverlayVisible
             ? `fill-bars-is-expanded`
             : `fill-bars-is-not-expanded`
-        }`}
+        } ${currentRouteClass}`}
       >
         {/* ______________________________________________ */}
         {/* Inner Grid */}
@@ -471,14 +466,8 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
             className={`${InteractiveLogotypeClassName}__el`}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
           >
-            <svg
-              className={`${InteractiveLogotypeClassName}__el__circle`}
-            >
-              <circle
-                cx="50%"
-                cy="50%"
-                r="50%"
-              />
+            <svg className={`${InteractiveLogotypeClassName}__el__circle`}>
+              <circle cx="50%" cy="50%" r="50%" />
             </svg>
             <span className={`${InteractiveLogotypeClassName}__el__icon`}>
               <span

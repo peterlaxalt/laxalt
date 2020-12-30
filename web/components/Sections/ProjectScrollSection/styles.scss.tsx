@@ -12,6 +12,8 @@ import {
   CssFrameSizeWithBorderString,
 } from "../../MellowFrameHeader/styles.scss";
 import { NoDistortCanvasClassName } from "../../../pages/projects/no-distort-with-canvas";
+import { BlobRadius } from "../../../constants/styles/Animation";
+import { hexToRGB } from "../../../utils/hexToRGB";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -23,6 +25,7 @@ import { NoDistortCanvasClassName } from "../../../pages/projects/no-distort-wit
  *
  */
 export const ProjectScrollSectionClassName = "project-scroll";
+export const ProjectScrollSectionTransitionTime = "3s";
 
 /**
  *
@@ -32,10 +35,20 @@ export const ProjectScrollSectionClassName = "project-scroll";
  */
 export const ProjectScrollSectionStyle = styled.section`
   &.${ProjectScrollSectionClassName} {
+    --${ProjectScrollSectionClassName}__dot-size: .75rem;
+
+
     &.${ProjectScrollSectionClassName}--is-scrolled {
       .${ProjectScrollSectionClassName}__content-wrapper {
+        // Line
         &:before {
-          /* transform: translate3d(0px, 50%, 0px) scaleX(1); */
+          transform: translate3d(0%, 50%, 0px) scaleX(1);
+        }
+
+        // Dot
+        &:after {
+          transform: translate3d(0%, -50%, 0px) scale(1);
+          transition-delay: ${ProjectScrollSectionTransitionTime};
         }
       }
     }
@@ -60,12 +73,35 @@ export const ProjectScrollSectionStyle = styled.section`
 
       display: flex;
 
+      overflow: hidden;
+
       flex-flow: row nowrap;
       justify-content: flex-start;
       align-items: center;
 
       padding-left: 100vw;
       padding-right: 10vw;
+
+      &:after {
+        content: "";
+
+        position: absolute;
+
+        left: calc(100vw - (var(--${ProjectScrollSectionClassName}__dot-size) / 2));
+        top: 50%;
+
+        transform: translate3d(0%, -50%, 0px) scale(0);
+
+        width: var(--${ProjectScrollSectionClassName}__dot-size);
+        height: var(--${ProjectScrollSectionClassName}__dot-size);
+
+        border-radius: 50%;
+
+        background: ${Theme.Color.varForeground};
+
+        transition: transform 1s ease-in-out;
+
+      }
 
       &:before {
         content: "";
@@ -75,15 +111,24 @@ export const ProjectScrollSectionStyle = styled.section`
         top: 50%;
         left: 0;
 
-        transform: translate3d(0px, 50%, 0px) scaleX(0);
+        transform: translate3d(-100%, 50%, 0px) scaleX(1);
         transform-origin: left center;
 
         height: 1px;
-        width: 100%;
+        width: 100vw;
 
-        transition: transform 3s ease;
+        transition: transform ${ProjectScrollSectionTransitionTime} ease-in-out;
 
-        background: ${Theme.Color.varForeground};
+        /* background: ${Theme.Color.varForeground}; */
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0) 50%,
+          ${Theme.Color.varForeground} 50%,
+          ${Theme.Color.varForeground}
+        );
+
+        background-size: 6px 100%;
       }
     }
 
@@ -113,12 +158,49 @@ export const ProjectScrollSectionStyle = styled.section`
   }
 `;
 
-export const ProjectScrollSectionGlobalStyles = createGlobalStyle<{ isScrolled: boolean }>`
+export const ProjectScrollSectionGlobalStyles = createGlobalStyle<{
+  isScrolled: boolean;
+}>`
   .${NoDistortCanvasClassName} {
     transition: filter 1s ease, opacity 1s ease;
 
-    ${ props => props.isScrolled ? `filter: blur(50px); opacity: 0;` : `filter: blur(0px); opacity: 1;`}
+    ${(props) =>
+      props.isScrolled
+        ? `filter: blur(50px); opacity: 0;`
+        : `filter: blur(0px); opacity: 1;`}
 
+  }
+`;
+
+export const ProjectScrollBlurOverlayStyles = styled.div<{
+  isBreakpoint: boolean;
+}>`
+  transition: backdrop-filter 0.5s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+
+  ${(props) =>
+    props.isBreakpoint
+      ? `backdrop-filter: blur(50px) opacity(1);`
+      : `backdrop-filter: blur(50px) opacity(0);`}
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    transition: opacity 2.5s ease;
+    transition-delay: opacity 1s;
+
+    background: ${Theme.Color.varBackground};
+
+    ${(props) => (props.isBreakpoint ? `opacity: 1;` : `opacity: 0;`)}
   }
 `;
 
@@ -132,11 +214,13 @@ export const ScrollCardClassName = "scroll-card";
 
 export const ScrollCardStyle = styled.div`
   &.${ScrollCardClassName} {
+    --${ScrollCardClassName}__card-spacing: calc(${Root.Size} * 2);
+
     height: 100vh;
     width: 50vw;
 
     padding: calc(${Root.FrameSize} + (${Root.FrameSize} / 2))
-      calc(${Root.Size} * 2) calc(${Root.FrameSize} / 2) calc(${Root.Size} * 2);
+      var(--${ScrollCardClassName}__card-spacing) calc(${Root.FrameSize} / 2) var(--${ScrollCardClassName}__card-spacing);
 
     display: flex;
     align-items: flex-end;
@@ -166,11 +250,19 @@ export const ScrollCardStyle = styled.div`
       background-size: 100% 6px;
     }
 
+    &:before,
+    &:after {
+      transition: transform ${ProjectScrollSectionTransitionTime} ease-in-out;
+      transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
+    }
+
     // Right Border
     &:after {
       right: 0;
       top: 0;
       bottom: 0;
+
+      transform: translateY(100%);
     }
 
     // Center Border
@@ -179,7 +271,7 @@ export const ScrollCardStyle = styled.div`
       top: 0;
       bottom: 0;
 
-      transform: translateX(-50%);
+      transform: translate(-50%, -100%);
     }
 
     img {
@@ -199,7 +291,7 @@ export const ScrollCardStyle = styled.div`
           width: 1px;
 
           bottom: 0;
-          left: calc(${Root.Size} * -2);
+          left: calc(var(--${ScrollCardClassName}__card-spacing) * -1);
 
           background: linear-gradient(
             to bottom,
@@ -214,6 +306,66 @@ export const ScrollCardStyle = styled.div`
       }
     }
 
+    .${ScrollCardClassName}__bg {
+      position: absolute;
+
+      left: 0%;
+      top: 0%;
+
+      transform: translate(-50%, -50%);
+
+      width: 50%;
+      height: 60%;
+
+      box-shadow: 0px 0px 200px 200px ${Theme.Color.varSecondary};
+
+      mix-blend-mode: multiply;
+
+      background: ${Theme.Color.varSecondary};
+
+      /* animation: ${BlobRadius} 5s ease infinite; */
+
+      opacity: 0;
+
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+
+      transition: opacity 2s ease;
+    }
+
+    &:hover {
+      .${ScrollCardClassName}__bg {
+        opacity: .25;
+      }
+    }
+
+    &:nth-child(even) {
+      .${ScrollCardClassName}__bg {
+        left: 100%;
+        top: 100%;
+      }
+    }
+
+    .${ScrollCardClassName}__dot {
+      position: absolute;
+
+      transform: translate3d(0%, -50%, 0px) scale(0);
+
+      width: var(--${ProjectScrollSectionClassName}__dot-size);
+      height: var(--${ProjectScrollSectionClassName}__dot-size);
+
+      border-radius: 50%;
+
+      background: ${Theme.Color.varForeground};
+
+      transition: transform 1s ease-in-out;
+      transition-delay: transform 10s ease;
+
+      &--right {
+        left: calc(100% - (var(--${ProjectScrollSectionClassName}__dot-size) / 2));
+        top: 50%;
+      }
+    }
+
     .${ScrollCardClassName}__inner {
       height: 100%;
       width: 100%;
@@ -224,6 +376,35 @@ export const ScrollCardStyle = styled.div`
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+
+      &:after {
+        content: '';
+
+        position: absolute;
+
+        top: calc(50% - (${Root.FrameSize} / 2));
+        left: calc(var(--${ScrollCardClassName}__card-spacing) * -1);
+
+        width: calc(100% + (var(--${ScrollCardClassName}__card-spacing) * 2));
+        height: 1px;
+
+        transform: translate3d(0%, 50%, 0px) scaleX(1);
+        transform-origin: left center;
+
+        transition: transform ${ProjectScrollSectionTransitionTime} ease-in-out;
+
+        /* background: ${Theme.Color.varForeground}; */
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0) 50%,
+          ${Theme.Color.varForeground} 50%,
+          ${Theme.Color.varForeground}
+        );
+
+        background-size: 6px 100%;
+
+      }
     }
 
     .${ScrollCardClassName}__row {
@@ -250,6 +431,11 @@ export const ScrollCardStyle = styled.div`
           height: 5px;
           width: 100%;
 
+          transform: scaleX(0);
+          transform-origin: right center;
+
+          transition: transform ${ProjectScrollSectionTransitionTime} ease;
+
           background: ${Theme.Color.varForeground};
         }
       }
@@ -261,6 +447,12 @@ export const ScrollCardStyle = styled.div`
         text-transform: uppercase;
 
         margin-top: 0.25em;
+
+        transform: translateX(-20%) rotate(0deg);
+        opacity: 0;
+
+        transition: transform calc(${ProjectScrollSectionTransitionTime} / 2) ease, opacity calc(${ProjectScrollSectionTransitionTime} / 2) ease;
+        transition-delay: transform calc(${ProjectScrollSectionTransitionTime} / 2), opacity calc(${ProjectScrollSectionTransitionTime} / 2);
 
         &--content-major {
           font-size: 1.2rem;
@@ -279,10 +471,31 @@ export const ScrollCardStyle = styled.div`
 
       position: relative;
 
+      z-index: 2;
+
       box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
       transition: box-shadow 1s ease;
 
       overflow: hidden;
+
+      &:after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: ${Theme.Color.varForeground};
+
+        transform: scaleX(1);
+        transform-origin: left center;
+
+        transition: transform 1s ease;
+      }
 
       &:before {
         content: "";
@@ -303,6 +516,7 @@ export const ScrollCardStyle = styled.div`
         opacity: 1;
 
         transition: opacity 1s ease;
+        transition-delay: transform 2.75s ease;
       }
 
       .${ScrollCardClassName}__image {
@@ -339,7 +553,56 @@ export const ScrollCardStyle = styled.div`
         .${ScrollCardClassName}__image--normal {
           opacity: 1;
 
-          transition: opacity .5s ease;
+          transition: opacity 0.5s ease;
+        }
+      }
+    }
+
+    &.${ScrollCardClassName}--is-visible {
+      // Right Border
+      &:after {
+        transform: translateY(0%);
+
+        transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
+      }
+
+      // Center Border
+      &:before {
+        transform: translate(-50%, 0%);
+
+        transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
+      }
+
+      // Dots
+      .${ScrollCardClassName}__dot {
+        transform: translate3d(0%, -50%, 0px) scale(1);
+        transition-delay: transform 10s ease;
+      }
+
+      // Content
+      .${ScrollCardClassName}__col {
+        &__content-row {
+          transform: translateX(0%) rotate(0deg);
+          opacity: 1;
+        }
+      }
+
+      // Row Bottoms
+      .${ScrollCardClassName}__row {
+        &--bottom {
+          &:before {
+            transform: scaleX(1);
+            transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
+          }
+        }
+      }
+
+      // Images
+      .${ScrollCardClassName}__image-wrapper {
+        &:after {
+          transform: scaleX(0);
+
+          transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
         }
       }
     }

@@ -43,7 +43,7 @@ export const Layout = ({ children }: Layout) => {
       <GrainCover />
       <MellowFrameHeader router={router} />
       <main>{children}</main>
-      <Footer />
+      <Footer router={router} />
     </>
   );
 };

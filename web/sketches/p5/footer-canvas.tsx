@@ -49,7 +49,7 @@ const P5CanvasDisplay: LXLT_P5CanvasDisplay = (
       p.stroke(window.laxaltUniversalTheme.background);
       p.strokeWeight(1.5);
       p.ellipse(p.mouseX, p.mouseY, W / 6, W / 6);
-    } else {
+    } else if (p.mouseX !== 0 || p.mouseY !== 0) {
       p.fill(window.laxaltUniversalTheme.background);
       p.stroke(window.laxaltUniversalTheme.foreground);
       p.strokeWeight(1.5);

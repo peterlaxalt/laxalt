@@ -9,7 +9,8 @@
 // Core
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React, { Component, useEffect } from "react";
+import { NextRouter } from "next/router";
+import React, { Component, useEffect, useState } from "react";
 import {
   LXLT_LinkItemWithCaption,
   SiteNavigation,
@@ -100,7 +101,11 @@ class FooterP5Canvas extends Component<any, any> {
   }
 }
 
-export const Footer = () => {
+export type LXLT_Footer = {
+  router: NextRouter;
+};
+
+export const Footer: React.FunctionComponent<LXLT_Footer> = ({ router }) => {
   let scrollToTop: () => void;
 
   useEffect(() => {
@@ -109,8 +114,10 @@ export const Footer = () => {
     };
   });
 
+  let currentRouteClass = router.pathname == "/" ? "route__home" : "";
+
   return (
-    <FooterStyle className={`${FooterClassName}`}>
+    <FooterStyle className={`${FooterClassName} ${currentRouteClass}`}>
       <div className={`${FooterClassName}__inner`}>
         {/* ____________________________________________________________ */}
         {/* Footer Canvas */}

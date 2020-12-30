@@ -43,6 +43,10 @@ export const FooterStyle = styled.footer`
 
     overflow: hidden;
 
+    &.route__home {
+      display: none;
+    }
+
     @media(max-width: ${Theme.Base.Media.Width.Sm}) {
       padding: 0;
     }
