@@ -20,11 +20,11 @@ import { Root } from "../../constants/Root";
 //////////////////////////////////////////////////////////////////////
 
 export const InnerGridStyle = styled.div`
-  max-width: ${Theme.Base.Grid.SiteWidth};
+  /* max-width: ${Theme.Base.Grid.SiteWidth}; */
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding-left: ${Root.Grid.Gutter.Left};
   padding-right: ${Root.Grid.Gutter.Right};
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
 `;

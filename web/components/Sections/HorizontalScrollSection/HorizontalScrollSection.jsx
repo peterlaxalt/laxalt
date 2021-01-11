@@ -79,6 +79,7 @@ export const HorizontalScrollSection = ({
   addClass = "",
   children,
   hasSidebar = false,
+  forceFullWidth = false,
   style = {},
 }) => {
   const [dynamicHeight, setDynamicHeight] = useState(null);
@@ -100,6 +101,7 @@ export const HorizontalScrollSection = ({
   return (
     <HorizontalScrollSectionStyle
       style={style}
+      forceFullWidth={forceFullWidth}
       className={`${HorizontalScrollSectionClassName} ${HorizontalScrollSectionClassName}--${
         hasSidebar ? "has-sidebar" : ""
       } ${addClass && addClass}`}
@@ -108,7 +110,11 @@ export const HorizontalScrollSection = ({
         <StickyInnerContainer ref={containerRef}>
           <HorizontalTranslateContainer translateX={translateX} ref={objectRef}>
             <HorizontalSection>
-              <ContentWrapper>{children}</ContentWrapper>
+              <ContentWrapper
+                className={`${HorizontalScrollSectionClassName}__content-wrapper`}
+              >
+                {children}
+              </ContentWrapper>
             </HorizontalSection>
           </HorizontalTranslateContainer>
         </StickyInnerContainer>

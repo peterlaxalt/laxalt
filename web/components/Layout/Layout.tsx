@@ -19,6 +19,7 @@ import { MellowFrameHeader } from "../MellowFrameHeader";
 import { NextRouter, useRouter } from "next/router";
 import { Footer } from "../Footer";
 import { Cursor } from "../Cursor";
+import { CanvasCursor } from "../CanvasCursor";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -44,6 +45,7 @@ export const Layout = ({ children }: Layout) => {
       <MellowFrameHeader router={router} />
       <main>{children}</main>
       <Footer router={router} />
+      <CanvasCursor />
     </>
   );
 };

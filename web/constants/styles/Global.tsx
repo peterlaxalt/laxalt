@@ -72,6 +72,18 @@ html {
     /* overflow: hidden; */
   }
 
+  /* _______________________________________________________*/
+  /** Lazy Loading **/
+  .lazy {
+
+  opacity: 0;
+  transition: opacity 1s ease;
+
+  &.loaded {
+    opacity: 1;
+  }
+  }
+
 
 
   /* Sections

@@ -77,10 +77,10 @@ export const Settings = {
 
 export const SiteProjects: LXLT_SiteProjects = [
   {
-    name: "Craftlog",
-    slug: "/projects/craftlog",
+    name: "Localyyz",
+    slug: "/projects/localyyz",
     cover:
-      "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
+      "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
     categories: [
       {
         name: "UI",
@@ -174,10 +174,10 @@ export const SiteProjects: LXLT_SiteProjects = [
     duration: "2016 - Present",
   },
   {
-    name: "Nonvector",
-    slug: "/projects/nonvector",
+    name: "Deso",
+    slug: "/projects/deso",
     cover:
-      "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+      "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "Illustration",
@@ -193,18 +193,18 @@ export const SiteProjects: LXLT_SiteProjects = [
     duration: "2019",
   },
   {
-    name: "Communion",
-    slug: "/projects/communion",
+    name: "Eight Sleep",
+    slug: "/projects/eight",
     cover:
-      "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+      "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
     categories: [
       {
-        name: "Illustration",
-        slug: "/browse/illustration",
+        name: "UI",
+        slug: "/browse/ui",
       },
       {
-        name: "Music",
-        slug: "/browse/music",
+        name: "UX",
+        slug: "/browse/ux",
       },
     ],
     type: "Project",
@@ -212,14 +212,14 @@ export const SiteProjects: LXLT_SiteProjects = [
     duration: "2019",
   },
   {
-    name: "Dribbble",
+    name: "Full Spectrum Hemp",
     slug: "/projects/dribbble",
     cover:
-      "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+      "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
     categories: [
       {
-        name: "Illustration",
-        slug: "/browse/illustration",
+        name: "Packaging",
+        slug: "/browse/packaging",
       },
       {
         name: "Music",

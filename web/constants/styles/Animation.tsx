@@ -128,6 +128,17 @@ export const SlideUp = keyframes`
   }
 `;
 
+export const ScaleXIn = keyframes`
+  from {
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: scaleX(1);
+  }
+`;
+
 export const LoaderDot = keyframes`
  0% {
     background: #f7fafc;

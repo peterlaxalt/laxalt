@@ -6,9 +6,13 @@ import styled from "styled-components";
 
 // Constants
 import { Theme } from "../../../constants/Theme";
-import {} from "../../../constants/Root";
+import { Root } from "../../../constants/Root";
 import { CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
-import { LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
+import {
+  LayeredSidebarWidth,
+  SidebarFullwidthCss,
+} from "../../LayeredSidebar/styles.scss";
+import { CssUtils } from "../../../constants/styles/CssUtils";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -27,7 +31,12 @@ export const HorizontalScrollSectionClassName = "x-scroll";
  * @author Peter Laxalt
  *
  */
-export const HorizontalScrollSectionStyle = styled.section`
+export const HorizontalScrollSectionStyle = styled.section<{
+  forceFullWidth: boolean;
+}>`
+  ${(props) =>
+    props.forceFullWidth ? CssUtils.ForceFullWidth(Root.Grid.Gutter.Left) : ""};
+
   &.${HorizontalScrollSectionClassName} {
     &.${HorizontalScrollSectionClassName}--has-sidebar {
       /* ${SidebarFullwidthCss} */
@@ -36,7 +45,7 @@ export const HorizontalScrollSectionStyle = styled.section`
 
       /* padding-left: ${LayeredSidebarWidth}; */
 
-      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+      @media (max-width: ${Theme.Base.Media.Width.Sm}) {
         width: 100%;
         max-width: 100%;
         margin-left: 0;
@@ -45,6 +54,11 @@ export const HorizontalScrollSectionStyle = styled.section`
           display: none;
         }
       }
+    }
+
+    .${HorizontalScrollSectionClassName}__content-wrapper {
+      padding-left: ${(props) =>
+        props.forceFullWidth ? Root.Grid.Gutter.Left : 0};
     }
   }
 `;

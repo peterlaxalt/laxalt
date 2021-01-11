@@ -422,11 +422,12 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                   <div
                     className={`${MellowFrameHeaderClassName}__frame__nav__inner-col ${MellowFrameHeaderClassName}__frame__nav__inner-col--contact-btn`}
                   >
-                    <Link href={Settings.contactPage}>
+                    {/* <Link href={Settings.contactPage}> */}
+                    <Link href="mailto: peter@laxa.lt">
                       <a
                         className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__el ${MellowFrameHeaderClassName}__frame__nav__linklist__item__el--contact-btn`}
                       >
-                        Contact
+                        Email
                       </a>
                     </Link>
                   </div>
