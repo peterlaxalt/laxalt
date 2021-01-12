@@ -9,6 +9,7 @@
 // Core
 import { NextPage } from "next";
 import React from "react";
+import { DuotoneImage } from "../components/DuotoneImage";
 import { InnerGrid } from "../components/InnerGrid";
 import { AccordionListingRow } from "../components/Sections/AccordionListingRow";
 import { HorizontalScrollSection } from "../components/Sections/HorizontalScrollSection";
@@ -120,14 +121,7 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
                       placeItems: "center",
                     }}
                   >
-                    <img
-                      src={i}
-                      style={{
-                        border: `2px solid ${Theme.Color.varBackground}`,
-                        maxWidth: "100%",
-                        width: "100%",
-                      }}
-                    />
+                    <DuotoneImage style={{ width: "100%" }} src={i} alt={`${idx}`} aspectRatio={3 / 4} />
                   </span>
                 </div>
               );

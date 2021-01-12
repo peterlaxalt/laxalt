@@ -38,11 +38,6 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/studio.js"
-    ],
-    "/thoughts": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/thoughts.js"
     ]
   },
   "ampFirstPages": []

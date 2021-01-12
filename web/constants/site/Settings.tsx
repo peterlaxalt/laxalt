@@ -1086,7 +1086,7 @@ export const SiteIndustries: LXLT_Section_TableColumnField[] = [
   { label: "DELIVERY" },
   { label: "ALCOHOL" },
   { label: "ENVIRONMENTAL" },
-  { label: "SOCIAL JUSTICE" },
+  { label: "SOCIAL INITIATIVES" },
   { label: "JEWELRY" },
   { label: "SKATEBOARDING" },
   { label: "ENTREPRENEURSHIP" },

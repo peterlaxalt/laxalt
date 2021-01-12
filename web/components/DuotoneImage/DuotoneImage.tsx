@@ -10,6 +10,7 @@ import Link from "next/link";
 // Styles
 import { DuotoneImageClassName, DuotoneImageStyle } from "./styles.scss";
 import LazyImage from "../../utils/lazyImage";
+import { CSSProperties } from "styled-components";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -17,6 +18,7 @@ import LazyImage from "../../utils/lazyImage";
 export type LXLT_DuotoneImage = {
   addClass?: string;
   src: string;
+  style?: CSSProperties;
   aspectRatio?: number;
   alt: string;
 };
@@ -34,6 +36,7 @@ export type LXLT_DuotoneImage = {
 export const DuotoneImage: React.FunctionComponent<LXLT_DuotoneImage> = ({
   addClass,
   src,
+  style,
   alt,
   aspectRatio,
 }) => {
@@ -42,6 +45,7 @@ export const DuotoneImage: React.FunctionComponent<LXLT_DuotoneImage> = ({
       <DuotoneImageStyle
         className={`${DuotoneImageClassName} ${addClass}`}
         style={{
+          ...style,
           paddingBottom: aspectRatio ? `calc(100% * ${aspectRatio})` : 0,
         }}
       >

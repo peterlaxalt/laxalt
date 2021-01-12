@@ -56,7 +56,10 @@ export const AccordionListingRow: React.FunctionComponent<LMNTS_Section_Accordio
         <div className={`${AccordionListingRowClassName}__title`}>
           <button
             className={`${AccordionListingRowClassName}__title__btn`}
-            onClick={() => toggleRow(isExpanded ? false : true)}
+            onClick={() => !isInitiallyExpanded ? toggleRow(isExpanded ? false : true) : null}
+            style={{
+              cursor: !isInitiallyExpanded ? "pointer" : "default"
+            }}
           >
             {/* Left */}
             {/* _________________________________________________ */}
