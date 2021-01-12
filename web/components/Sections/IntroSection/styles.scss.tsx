@@ -38,6 +38,8 @@ export const IntroSectionStyle = styled.section`
       .${IntroSectionClassName}__col {
         &--focus {
           width: calc(100% * 0.66666666);
+
+          flex-shrink: 0;
         }
 
         &--content {
@@ -68,6 +70,15 @@ export const IntroSectionStyle = styled.section`
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      &__media {
+        margin-bottom: ${Root.Size};
+
+        svg {
+          max-width: 100%;
+          fill: ${Theme.Color.varForeground};
+        }
+      }
 
       &__item {
         margin-bottom: calc(${Root.Size} * 2);

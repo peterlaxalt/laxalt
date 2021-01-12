@@ -13,10 +13,21 @@ import { InnerGrid } from "../components/InnerGrid";
 import { AccordionListingRow } from "../components/Sections/AccordionListingRow";
 import { HorizontalScrollSection } from "../components/Sections/HorizontalScrollSection";
 import { IntroSection } from "../components/Sections/IntroSection";
+import { MasonryGallery } from "../components/Sections/MasonryGallery";
 import { SplitTextHero } from "../components/Sections/SplitTextHero";
 import { StaggeredBlocksSection } from "../components/Sections/StaggeredBlocksSection";
 import { StretchIntroSection } from "../components/Sections/StretchIntroSection";
+import { TableColumnListing } from "../components/Sections/TableListings";
+import { TableRowListing } from "../components/Sections/TableListings/TableRowListings";
+import { TakeoutMenu } from "../components/Sections/TakeoutMenu";
 import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
+import {
+  SiteAwardHeaders,
+  SiteAwards,
+  SiteClients,
+  SiteCollaborators,
+  SiteIndustries,
+} from "../constants/site/Settings";
 import { Theme } from "../constants/Theme";
 
 // Components
@@ -60,19 +71,28 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
         </AccordionListingRow>
 
         <AccordionListingRow labelLeft={`Disciplines`} labelRight={`Skills`}>
-          Content!
+          <TakeoutMenu />
         </AccordionListingRow>
 
         <AccordionListingRow labelLeft={`Photos`} labelRight={`Life`}>
-          Content!
+          <MasonryGallery />
         </AccordionListingRow>
 
         <AccordionListingRow labelLeft={`Clients`} labelRight={`Peeps`}>
-          Content!
+          <TableColumnListing data={SiteIndustries} tableName={`Industries`} />
+          <TableColumnListing data={SiteClients} tableName={`Clients`} />
+          <TableColumnListing
+            data={SiteCollaborators}
+            tableName={`Collaborators`}
+          />
         </AccordionListingRow>
 
         <AccordionListingRow labelLeft={`Awards`} labelRight={`Stuff`}>
-          Content!
+          <TableRowListing
+            data={SiteAwards}
+            tableName={`Awards`}
+            tableHeaders={SiteAwardHeaders}
+          />
         </AccordionListingRow>
 
         <AccordionListingRow

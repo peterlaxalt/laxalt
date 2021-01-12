@@ -32,6 +32,42 @@ export const SimpleContentTemplateStyle = styled.nav`
     background: ${Theme.Color.varBackground};
     padding: ${CssFrameSizeWithBorderString};
 
+    /* &.route__studio {
+      position: relative;
+
+      &:before,
+      &:after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        height: 100%;
+        width: 1px;
+
+        opacity: .2;
+
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0),
+          rgba(0, 0, 0, 0) 50%,
+          ${Theme.Color.varForeground} 50%,
+          ${Theme.Color.varForeground}
+        );
+
+        background-size: 100% 6px;
+      }
+
+      &:before {
+        left: calc(100% / 3);
+      }
+
+      &:after {
+        left: calc((100% / 3) * 2);
+      }
+    } */
+
     &.${SimpleContentTemplateClassName}--has-global-sidebar {
       .${SimpleContentTemplateClassName}__inner {
         display: flex;
@@ -50,7 +86,7 @@ export const SimpleContentTemplateStyle = styled.nav`
           max-width: 100%;
         }
 
-        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           max-width: 100%;
         }
       }
@@ -72,7 +108,7 @@ export const SimpleContentTemplateStyle = styled.nav`
           top: 0;
         }
 
-        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
           display: none;
         }
       }

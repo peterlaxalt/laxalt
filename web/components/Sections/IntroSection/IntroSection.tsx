@@ -3,6 +3,7 @@ import React from "react";
 import LazyImage from "../../../utils/lazyImage";
 import { DuotoneImage } from "../../DuotoneImage";
 import { LXLT_SimpleContentNode } from "../../SimpleContentTemplate";
+import { HeronIllustration } from "../../_svg/HeronIllustration/HeronIllustration";
 
 // Styles
 import { IntroSectionClassName, IntroSectionStyle } from "./styles.scss";
@@ -52,6 +53,9 @@ export const IntroSection: React.FunctionComponent<LMNTS_Section_IntroSection> =
           className={`${IntroSectionClassName}__col ${IntroSectionClassName}__col--content`}
         >
           <div className={`${IntroSectionClassName}__content`}>
+            <div className={`${IntroSectionClassName}__content__media`}>
+              <HeronIllustration />
+            </div>
             <p
               className={`${IntroSectionClassName}__content__item ${IntroSectionClassName}__content__item--intro`}
             >
