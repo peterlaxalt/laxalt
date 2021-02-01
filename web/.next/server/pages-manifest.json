@@ -2,9 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/artwork": "pages/artwork.js",
-  "/studio": "pages/studio.js",
-  "/code": "pages/code.js",
-  "/misc": "pages/misc.js",
-  "/design": "pages/design.js"
+  "/design": "pages/design.js",
+  "/": "pages/index.js"
 }

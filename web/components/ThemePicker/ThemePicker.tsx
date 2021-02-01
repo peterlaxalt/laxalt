@@ -110,6 +110,12 @@ export class ThemePickerWithHook extends React.PureComponent<
     if (typeof window) {
       window.laxaltUniversalTheme = this.state.activeTheme;
 
+      let nextBodyElement = document.getElementById("__next");
+
+      if (nextBodyElement) {
+        nextBodyElement.setAttribute("data-theme", this.state.activeTheme.name);
+      }
+
       __DEBUG__ && console.log("🎨 theme set", window.laxaltUniversalTheme);
     }
   }
@@ -123,6 +129,12 @@ export class ThemePickerWithHook extends React.PureComponent<
 
     if (typeof window) {
       window.laxaltUniversalTheme = theme;
+
+      let nextBodyElement = document.getElementById("__next");
+
+      if (nextBodyElement) {
+        nextBodyElement.setAttribute("data-theme", theme.name);
+      }
     }
 
     // setTheme(theme);
@@ -164,7 +176,10 @@ export class ThemePickerWithHook extends React.PureComponent<
                   >
                     <span
                       className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--primary`}
-                      style={{ backgroundColor: themeItem.background, border: `1px solid ${themeItem.foreground}` }}
+                      style={{
+                        backgroundColor: themeItem.background,
+                        border: `1px solid ${themeItem.foreground}`,
+                      }}
                     />
                     <span
                       className={`${ThemePickerClassName}__option__el ${ThemePickerClassName}__option__el--secondary`}

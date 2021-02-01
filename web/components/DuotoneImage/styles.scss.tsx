@@ -2,7 +2,7 @@
 // _________________________________________________________________________
 
 // Core
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 // Constants
 import { Theme } from "../../constants/Theme";
@@ -124,3 +124,25 @@ export const DuotoneImageStyle = styled.span`
     }
   }
 `;
+
+export const DuotoneImageGlobalStyles = createGlobalStyle`
+  ${`[data-theme="galaxy"]`},
+  ${`[data-theme="orangered"]`} {
+    .${DuotoneImageClassName} {
+
+      &:before {
+        mix-blend-mode: screen;
+      }
+
+      .${DuotoneImageClassName}__image--filtered {
+        mix-blend-mode: multiply;
+      }
+
+      &:hover {
+        .${DuotoneImageClassName}__image--filtered {
+          mix-blend-mode: multiply;
+        }
+      }
+    }
+  }
+`

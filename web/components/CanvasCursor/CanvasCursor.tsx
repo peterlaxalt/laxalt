@@ -84,8 +84,6 @@ export class CanvasCursor extends PureComponent<
     this.updateMouseCoords();
 
     window.addEventListener("mousemove", (e) => {
-      console.log(e);
-
       this.setState({
         mouseX: e.clientX,
         mouseY: e.clientY,

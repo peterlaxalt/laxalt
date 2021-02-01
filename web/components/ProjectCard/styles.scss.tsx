@@ -287,6 +287,8 @@ export const ProjectCardStyle = styled.div`
 
       overflow: hidden;
 
+      width: 100%;
+
       &:after {
         content: "";
 
@@ -306,65 +308,6 @@ export const ProjectCardStyle = styled.div`
         transition: transform 1s ease;
       }
 
-      &:before {
-        content: "";
-
-        position: absolute;
-
-        left: 0;
-        top: 0;
-
-        width: 100%;
-        height: 100%;
-
-        background: ${Theme.Color.varBackground};
-        mix-blend-mode: multiply;
-
-        z-index: 2;
-
-        opacity: 1;
-
-        transition: opacity 1s ease;
-        transition-delay: transform 2.75s ease;
-      }
-
-      .${ProjectCardClassName}__image {
-        &--filtered {
-          mix-blend-mode: screen;
-          filter: grayscale() blur(0px);
-
-          transition: filter 1s ease;
-        }
-
-        &--normal {
-          position: absolute;
-          left: 0;
-          top: 0;
-
-          opacity: 0;
-
-          transition: opacity 1s ease;
-        }
-      }
-
-      &:hover {
-        /* box-shadow: 0px 0px 0px 8px ${Theme.Color.varForeground}; */
-
-        &:before {
-          opacity: 0;
-        }
-
-        .${ProjectCardClassName}__image--filtered {
-          mix-blend-mode: screen;
-          filter: grayscale() blur(20px);
-        }
-
-        .${ProjectCardClassName}__image--normal {
-          opacity: 1;
-
-          transition: opacity 0.5s ease;
-        }
-      }
     }
 
     &.${ProjectCardClassName}--is-visible {

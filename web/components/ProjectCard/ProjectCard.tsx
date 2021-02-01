@@ -6,6 +6,7 @@ import { LXLT_Category, LXLT_Project } from "../../constants/site/Settings";
 
 // Utils
 import { isVisible } from "../../utils/isVisible";
+import { DuotoneImage } from "../DuotoneImage";
 
 // Components
 
@@ -73,7 +74,8 @@ export const ProjectCard: React.FunctionComponent<LXLT_ProjectCard> = React.memo
           <div
             className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--center`}
           >
-            <div className={`${ProjectCardClassName}__image-wrapper`}>
+            <DuotoneImage src={cover} addClass={`${ProjectCardClassName}__image-wrapper`} alt={item.name} aspectRatio={3/4} />
+            {/* <div className={`${ProjectCardClassName}__image-wrapper`}>
               <img
                 className={`${ProjectCardClassName}__image ${ProjectCardClassName}__image--filtered`}
                 src={cover}
@@ -82,7 +84,7 @@ export const ProjectCard: React.FunctionComponent<LXLT_ProjectCard> = React.memo
                 className={`${ProjectCardClassName}__image ${ProjectCardClassName}__image--normal`}
                 src={cover}
               />
-            </div>
+            </div> */}
           </div>
 
           {/* ____________________________________________________________________ */}

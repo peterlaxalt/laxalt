@@ -2,13 +2,17 @@
 import React from "react";
 
 // Constants
-import { LXLT_LinkItem, __DEBUG__ } from "../../constants/site/Settings";
+import { __DEBUG__ } from "../../constants/site/Settings";
 
 // Components
 import Link from "next/link";
 
 // Styles
-import { DuotoneImageClassName, DuotoneImageStyle } from "./styles.scss";
+import {
+  DuotoneImageClassName,
+  DuotoneImageStyle,
+  DuotoneImageGlobalStyles,
+} from "./styles.scss";
 import LazyImage from "../../utils/lazyImage";
 import { CSSProperties } from "styled-components";
 
@@ -42,6 +46,7 @@ export const DuotoneImage: React.FunctionComponent<LXLT_DuotoneImage> = ({
 }) => {
   return (
     <>
+      <DuotoneImageGlobalStyles />
       <DuotoneImageStyle
         className={`${DuotoneImageClassName} ${addClass}`}
         style={{
