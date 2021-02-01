@@ -1,28 +1,24 @@
-/**
- *
- * index.js
- * @author Peter Laxalt
- * @description The website home page.
- *
- */
-
 // Core
 import { NextPage } from "next";
 import React from "react";
+
+// Types
 import { LXLT_SidebarPane } from "../components/LayeredSidebar";
-import { CssFrameSizeWithBorderString } from "../components/MellowFrameHeader/styles.scss";
-import { MarqueeRow } from "../components/Sections/MarqueeRow";
-import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
-import { Root } from "../constants/Root";
-import { Theme } from "../constants/Theme";
+import { LXLT_Category, SiteCodeGraph } from "../constants/site/Settings";
+
+// Constants
+import { SiteDesignGraph } from "../constants/site/Settings";
 
 // Components
-import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
+import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
+import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
+import { CodeBadge } from "../components/_svg/Headers/CodeBadge";
+import { CodeHeader } from "../components/_svg/Headers/CodeHeader";
 
 // Begin Component
 // __________________________________________________________________________________________
 
-type LMNTS_LocationsFrontPage = {};
+export type LMNTS_CodeFrontPage = {};
 
 export const CodePageClassName = "route__code";
 
@@ -32,92 +28,30 @@ export const CodePageClassName = "route__code";
  * @author Peter Laxalt
  *
  */
-const CodePage: NextPage<LMNTS_LocationsFrontPage> = () => {
+const CodePage: NextPage<LMNTS_CodeFrontPage> = () => {
+  let sidebarPanes: LXLT_SidebarPane[] = [
+    {
+      header: "Code",
+      headerBadge: CodeBadge,
+      items: SiteCodeGraph.categories.map((category: LXLT_Category) => {
+        return {
+          label: category.name,
+          href: category.slug === 'everything' ? `/${SiteDesignGraph.rootSlug}` : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
+          isActive: category.slug === 'everything' ? true : false,
+          isMajor: category.isMajor ? category.isMajor : false,
+        };
+      }),
+    },
+  ];
+
   return (
-    <SimpleContentTemplate addClass={`${CodePageClassName}`}>
-      <MarqueeRow
-        hasSidebar={false}
-        style={{ marginTop: CssFrameSizeWithBorderString }}
-        strings={["CODE", "CODE", "CODE"]}
-      />
+    <SimpleContentTemplate
+      globalSidebarPanes={sidebarPanes}
+      addClass={`${CodePageClassName}`}
+    >
+      <CodeHeader />
 
-      <p
-        style={{
-          maxWidth: 650,
-          fontFamily: `${Theme.Font.Code}`,
-          fontSize: "1.5rem",
-          margin: "20px 0px 20px 0px",
-        }}
-      >
-        <strong>APRIL 20 — </strong>Nunc fringilla leo vel ligula porttitor
-        posuere in eget purus. Nam vitae bibendum sem. Suspendisse tempus,
-        libero sed sodales cursus, quam quam euismod massa, a vestibulum lacus
-        lacus ac leo. Proin sit amet est quam. Proin libero eros, interdum ut
-        maximus ut, bibendum eu nulla. Aenean nunc augue, pulvinar dignissim
-        sapien id, tempus lacinia neque. Mauris dignissim, urna nec blandit
-        ullamcorper, elit ante tempus turpis, non consectetur orci diam eu
-        lorem. Sed rutrum, leo tincidunt sagittis pharetra, quam diam fermentum
-        libero, a ullamcorper massa velit non dolor. Maecenas eget pellentesque
-        lacus. Sed ac lectus quis tellus euismod pharetra. Vivamus pretium
-        gravida urna a posuere.
-      </p>
-
-      <p
-        style={{
-          maxWidth: 650,
-          fontSize: "1.05rem",
-          margin: "20px 0px 20px 0px",
-        }}
-      >
-        Nunc fringilla leo vel ligula porttitor posuere in eget purus. Nam vitae
-        bibendum sem. Suspendisse tempus, libero sed sodales cursus, quam quam
-        euismod massa, a vestibulum lacus lacus ac leo. Proin sit amet est quam.
-        Proin libero eros, interdum ut maximus ut, bibendum eu nulla. Aenean
-        nunc augue, pulvinar dignissim sapien id, tempus lacinia neque. Mauris
-        dignissim, urna nec blandit ullamcorper, elit ante tempus turpis, non
-        consectetur orci diam eu lorem. Sed rutrum, leo tincidunt sagittis
-        pharetra, quam diam fermentum libero, a ullamcorper massa velit non
-        dolor. Maecenas eget pellentesque lacus. Sed ac lectus quis tellus
-        euismod pharetra. Vivamus pretium gravida urna a posuere.
-      </p>
-
-      <p
-        style={{
-          maxWidth: 650,
-          fontSize: "1.05rem",
-          margin: "20px 0px 20px 0px",
-        }}
-      >
-        Nunc fringilla leo vel ligula porttitor posuere in eget purus. Nam vitae
-        bibendum sem. Suspendisse tempus, libero sed sodales cursus, quam quam
-        euismod massa, a vestibulum lacus lacus ac leo. Proin sit amet est quam.
-        Proin libero eros, interdum ut maximus ut, bibendum eu nulla. Aenean
-        nunc augue, pulvinar dignissim sapien id, tempus lacinia neque. Mauris
-        dignissim, urna nec blandit ullamcorper, elit ante tempus turpis, non
-        consectetur orci diam eu lorem. Sed rutrum, leo tincidunt sagittis
-        pharetra, quam diam fermentum libero, a ullamcorper massa velit non
-        dolor. Maecenas eget pellentesque lacus. Sed ac lectus quis tellus
-        euismod pharetra. Vivamus pretium gravida urna a posuere.
-      </p>
-
-      <p
-        style={{
-          maxWidth: 650,
-          fontSize: "1.05rem",
-          margin: "20px 0px 20px 0px",
-        }}
-      >
-        Nunc fringilla leo vel ligula porttitor posuere in eget purus. Nam vitae
-        bibendum sem. Suspendisse tempus, libero sed sodales cursus, quam quam
-        euismod massa, a vestibulum lacus lacus ac leo. Proin sit amet est quam.
-        Proin libero eros, interdum ut maximus ut, bibendum eu nulla. Aenean
-        nunc augue, pulvinar dignissim sapien id, tempus lacinia neque. Mauris
-        dignissim, urna nec blandit ullamcorper, elit ante tempus turpis, non
-        consectetur orci diam eu lorem. Sed rutrum, leo tincidunt sagittis
-        pharetra, quam diam fermentum libero, a ullamcorper massa velit non
-        dolor. Maecenas eget pellentesque lacus. Sed ac lectus quis tellus
-        euismod pharetra. Vivamus pretium gravida urna a posuere.
-      </p>
+      <ProjectVerticalListings />
     </SimpleContentTemplate>
   );
 };

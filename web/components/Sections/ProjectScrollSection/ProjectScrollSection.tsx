@@ -1,25 +1,20 @@
 // Core
-import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import {
-  LXLT_Category,
-  LXLT_Project,
-  SiteProjects,
-} from "../../../constants/site/Settings";
-import { Theme } from "../../../constants/Theme";
-import { isVisible, percentIsVisible } from "../../../utils/isVisible";
+
+// Types
+import { LXLT_Project, SiteProjects } from "../../../constants/site/Settings";
+
+// Vendor
+import gsap from "gsap";
 
 // Components
+import { ProjectCard } from "../../ProjectCard";
 
 // Styles
 import {
   ProjectScrollBlurOverlayStyles,
   ProjectScrollSectionClassName,
-  ProjectScrollSectionGlobalStyles,
   ProjectScrollSectionStyle,
-  ScrollCardClassName,
-  ScrollCardStyle,
 } from "./styles.scss";
 
 // Begin Types
@@ -45,118 +40,6 @@ declare global {
 // __________________________________________________________________________________________
 
 let lastTranslateX: number = 0;
-
-export const ScrollCard: React.FunctionComponent<LXLT_ScrollCard> = React.memo(
-  ({ item, count, total }) => {
-    let { cover } = item;
-    const ScrollCardRef = useRef<HTMLDivElement>();
-    const isCurrentlyVisible = isVisible(ScrollCardRef);
-
-    return (
-      <ScrollCardStyle
-        ref={ScrollCardRef}
-        className={`${ScrollCardClassName} ${ScrollCardClassName}--${
-          isCurrentlyVisible ? `is-visible` : `is-not-visible`
-        }`}
-      >
-        <span className={`${ScrollCardClassName}__bg`} />
-        <span className={`${ScrollCardClassName}__dot ${ScrollCardClassName}__dot--right`} />
-        <div className={`${ScrollCardClassName}__inner`}>
-          {/* ____________________________________________________________________ */}
-          {/* Card top */}
-          <div
-            className={`${ScrollCardClassName}__row ${ScrollCardClassName}__row--top`}
-          >
-
-            {/* ____________________________________________________________________ */}
-            {/* Card top left col */}
-            <div
-              className={`${ScrollCardClassName}__col ${ScrollCardClassName}__col--top-left`}
-            >
-              <span className={`${ScrollCardClassName}__col__content-row`}>
-                No {count} / {total}
-              </span>
-            </div>
-
-            {/* ____________________________________________________________________ */}
-            {/* Card top right col */}
-            <div
-              className={`${ScrollCardClassName}__col ${ScrollCardClassName}__col--top-right`}
-            >
-              <span className={`${ScrollCardClassName}__col__content-row`}>
-                {item.duration && item.duration}
-              </span>
-            </div>
-          </div>
-
-          {/* ____________________________________________________________________ */}
-          {/* Card center */}
-          <div
-            className={`${ScrollCardClassName}__row ${ScrollCardClassName}__row--center`}
-          >
-            <div className={`${ScrollCardClassName}__image-wrapper`}>
-              <img
-                className={`${ScrollCardClassName}__image ${ScrollCardClassName}__image--filtered`}
-                src={cover}
-              />
-              <img
-                className={`${ScrollCardClassName}__image ${ScrollCardClassName}__image--normal`}
-                src={cover}
-              />
-            </div>
-          </div>
-
-          {/* ____________________________________________________________________ */}
-          {/* Card bottom */}
-          <div
-            className={`${ScrollCardClassName}__row ${ScrollCardClassName}__row--bottom`}
-          >
-            {/* ____________________________________________________________________ */}
-            {/* Card bottom left col */}
-            <div
-              className={`${ScrollCardClassName}__col ${ScrollCardClassName}__col--bottom-left`}
-            >
-              <strong
-                className={`${ScrollCardClassName}__col__content-row ${ScrollCardClassName}__col__content-row--content-major`}
-              >
-                {item.name}
-              </strong>
-              <span
-                className={`${ScrollCardClassName}__col__content-row ${ScrollCardClassName}__col__content-row--content-minor ${ScrollCardClassName}__col__content-row--tag-list`}
-              >
-                {item.categories.map((category: LXLT_Category, idx: number) => {
-                  return (
-                    <span key={idx}>
-                      {category.name}{" "}
-                      {idx + 1 !== item.categories.length ? "/" + " " : ""}
-                    </span>
-                  );
-                })}
-              </span>
-            </div>
-
-            {/* ____________________________________________________________________ */}
-            {/* Card bottom right col */}
-            <div
-              className={`${ScrollCardClassName}__col ${ScrollCardClassName}__col--bottom-right`}
-            >
-              <span
-                className={`${ScrollCardClassName}__col__content-row ${ScrollCardClassName}__col__content-row--content-major`}
-              >
-                {item.type}
-              </span>
-              <span
-                className={`${ScrollCardClassName}__col__content-row ${ScrollCardClassName}__col__content-row--content-minor`}
-              >
-                {item.location}
-              </span>
-            </div>
-          </div>
-        </div>
-      </ScrollCardStyle>
-    );
-  }
-);
 
 export const ProjectScrollSection: React.FunctionComponent<LXLT_ProjectScrollSection> = React.memo(
   ({ addClass = "" }) => {
@@ -276,7 +159,7 @@ export const ProjectScrollSection: React.FunctionComponent<LXLT_ProjectScrollSec
                   >
                     {SiteProjects.map((item: LXLT_Project, idx: number) => {
                       return (
-                        <ScrollCard
+                        <ProjectCard
                           key={idx}
                           count={idx + 1}
                           total={SiteProjects.length}

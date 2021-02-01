@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./SimpleContentTemplate\";","map":{"version":3,"sources":["/Users/pflaxalt/Repositories/_pfl/web/components/SimpleContentTemplate/index.tsx"],"names":[],"mappings":"AAAA,cAAc,yBAAd","sourcesContent":["export * from \"./SimpleContentTemplate\";\n"]},"metadata":{},"sourceType":"module"}

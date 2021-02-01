@@ -17,10 +17,12 @@ export type LXLT_SidebarPaneItem = {
   label: string;
   href: string;
   isMajor: boolean;
+  isActive: boolean;
 };
 
 export type LXLT_SidebarPane = {
   header?: string;
+  headerBadge?: () => JSX.Element;
   items?: LXLT_SidebarPaneItem[];
 };
 
@@ -64,17 +66,27 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                 {/* Navigaton Pane */}
                 <div
                   className={`${LayeredSidebarClassName}__pane`}
-                  onMouseEnter={() => idx == panes.length - 1 ? null : setHover(true)}
-                  onMouseLeave={() => idx == panes.length - 1 ? null : setHover(false)}
+                  onMouseEnter={() =>
+                    idx == panes.length - 1 ? null : setHover(true)
+                  }
+                  onMouseLeave={() =>
+                    idx == panes.length - 1 ? null : setHover(false)
+                  }
                   key={idx}
                 >
                   {/* ____________________________________________________________ */}
                   {/* List header */}
-                  {pane.header && (
+                  {pane.header && !pane.headerBadge ? (
                     <div className={`${LayeredSidebarClassName}__pane__header`}>
                       {pane.header}
                     </div>
-                  )}
+                  ) : pane.headerBadge ? (
+                    <div
+                      className={`${LayeredSidebarClassName}__pane__header ${LayeredSidebarClassName}__pane__header--badge`}
+                    >
+                      <pane.headerBadge />
+                    </div>
+                  ) : null}
 
                   {/* ____________________________________________________________ */}
                   {/* List items */}
@@ -91,6 +103,10 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                               return (
                                 <li
                                   className={`${LayeredSidebarClassName}__pane__list__item ${LayeredSidebarClassName}__pane__list__item--${
+                                    paneItem.isActive
+                                      ? "is-active"
+                                      : "is-not-active"
+                                  }  ${LayeredSidebarClassName}__pane__list__item--${
                                     paneItem.isMajor ? "major" : "minor"
                                   }`}
                                   key={idxx}
@@ -116,6 +132,10 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                               return (
                                 <li
                                   className={`${LayeredSidebarClassName}__pane__list__item ${LayeredSidebarClassName}__pane__list__item--${
+                                    paneItem.isActive
+                                      ? "is-active"
+                                      : "is-not-active"
+                                  } ${LayeredSidebarClassName}__pane__list__item--${
                                     paneItem.isMajor ? "major" : "minor"
                                   }`}
                                   key={idxx}

@@ -37,5 +37,5 @@ export const CanvasCursorStyle = styled.canvas`
 
   pointer-events: none;
 
-  mix-blend-mode: difference;
+  mix-blend-mode: exclusion;
 `;

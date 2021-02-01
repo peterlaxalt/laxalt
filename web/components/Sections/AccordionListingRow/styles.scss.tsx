@@ -124,6 +124,8 @@ export const AccordionListingRowStyle = styled.section`
           }
 
           &--indicator {
+            height: 7vw;
+
             &:before {
               content: "&";
 

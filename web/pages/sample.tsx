@@ -43,37 +43,44 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
           label: "Strategy",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Branding",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Illustration",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Packaging",
           href: "/",
           isMajor: true,
+          isActive: false
         },
 
         {
           label: "Creative Direction",
           href: "/",
           isMajor: false,
+          isActive: false
         },
         {
           label: "Linework",
           href: "/",
           isMajor: false,
+          isActive: false
         },
         {
           label: "Hospitality",
           href: "/",
           isMajor: false,
+          isActive: false
         },
       ],
     },
@@ -85,31 +92,37 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
           label: "Item",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Item",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Item",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
           label: "Item",
           href: "/",
           isMajor: false,
+          isActive: false
         },
         {
           label: "Item",
           href: "/",
           isMajor: false,
+          isActive: false
         },
         {
           label: "Item",
           href: "/",
           isMajor: false,
+          isActive: false
         },
       ],
     },
@@ -118,34 +131,34 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
       // header: "Strategy",
       items: [
         {
-          label: "Item",
+          label: "Intro",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
-          label: "Item",
+          label: "Overview",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
-          label: "Item",
+          label: "Team",
           href: "/",
           isMajor: true,
+          isActive: false
         },
         {
-          label: "Item",
+          label: "Scrap Pile",
           href: "/",
           isMajor: false,
+          isActive: false
         },
         {
-          label: "Item",
+          label: "Related Projects",
           href: "/",
           isMajor: false,
-        },
-        {
-          label: "Item",
-          href: "/",
-          isMajor: false,
+          isActive: false
         },
       ],
     },

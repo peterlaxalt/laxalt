@@ -38,6 +38,16 @@ export type LXLT_SiteNavigation = {
 export type LXLT_Category = {
   name: string;
   slug: string;
+  isMajor?: boolean;
+  subcategories?: {
+    name: string;
+    slug: string;
+  }[];
+};
+
+export type LXLT_SiteDataGraph = {
+  rootSlug: string;
+  categories: LXLT_Category[];
 };
 
 export type LXLT_Project = {
@@ -244,7 +254,7 @@ export const SiteNavigation: LXLT_SiteNavigation = {
       href: "/sample",
     },
     {
-      label: "Art",
+      label: "Artwork",
       href: "/sample",
     },
     {
@@ -307,13 +317,13 @@ export const SiteNavigation: LXLT_SiteNavigation = {
   OverlayNav: {
     NavItems: [
       {
-        label: "Art",
-        href: "/art",
+        label: "Artwork",
+        href: "/artwork",
         caption: "Lorem ipsum",
       },
       {
         label: "Design",
-        href: "/sample",
+        href: "/design",
         caption: "Lorem ipsum",
       },
       {
@@ -326,11 +336,11 @@ export const SiteNavigation: LXLT_SiteNavigation = {
         href: "/studio",
         caption: "Lorem ipsum",
       },
-      {
-        label: "Thoughts",
-        href: "/thoughts",
-        caption: "Lorem ipsum",
-      },
+      // {
+      //   label: "Thoughts",
+      //   href: "/thoughts",
+      //   caption: "Lorem ipsum",
+      // },
       // {
       //   label: "Learn",
       //   href: "/sample",
@@ -366,6 +376,255 @@ export const SiteNavigation: LXLT_SiteNavigation = {
       },
     ],
   },
+};
+
+export const SiteDesignGraph: LXLT_SiteDataGraph = {
+  rootSlug: "design",
+  categories: [
+    {
+      name: "Everything",
+      slug: "everything",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Identity",
+      slug: "identity",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Branding",
+      slug: "branding",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Illustration",
+      slug: "illustration",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Strategy",
+      slug: "strategy",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Digital",
+      slug: "digital",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Physical Spaces",
+      slug: "physical-spaces",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Lettering",
+      slug: "lettering",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Packaging",
+      slug: "packaging",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Misc",
+      slug: "misc",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+  ],
+};
+
+export const SiteCodeGraph: LXLT_SiteDataGraph = {
+  rootSlug: "code",
+  categories: [
+    {
+      name: "Everything",
+      slug: "everything",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Frontend",
+      slug: "frontend",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Headless",
+      slug: "headless",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "eCommerce",
+      slug: "eCommerce",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Interactive",
+      slug: "interactive",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Experiments",
+      slug: "experiments",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+  ],
+};
+
+export const SiteArtworkGraph: LXLT_SiteDataGraph = {
+  rootSlug: "artwork",
+  categories: [
+    {
+      name: "Everything",
+      slug: "everything",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Flash Sheets",
+      slug: "flash",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Acrylic",
+      slug: "acrylic",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Murals",
+      slug: "murals",
+      isMajor: true,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+    {
+      name: "Archives",
+      slug: "archives",
+      isMajor: false,
+      subcategories: [
+        {
+          name: "",
+          slug: "",
+        },
+      ],
+    },
+  ],
 };
 
 export const SiteTakeoutMenu: LXLT_TakeoutMenuColumn[] = [
@@ -1242,7 +1501,12 @@ export const SiteAwards: LXLT_Section_TableRowField[] = [
     ],
   },
   {
-    fields: ["5+ AMA Ace Awards", "Various Projects", "Laxalt & McIver", "2020"],
+    fields: [
+      "5+ AMA Ace Awards",
+      "Various Projects",
+      "Laxalt & McIver",
+      "2020",
+    ],
   },
   {
     fields: [

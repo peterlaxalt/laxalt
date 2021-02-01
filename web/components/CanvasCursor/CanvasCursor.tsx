@@ -7,8 +7,7 @@
  */
 
 // Core
-import React, { Component, createRef, PureComponent } from "react";
-import { createGlobalStyle } from "styled-components";
+import React, { createRef, PureComponent } from "react";
 
 // Styles
 import { CanvasCursorStyle, CanvasCursorClassName } from "./styles.scss";
@@ -55,12 +54,18 @@ export class CanvasCursor extends PureComponent<
       vh: 0,
     };
 
-    // this.setCursorPosition = this.setCursorPosition.bind(this);
     this.ctx;
     this.calculateSize = this.calculateSize.bind(this);
+    this.renderMouse = this.renderMouse.bind(this);
   }
 
   componentDidMount() {
+    this.init();
+  }
+
+  init() {
+    // _____________________
+    // Setup our sizes
     this.calculateSize();
 
     this.setState({
@@ -74,66 +79,94 @@ export class CanvasCursor extends PureComponent<
       },
     });
 
-    this.ctx = this.canvasRef.current.getContext('2d');
+    // _____________________
+    // Update initial coordinates
+    this.updateMouseCoords();
 
-    window.addEventListener("mousemove", this.updateMouseCoords);
+    window.addEventListener("mousemove", (e) => {
+      console.log(e);
+
+      this.setState({
+        mouseX: e.clientX,
+        mouseY: e.clientY,
+      });
+    });
     window.addEventListener("resize", this.calculateSize, false);
   }
 
+  // ______________________________
+  // Calculate Sizes
   calculateSize() {
     this.setState({
       vw: window.innerWidth,
       vh: window.innerHeight,
     });
 
-    if (this.canvasRef) {
+    if (this.canvasRef.current) {
       this.canvasRef.current.width = window.innerWidth;
       this.canvasRef.current.height = window.innerHeight;
     }
   }
 
-  updateMouseCoords() {}
-
-  /**
-   *
-   * @name Set Cursor Position
-   * @param e : Event from "mousemove" event listener.
-   * @description This positions the Cursor throughout the page.
-   *
-   */
-  // setCursorPosition = (e: any) => {
-  //   let xPos = this.state.mouseX - this.state.mouseSize / 2;
-  //   let yPos = this.state.mouseY - this.state.mouseSize / 2;
-
-  //   let dX = this.state.mouseX - this.state.xPos;
-  //   let dY = this.state.mouseY - this.state.yPos;
-
-  //   this.setState({
-  //     xPos: xPos + dX / 10,
-  //     yPos: yPos + dY / 10,
-  //     mouseX: e.clientX,
-  //     mouseY: e.clientY,
-  //     opacity: 1,
-  //   });
-  // };
-
+  // ______________________________
+  // Canvas Reference
   canvasRef: React.RefObject<HTMLCanvasElement> = createRef<HTMLCanvasElement>();
 
+  // ______________________________
+  // Update Mouse Coordinates
+  updateMouseCoords() {
+    requestAnimationFrame(this.renderMouse);
+  }
+
+  // ______________________________
+  // Render to canvas
+  renderMouse() {
+    if (this.canvasRef.current) {
+      let ctx = this.canvasRef.current.getContext("2d");
+
+      this.setState({
+        mouseCursor: {
+          radius: 10,
+          lastX: this.lerp(
+            this.state.mouseCursor.lastX,
+            this.state.mouseX,
+            0.25
+          ),
+          lastY: this.lerp(
+            this.state.mouseCursor.lastY,
+            this.state.mouseY,
+            0.25
+          ),
+        },
+      });
+
+      ctx.clearRect(0, 0, this.state.vw, this.state.vh);
+      ctx.beginPath();
+      ctx.arc(
+        this.state.mouseCursor.lastX,
+        this.state.mouseCursor.lastY,
+        this.state.mouseCursor.radius,
+        0,
+        Math.PI * 2,
+        false
+      );
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.closePath();
+
+      requestAnimationFrame(this.renderMouse);
+    } else {
+      return;
+    }
+  }
+
+  // ______________________________
+  // LERP Helper Function
+  lerp(a: number, b: number, n: number) {
+    return (1 - n) * a + n * b;
+  }
+
   render() {
-    // const UniversallyHideCursor = createGlobalStyle`
-    //   body, html {
-    //     cursor: none !important;
-
-    //     a {
-    //       cursor: none !important;
-    //     }
-
-    //     * {
-    //       cursor: none !important;
-    //     }
-    //   }
-    // `;
-
     return (
       <>
         {/* <UniversallyHideCursor /> */}

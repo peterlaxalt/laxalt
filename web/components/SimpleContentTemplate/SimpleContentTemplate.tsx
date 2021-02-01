@@ -22,13 +22,14 @@ export type LXLT_SimpleContentTemplate = {
   addClass?: string;
   globalSidebarPanes?: LXLT_SidebarPane[];
   children: React.ReactNode;
+  style?: React.CSSProperties;
 };
 
 export type LXLT_SimpleContentNode = {
   isFirstNode?: boolean;
   addClass?: boolean;
   style?: CSSProperties;
-}
+};
 
 // Begin Data
 // __________________________________________________________________________________________
@@ -37,6 +38,7 @@ export const SimpleContentTemplate: React.FunctionComponent<LXLT_SimpleContentTe
   addClass,
   children,
   globalSidebarPanes,
+  style,
 }) => {
   return (
     <SimpleContentTemplateStyle
@@ -45,6 +47,7 @@ export const SimpleContentTemplate: React.FunctionComponent<LXLT_SimpleContentTe
       } ${SimpleContentTemplateClassName}--${
         globalSidebarPanes ? `has-global-sidebar` : `sans-global-sidebar`
       }`}
+      style={{ ...style }}
     >
       <div className={`${SimpleContentTemplateClassName}__inner`}>
         {/* _____________________________________________________________ */}
