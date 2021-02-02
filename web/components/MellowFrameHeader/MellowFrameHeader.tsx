@@ -405,6 +405,26 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                         San Francisco / 04:21:21
                       </span>
                     </li>
+
+                    <li
+                      className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item`}
+                    >
+                      <span
+                        className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__time`}
+                      >
+                        Click and drag anywhere to draw
+                      </span>
+                    </li>
+
+                    <li
+                      className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item`}
+                    >
+                      <span
+                        className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__time`}
+                      >
+                        Press "C" to clear drawing
+                      </span>
+                    </li>
                   </ul>
                 </div>
 

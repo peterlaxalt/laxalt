@@ -14,6 +14,7 @@ import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
 import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { ArtworkHeader } from "../components/_svg/Headers/ArtworkHeader";
 import { ArtworkBadge } from "../components/_svg/Headers/ArtworkBadge";
+import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -52,9 +53,13 @@ const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
       globalSidebarPanes={sidebarPanes}
       addClass={`${ArtworkPageClassName}`}
     >
-      <ArtworkHeader />
+      <HeadlineWrapper>
+        <ArtworkHeader />
+      </HeadlineWrapper>
 
-      <ProjectVerticalListings />
+      <AfterHeadlineWrapper>
+        <ProjectVerticalListings />
+      </AfterHeadlineWrapper>
     </SimpleContentTemplate>
   );
 };

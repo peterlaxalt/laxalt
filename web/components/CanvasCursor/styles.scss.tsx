@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////
 
 // Core
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 // Constants
 // import { Theme } from "../../constants/Theme";
@@ -39,3 +39,14 @@ export const CanvasCursorStyle = styled.canvas`
 
   mix-blend-mode: exclusion;
 `;
+
+export const CanvasCursorGlobalStyles = createGlobalStyle`
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+`

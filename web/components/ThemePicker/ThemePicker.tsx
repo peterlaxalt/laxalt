@@ -168,6 +168,11 @@ export class ThemePickerWithHook extends React.PureComponent<
           <SetGlobalTheme />
         ) : null}
         <ThemePickerStyle className={`${ThemePickerClassName}`}>
+
+          <div className={`${ThemePickerClassName}__label`}>
+            Change Theme
+          </div>
+
           {availableThemes
             ? availableThemes.map((themeItem: LXLT_ColorTheme, idx: number) => {
                 return (

@@ -35,6 +35,34 @@ export const ThemePickerStyle = styled.div`
 
     z-index: 990;
 
+    .${ThemePickerClassName}__label {
+      font-size: 0.6rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+
+      line-height: 2.25;
+
+      position: relative;
+
+      padding-right: calc(${Root.Size} + 1em);
+      margin-right: 1em;
+
+      &:before {
+        content: '';
+
+        position: absolute;
+
+        right: 0;
+        top: 50%;
+
+        height: 1px;
+        width: calc(${Root.Size} / 1);
+
+        background: currentColor;
+      }
+    }
+
     .${ThemePickerClassName}__option {
       width: calc(${Root.FrameSize} * 0.35);
       height: calc(${Root.FrameSize} * 0.35);

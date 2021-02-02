@@ -34,10 +34,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/design.js"
     ],
-    "/next/dist/pages/_error": [
+    "/studio": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
+      "static/chunks/pages/studio.js"
     ]
   },
   "ampFirstPages": []

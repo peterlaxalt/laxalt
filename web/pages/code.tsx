@@ -14,6 +14,7 @@ import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
 import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { CodeBadge } from "../components/_svg/Headers/CodeBadge";
 import { CodeHeader } from "../components/_svg/Headers/CodeHeader";
+import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -36,8 +37,11 @@ const CodePage: NextPage<LMNTS_CodeFrontPage> = () => {
       items: SiteCodeGraph.categories.map((category: LXLT_Category) => {
         return {
           label: category.name,
-          href: category.slug === 'everything' ? `/${SiteDesignGraph.rootSlug}` : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
-          isActive: category.slug === 'everything' ? true : false,
+          href:
+            category.slug === "everything"
+              ? `/${SiteDesignGraph.rootSlug}`
+              : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
+          isActive: category.slug === "everything" ? true : false,
           isMajor: category.isMajor ? category.isMajor : false,
         };
       }),
@@ -49,9 +53,13 @@ const CodePage: NextPage<LMNTS_CodeFrontPage> = () => {
       globalSidebarPanes={sidebarPanes}
       addClass={`${CodePageClassName}`}
     >
-      <CodeHeader />
+      <HeadlineWrapper>
+        <CodeHeader />
+      </HeadlineWrapper>
 
-      <ProjectVerticalListings />
+      <AfterHeadlineWrapper>
+        <ProjectVerticalListings />
+      </AfterHeadlineWrapper>
     </SimpleContentTemplate>
   );
 };

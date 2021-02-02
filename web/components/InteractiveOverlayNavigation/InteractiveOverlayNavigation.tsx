@@ -137,7 +137,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
             >
               {/* _______________________________________________ */}
               {/* Subscribe Button */}
-              <li
+              {/* <li
                 className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
               >
                 <span
@@ -145,7 +145,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                 >
                   Subscribe
                 </span>
-              </li>
+              </li> */}
 
               {/* _______________________________________________ */}
               {/* Social List */}

@@ -14,6 +14,7 @@ import { SiteDesignGraph } from "../constants/site/Settings";
 import { DesignHeader } from "../components/_svg/Headers/DesignHeader";
 import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { DesignBadge } from "../components/_svg/Headers/DesignBadge";
+import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -36,8 +37,11 @@ const DesignPage: NextPage<LMNTS_DesignFrontPage> = () => {
       items: SiteDesignGraph.categories.map((category: LXLT_Category) => {
         return {
           label: category.name,
-          href: category.slug === 'everything' ? `/${SiteDesignGraph.rootSlug}` : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
-          isActive: category.slug === 'everything' ? true : false,
+          href:
+            category.slug === "everything"
+              ? `/${SiteDesignGraph.rootSlug}`
+              : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
+          isActive: category.slug === "everything" ? true : false,
           isMajor: category.isMajor ? category.isMajor : false,
         };
       }),
@@ -49,9 +53,13 @@ const DesignPage: NextPage<LMNTS_DesignFrontPage> = () => {
       globalSidebarPanes={sidebarPanes}
       addClass={`${DesignPageClassName}`}
     >
-      <DesignHeader />
+      <HeadlineWrapper>
+        <DesignHeader />
+      </HeadlineWrapper>
 
-      <ProjectVerticalListings />
+      <AfterHeadlineWrapper>
+        <ProjectVerticalListings />
+      </AfterHeadlineWrapper>
     </SimpleContentTemplate>
   );
 };

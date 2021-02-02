@@ -10,6 +10,10 @@
 import { NextPage } from "next";
 import React from "react";
 import { DuotoneImage } from "../components/DuotoneImage";
+import {
+  AfterHeadlineWrapper,
+  HeadlineWrapper,
+} from "../components/HeadlineWrapper";
 import { InnerGrid } from "../components/InnerGrid";
 import { AccordionListingRow } from "../components/Sections/AccordionListingRow";
 import { HorizontalScrollSection } from "../components/Sections/HorizontalScrollSection";
@@ -64,9 +68,17 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
   return (
     <SimpleContentTemplate addClass={`${StudioPageClassName}`}>
       <InnerGrid>
-        <SplitTextHero />
-        <IntroSection />
+
+        <HeadlineWrapper>
+          <SplitTextHero />
+        </HeadlineWrapper>
+
+        <AfterHeadlineWrapper>
+          <IntroSection />
+        </AfterHeadlineWrapper>
+
         <StretchIntroSection />
+
         <AccordionListingRow labelLeft={`Profile`} labelRight={`Story`}>
           <StaggeredBlocksSection />
         </AccordionListingRow>
@@ -121,7 +133,12 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
                       placeItems: "center",
                     }}
                   >
-                    <DuotoneImage style={{ width: "100%" }} src={i} alt={`${idx}`} aspectRatio={3 / 4} />
+                    <DuotoneImage
+                      style={{ width: "100%" }}
+                      src={i}
+                      alt={`${idx}`}
+                      aspectRatio={3 / 4}
+                    />
                   </span>
                 </div>
               );

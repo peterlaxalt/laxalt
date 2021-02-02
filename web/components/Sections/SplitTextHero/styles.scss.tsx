@@ -62,10 +62,14 @@ export const SplitTextHeroStyle = styled.section`
     .${SplitTextHeroClassName}__headline {
       margin: 0;
 
-      font-size: 12vw;
+      font-size: 44vw;
       font-weight: 400;
 
-      line-height: 1;
+      line-height: .75;
+
+      padding-top: 3vw;
+
+      font-family: "Dharma";
 
       color: ${Theme.Color.varForeground};
 
