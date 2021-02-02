@@ -1,6 +1,6 @@
 // Core
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { __DEBUG__ } from "../../constants/site/Settings";
 
 // Styles
@@ -61,7 +61,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
               : [];
 
             return (
-              <>
+              <Fragment key={idx}>
                 {/* ____________________________________________________________ */}
                 {/* Navigaton Pane */}
                 <div
@@ -72,7 +72,6 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                   onMouseLeave={() =>
                     idx == panes.length - 1 ? null : setHover(false)
                   }
-                  key={idx}
                 >
                   {/* ____________________________________________________________ */}
                   {/* List header */}
@@ -109,7 +108,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                                   }  ${LayeredSidebarClassName}__pane__list__item--${
                                     paneItem.isMajor ? "major" : "minor"
                                   }`}
-                                  key={idxx}
+                                  key={idxx + idx}
                                 >
                                   <Link href={paneItem.href}>
                                     <a>{paneItem.label}</a>
@@ -138,7 +137,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                                   } ${LayeredSidebarClassName}__pane__list__item--${
                                     paneItem.isMajor ? "major" : "minor"
                                   }`}
-                                  key={idxx}
+                                  key={idxx + idx}
                                 >
                                   <Link href={paneItem.href}>
                                     <a>{paneItem.label}</a>
@@ -152,7 +151,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                     </>
                   )}
                 </div>
-              </>
+              </Fragment>
             );
           })}
         </div>

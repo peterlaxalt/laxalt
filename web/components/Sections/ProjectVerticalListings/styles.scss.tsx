@@ -46,53 +46,58 @@ export const ProjectVerticalListingsStyle = styled.section`
       .${ProjectCardClassName} {
         width: 50%;
 
+        @media (max-width: ${Theme.Base.Media.Width.Sm}) {
+          width: 100%;
+        }
+
         &:first-child {
           .${ProjectCardClassName}__bg {
             display: none;
           }
         }
 
-        &:nth-child(even) {
-          /* transform: translateY(calc(${Root.Size} * 8)); */
+        @media (min-width: ${Theme.Base.Media.Width.Sm}) {
+          &:nth-child(even) {
+            /* transform: translateY(calc(${Root.Size} * 8)); */
 
-          &:after {
-            display: none;
-          }
-
-          .${ProjectCardClassName}__inner {
-            &:before {
-              height: unset;
+            &:after {
               display: none;
             }
-          }
 
+            .${ProjectCardClassName}__inner {
+              &:before {
+                height: unset;
+                display: none;
+              }
+            }
+          }
         }
 
         .${ProjectCardClassName}__inner {
-            // Borders
-            &:before {
-              content: "";
+          // Borders
+          &:before {
+            content: "";
 
-              position: absolute;
+            position: absolute;
 
-              height: unset;
-              width: 1px;
+            height: unset;
+            width: 1px;
 
-              top: -70px;
-              bottom: -25px;
-              left: calc(var(--${ProjectCardClassName}__card-spacing) * -1);
+            top: -70px;
+            bottom: -25px;
+            left: calc(var(--${ProjectCardClassName}__card-spacing) * -1);
 
-              background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0),
-                rgba(0, 0, 0, 0) 50%,
-                ${Theme.Color.varForeground} 50%,
-                ${Theme.Color.varForeground}
-              );
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0),
+              rgba(0, 0, 0, 0) 50%,
+              ${Theme.Color.varForeground} 50%,
+              ${Theme.Color.varForeground}
+            );
 
-              background-size: 100% 6px;
-            }
+            background-size: 100% 6px;
           }
+        }
       }
     }
   }

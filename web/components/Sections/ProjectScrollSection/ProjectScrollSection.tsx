@@ -65,9 +65,11 @@ export const ProjectScrollSection: React.FunctionComponent<LXLT_ProjectScrollSec
       ref: React.RefObject<HTMLDivElement>,
       setDynamicHeight: (dynamicHeight: number) => void
     ) => {
-      const objectWidth: number = ref.current.scrollWidth;
-      const dynamicHeight: number = calcDynamicHeight(objectWidth);
-      setDynamicHeight(dynamicHeight);
+      if (ref && ref.current) {
+        const objectWidth: number = ref.current.scrollWidth;
+        const dynamicHeight: number = calcDynamicHeight(objectWidth);
+        setDynamicHeight(dynamicHeight);
+      }
     };
 
     const applyScrollListener = (
