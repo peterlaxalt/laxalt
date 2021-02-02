@@ -116,6 +116,12 @@ export class ThemePickerWithHook extends React.PureComponent<
         nextBodyElement.setAttribute("data-theme", this.state.activeTheme.name);
       }
 
+      // _________________________
+      // Change if dark mode detected
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        this.setNewTheme(this.state.availableThemes[1]);
+      }
+
       __DEBUG__ && console.log("🎨 theme set", window.laxaltUniversalTheme);
     }
   }
