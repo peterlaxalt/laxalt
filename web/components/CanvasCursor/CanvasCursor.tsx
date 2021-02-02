@@ -208,7 +208,7 @@ export class CanvasCursor extends PureComponent<
       let ifNotOverNavigation =
         this.state.mouseY > 100 && this.state.mouseY < window.innerHeight - 100;
 
-      if (this.state.drawing.coordinates.length > 50 && ifNotOverNavigation) {
+      if (this.state.drawing.coordinates.length > 50 && this.state.drawing.coordinates.length < 400 && ifNotOverNavigation) {
         this.setState({
           helper: {
             text: "Press 'C' to clear drawing",
