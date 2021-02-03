@@ -25,7 +25,8 @@ import {
 import { Theme } from "../../constants/Theme";
 
 import Image from "next/image";
-import { ProjectHero } from "../../components/ProjectHero";
+import { ProjectHero } from "../../components/Sections/ProjectHero";
+import { ProjectIntroSection } from "../../components/Sections/ProjectIntroSection";
 
 // Components
 
@@ -184,12 +185,8 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
         ]}
       />
 
-      <Image
-        src={currentProject.cover}
-        alt={currentProject.name}
-        width={2000}
-        height={1165}
-      />
+      <ProjectIntroSection project={currentProject} hasSidebar={true} />
+
 
       <p
         style={{

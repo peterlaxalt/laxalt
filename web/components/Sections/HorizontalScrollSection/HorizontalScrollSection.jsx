@@ -105,7 +105,7 @@ export const HorizontalScrollSection = ({
       style={style}
       forceFullWidth={forceFullWidth}
       className={`${HorizontalScrollSectionClassName} ${HorizontalScrollSectionClassName}--${
-        hasSidebar ? "has-sidebar" : ""
+        hasSidebar ? "has-sidebar" : "has-no-sidebar"
       } ${addClass && addClass}`}
     >
       <TallOuterContainer dynamicHeight={dynamicHeight}>

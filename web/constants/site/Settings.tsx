@@ -16,6 +16,7 @@ import {
 } from "../../components/Sections/TableListings";
 import { LXLT_Section_TableRowField } from "../../components/Sections/TableListings/TableRowListings";
 import { LXLT_TakeoutMenuColumn } from "../../components/Sections/TakeoutMenu";
+import { CodeBadge } from "../../components/_svg/Headers/CodeBadge";
 import { Color } from "../styles/Color";
 
 export type LXLT_LinkItem = {
@@ -65,11 +66,25 @@ export type LXLT_Project = {
 
   categories: LXLT_Category[];
 
-  description?: {
-    headline: string;
-    body: string;
-    badge?: string;
-  }
+  intro?: {
+    featuredImages?: {
+      src: string;
+      dimensions: {
+        width: number;
+        height: number;
+      };
+    }[];
+    blurb?: {
+      headline: string;
+      largeBody: string;
+      body?: string;
+      badge?: () => JSX.Element;
+      cta?: {
+        href: string;
+        label: string;
+      };
+    };
+  };
 
   meta?: {
     awards?: {
@@ -79,7 +94,7 @@ export type LXLT_Project = {
         provider: string;
         year?: string;
       }[];
-    }
+    };
 
     team?: {
       info?: string;
@@ -89,8 +104,8 @@ export type LXLT_Project = {
         web?: string;
         email?: string;
       }[];
-    }
-  }
+    };
+  };
 };
 
 export type LXLT_SiteProjects = LXLT_Project[];
@@ -124,6 +139,10 @@ export const Settings = {
 };
 
 export const SiteProjects: LXLT_SiteProjects = [
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** LOCALYYZ *******************************************************************
+  // *************************************************************************
   {
     name: "Localyyz",
     slug: "localyyz",
@@ -144,11 +163,15 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "San Francisco, CA",
     duration: "2016 - Present",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** ALLSHIPS *******************************************************************
+  // *************************************************************************
   {
     name: "Allships Will Rise",
     slug: "allships",
-    cover:
-      "/projects/allships/huge.png",
+    cover: "/projects/allships/huge.png",
     categories: [
       {
         name: "Illustration",
@@ -165,7 +188,82 @@ export const SiteProjects: LXLT_SiteProjects = [
     duration: "2019",
     agency: "Laxalt & McIver",
     partner: "Allships",
+
+    meta: {
+      team: {
+        people: [
+          {
+            name: "Peter Laxalt",
+            role: "Creative Director & Design",
+            web: "https://laxa.lt/",
+            email: "peter@laxa.lt",
+          },
+
+          {
+            name: "Kylie Souza",
+            role: "Art Director & Design",
+            web: "https://dribbble.com/kyliesouza",
+            email: "peter@laxa.lt",
+          },
+        ],
+      },
+    },
+
+    intro: {
+      blurb: {
+        headline: "A rising tide raises all ships",
+        largeBody:
+          "BROOKLYN, NYC — Lorem ipsum solor sit dit imet alum. Alum diret falum trutet. Ipsum dilem etim elet, dirtonum.",
+        body: "Lorem ipsum solor sit dit imet",
+        cta: {
+          href: "/",
+          label: "View Site",
+        },
+      },
+      featuredImages: [
+        {
+          src: "/projects/allships/huge.png",
+          dimensions: {
+            width: 2000,
+            height: 1165,
+          },
+        },
+        {
+          src: "/projects/allships/tall-sample.png",
+          dimensions: {
+            width: 459,
+            height: 959,
+          },
+        },
+        {
+          src: "/projects/allships/crazy-gif.gif",
+          dimensions: {
+            width: 2752,
+            height: 1602,
+          },
+        },
+        {
+          src: "/projects/allships/wide-sample.png",
+          dimensions: {
+            width: 1775,
+            height: 558,
+          },
+        },
+        {
+          src: "/projects/allships/blind-eye.gif",
+          dimensions: {
+            width: 1600,
+            height: 880,
+          },
+        },
+      ],
+    },
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** NONVECTOR *******************************************************************
+  // *************************************************************************
   {
     name: "Nonvector",
     slug: "nonvector",

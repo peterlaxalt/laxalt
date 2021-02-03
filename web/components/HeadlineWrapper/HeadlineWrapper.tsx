@@ -1,11 +1,8 @@
 // Core
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Constants
 import { __DEBUG__ } from "../../constants/site/Settings";
-
-// Types
-import { LayeredSidebar, LXLT_SidebarPane } from "../LayeredSidebar";
 
 // Components
 

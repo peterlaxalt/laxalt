@@ -80,6 +80,8 @@ export const SidebarFullwidthCss = css`
  */
 export const LayeredSidebarStyle = styled.nav`
   &.${LayeredSidebarClassName} {
+    // ___________________________
+    // Configuration
     --${LayeredSidebarClassName}__pane-width: ${LayeredPaneWidth};
     --${LayeredSidebarClassName}__pane-padding: calc(${Root.FrameSize} * .5);
 
@@ -93,8 +95,21 @@ export const LayeredSidebarStyle = styled.nav`
     /* will-change: transform; */
     /* transition: transform .5s ease-in-out; */
 
+    // ___________________________
+    // Modifiers
     &.${LayeredSidebarClassName}--frame-inactive {
       transform: translateX(0);
+    }
+
+    opacity: 1;
+    transition: opacity 1s ease;
+
+    &.${LayeredSidebarClassName}--is-scrolled {
+      opacity: .35;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     .${LayeredSidebarClassName}__inner {

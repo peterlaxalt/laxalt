@@ -1,7 +1,8 @@
 // Core
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { __DEBUG__ } from "../../constants/site/Settings";
+import { HeadlineTransitionThreshold } from "../HeadlineWrapper";
 
 // Styles
 import {
@@ -40,10 +41,36 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
 }) => {
   if (panes) {
     const [isHovered, setHover] = useState(false);
+    const [isScrolled, toggleScroll] = useState(false);
+
+    let scrollModifier = `${LayeredSidebarClassName}--${
+      isScrolled ? `is-scrolled` : `is-not-scrolled`
+    }`;
+
+    const listenToScroll = () => {
+      if (window.scrollY > HeadlineTransitionThreshold) {
+        toggleScroll(true);
+
+        return;
+      } else {
+        toggleScroll(false);
+
+        return;
+      }
+    };
+
+    useEffect(() => {
+      if (typeof window) {
+        window.addEventListener("scroll", listenToScroll);
+      }
+      return () => {
+        window.removeEventListener("scroll", listenToScroll);
+      };
+    });
 
     return (
       <LayeredSidebarStyle
-        className={`${LayeredSidebarClassName} ${addClass && addClass}`}
+        className={`${LayeredSidebarClassName} ${scrollModifier} ${addClass && addClass}`}
       >
         <GlobalSidebarPaneOffsetVariables
           panes={panes.length}
@@ -96,7 +123,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                       {paneItemsMajor.length > 0 && (
                         <ul
                           className={`${LayeredSidebarClassName}__pane__list ${LayeredSidebarClassName}__pane__list--major`}
-                          style={{opacity: idx === 2 ? 0 : 1}} // TEMPORARY
+                          style={{ opacity: idx === 2 ? 0 : 1 }} // TEMPORARY
                         >
                           {paneItemsMajor.map(
                             (paneItem: LXLT_SidebarPaneItem, idxx: number) => {
@@ -126,7 +153,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                       {paneItemsMinor.length > 0 && (
                         <ul
                           className={`${LayeredSidebarClassName}__pane__list ${LayeredSidebarClassName}__pane__list--minor`}
-                          style={{opacity: idx === 2 ? 0 : 1}} // TEMPORARY
+                          style={{ opacity: idx === 2 ? 0 : 1 }} // TEMPORARY
                         >
                           {paneItemsMinor.map(
                             (paneItem: LXLT_SidebarPaneItem, idxx: number) => {

@@ -17,6 +17,7 @@ export type LXLT_OvalButton = LXLT_LinkItem & {
   addClass?: string;
   onClick?: () => void;
   invert?: boolean;
+  external?: boolean;
 };
 
 // Begin Data
@@ -34,6 +35,7 @@ export const OvalButton: React.FunctionComponent<LXLT_OvalButton> = ({
   href,
   label,
   onClick,
+  external,
   invert = false,
 }) => {
   return (
@@ -54,17 +56,31 @@ export const OvalButton: React.FunctionComponent<LXLT_OvalButton> = ({
 
         {/* _________________________________________________ */}
         {/* Links */}
-        {href && (
+        {href && !external && (
           <Link href={href}>
             <a
               className={`${OvalButtonClassName}__el ${OvalButtonClassName}__el--is-${
                 invert ? `inverted` : `not-inverted`
               }`}
               onClick={onClick}
+              target={external ? "_blank" : undefined}
             >
               {label}
             </a>
           </Link>
+        )}
+
+        {href && external && (
+          <a
+            href={href}
+            className={`${OvalButtonClassName}__el ${OvalButtonClassName}__el--is-${
+              invert ? `inverted` : `not-inverted`
+            }`}
+            onClick={onClick}
+            target={"_blank"}
+          >
+            {label}
+          </a>
         )}
       </OvalButtonStyle>
     </>

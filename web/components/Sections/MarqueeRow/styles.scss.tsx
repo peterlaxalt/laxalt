@@ -16,8 +16,7 @@ import styled, { keyframes } from "styled-components";
 import {} from "../../../constants/Root";
 import {} from "../../../constants/styles/Animation";
 import { Theme } from "../../../constants/Theme";
-import { LayeredSidebarClassName, LayeredSidebarTransitionTime, LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
-import { CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
+import { SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
 
 // Helpers
 
