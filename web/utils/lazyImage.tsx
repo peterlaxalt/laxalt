@@ -1,5 +1,5 @@
 // Core
-import React from "react";
+import React, { CSSProperties } from "react";
 import LazyLoad from "vanilla-lazyload";
 
 // Begin Component
@@ -12,7 +12,7 @@ type Props = {
   sizes?: string;
   width?: string;
   height?: string;
-  style?: object;
+  style?: CSSProperties;
   title?: string;
   addClass?: string;
   aspectRatio?: string;
@@ -71,7 +71,8 @@ export class LazyImage extends React.Component<Props, any> {
         data-sizes={sizes}
         width={width}
         height={height}
-        style={style}
+        style={{...style, pointerEvents: "none"}}
+        draggable={false}
         data-aspect-ratio={aspectRatio}
       />
     );

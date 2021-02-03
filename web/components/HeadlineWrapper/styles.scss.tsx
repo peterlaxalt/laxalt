@@ -25,7 +25,7 @@ export const HeadlineWrapperClassName = "headline-wrapper";
  * @author Peter Laxalt
  *
  */
-export const HeadlineWrapperStyle = styled.nav`
+export const HeadlineWrapperStyle = styled.div`
   &.${HeadlineWrapperClassName} {
     filter: blur(0px);
     opacity: 1;

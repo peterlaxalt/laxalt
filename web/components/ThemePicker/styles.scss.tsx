@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
+import { CaptionTextStyles } from "../../constants/styles/Font";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -36,10 +37,7 @@ export const ThemePickerStyle = styled.div`
     z-index: 990;
 
     .${ThemePickerClassName}__label {
-      font-size: 0.6rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.1rem;
+      ${CaptionTextStyles}
 
       line-height: 2.25;
 

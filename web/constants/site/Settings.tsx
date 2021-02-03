@@ -53,11 +53,44 @@ export type LXLT_SiteDataGraph = {
 export type LXLT_Project = {
   name: string;
   slug: string;
-  cover: string;
-  categories: LXLT_Category[];
   type: string;
+  parentSlug: "design" | "code" | "artwork";
+
+  cover: string;
+
   location?: string;
   duration?: string;
+  agency?: string;
+  partner?: string;
+
+  categories: LXLT_Category[];
+
+  description?: {
+    headline: string;
+    body: string;
+    badge?: string;
+  }
+
+  meta?: {
+    awards?: {
+      info?: string;
+      items?: {
+        name: string;
+        provider: string;
+        year?: string;
+      }[];
+    }
+
+    team?: {
+      info?: string;
+      people?: {
+        name: string;
+        role: string;
+        web?: string;
+        email?: string;
+      }[];
+    }
+  }
 };
 
 export type LXLT_SiteProjects = LXLT_Project[];
@@ -93,77 +126,103 @@ export const Settings = {
 export const SiteProjects: LXLT_SiteProjects = [
   {
     name: "Localyyz",
-    slug: "/projects/localyyz",
+    slug: "localyyz",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
     categories: [
       {
         name: "UI",
-        slug: "/browse/ui",
+        slug: "ui",
       },
       {
         name: "UX",
-        slug: "/browse/ux",
+        slug: "ux",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "San Francisco, CA",
     duration: "2016 - Present",
   },
   {
+    name: "Allships Will Rise",
+    slug: "allships",
+    cover:
+      "/projects/allships/huge.png",
+    categories: [
+      {
+        name: "Illustration",
+        slug: "illustration",
+      },
+      {
+        name: "Music",
+        slug: "music",
+      },
+    ],
+    type: "Project",
+    parentSlug: "design",
+    location: "Brooklyn, NY",
+    duration: "2019",
+    agency: "Laxalt & McIver",
+    partner: "Allships",
+  },
+  {
     name: "Nonvector",
-    slug: "/projects/nonvector",
+    slug: "nonvector",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "Illustration",
-        slug: "/browse/illustration",
+        slug: "illustration",
       },
       {
         name: "Music",
-        slug: "/browse/music",
+        slug: "music",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
   {
     name: "Communion",
-    slug: "/projects/communion",
+    slug: "communion",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "Illustration",
-        slug: "/browse/illustration",
+        slug: "illustration",
       },
       {
         name: "Music",
-        slug: "/browse/music",
+        slug: "music",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
   {
     name: "Dribbble",
-    slug: "/projects/dribbble",
+    slug: "dribbble",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "Illustration",
-        slug: "/browse/illustration",
+        slug: "illustration",
       },
       {
         name: "Music",
-        slug: "/browse/music",
+        slug: "music",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
@@ -171,81 +230,91 @@ export const SiteProjects: LXLT_SiteProjects = [
   // ______________________________________________________________________________________________________________________________________________________________
   {
     name: "Craftlog",
-    slug: "/projects/craftlog",
+    slug: "craftlog",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "UI",
-        slug: "/browse/ui",
+        slug: "ui",
       },
       {
         name: "UX",
-        slug: "/browse/ux",
+        slug: "ux",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "San Francisco, CA",
     duration: "2016 - Present",
   },
   {
     name: "Deso",
-    slug: "/projects/deso",
+    slug: "deso",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
     categories: [
       {
         name: "Illustration",
-        slug: "/browse/illustration",
+        slug: "illustration",
       },
       {
         name: "Music",
-        slug: "/browse/music",
+        slug: "music",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
   {
     name: "Eight Sleep",
-    slug: "/projects/eight",
+    slug: "eight",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
     categories: [
       {
         name: "UI",
-        slug: "/browse/ui",
+        slug: "ui",
       },
       {
         name: "UX",
-        slug: "/browse/ux",
+        slug: "ux",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
   {
     name: "Full Spectrum Hemp",
-    slug: "/projects/dribbble",
+    slug: "dribbble",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
     categories: [
       {
         name: "Packaging",
-        slug: "/browse/packaging",
+        slug: "packaging",
       },
       {
         name: "Music",
-        slug: "/browse/music",
+        slug: "music",
       },
     ],
     type: "Project",
+    parentSlug: "design",
     location: "Los Angeles, CA",
     duration: "2019",
   },
 ];
+
+export const getProjectData = (slug: string) => {
+  return SiteProjects.filter(
+    (project: LXLT_Project) => project.slug === slug
+  )[0];
+};
 
 export const SiteNavigation: LXLT_SiteNavigation = {
   FrameItems: [

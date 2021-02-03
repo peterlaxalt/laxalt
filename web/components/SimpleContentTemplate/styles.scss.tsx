@@ -27,7 +27,7 @@ export const SimpleContentTemplateClassName = "simple-content";
  * @author Peter Laxalt
  *
  */
-export const SimpleContentTemplateStyle = styled.nav`
+export const SimpleContentTemplateStyle = styled.div`
   &.${SimpleContentTemplateClassName} {
     background: ${Theme.Color.varBackground};
     padding: ${CssFrameSizeWithBorderString};

@@ -3,7 +3,7 @@
 // Font.js:
 // This is the sitewide font reference.
 
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 import { Base } from "./Base";
 
 export const Font = {
@@ -150,3 +150,10 @@ export const Typography = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, p, .heading-padding { padding-bottom: calc(var(--Size) / 3.5); }
 `;
+
+export const CaptionTextStyles = css`
+  font-size: 0.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+`

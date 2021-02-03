@@ -56,41 +56,6 @@ type LXLT_MellowFrameHeaderDisplay = LXLT_MellowFrameHeader_State & {
 
 /**
  *
- * @name InteractiveFrameItemsDisplay
- *
- */
-// const InteractiveFrameItemsDisplay = () => {
-//   return (
-//     <div className={`${MellowFrameHeaderClassName}__marquee-container`}>
-//       <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
-//         {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
-//           return (
-//             <li key={idx}>
-//               <Link href={item.href}>
-//                 <a>{item.label}</a>
-//               </Link>
-//             </li>
-//           );
-//         })}
-//       </ul>
-
-//       <ul className={`${MellowFrameHeaderClassName}__frame-items`}>
-//         {SiteNavigation.FrameItems.map((item: LXLT_LinkItem, idx: number) => {
-//           return (
-//             <li key={idx}>
-//               <Link href={item.href}>
-//                 <a>{item.label}</a>
-//               </Link>
-//             </li>
-//           );
-//         })}
-//       </ul>
-//     </div>
-//   );
-// };
-
-/**
- *
  * @name MellowFrameHeader
  *
  */
@@ -102,7 +67,7 @@ export class MellowFrameHeader extends Component<
     super(props);
 
     this.state = {
-      isInactive: false,
+      isInactive: true,
       isFillBarsExpanded: false,
       isOverlayVisible: false,
       isSidebarVisible: false,
@@ -131,6 +96,26 @@ export class MellowFrameHeader extends Component<
   componentDidMount() {
     if (typeof window) {
       window.addEventListener("scroll", this.listenToScroll);
+
+      console.log("this.props.router.pathname:", this.props.router.pathname);
+      console.log(
+        "this.props.router.pathname.includes('/and/'):",
+        this.props.router.pathname.includes("/and/")
+      );
+
+      // if (this.props.router.pathname.includes("/and/")) {
+      //   this.setState({
+      //     isInactive: true,
+      //   });
+      // } else {
+      //   this.setState({
+      //     isInactive: false,
+      //   });
+      // }
+
+      this.setState({
+        isInactive: false,
+      });
     }
   }
 
@@ -258,6 +243,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
 }) => {
   // console.log(router);
 
+  let isDynamicallyInactive = router.pathname.includes("/and/") ? true : isInactive;
   let currentRouteClass = router.pathname == "/" ? "route__home" : "";
 
   return (
@@ -266,7 +252,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
       {/* Frame itself */}
       <MellowFrameHeaderStyle
         className={`${MellowFrameHeaderClassName} ${MellowFrameHeaderClassName}--${
-          isInactive || isOverlayVisible ? `inactive` : `active`
+          isDynamicallyInactive || isOverlayVisible ? `inactive` : `active`
         } ${MellowFrameHeaderClassName}--${
           isFillBarsExpanded || isOverlayVisible
             ? `fill-bars-is-expanded`
@@ -453,7 +439,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
       {/* Logotype / Top */}
       <InteractiveLogotypeStyle
         className={`${InteractiveLogotypeClassName} ${InteractiveLogotypeClassName}--${
-          isInactive ? `inactive` : `active`
+          isDynamicallyInactive ? `inactive` : `active`
         } ${InteractiveLogotypeClassName}--${
           isLogotypeExpanded ? `is-expanded` : `is-not-expanded`
         } ${InteractiveLogotypeClassName}--${
@@ -486,7 +472,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
       {/* Overlay Fill Bars */}
       <InteractiveFillBarsStyle
         className={`${InteractiveFillBarsClassName} ${InteractiveFillBarsClassName}--${
-          isInactive ? `inactive` : `active`
+          isDynamicallyInactive ? `inactive` : `active`
         } ${InteractiveFillBarsClassName}--${
           isFillBarsExpanded ? `is-expanded` : `is-not-expanded`
         }`}

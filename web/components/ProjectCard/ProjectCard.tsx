@@ -1,4 +1,5 @@
 // Core
+import Link from "next/link";
 import React, { useRef } from "react";
 
 // Types
@@ -32,109 +33,108 @@ export const ProjectCard: React.FunctionComponent<LXLT_ProjectCard> = React.memo
     const isCurrentlyVisible = isVisible(ProjectCardRef);
 
     return (
-      <ProjectCardStyle
-        ref={ProjectCardRef}
-        className={`${ProjectCardClassName} ${ProjectCardClassName}--${
-          isCurrentlyVisible ? `is-visible` : `is-not-visible`
-        }`}
-      >
-        <span className={`${ProjectCardClassName}__bg`} />
-        <span
-          className={`${ProjectCardClassName}__dot ${ProjectCardClassName}__dot--right`}
-        />
-        <div className={`${ProjectCardClassName}__inner`}>
-          {/* ____________________________________________________________________ */}
-          {/* Card top */}
-          <div
-            className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--top`}
-          >
+      <Link href={`/and/${item.slug}`}>
+        <ProjectCardStyle
+          ref={ProjectCardRef}
+          className={`${ProjectCardClassName} ${ProjectCardClassName}--${
+            isCurrentlyVisible ? `is-visible` : `is-not-visible`
+          }`}
+        >
+          <span className={`${ProjectCardClassName}__bg`} />
+          <span
+            className={`${ProjectCardClassName}__dot ${ProjectCardClassName}__dot--right`}
+          />
+          <div className={`${ProjectCardClassName}__inner`}>
             {/* ____________________________________________________________________ */}
-            {/* Card top left col */}
+            {/* Card top */}
             <div
-              className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--top-left`}
+              className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--top`}
             >
-              <span className={`${ProjectCardClassName}__col__content-row`}>
-                No {count} / {total}
-              </span>
+              {/* ____________________________________________________________________ */}
+              {/* Card top left col */}
+              <div
+                className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--top-left`}
+              >
+                <span className={`${ProjectCardClassName}__col__content-row`}>
+                  No {count} / {total}
+                </span>
+              </div>
+
+              {/* ____________________________________________________________________ */}
+              {/* Card top right col */}
+              <div
+                className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--top-right`}
+              >
+                <span className={`${ProjectCardClassName}__col__content-row`}>
+                  {item.duration && item.duration}
+                </span>
+              </div>
             </div>
 
             {/* ____________________________________________________________________ */}
-            {/* Card top right col */}
+            {/* Card center */}
             <div
-              className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--top-right`}
+              className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--center`}
             >
-              <span className={`${ProjectCardClassName}__col__content-row`}>
-                {item.duration && item.duration}
-              </span>
-            </div>
-          </div>
-
-          {/* ____________________________________________________________________ */}
-          {/* Card center */}
-          <div
-            className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--center`}
-          >
-            <DuotoneImage src={cover} addClass={`${ProjectCardClassName}__image-wrapper`} alt={item.name} aspectRatio={3/4} />
-            {/* <div className={`${ProjectCardClassName}__image-wrapper`}>
-              <img
-                className={`${ProjectCardClassName}__image ${ProjectCardClassName}__image--filtered`}
+              <DuotoneImage
                 src={cover}
+                addClass={`${ProjectCardClassName}__image-wrapper`}
+                alt={item.name}
+                aspectRatio={3 / 4}
               />
-              <img
-                className={`${ProjectCardClassName}__image ${ProjectCardClassName}__image--normal`}
-                src={cover}
-              />
-            </div> */}
-          </div>
-
-          {/* ____________________________________________________________________ */}
-          {/* Card bottom */}
-          <div
-            className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--bottom`}
-          >
-            {/* ____________________________________________________________________ */}
-            {/* Card bottom left col */}
-            <div
-              className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--bottom-left`}
-            >
-              <strong
-                className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-major`}
-              >
-                {item.name}
-              </strong>
-              <span
-                className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-minor ${ProjectCardClassName}__col__content-row--tag-list`}
-              >
-                {item.categories.map((category: LXLT_Category, idx: number) => {
-                  return (
-                    <span key={idx}>
-                      {category.name}{" "}
-                      {idx + 1 !== item.categories.length ? "/" + " " : ""}
-                    </span>
-                  );
-                })}
-              </span>
             </div>
 
             {/* ____________________________________________________________________ */}
-            {/* Card bottom right col */}
+            {/* Card bottom */}
             <div
-              className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--bottom-right`}
+              className={`${ProjectCardClassName}__row ${ProjectCardClassName}__row--bottom`}
             >
-              <span
-                className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-major`}
+              {/* ____________________________________________________________________ */}
+              {/* Card bottom left col */}
+              <div
+                className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--bottom-left`}
               >
-                {item.type}
-              </span>
-              <span
-                className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-minor`}
+                <strong
+                  className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-major`}
+                >
+                  {item.name}
+                </strong>
+                <span
+                  className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-minor ${ProjectCardClassName}__col__content-row--tag-list`}
+                >
+                  {item.categories.map(
+                    (category: LXLT_Category, idx: number) => {
+                      return (
+                        <span key={idx}>
+                          {category.name}{" "}
+                          {idx + 1 !== item.categories.length ? "/" + " " : ""}
+                        </span>
+                      );
+                    }
+                  )}
+                </span>
+              </div>
+
+              {/* ____________________________________________________________________ */}
+              {/* Card bottom right col */}
+              <div
+                className={`${ProjectCardClassName}__col ${ProjectCardClassName}__col--bottom-right`}
               >
-                {item.location}
-              </span>
+                <span
+                  className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-major`}
+                >
+                  {item.type}
+                </span>
+                <span
+                  className={`${ProjectCardClassName}__col__content-row ${ProjectCardClassName}__col__content-row--content-minor`}
+                >
+                  {item.location}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </ProjectCardStyle>
+        </ProjectCardStyle>
+      </Link>
     );
   }
 );

@@ -14,12 +14,11 @@ import { GrainCover } from "../GrainCover";
 // Components
 import { SiteHead } from "../SiteHead";
 import { MellowFrameHeader } from "../MellowFrameHeader";
+import { Footer } from "../Footer";
+import { CanvasCursor } from "../CanvasCursor";
 
 // Utils
 import { NextRouter, useRouter } from "next/router";
-import { Footer } from "../Footer";
-import { Cursor } from "../Cursor";
-import { CanvasCursor } from "../CanvasCursor";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////

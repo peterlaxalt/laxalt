@@ -200,7 +200,7 @@ export const Footer: React.FunctionComponent<LXLT_Footer> = ({ router }) => {
               STUDIO LAXALT
             </strong>
             <span className={`${FooterClassName}__bottom__col__label`}>
-              ©2020 ALL RIGHTS RESERVED
+              ©{new Date().getFullYear()} ALL RIGHTS RESERVED
             </span>
           </div>
 

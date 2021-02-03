@@ -96,6 +96,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                       {paneItemsMajor.length > 0 && (
                         <ul
                           className={`${LayeredSidebarClassName}__pane__list ${LayeredSidebarClassName}__pane__list--major`}
+                          style={{opacity: idx === 2 ? 0 : 1}} // TEMPORARY
                         >
                           {paneItemsMajor.map(
                             (paneItem: LXLT_SidebarPaneItem, idxx: number) => {
@@ -125,6 +126,7 @@ export const LayeredSidebar: React.FunctionComponent<LXLT_LayeredSidebar> = ({
                       {paneItemsMinor.length > 0 && (
                         <ul
                           className={`${LayeredSidebarClassName}__pane__list ${LayeredSidebarClassName}__pane__list--minor`}
+                          style={{opacity: idx === 2 ? 0 : 1}} // TEMPORARY
                         >
                           {paneItemsMinor.map(
                             (paneItem: LXLT_SidebarPaneItem, idxx: number) => {

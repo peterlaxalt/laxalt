@@ -109,6 +109,9 @@ export const LayeredSidebarStyle = styled.nav`
 
         padding-top: calc(${Root.FrameSize} * 2.5);
 
+        position: relative;
+        z-index: 2;
+
         &:not(:first-child) {
           border-left: ${CssFrameBorderWidth} solid ${Theme.Color.varForeground};
           /* transform: translateX(-50%); */
@@ -152,6 +155,8 @@ export const LayeredSidebarStyle = styled.nav`
               max-width: 100%;
 
               height: auto;
+
+              z-index: 1;
 
               fill: currentColor;
 
