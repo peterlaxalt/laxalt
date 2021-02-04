@@ -104,12 +104,26 @@ export const ProjectCard: React.FunctionComponent<LXLT_ProjectCard> = React.memo
                 >
                   {item.categories.map(
                     (category: LXLT_Category, idx: number) => {
-                      return (
-                        <span key={idx}>
-                          {category.name}{" "}
-                          {idx + 1 !== item.categories.length ? "/" + " " : ""}
-                        </span>
-                      );
+                      let itemLimit = 3;
+
+                      if (idx < itemLimit) {
+                        return (
+                          <span key={idx}>
+                            {category.name}{" "}
+                            {idx + 1 !== item.categories.length
+                              ? "/" + " "
+                              : ""}
+                          </span>
+                        );
+                      } else if (idx === itemLimit) {
+                        return (
+                          <span key={idx}>
+                            +{item.categories.length - itemLimit} More
+                          </span>
+                        );
+                      } else {
+                        return null;
+                      }
                     }
                   )}
                 </span>

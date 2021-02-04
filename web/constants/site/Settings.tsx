@@ -38,6 +38,7 @@ export type LXLT_SiteNavigation = {
 
 export type LXLT_Category = {
   name: string;
+  parent: string;
   slug: string;
   isMajor?: boolean;
   subcategories?: {
@@ -88,21 +89,56 @@ export type LXLT_Project = {
 
   meta?: {
     awards?: {
-      info?: string;
       items?: {
         name: string;
         provider: string;
         year?: string;
       }[];
+
+      mentions?: {
+        name: string;
+        publisher: string;
+        year?: string;
+      }[];
+
+      wins?: string[];
     };
 
     team?: {
-      info?: string;
-      people?: {
+      core?: {
         name: string;
         role: string;
         web?: string;
-        email?: string;
+        contact?: string;
+      }[];
+
+      mentions?: {
+        name: string;
+        role: string;
+        web?: string;
+        contact?: string;
+      }[];
+    };
+
+    tools?: {
+      software?: {
+        name: string;
+        purpose: string;
+      }[];
+
+      gear?: {
+        name: string;
+        purpose: string;
+      }[];
+
+      frontend?: {
+        name: string;
+        purpose: string;
+      }[];
+
+      backend?: {
+        name: string;
+        purpose: string;
       }[];
     };
   };
@@ -152,10 +188,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "UI",
         slug: "ui",
+        parent: "design",
       },
       {
         name: "UX",
         slug: "ux",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -174,12 +212,34 @@ export const SiteProjects: LXLT_SiteProjects = [
     cover: "/projects/allships/huge.png",
     categories: [
       {
+        name: "Branding",
+        parent: "design",
+        slug: "branding",
+      },
+      {
+        name: "Identity",
+        parent: "design",
+        slug: "identity",
+      },
+      {
         name: "Illustration",
+        parent: "design",
         slug: "illustration",
       },
       {
-        name: "Music",
-        slug: "music",
+        name: "Lettering",
+        parent: "design",
+        slug: "lettering",
+      },
+      {
+        name: "Strategy",
+        parent: "design",
+        slug: "strategy",
+      },
+      {
+        name: "Frontend",
+        parent: "web",
+        slug: "frontend",
       },
     ],
     type: "Project",
@@ -191,19 +251,141 @@ export const SiteProjects: LXLT_SiteProjects = [
 
     meta: {
       team: {
-        people: [
+        core: [
           {
             name: "Peter Laxalt",
             role: "Creative Director & Design",
             web: "https://laxa.lt/",
-            email: "peter@laxa.lt",
+            contact: "peter@laxa.lt",
           },
 
           {
             name: "Kylie Souza",
             role: "Art Director & Design",
             web: "https://dribbble.com/kyliesouza",
-            email: "peter@laxa.lt",
+            contact: "kyliesouza@gmail.com",
+          },
+        ],
+
+        mentions: [
+          {
+            name: "Dave Krugman",
+            role: "Owner (Allships)",
+            web: "https://allships.co/",
+            contact: "dave@allships.co",
+          },
+
+          {
+            name: "Binh Cao",
+            role: "Production Design",
+            web: "https://dribbble.com/binhcao",
+            contact: "IG: @binhstagram",
+          },
+
+          {
+            name: "Matthew McIver",
+            role: "Accounts & Financials",
+            web: "https://laxaltandmciver.co",
+            contact: "matt@laxaltandmciver.co",
+          },
+
+          {
+            name: "Meeko Laxalt",
+            role: "Emotional Support",
+            web: "https://www.instagram.com/meeko.suave.laxalt/",
+            contact: "IG: @meeko.suave.laxalt",
+          },
+        ],
+      },
+
+      awards: {
+        wins: [
+          "Over 6000 visitors on first day",
+          "20,000 unique visitors daily",
+          "0% downtime",
+          "Netflix partnership",
+          "60+ articles published since launch",
+          "20+ content editors",
+          "100% Lighthouse Score",
+          ".025s avg page load time",
+          "<10s build time to deployment",
+        ],
+      },
+
+      tools: {
+        software: [
+          {
+            name: "Adobe Illustrator",
+            purpose: "Illustration & Typography",
+          },
+          {
+            name: "Adobe Photoshop",
+            purpose: "Post processing & mock ups",
+          },
+          {
+            name: "Sketch",
+            purpose: "Web Design",
+          },
+          {
+            name: "Google Tag Manager",
+            purpose: "Analytics & Performance",
+          },
+          {
+            name: "Google Lighthouse",
+            purpose: "Performance & Page Load",
+          },
+        ],
+
+        frontend: [
+          {
+            name: "Next.js",
+            purpose: "Static site generation",
+          },
+          {
+            name: "React.js",
+            purpose: "Frontend Architecture",
+          },
+          {
+            name: "Typescript",
+            purpose: "Stability (Both Mental & Technical)",
+          },
+          {
+            name: "Styled Components",
+            purpose: "Styling",
+          },
+        ],
+
+        gear: [
+          {
+            name: "Micron .08 Ink Pens",
+            purpose: "Hand Lettering",
+          },
+          {
+            name: "Bic Pen",
+            purpose: "Hand lettering / sketches",
+          },
+          {
+            name: "Coffee",
+            purpose: "Caffeine",
+          },
+        ],
+
+        backend: [
+          {
+            name: "Vercel",
+            purpose: "Serverless hosting & deployment",
+          },
+          {
+            name: "Github",
+            purpose: "Version control",
+          },
+          {
+            name: "Sanity",
+            purpose: "Content Management System",
+          },
+          {
+            name: "Airtable",
+            purpose: "Automation & Content Management System",
           },
         ],
       },
@@ -216,7 +398,7 @@ export const SiteProjects: LXLT_SiteProjects = [
           "BROOKLYN, NYC — Lorem ipsum solor sit dit imet alum. Alum diret falum trutet. Ipsum dilem etim elet, dirtonum.",
         body: "Lorem ipsum solor sit dit imet",
         cta: {
-          href: "/",
+          href: "https://allships.co",
           label: "View Site",
         },
       },
@@ -273,10 +455,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "Illustration",
         slug: "illustration",
+        parent: "design",
       },
       {
         name: "Music",
         slug: "music",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -284,6 +468,11 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "Los Angeles, CA",
     duration: "2019",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** COMMUNION *******************************************************************
+  // *************************************************************************
   {
     name: "Communion",
     slug: "communion",
@@ -293,10 +482,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "Illustration",
         slug: "illustration",
+        parent: "design",
       },
       {
         name: "Music",
         slug: "music",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -304,6 +495,11 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "Los Angeles, CA",
     duration: "2019",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** DRIBBBLE *******************************************************************
+  // *************************************************************************
   {
     name: "Dribbble",
     slug: "dribbble",
@@ -313,10 +509,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "Illustration",
         slug: "illustration",
+        parent: "design",
       },
       {
         name: "Music",
         slug: "music",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -325,7 +523,10 @@ export const SiteProjects: LXLT_SiteProjects = [
     duration: "2019",
   },
 
-  // ______________________________________________________________________________________________________________________________________________________________
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** CRAFTLOG *******************************************************************
+  // *************************************************************************
   {
     name: "Craftlog",
     slug: "craftlog",
@@ -346,6 +547,11 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "San Francisco, CA",
     duration: "2016 - Present",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** DESO *******************************************************************
+  // *************************************************************************
   {
     name: "Deso",
     slug: "deso",
@@ -355,10 +561,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "Illustration",
         slug: "illustration",
+        parent: "design",
       },
       {
         name: "Music",
         slug: "music",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -366,6 +574,11 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "Los Angeles, CA",
     duration: "2019",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** EIGHT SLEEP *******************************************************************
+  // *************************************************************************
   {
     name: "Eight Sleep",
     slug: "eight",
@@ -375,10 +588,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "UI",
         slug: "ui",
+        parent: "design",
       },
       {
         name: "UX",
         slug: "ux",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -386,6 +601,11 @@ export const SiteProjects: LXLT_SiteProjects = [
     location: "Los Angeles, CA",
     duration: "2019",
   },
+
+  // ____________________________________________________________________
+  // *************************************************************************
+  // ********** FULL SPECTRUM *******************************************************************
+  // *************************************************************************
   {
     name: "Full Spectrum Hemp",
     slug: "dribbble",
@@ -395,10 +615,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "Packaging",
         slug: "packaging",
+        parent: "design",
       },
       {
         name: "Music",
         slug: "music",
+        parent: "design",
       },
     ],
     type: "Project",

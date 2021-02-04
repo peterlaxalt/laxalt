@@ -82,3 +82,10 @@ export const LockBodyScroll = createGlobalStyle`
       overflow: hidden !important;
     }
   `;
+
+
+export const HideFooter = createGlobalStyle`
+    footer {
+      display: none !important;
+    }
+  `;

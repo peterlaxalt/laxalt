@@ -91,7 +91,7 @@ export const ProjectIntroSectionStyle = styled.section`
 
       padding-right: calc(
         ${CssFrameSizeWithBorderString} + ${Root.Grid.Gutter.Right} +
-          ${CssFrameBorderWidth}
+          (${CssFrameBorderWidth} * 4)
       );
       padding-left: calc(var(--${LayeredSidebarClassName}__global-pane-offset));
 
@@ -152,7 +152,7 @@ export const ProjectIntroSectionStyle = styled.section`
 
         width: calc(
           ${LayeredSidebarWidth} - ${LayeredPaneCollapsedPaneWidth} -
-            calc(${Root.Grid.Gutter.Left} * 3) - ${CssFrameSizeWithBorderString}
+            calc((${Root.Grid.Gutter.Left} * 2) - (${CssFrameBorderWidth} * 2)) - ${CssFrameSizeWithBorderString}
         );
       }
     }

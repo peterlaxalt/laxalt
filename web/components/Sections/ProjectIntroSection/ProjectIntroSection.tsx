@@ -245,8 +245,8 @@ export const ProjectIntroSection: React.FunctionComponent<LXLT_ProjectIntroSecti
                             <ul
                               className={`${ProjectIntroSectionClassName}__intro-section__bottom__list`}
                             >
-                              {project.meta.team.people &&
-                                project.meta.team.people.map(
+                              {project.meta.team.core &&
+                                project.meta.team.core.map(
                                   (person, idx: number) => {
                                     return (
                                       <li

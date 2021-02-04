@@ -1,6 +1,9 @@
 // Core
 import React from "react";
+import slugify from "../../../utils/slugify";
+import { validateEmail } from "../../../utils/validateEmail";
 import { LXLT_SimpleContentNode } from "../../SimpleContentTemplate";
+import { OpenIcon } from "../../_svg/OpenIcon/OpenIcon";
 
 // Styles
 import {
@@ -21,6 +24,8 @@ export type LXLT_Section_TableRowListing = LXLT_SimpleContentNode & {
   tableName: string;
   tableHeaders: string[];
   data: LXLT_Section_TableRowField[];
+  addClass?: string;
+  hasSidebar?: boolean;
 };
 
 /**
@@ -35,10 +40,16 @@ export const TableRowListing: React.FunctionComponent<LXLT_Section_TableRowListi
   tableName,
   tableHeaders,
   data,
+  addClass,
+  hasSidebar,
 }) => {
   return (
     <TableListingStyle
-      className={`${TableListingClassName} ${TableRowListingClassName}`}
+      className={`${TableListingClassName} ${TableRowListingClassName} ${
+        addClass ? addClass : ""
+      } ${TableListingClassName}--${
+        hasSidebar ? "has-sidebar" : "sans-sidebar"
+      }`}
     >
       <div className={`${TableListingClassName}__inner`}>
         <div
@@ -62,7 +73,11 @@ export const TableRowListing: React.FunctionComponent<LXLT_Section_TableRowListi
               className={`${TableListingClassName}__row ${TableListingClassName}__row--headers`}
             >
               {tableHeaders.map((header: string, idx: number) => (
-                <span key={idx} className={`${TableListingClassName}__item`}>
+                <span
+                  key={idx}
+                  data-table-col={slugify(header)}
+                  className={`${TableListingClassName}__item`}
+                >
                   {header}
                 </span>
               ))}
@@ -71,8 +86,25 @@ export const TableRowListing: React.FunctionComponent<LXLT_Section_TableRowListi
             {data.map((row: LXLT_Section_TableRowField, idx: number) => (
               <li key={idx} className={`${TableListingClassName}__row `}>
                 {row.fields.map((field: string, idxx: number) => (
-                  <span key={idxx} className={`${TableListingClassName}__item`}>
-                    {field}
+                  <span
+                    key={idxx}
+                    data-table-col={slugify(tableHeaders[idxx])}
+                    className={`${TableListingClassName}__item`}
+                  >
+                    {field.toLowerCase().includes("https") ||
+                    field.toLowerCase().includes("http") ? (
+                      <a
+                        href={field}
+                        target="_blank"
+                        style={{ textDecoration: "none !important" }}
+                      >
+                        <OpenIcon />
+                      </a>
+                    ) : validateEmail(field) ? (
+                      <a href={`mailto:${field}`}>{field}</a>
+                    ) : (
+                      field
+                    )}
                   </span>
                 ))}
               </li>

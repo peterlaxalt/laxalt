@@ -17,6 +17,7 @@ export type LMNTS_Section_AccordionListingRow = LXLT_SimpleContentNode & {
   hasSidebar?: boolean;
   labelLeft: string;
   labelRight: string;
+  alternativeStyle?: boolean;
   isInitiallyExpanded?: boolean;
   children: React.ReactNode;
 };
@@ -32,6 +33,7 @@ export const AccordionListingRow: React.FunctionComponent<LMNTS_Section_Accordio
   hasSidebar,
   labelLeft,
   labelRight,
+  alternativeStyle,
   isInitiallyExpanded,
   children,
 }) => {
@@ -48,6 +50,8 @@ export const AccordionListingRow: React.FunctionComponent<LMNTS_Section_Accordio
           : "is-not-initially-expanded"
       } ${AccordionListingRowClassName}--${
         hasSidebar ? `has-sidebar` : `sans-sidebar`
+      } ${AccordionListingRowClassName}--${
+        alternativeStyle ? `alt-layout` : `default-layout`
       }`}
     >
       <div className={`${AccordionListingRowClassName}__inner`}>

@@ -20,6 +20,8 @@ export type LXLT_Section_TableColumnField = {
 export type LXLT_Section_TableColumnListing = LXLT_SimpleContentNode & {
   tableName: string;
   data: LXLT_Section_TableColumnField[];
+
+  hasSidebar?: boolean;
 };
 
 /**
@@ -33,10 +35,13 @@ export type LXLT_Section_TableColumnListing = LXLT_SimpleContentNode & {
 export const TableColumnListing: React.FunctionComponent<LXLT_Section_TableColumnListing> = ({
   tableName,
   data,
+  hasSidebar,
 }) => {
   return (
     <TableListingStyle
-      className={`${TableListingClassName} ${TableColumnListingClassName}`}
+      className={`${TableListingClassName} ${TableColumnListingClassName} ${TableListingClassName}--${
+        hasSidebar ? "has-sidebar" : "sans-sidebar"
+      }`}
     >
       <div className={`${TableListingClassName}__inner`}>
         <div

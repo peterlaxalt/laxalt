@@ -177,6 +177,11 @@ export const LayeredSidebarStyle = styled.nav`
 
               animation: ${Rotate} 20s linear infinite;
             }
+
+            +.${LayeredSidebarClassName}__pane__list--minor,
+            +.${LayeredSidebarClassName}__pane__list--major {
+              padding-top: calc(${Root.FrameSize} * 1.5);
+            }
           }
         }
 
@@ -184,18 +189,10 @@ export const LayeredSidebarStyle = styled.nav`
 
           &--major {
             padding-top: calc(${Root.FrameSize} * 1.5);
-
-            &:first-child {
-              padding-top: calc(${Root.FrameSize} * 2.25);
-            }
           }
 
           &--minor {
             padding-top: 1.5rem;
-
-            &:first-child {
-              padding-top: calc(${Root.FrameSize} * 2.25);
-            }
           }
 
           &__item {

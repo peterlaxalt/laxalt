@@ -16,6 +16,8 @@ import styled from "styled-components";
 import { Root } from "../../../constants/Root";
 import {} from "../../../constants/styles/Animation";
 import { Theme } from "../../../constants/Theme";
+import { CssFrameBorderWidth } from "../../MellowFrameHeader/styles.scss";
+import { OpenIconClassName } from "../../_svg/OpenIcon/OpenIcon";
 
 // Helpers
 
@@ -79,7 +81,7 @@ export const TableListingStyle = styled.section`
 
     .${TableListingClassName}__columns-data {
       columns: 3;
-      column-gap: 0;
+      column-gap: calc(${Root.Size} / 2);
     }
 
     .${TableListingClassName}__rows-data {
@@ -90,8 +92,13 @@ export const TableListingStyle = styled.section`
 
         position: relative;
 
-        padding-bottom: .5em;
-        padding-top: .5em;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+
+        .${OpenIconClassName} {
+          width: 25px;
+          height: 25px;
+        }
 
         &:not(.${TableListingClassName}__row--headers) {
           &:before {
@@ -120,6 +127,10 @@ export const TableListingStyle = styled.section`
 
           padding-right: ${Root.Size};
 
+          a {
+            color: ${Theme.Color.varForeground};
+          }
+
           // __________________________
           // Temporary
           &:first-child {
@@ -132,6 +143,98 @@ export const TableListingStyle = styled.section`
 
             width: 15%;
           }
+        }
+      }
+    }
+
+    // _________________________________
+    // Modifiers
+    &.${TableRowListingClassName}--team-table {
+      .${TableListingClassName}__rows-data {
+        .${TableListingClassName}__row {
+          .${TableListingClassName}__item {
+            width: calc(100% / var(--${TableListingClassName}__table-columns));
+
+            padding-right: ${Root.Size};
+
+            flex: 1;
+
+            &[data-table-col="web"] {
+              width: 80px;
+
+              flex: unset;
+            }
+
+            // __________________________
+            // Temporary
+            &:first-child {
+              width: calc(
+                100% / var(--${TableListingClassName}__table-columns)
+              );
+            }
+
+            &:last-child {
+              text-align: right;
+              padding-right: 0;
+
+              width: calc(
+                100% / var(--${TableListingClassName}__table-columns)
+              );
+            }
+          }
+        }
+      }
+    }
+
+    &.${TableRowListingClassName}--tools-table {
+      .${TableListingClassName}__rows-data {
+        .${TableListingClassName}__row {
+          .${TableListingClassName}__item {
+            width: calc(100% / var(--${TableListingClassName}__table-columns));
+
+            padding-right: ${Root.Size};
+
+            flex: 1;
+
+            &[data-table-col="web"] {
+              width: 80px;
+
+              flex: unset;
+            }
+
+            // __________________________
+            // Temporary
+            &:first-child {
+              width: calc(
+                100% / var(--${TableListingClassName}__table-columns)
+              );
+            }
+
+            &:last-child {
+              text-align: right;
+              padding-right: 0;
+
+              width: calc(
+                100% / var(--${TableListingClassName}__table-columns)
+              );
+            }
+          }
+        }
+      }
+    }
+
+    &.${TableListingClassName}--has-sidebar {
+      .${TableListingClassName}__col {
+        &--table-name {
+          width: calc(
+            (100% / 3) -
+              ((${Root.Grid.Gutter.Right} / 2) + (${CssFrameBorderWidth} * -2))
+          );
+          min-width: calc(
+            (100% / 3) -
+              ((${Root.Grid.Gutter.Right} / 2) + (${CssFrameBorderWidth} * -2))
+          );
+          flex-shrink: 0;
         }
       }
     }

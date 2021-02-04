@@ -17,7 +17,8 @@ import { Root } from "../../../constants/Root";
 import { ScaleXIn } from "../../../constants/styles/Animation";
 import { CssUtils } from "../../../constants/styles/CssUtils";
 import { Theme } from "../../../constants/Theme";
-import {} from "../../MellowFrameHeader/styles.scss";
+import { LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
+import { CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
 
 // Helpers
 
@@ -181,6 +182,33 @@ export const AccordionListingRowStyle = styled.section`
             }
           }
         }
+      }
+    }
+
+    &.${AccordionListingRowClassName}--alt-layout {
+      .${AccordionListingRowClassName}__title__btn,
+      .${AccordionListingRowClassName}__content {
+        padding-right: ${Root.Grid.Gutter.Right};
+      }
+
+      .${AccordionListingRowClassName}__title__btn {
+
+        font-size: 5vw;
+
+        &__label {
+          &:first-child {
+            width: 60%;
+          }
+        }
+      }
+    }
+
+    &.${AccordionListingRowClassName}--has-sidebar {
+      ${SidebarFullwidthCss};
+
+      .${AccordionListingRowClassName}__title__btn,
+      .${AccordionListingRowClassName}__content {
+        padding-left: calc(${LayeredSidebarWidth} * 1);
       }
     }
   }

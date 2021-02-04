@@ -23,11 +23,12 @@ export type LXLT_SimpleContentTemplate = {
   globalSidebarPanes?: LXLT_SidebarPane[];
   children: React.ReactNode;
   style?: React.CSSProperties;
+  showGridlines?: boolean;
 };
 
 export type LXLT_SimpleContentNode = {
   isFirstNode?: boolean;
-  addClass?: boolean;
+  addClass?: string;
   style?: CSSProperties;
 };
 
@@ -39,6 +40,7 @@ export const SimpleContentTemplate: React.FunctionComponent<LXLT_SimpleContentTe
   children,
   globalSidebarPanes,
   style,
+  showGridlines,
 }) => {
   return (
     <SimpleContentTemplateStyle
@@ -46,6 +48,8 @@ export const SimpleContentTemplate: React.FunctionComponent<LXLT_SimpleContentTe
         addClass && addClass
       } ${SimpleContentTemplateClassName}--${
         globalSidebarPanes ? `has-global-sidebar` : `sans-global-sidebar`
+      } ${SimpleContentTemplateClassName}--${
+        showGridlines ? `has-gridlines` : `sans-gridlines`
       }`}
       style={{ ...style }}
     >
@@ -66,6 +70,14 @@ export const SimpleContentTemplate: React.FunctionComponent<LXLT_SimpleContentTe
         {/* _____________________________________________________________ */}
         {/* Content */}
         <div className={`${SimpleContentTemplateClassName}__content`}>
+          {showGridlines && (
+            <span className={`${SimpleContentTemplateClassName}__gridlines`}>
+              <span
+                className={`${SimpleContentTemplateClassName}__gridlines__el`}
+              />
+            </span>
+          )}
+
           {children}
         </div>
       </div>
