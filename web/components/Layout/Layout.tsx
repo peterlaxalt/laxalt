@@ -44,7 +44,7 @@ export const Layout = ({ children }: Layout) => {
       <MellowFrameHeader router={router} />
       <main>{children}</main>
       <Footer router={router} />
-      <CanvasCursor />
+      {/* <CanvasCursor /> */}
     </>
   );
 };
