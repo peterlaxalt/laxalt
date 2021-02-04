@@ -536,10 +536,12 @@ export const SiteProjects: LXLT_SiteProjects = [
       {
         name: "UI",
         slug: "ui",
+        parent: "design",
       },
       {
         name: "UX",
         slug: "ux",
+        parent: "design",
       },
     ],
     type: "Project",
@@ -773,6 +775,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Everything",
       slug: "everything",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -784,6 +787,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Identity",
       slug: "identity",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -795,6 +799,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Branding",
       slug: "branding",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -806,6 +811,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Illustration",
       slug: "illustration",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -817,6 +823,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Strategy",
       slug: "strategy",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -828,6 +835,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Digital",
       slug: "digital",
+      parent: "design",
       isMajor: true,
       subcategories: [
         {
@@ -839,6 +847,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Physical Spaces",
       slug: "physical-spaces",
+      parent: "design",
       isMajor: false,
       subcategories: [
         {
@@ -850,6 +859,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Lettering",
       slug: "lettering",
+      parent: "design",
       isMajor: false,
       subcategories: [
         {
@@ -861,6 +871,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Packaging",
       slug: "packaging",
+      parent: "design",
       isMajor: false,
       subcategories: [
         {
@@ -872,6 +883,7 @@ export const SiteDesignGraph: LXLT_SiteDataGraph = {
     {
       name: "Misc",
       slug: "misc",
+      parent: "design",
       isMajor: false,
       subcategories: [
         {
@@ -890,6 +902,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "Everything",
       slug: "everything",
       isMajor: true,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -901,6 +914,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "Frontend",
       slug: "frontend",
       isMajor: true,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -912,6 +926,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "Headless",
       slug: "headless",
       isMajor: true,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -923,6 +938,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "eCommerce",
       slug: "eCommerce",
       isMajor: true,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -934,6 +950,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "Interactive",
       slug: "interactive",
       isMajor: true,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -945,6 +962,7 @@ export const SiteCodeGraph: LXLT_SiteDataGraph = {
       name: "Experiments",
       slug: "experiments",
       isMajor: false,
+      parent: "code",
       subcategories: [
         {
           name: "",
@@ -962,6 +980,7 @@ export const SiteArtworkGraph: LXLT_SiteDataGraph = {
       name: "Everything",
       slug: "everything",
       isMajor: true,
+      parent: "artwork",
       subcategories: [
         {
           name: "",
@@ -973,6 +992,7 @@ export const SiteArtworkGraph: LXLT_SiteDataGraph = {
       name: "Flash Sheets",
       slug: "flash",
       isMajor: true,
+      parent: "artwork",
       subcategories: [
         {
           name: "",
@@ -984,6 +1004,7 @@ export const SiteArtworkGraph: LXLT_SiteDataGraph = {
       name: "Acrylic",
       slug: "acrylic",
       isMajor: true,
+      parent: "artwork",
       subcategories: [
         {
           name: "",
@@ -995,6 +1016,7 @@ export const SiteArtworkGraph: LXLT_SiteDataGraph = {
       name: "Murals",
       slug: "murals",
       isMajor: true,
+      parent: "artwork",
       subcategories: [
         {
           name: "",
@@ -1005,6 +1027,7 @@ export const SiteArtworkGraph: LXLT_SiteDataGraph = {
     {
       name: "Archives",
       slug: "archives",
+      parent: "artwork",
       isMajor: false,
       subcategories: [
         {

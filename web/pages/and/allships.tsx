@@ -1,57 +1,36 @@
-/**
- *
- * index.js
- * @author Peter Laxalt
- * @description The website home page.
- *
- */
 
 // Core
 import { NextPage } from "next";
 import React from "react";
+
+// Types & Constants
 import { LXLT_SidebarPane } from "../../components/LayeredSidebar";
-import { LayeredSidebarWidth } from "../../components/LayeredSidebar/styles.scss";
-import { CssFrameSizeWithBorderString } from "../../components/MellowFrameHeader/styles.scss";
-import { HorizontalScrollSection } from "../../components/Sections/HorizontalScrollSection";
-import { MarqueeRow } from "../../components/Sections/MarqueeRow";
-import { SimpleContentTemplate } from "../../components/SimpleContentTemplate";
-import { DesignBadge } from "../../components/_svg/Headers/DesignBadge";
-import { Root } from "../../constants/Root";
 import {
   getProjectData,
   LXLT_Category,
-  SiteAwardHeaders,
-  SiteAwards,
-  SiteClients,
-  SiteCollaborators,
   SiteDesignGraph,
-  SiteIndustries,
 } from "../../constants/site/Settings";
 import { Theme } from "../../constants/Theme";
 
+// Components
 import Image from "next/image";
 import { ProjectHero } from "../../components/Sections/ProjectHero";
 import { ProjectIntroSection } from "../../components/Sections/ProjectIntroSection";
-import { AccordionListingRow } from "../../components/Sections/AccordionListingRow";
 import { HideFooter } from "../../constants/styles/CssUtils";
-import { TableColumnListing } from "../../components/Sections/TableListings";
-import {
-  LXLT_Section_TableRowField,
-  TableRowListing,
-} from "../../components/Sections/TableListings/TableRowListings";
-import { TableRowListingClassName } from "../../components/Sections/TableListings/styles.scss";
 import ProjectMetaSection from "../../components/Sections/ProjectMetaSection/ProjectMetaSection";
 import { RelatedBadge } from "../../components/_svg/Headers/RelatedBadge";
 import { ProjectNextSection } from "../../components/Sections/ProjectNextSection";
+import { SimpleContentTemplate } from "../../components/SimpleContentTemplate";
+import { DesignBadge } from "../../components/_svg/Headers/DesignBadge";
+import { Root } from "../../constants/Root";
 
-// Components
 
 // Begin Component
 // __________________________________________________________________________________________
 
-type LMNTS_LocationsFrontPage = {};
+type LMNTS_ProjectPage = {};
 
-export const SamplePageClassName = "route__home-page";
+export const ProjectPageClassName = "route__project-page";
 
 /**
  *
@@ -59,7 +38,7 @@ export const SamplePageClassName = "route__home-page";
  * @author Peter Laxalt
  *
  */
-const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
+const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
   // __________________________________
   // Project data
   let currentProject = getProjectData("allships");
@@ -104,17 +83,21 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
   // ______________________________
   // Misc
 
-  var arr = [
-    "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/6764380/artboard_1_copy_2_3x_4x.png?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5917571/mountain-lion-dribibibibibb_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5840854/craftlogogogo-dribbb_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5810284/love-pain-shame-dribbble_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5544831/dribibiibibibib_4x.jpg?compress=1&resize=1000x750",
-    "https://cdn.dribbble.com/users/221507/screenshots/5023879/localyyz-home-dribble_4x.png?compress=1&resize=1000x750",
+  var sampleImageArray = [
+    { src: "/projects/allships/01.png", w: 2812, h: 1548 },
+    { src: "/projects/allships/02.gif", w: 1600, h: 880 },
+    { src: "/projects/allships/03.png", w: 2000, h: 1165 },
+    { src: "/projects/allships/04.png", w: 2000, h: 1165 },
+    { src: "/projects/allships/05.gif", w: 2642, h: 1538 },
+    { src: "/projects/allships/06.png", w: 2670, h: 1502 },
+    { src: "/projects/allships/07.gif", w: 1748, h: 790 },
+    { src: "/projects/allships/08.gif", w: 2752, h: 1602 },
+    { src: "/projects/allships/09.gif", w: 1856, h: 904 },
+    { src: "/projects/allships/10.png", w: 3266 , h: 1898 },
+    { src: "/projects/allships/11.png", w: 3304 , h: 1882 },
+    { src: "/projects/allships/12.png", w: 3314, h:  1708 },
+    { src: "/projects/allships/13.gif", w: 2926, h: 1399 },
+    { src: "/projects/allships/14.png", w: 3304 , h: 1576 },
   ];
 
   return (
@@ -122,7 +105,7 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
       <HideFooter />
       <SimpleContentTemplate
         globalSidebarPanes={sidebarPanes}
-        addClass={`${SamplePageClassName}`}
+        addClass={`${ProjectPageClassName}`}
         showGridlines={true}
       >
         <ProjectHero
@@ -188,7 +171,16 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
           quis tellus euismod pharetra. Vivamus pretium gravida urna a posuere.
         </p>
 
-        <HorizontalScrollSection hasSidebar={true}>
+        <div>
+          {sampleImageArray.map((img, idx: number) => {
+            return (
+              <div style={{ paddingBottom: 20, pointerEvents: "none", paddingRight: Root.Grid.Gutter.Right }}>
+                <Image draggable={false} src={img.src} width={img.w} height={img.h} key={idx} />
+              </div>
+            );
+          })}
+        </div>
+        {/* <HorizontalScrollSection hasSidebar={true}>
           <div className="spacer" style={{ width: LayeredSidebarWidth }} />
           {arr.map((i: any, idx: number) => {
             return (
@@ -223,7 +215,7 @@ const SamplePage: NextPage<LMNTS_LocationsFrontPage> = () => {
               </div>
             );
           })}
-        </HorizontalScrollSection>
+        </HorizontalScrollSection> */}
 
         <p
           style={{

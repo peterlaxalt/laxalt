@@ -26,7 +26,7 @@ export const HeadlineWrapperClassName = "headline-wrapper";
  *
  */
 export const HeadlineWrapperStyle = styled.div`
-  /* &.${HeadlineWrapperClassName} {
+  &.${HeadlineWrapperClassName} {
     filter: blur(0px);
     opacity: 1;
 
@@ -48,5 +48,5 @@ export const HeadlineWrapperStyle = styled.div`
       filter: blur(0px);
       opacity: 1;
     }
-  } */
+  }
 `;
