@@ -8,8 +8,8 @@ import styled from "styled-components";
 import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
 import { CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
-import { MarqueeRowClassName } from "../MarqueeRow/styles.scss";
-import { LayeredSidebarWidth } from "../../LayeredSidebar/styles.scss";
+import { MarqueeRowClassName, MarqueeRowOffsetVariableName } from "../MarqueeRow/styles.scss";
+import { LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
 import { CaptionTextStyles } from "../../../constants/styles/Font";
 
 // Animation
@@ -54,6 +54,7 @@ export const ProjectHeroStyle = styled.div`
     }
 
     .${MarqueeRowClassName} {
+      --${MarqueeRowOffsetVariableName}: ${LayeredSidebarWidth};
 
       @media(max-width: ${Theme.Base.Media.Width.Md}) {
         flex: 1;
@@ -72,16 +73,58 @@ export const ProjectHeroStyle = styled.div`
         }
       }
 
+      .${MarqueeRowClassName}__inner {
+        /* animation: unset; */
+
+        width: unset;
+
+        display: inline-block;
+        /* flex-wrap: nowrap; */
+
+        white-space: nowrap;
+
+        animation-duration: 10s;
+
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+
+        text-rendering: auto;
+
+        .${MarqueeRowClassName}__list {
+          display: inline-block;
+
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+
+        }
+      }
+
       &__list {
         --${MarqueeRowClassName}__bullet-size: .05em;
       }
 
       &__list__item {
-        font-family: "dharma";
-        font-size: 25vw;
+        /* font-size: 25vw;
+        text-transform: uppercase;
+        line-height: .8;
+
+        font-family: "dharma", sans-serif; */
+
+        font-size: 10vw;
         text-transform: uppercase;
 
-        line-height: .8;
+        opacity: 1;
+
+        line-height: 1;
+
+        position: relative;
+        z-index: 60000;
+
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
 
         @media(max-width: ${Theme.Base.Media.Width.Md}) {
           font-size: 50vw;
@@ -329,6 +372,72 @@ export const ProjectHeroStyle = styled.div`
               svg {
                 width: 50%;
                 height: auto;
+              }
+            }
+
+            &__bottom {
+              width: 100%;
+              display: block;
+
+              position: relative;
+
+              margin-top: calc(${Root.Size} * 2);
+              margin-bottom: calc(${Root.Size} * 2);
+
+              &__header {
+                ${CaptionTextStyles};
+
+                margin-bottom: ${Root.Size};
+
+                position: relative;
+
+                display: block;
+
+                &:before {
+                  content: "";
+
+                  position: absolute;
+
+                  top: 50%;
+                  right: 0;
+
+                  transform: translateY(-50%);
+
+                  height: 1px;
+                  width: 85%;
+
+                  background: ${Theme.Color.varForeground};
+                }
+              }
+
+              &__list {
+                display: block;
+
+                &__item {
+                  display: block;
+
+                  margin-bottom: 1.5em;
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+
+                  &__label,
+                  &__subtext {
+                    display: block;
+                  }
+
+                  &__label {
+                    font-weight: bold;
+                    text-transform: uppercase;
+
+                    margin-bottom: 0.25em;
+                  }
+
+                  &__subtext {
+                    font-size: 0.8rem;
+                  }
+                }
               }
             }
           }

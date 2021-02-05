@@ -112,16 +112,20 @@ const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
           project={currentProject}
           sections={[
             {
-              name: "Something",
-              anchor: "something",
+              name: "Concepts",
+              anchor: "concepts",
             },
             {
-              name: "Something",
-              anchor: "something",
+              name: "Shoutouts & Credits",
+              anchor: "credits",
             },
             {
-              name: "Something",
-              anchor: "something",
+              name: "Approach & Tools Used",
+              anchor: "tools",
+            },
+            {
+              name: "Awards & Wins",
+              anchor: "wins",
             },
           ]}
         />

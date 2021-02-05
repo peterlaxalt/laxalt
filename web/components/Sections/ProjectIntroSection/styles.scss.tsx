@@ -72,6 +72,13 @@ export const ProjectIntroSectionStyle = styled.section`
       width: 100%;
 
       overflow-x: hidden;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        position: relative;
+        height: auto;
+
+        overflow-x: unset;
+      }
     }
 
     .${ProjectIntroSectionClassName}__content-wrapper {
@@ -96,6 +103,19 @@ export const ProjectIntroSectionStyle = styled.section`
       padding-left: calc(var(--${LayeredSidebarClassName}__global-pane-offset));
 
       transition: padding-left ${LayeredSidebarTransitionTime} ease;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        height: auto;
+
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        display: block;
+
+        overflow: visible;
+      }
     }
 
     .${ProjectIntroSectionClassName}__horizontal-wrapper {
@@ -114,12 +134,20 @@ export const ProjectIntroSectionStyle = styled.section`
 
       /* transition: transform 0.5s ease-out; */
       will-change: transform;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        position: relative;
+      }
     }
 
     .${ProjectIntroSectionClassName}__outer {
       position: relative;
 
       width: 100%;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        height: auto !important;
+      }
     }
 
     // _____________________________________
@@ -134,8 +162,21 @@ export const ProjectIntroSectionStyle = styled.section`
 
         padding-right: ${Root.Grid.Gutter.Right};
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          padding-right: 0;
+        }
+
         .${ProjectIntroSectionClassName}__col__inner {
           box-shadow: 0px 0px 0px 2px ${Theme.Color.varForeground};
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+
+            margin-bottom: ${Root.Size};
+
+            width: 100% !important;
+            height: auto !important;
+
+          }
         }
       }
 
@@ -161,6 +202,10 @@ export const ProjectIntroSectionStyle = styled.section`
     // Elements
     .${ProjectIntroSectionClassName}__intro-section {
       display: flex;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        display: none;
+      }
 
       &__inner {
         height: 100%;

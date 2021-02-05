@@ -13,8 +13,9 @@ import {
   ProjectIntroSectionColumnHeight,
   ProjectIntroSectionStyle,
 } from "./styles.scss";
+
+// Components
 import { AfterHeadlineWrapper } from "../../HeadlineWrapper";
-import Link from "next/link";
 import Image from "next/image";
 import { OvalButton } from "../../OvalButton";
 

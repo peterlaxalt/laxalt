@@ -37,7 +37,7 @@ export const MarqueeRow: React.FunctionComponent<LMNTS_Section_MarqueeRow> = ({
           hasSidebar ? `has-sidebar` : `sans-sidebar`
         }`}
       >
-        <div className={`${MarqueeRowClassName}__inner`} aria-hidden="true">
+        <div className={`${MarqueeRowClassName}__inner`}>
           {items.map((_, idx: number) => {
             return (
               <ul key={idx} className={`${MarqueeRowClassName}__list`}>

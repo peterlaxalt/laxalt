@@ -45,7 +45,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
   sections,
   style,
 }) => {
-  const [mobileDescriptionOpen, setMobileDescriptionOpen] = useState(true);
+  const [mobileDescriptionOpen, setMobileDescriptionOpen] = useState(false);
 
   return (
     <HeadlineWrapper>
@@ -159,6 +159,8 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
         {/* Section Navigation */}
         <div className={`${ProjectHeroClassName}__section-nav`}>
           <ul className={`${ProjectHeroClassName}__section-nav__list`}>
+            {/* ________________________________________________ */}
+            {/* Mobile Description */}
             {project.intro && project.intro.blurb && (
               <li
                 className={`${ProjectHeroClassName}__section-nav__list__item ${ProjectHeroClassName}__section-nav__list__item--${
@@ -199,39 +201,90 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
                   <span
                     className={`${ProjectHeroClassName}__section-nav__list__item__content`}
                   >
-                    {project.intro.blurb.headline && (
-                      <span
-                        className={`${ProjectHeroClassName}__section-nav__list__item__content__headline`}
-                      >
-                        {project.intro.blurb.headline}
-                      </span>
-                    )}
+                    {/* ___________________________ */}
+                    {/* Top */}
+                    <span
+                      className={`${ProjectHeroClassName}__section-nav__list__item__content__top`}
+                    >
+                      {project.intro.blurb.headline && (
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__headline`}
+                        >
+                          {project.intro.blurb.headline}
+                        </span>
+                      )}
 
-                    {project.intro.blurb.largeBody && (
-                      <span
-                        className={`${ProjectHeroClassName}__section-nav__list__item__content__large-body`}
-                      >
-                        {project.intro.blurb.largeBody}
-                      </span>
-                    )}
+                      {project.intro.blurb.largeBody && (
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__large-body`}
+                        >
+                          {project.intro.blurb.largeBody}
+                        </span>
+                      )}
 
-                    {project.intro.blurb.body && (
-                      <span
-                        className={`${ProjectHeroClassName}__section-nav__list__item__content__body`}
-                      >
-                        {project.intro.blurb.body}
-                      </span>
-                    )}
+                      {project.intro.blurb.body && (
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__body`}
+                        >
+                          {project.intro.blurb.body}
+                        </span>
+                      )}
 
-                    {project.intro.blurb.cta && (
+                      {project.intro.blurb.cta && (
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__cta`}
+                        >
+                          <OvalButton
+                            label={project.intro.blurb.cta.label}
+                            href={project.intro.blurb.cta.href}
+                            external={true}
+                          />
+                        </span>
+                      )}
+                    </span>
+
+                    {/* ____________________________________________ */}
+                    {/* Bottom Section */}
+                    {project.meta && project.meta.team && (
                       <span
-                        className={`${ProjectHeroClassName}__section-nav__list__item__content__cta`}
+                        className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom`}
                       >
-                        <OvalButton
-                          label={project.intro.blurb.cta.label}
-                          href={project.intro.blurb.cta.href}
-                          external={true}
-                        />
+                        {/* ____________________________________ */}
+                        {/* Title */}
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom__header`}
+                        >
+                          Team
+                        </span>
+
+                        {/* ____________________________________ */}
+                        {/* List Items */}
+                        <span
+                          className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom__list`}
+                        >
+                          {project.meta.team.core &&
+                            project.meta.team.core.map(
+                              (person, idx: number) => {
+                                return (
+                                  <span
+                                    className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom__list__item`}
+                                    key={idx}
+                                  >
+                                    <span
+                                      className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom__list__item__label`}
+                                    >
+                                      {person.name}
+                                    </span>
+                                    <span
+                                      className={`${ProjectHeroClassName}__section-nav__list__item__content__bottom__list__item__subtext`}
+                                    >
+                                      {person.role}
+                                    </span>
+                                  </span>
+                                );
+                              }
+                            )}
+                        </span>
                       </span>
                     )}
                   </span>
@@ -239,6 +292,8 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
               </li>
             )}
 
+            {/* _______________________________________ */}
+            {/* Section Navigation */}
             {sections &&
               sections.map((section: LXLT_ProjectSection, idx: number) => {
                 return (

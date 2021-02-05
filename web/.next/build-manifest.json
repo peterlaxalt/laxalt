@@ -29,10 +29,20 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/and/allships.js"
     ],
+    "/artwork": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/artwork.js"
+    ],
     "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/studio": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/studio.js"
     ]
   },
   "ampFirstPages": []

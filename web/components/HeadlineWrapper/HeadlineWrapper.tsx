@@ -102,7 +102,7 @@ export const AfterHeadlineWrapper: React.FunctionComponent<LXLT_HeadlineWrapper>
   return (
     <HeadlineWrapperStyle
       className={`${HeadlineWrapperClassName}__after ${scrollModifier} ${
-        addClass && addClass
+        addClass ? addClass : ''
       } `}
       style={{ ...style }}
     >
