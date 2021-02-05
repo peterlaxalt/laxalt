@@ -115,6 +115,10 @@ export const MellowFrameHeaderStyle = styled.div`
 
       overflow: hidden;
 
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        border: unset;
+      }
+
       &__nav {
         width: 100%;
         height: ${Root.FrameSize};
@@ -128,6 +132,10 @@ export const MellowFrameHeaderStyle = styled.div`
         transform: translateY(0%);
         will-change: transform;
         transition: transform .5s ease-in-out;
+
+        @media(max-width: ${Theme.Base.Media.Width.Md}) {
+          font-size: .8rem;
+        }
 
         &--top {
           border-bottom: ${CssFrameBorderString};
@@ -185,7 +193,8 @@ export const MellowFrameHeaderStyle = styled.div`
         &__inner-col {
           width: 50%;
 
-          &--misc {
+          &--misc,
+          &--mobile-label {
             text-align: right;
             font-weight: 800;
 
@@ -233,7 +242,8 @@ export const MellowFrameHeaderStyle = styled.div`
           }
         }
 
-        &__misc-wrapper {
+        &__misc-wrapper,
+        &__mobile-label {
           padding-right: 2.5rem;
           display: flex;
           justify-content: flex-end;
@@ -245,7 +255,40 @@ export const MellowFrameHeaderStyle = styled.div`
           &__el {
             margin-right: 0 !important;
           }
+        }
 
+        &__mobile-label {
+          display: none;
+
+          padding-right: 1em;
+
+          font-weight: 300;
+
+          position: relative;
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: flex;
+          }
+
+          &:after {
+            content: "";
+
+            position: absolute;
+
+            right: 0;
+            top: 50%;
+
+            transform: translateY(-75%) rotate(45deg);
+
+            height: .5em;
+            width: .5em;
+
+            border-right: 1px solid currentColor;
+            border-bottom: 1px solid currentColor;
+          }
+        }
+
+        &__misc-wrapper {
           @media(max-width: ${Theme.Base.Media.Width.Sm}) {
             display: none;
           }

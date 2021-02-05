@@ -1,15 +1,7 @@
-import { Root } from "../../../constants/Root";
-
 export const CodeHeader = () => (
   <>
     <h1 className={`__visually-hidden`}>Code</h1>
     <svg
-      style={{
-        width: "100%",
-        height: "80vh",
-        marginTop: "80px",
-        paddingRight: Root.Grid.Gutter.Right,
-      }}
       width="1175px"
       height="560px"
       viewBox="0 0 1175 560"

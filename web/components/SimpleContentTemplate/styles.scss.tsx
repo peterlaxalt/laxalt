@@ -32,6 +32,10 @@ export const SimpleContentTemplateStyle = styled.div`
     background: ${Theme.Color.varBackground};
     padding: ${CssFrameSizeWithBorderString};
 
+    @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      padding: ${Root.Grid.Gutter.Top} ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+    }
+
     padding-bottom: 0;
 
     /* &.route__studio {
@@ -165,6 +169,10 @@ export const SimpleContentTemplateStyle = styled.div`
 
           &:after {
             right: ${Root.Grid.Gutter.Right};
+
+            @media(max-width: ${Theme.Base.Media.Width.Md}) {
+              right: 0;
+            }
           }
         }
 
@@ -172,11 +180,19 @@ export const SimpleContentTemplateStyle = styled.div`
           &:before {
             /* left: calc((100% / 3) + ((${Root.Grid.Gutter.Right} / -2) + ${CssFrameBorderWidth})); */
             left: calc((100% / 3) - ((${Root.Grid.Gutter.Right} / 2) + (${CssFrameBorderWidth} * 2)));
+
+            @media(max-width: ${Theme.Base.Media.Width.Md}) {
+              left: calc(100% / 3);
+            }
           }
 
           &:after {
             /* right: calc((100% / 3) + ${Root.Grid.Gutter.Right}); */
-            right: calc(((100% / 3) - ((${Root.Grid.Gutter.Right} / -2) + (${CssFrameBorderWidth} * 2))))
+            right: calc(((100% / 3) - ((${Root.Grid.Gutter.Right} / -2) + (${CssFrameBorderWidth} * 2))));
+
+            @media(max-width: ${Theme.Base.Media.Width.Md}) {
+              right: calc(100% / 3);
+            }
           }
         }
       }

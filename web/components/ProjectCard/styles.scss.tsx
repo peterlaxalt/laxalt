@@ -38,6 +38,14 @@ export const ProjectCardStyle = styled.div`
 
     position: relative;
 
+    @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      height: auto;
+      width: 100%;
+
+      padding-left: 0;
+      padding-right: 0;
+    }
+
     // Borders
     &:before,
     &:after {
@@ -63,6 +71,10 @@ export const ProjectCardStyle = styled.div`
     &:after {
       transition: transform ${ProjectScrollSectionTransitionTime} ease-in-out;
       transition-delay: transform ${ProjectScrollSectionTransitionTime} ease;
+
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        display: none;
+      }
     }
 
     // Right Border
@@ -88,6 +100,25 @@ export const ProjectCardStyle = styled.div`
       max-width: 100%;
     }
 
+    // ___________________________
+    // Responsive Covers
+    .${ProjectCardClassName}__image-desktop {
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        display: none;
+      }
+    }
+
+    .${ProjectCardClassName}__image-mobile {
+      display: none;
+
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        display: block;
+      }
+    }
+
+
+    // ___________________________
+    // Core Styles
     &:first-child {
       .${ProjectCardClassName}__inner {
         // Borders
@@ -222,6 +253,10 @@ export const ProjectCardStyle = styled.div`
 
       &--top {
         padding-top: calc(${Root.FrameSize} / 4);
+
+        @media(max-width: ${Theme.Base.Media.Width.Md}) {
+          padding-bottom: ${Root.Size};
+        }
       }
 
       &--bottom {
@@ -246,6 +281,12 @@ export const ProjectCardStyle = styled.div`
           transition: transform ${ProjectScrollSectionTransitionTime} ease;
 
           background: ${Theme.Color.varForeground};
+        }
+      }
+
+      &--center {
+        @media(max-width: ${Theme.Base.Media.Width.Md}) {
+          padding-bottom: ${Root.Size};
         }
       }
     }

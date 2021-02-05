@@ -14,7 +14,11 @@ import { SiteDesignGraph } from "../constants/site/Settings";
 import { DesignHeader } from "../components/_svg/Headers/DesignHeader";
 import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { DesignBadge } from "../components/_svg/Headers/DesignBadge";
-import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
+import {
+  AfterHeadlineWrapper,
+  HeadlineWrapper,
+} from "../components/HeadlineWrapper";
+import { SvgHeadlineDisplay } from "../components/SvgHeadlineDisplay";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -52,9 +56,10 @@ const DesignPage: NextPage<LMNTS_DesignFrontPage> = () => {
     <SimpleContentTemplate
       globalSidebarPanes={sidebarPanes}
       addClass={`${DesignPageClassName}`}
+      showGridlines={true}
     >
       <HeadlineWrapper>
-        <DesignHeader />
+        <SvgHeadlineDisplay svgElement={DesignHeader} />
       </HeadlineWrapper>
 
       <AfterHeadlineWrapper>

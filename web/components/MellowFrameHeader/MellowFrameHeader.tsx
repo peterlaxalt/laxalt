@@ -243,7 +243,9 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
 }) => {
   // console.log(router);
 
-  let isDynamicallyInactive = router.pathname.includes("/and/") ? true : isInactive;
+  let isDynamicallyInactive = router.pathname.includes("/and/")
+    ? true
+    : isInactive;
   let currentRouteClass = router.pathname == "/" ? "route__home" : "";
 
   return (
@@ -340,6 +342,23 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
                           Misc
                         </a>
                       </Link>
+                    </div>
+                  </div>
+
+                  {/* ______________________________________________ */}
+                  {/* Right Inner Column (Mobile Nav) */}
+                  <div
+                    className={`${MellowFrameHeaderClassName}__frame__nav__inner-col ${MellowFrameHeaderClassName}__frame__nav__inner-col--mobile-label ${MellowFrameHeaderClassName}__frame__nav__mobile-label`}
+                  >
+                    <div
+                      className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item ${MellowFrameHeaderClassName}__frame__nav__mobile-label__el`}
+                    >
+                      <span
+                        className={`${MellowFrameHeaderClassName}__frame__nav__linklist__item__el`}
+                        onClick={() => toggleOverlayAndLogotypeExpansion()}
+                      >
+                        {router.pathname === "/" ? "MENU" : router.pathname}
+                      </span>
                     </div>
                   </div>
                 </div>

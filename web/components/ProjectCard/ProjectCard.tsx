@@ -78,9 +78,16 @@ export const ProjectCard: React.FunctionComponent<LXLT_ProjectCard> = React.memo
             >
               <DuotoneImage
                 src={cover}
-                addClass={`${ProjectCardClassName}__image-wrapper`}
+                addClass={`${ProjectCardClassName}__image-wrapper ${ProjectCardClassName}__image-desktop`}
                 alt={item.name}
                 aspectRatio={3 / 4}
+              />
+
+              <DuotoneImage
+                src={cover}
+                addClass={`${ProjectCardClassName}__image-wrapper ${ProjectCardClassName}__image-mobile`}
+                alt={item.name}
+                aspectRatio={4 / 3}
               />
             </div>
 

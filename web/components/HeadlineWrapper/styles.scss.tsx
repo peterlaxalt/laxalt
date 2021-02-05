@@ -5,7 +5,7 @@
 import styled from "styled-components";
 
 // Constants
-import {} from "../../constants/Theme";
+import { Theme } from "../../constants/Theme";
 import {} from "../../constants/Root";
 
 // Begin Styles
@@ -26,27 +26,29 @@ export const HeadlineWrapperClassName = "headline-wrapper";
  *
  */
 export const HeadlineWrapperStyle = styled.div`
-  &.${HeadlineWrapperClassName} {
-    filter: blur(0px);
-    opacity: 1;
-
-    transition: filter 2s ease, opacity 2s ease;
-
-    &.${HeadlineWrapperClassName}--is-scrolled {
-      filter: blur(80px);
-      opacity: 0;
-    }
-  }
-
-  &.${HeadlineWrapperClassName}__after {
-    filter: blur(80px);
-    opacity: 0;
-
-    transition: filter 1s ease, opacity 1s ease;
-
-    &.${HeadlineWrapperClassName}__after--is-scrolled {
+  @media(min-width: ${Theme.Base.Media.Width.Md}) {
+    &.${HeadlineWrapperClassName} {
       filter: blur(0px);
       opacity: 1;
+
+      transition: filter 2s ease, opacity 2s ease;
+
+      &.${HeadlineWrapperClassName}--is-scrolled {
+        filter: blur(80px);
+        opacity: 0;
+      }
+    }
+
+    &.${HeadlineWrapperClassName}__after {
+      filter: blur(80px);
+      opacity: 0;
+
+      transition: filter 1s ease, opacity 1s ease;
+
+      &.${HeadlineWrapperClassName}__after--is-scrolled {
+        filter: blur(0px);
+        opacity: 1;
+      }
     }
   }
 `;

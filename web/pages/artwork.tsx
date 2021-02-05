@@ -15,6 +15,7 @@ import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalL
 import { ArtworkHeader } from "../components/_svg/Headers/ArtworkHeader";
 import { ArtworkBadge } from "../components/_svg/Headers/ArtworkBadge";
 import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
+import { SvgHeadlineDisplay } from "../components/SvgHeadlineDisplay";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -54,7 +55,7 @@ const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
       addClass={`${ArtworkPageClassName}`}
     >
       <HeadlineWrapper>
-        <ArtworkHeader />
+        <SvgHeadlineDisplay svgElement={ArtworkHeader} />
       </HeadlineWrapper>
 
       <AfterHeadlineWrapper>

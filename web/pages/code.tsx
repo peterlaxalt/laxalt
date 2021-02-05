@@ -14,7 +14,11 @@ import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
 import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { CodeBadge } from "../components/_svg/Headers/CodeBadge";
 import { CodeHeader } from "../components/_svg/Headers/CodeHeader";
-import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
+import {
+  AfterHeadlineWrapper,
+  HeadlineWrapper,
+} from "../components/HeadlineWrapper";
+import { SvgHeadlineDisplay } from "../components/SvgHeadlineDisplay";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -54,7 +58,7 @@ const CodePage: NextPage<LMNTS_CodeFrontPage> = () => {
       addClass={`${CodePageClassName}`}
     >
       <HeadlineWrapper>
-        <CodeHeader />
+        <SvgHeadlineDisplay svgElement={CodeHeader} />
       </HeadlineWrapper>
 
       <AfterHeadlineWrapper>
