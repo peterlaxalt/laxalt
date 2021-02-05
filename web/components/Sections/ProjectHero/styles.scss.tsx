@@ -106,11 +106,14 @@ export const ProjectHeroStyle = styled.div`
       }
 
       &__list__item {
+        // _________________________________________________
+        // @TODO: FIGURE THE FUCKING SAFARI BUG
         /* font-size: 25vw;
         text-transform: uppercase;
         line-height: .8;
 
         font-family: "dharma", sans-serif; */
+        // _________________________________________________
 
         font-size: 10vw;
         text-transform: uppercase;
@@ -127,7 +130,7 @@ export const ProjectHeroStyle = styled.div`
         -webkit-backface-visibility: hidden;
 
         @media(max-width: ${Theme.Base.Media.Width.Md}) {
-          font-size: 50vw;
+          font-size: 15vw;
         }
       }
     }
