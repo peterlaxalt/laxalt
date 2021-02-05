@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/and/allships": "pages/and/allships.js",
-  "/design": "pages/design.js",
-  "/artwork": "pages/artwork.js",
-  "/code": "pages/code.js",
   "/studio": "pages/studio.js",
-  "/": "pages/index.js"
+  "/design": "pages/design.js"
 }

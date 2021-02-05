@@ -31,24 +31,32 @@ export const IntroSectionStyle = styled.section`
     margin: calc(${Root.Size} * 2) 0;
 
     .${IntroSectionClassName}__inner {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        display: flex;
+        flex-direction: column-reverse;
+      }
 
-      .${IntroSectionClassName}__col {
-        &--focus {
-          width: calc(100% * 0.66666666);
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
 
-          flex-shrink: 0;
+        .${IntroSectionClassName}__col {
+          &--focus {
+            width: calc(100% * 0.66666666);
+
+            flex-shrink: 0;
+          }
+
+          &--content {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
 
-        &--content {
-          flex: 1;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
       }
     }
 
@@ -59,10 +67,6 @@ export const IntroSectionStyle = styled.section`
     }
 
     .${IntroSectionClassName}__content {
-      padding-left: calc(${Root.Size} * 2);
-
-      position: sticky;
-      top: ${Root.FrameSize};
 
       height: 100%;
       width: 100%;
@@ -71,12 +75,23 @@ export const IntroSectionStyle = styled.section`
       flex-direction: column;
       justify-content: center;
 
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+        padding-left: calc(${Root.Size} * 2);
+
+        position: sticky;
+        top: ${Root.FrameSize};
+      }
+
       &__media {
         margin-bottom: ${Root.Size};
 
         svg {
           max-width: 100%;
           fill: ${Theme.Color.varForeground};
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            height: auto;
+          }
         }
       }
 
@@ -87,12 +102,20 @@ export const IntroSectionStyle = styled.section`
 
         line-height: 1.2;
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          font-size: 1rem;
+        }
+
         &--intro {
           font-family: ${Theme.Font.Code};
 
           font-size: 1.75rem;
 
           letter-spacing: -1.25px;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            font-size: 1.25rem;
+          }
 
           strong {
             text-transform: uppercase;

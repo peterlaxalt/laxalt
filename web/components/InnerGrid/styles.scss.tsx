@@ -19,12 +19,18 @@ import { Root } from "../../constants/Root";
 // Begin Styles
 //////////////////////////////////////////////////////////////////////
 
+export const InnerGridClassName = "inner";
+
 export const InnerGridStyle = styled.div`
-  /* max-width: ${Theme.Base.Grid.SiteWidth}; */
-  width: 100%;
-  /* margin: 0 auto; */
-  padding-left: ${Root.Grid.Gutter.Left};
-  padding-right: ${Root.Grid.Gutter.Right};
-  /* display: flex; */
-  /* justify-content: space-between; */
+
+  &.${InnerGridClassName} {
+    /* max-width: ${Theme.Base.Grid.SiteWidth}; */
+    width: 100%;
+    /* margin: 0 auto; */
+    padding-left: ${Root.Grid.Gutter.Left};
+    padding-right: ${Root.Grid.Gutter.Right};
+    /* display: flex; */
+    /* justify-content: space-between; */
+  }
+
 `;

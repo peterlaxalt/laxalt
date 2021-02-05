@@ -39,9 +39,9 @@ export const IntroSection: React.FunctionComponent<LMNTS_Section_IntroSection> =
         >
           <div className={`${IntroSectionClassName}__media`}>
             <DuotoneImage
-              src={"/img/headshot.jpg"}
+              src={"/img/headshot-2.png"}
               alt="Peter Laxalt"
-              aspectRatio={0.8585131894}
+              aspectRatio={1}
               addClass={`${IntroSectionClassName}__media__image`}
             />
           </div>

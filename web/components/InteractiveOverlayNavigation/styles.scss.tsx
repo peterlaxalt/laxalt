@@ -11,6 +11,7 @@ import {} from "../../constants/styles/CssUtils";
 import { UpAndRotate } from "../../constants/styles/Animation";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
 import { CssFrameBorderWidth, CssFramePaddingString, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
+import { OvalButtonClassName } from "../OvalButton/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -81,7 +82,15 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         z-index: 10;
 
         @media(max-width: ${Theme.Base.Media.Width.Sm}) {
-          top: 1rem;
+          top: 2.25rem;
+
+          .${OvalButtonClassName}__el {
+            font-size: .7rem;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+          }
         }
       }
 
@@ -117,7 +126,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         bottom: 0;
 
         margin-top: 2rem;
-        margin-left: calc(${CssFrameSizeWithBorderString} + 1rem);
+        margin-left: ${Root.Grid.Gutter.Left};
       }
 
       &__list {
@@ -168,6 +177,12 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
       margin-left: calc((${CssFramePaddingString}) * 1.5);
 
+      @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+        margin-left: 0;
+
+        padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+      }
+
       &__item {
         overflow: hidden;
 
@@ -176,6 +191,10 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
         display: flex;
         align-items: center;
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          font-size: 12vw;
+        }
 
         &:hover {
           .${InteractiveEyeballClassName} {

@@ -10,13 +10,13 @@
 import React from "react";
 
 // Styles
-import { InnerGridStyle } from "./styles.scss";
+import { InnerGridClassName, InnerGridStyle } from "./styles.scss";
 
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
 export const InnerGrid = ({ children }: any) => (
-  <InnerGridStyle>{children}</InnerGridStyle>
+  <InnerGridStyle className={InnerGridClassName}>{children}</InnerGridStyle>
 );
 
 // End Component

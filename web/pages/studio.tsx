@@ -19,6 +19,7 @@ import { AccordionListingRow } from "../components/Sections/AccordionListingRow"
 import { HorizontalScrollSection } from "../components/Sections/HorizontalScrollSection";
 import { IntroSection } from "../components/Sections/IntroSection";
 import { MasonryGallery } from "../components/Sections/MasonryGallery";
+import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
 import { SplitTextHero } from "../components/Sections/SplitTextHero";
 import { StaggeredBlocksSection } from "../components/Sections/StaggeredBlocksSection";
 import { StretchIntroSection } from "../components/Sections/StretchIntroSection";
@@ -113,37 +114,7 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
           labelRight={`Work`}
           isInitiallyExpanded
         >
-          <HorizontalScrollSection forceFullWidth={true}>
-            {projectsArr.map((i: any, idx: number) => {
-              return (
-                <div
-                  key={idx}
-                  style={{
-                    width: "50vw",
-                    flexShrink: 0,
-                    marginRight: "50px",
-                    position: "relative",
-                  }}
-                >
-                  <span
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      display: "grid",
-                      placeItems: "center",
-                    }}
-                  >
-                    <DuotoneImage
-                      style={{ width: "100%" }}
-                      src={i}
-                      alt={`${idx}`}
-                      aspectRatio={3 / 4}
-                    />
-                  </span>
-                </div>
-              );
-            })}
-          </HorizontalScrollSection>
+          <ProjectVerticalListings />
         </AccordionListingRow>
       </InnerGrid>
     </SimpleContentTemplate>

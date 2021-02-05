@@ -108,6 +108,12 @@ export const AccordionListingRowStyle = styled.section`
 
         overflow: hidden;
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          font-size: 5vw;
+
+          padding: calc(${Root.Size} * 1) 0;
+        }
+
         &__label {
           position: relative;
 
@@ -117,6 +123,10 @@ export const AccordionListingRowStyle = styled.section`
             width: calc(100% * 0.6666666);
 
             text-align: left;
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              width: calc(100% * .52);
+            }
           }
 
           &:last-child {
@@ -126,6 +136,10 @@ export const AccordionListingRowStyle = styled.section`
 
           &--indicator {
             height: 7vw;
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              height: 5vw;
+            }
 
             &:before {
               content: "&";

@@ -33,6 +33,13 @@ export const StretchIntroSectionStyle = styled.section`
 
     position: relative;
 
+    @media (max-width: ${Theme.Base.Media.Width.Md}) {
+      margin-top: -1em;
+      padding-top: 0;
+
+      padding-bottom: calc(${Root.Size} * 3);
+    }
+
     &:before,
     &:after {
       content: "";
@@ -56,6 +63,10 @@ export const StretchIntroSectionStyle = styled.section`
 
     &:after {
       top: 0px;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        display: none;
+      }
     }
 
     .${StretchIntroSectionClassName}__row {
@@ -67,6 +78,10 @@ export const StretchIntroSectionStyle = styled.section`
       justify-content: stretch;
 
       margin-bottom: 0.25em;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        font-size: 3vw;
+      }
 
       &__content {
         line-height: 1;

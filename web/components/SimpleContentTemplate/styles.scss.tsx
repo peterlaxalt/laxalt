@@ -9,6 +9,7 @@ import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
 import { CssFrameBorderWidth, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
 import { LayeredSidebarWidth } from "../LayeredSidebar/styles.scss";
+import { InnerGridClassName } from "../InnerGrid/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -34,6 +35,10 @@ export const SimpleContentTemplateStyle = styled.div`
 
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
       padding: ${Root.Grid.Gutter.Top} ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+
+      .${InnerGridClassName} {
+        padding: 0;
+      }
     }
 
     padding-bottom: 0;
