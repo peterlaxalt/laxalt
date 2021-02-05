@@ -17,6 +17,7 @@ import { HeadlineWrapper } from "../../HeadlineWrapper";
 
 // Styles
 import { ProjectHeroClassName, ProjectHeroStyle } from "./styles.scss";
+import { OvalButton } from "../../OvalButton";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -44,6 +45,8 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
   sections,
   style,
 }) => {
+  const [mobileDescriptionOpen, setMobileDescriptionOpen] = useState(true);
+
   return (
     <HeadlineWrapper>
       <ProjectHeroStyle
@@ -156,6 +159,86 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
         {/* Section Navigation */}
         <div className={`${ProjectHeroClassName}__section-nav`}>
           <ul className={`${ProjectHeroClassName}__section-nav__list`}>
+            {project.intro && project.intro.blurb && (
+              <li
+                className={`${ProjectHeroClassName}__section-nav__list__item ${ProjectHeroClassName}__section-nav__list__item--${
+                  mobileDescriptionOpen ? "is-expanded" : "is-not-expanded"
+                } ${ProjectHeroClassName}__section-nav__list__item--mobile-description`}
+              >
+                {/* ____________________________ */}
+                {/* Toggle */}
+                <span
+                  className={`${ProjectHeroClassName}__section-nav__list__item__inner`}
+                  onClick={() =>
+                    mobileDescriptionOpen
+                      ? setMobileDescriptionOpen(false)
+                      : setMobileDescriptionOpen(true)
+                  }
+                  role="button"
+                  aria-expanded={mobileDescriptionOpen ? true : false}
+                >
+                  <span
+                    className={`${ProjectHeroClassName}__section-nav__list__item__count`}
+                  >
+                    {mobileDescriptionOpen ? (
+                      <span className="__visually-hidden">Close</span>
+                    ) : (
+                      <span className="__visually-hidden">Open</span>
+                    )}
+                  </span>
+                  <span
+                    className={`${ProjectHeroClassName}__section-nav__list__item__label`}
+                  >
+                    Description
+                  </span>
+                </span>
+
+                {/* ____________________________ */}
+                {/* Content */}
+                {mobileDescriptionOpen && (
+                  <span
+                    className={`${ProjectHeroClassName}__section-nav__list__item__content`}
+                  >
+                    {project.intro.blurb.headline && (
+                      <span
+                        className={`${ProjectHeroClassName}__section-nav__list__item__content__headline`}
+                      >
+                        {project.intro.blurb.headline}
+                      </span>
+                    )}
+
+                    {project.intro.blurb.largeBody && (
+                      <span
+                        className={`${ProjectHeroClassName}__section-nav__list__item__content__large-body`}
+                      >
+                        {project.intro.blurb.largeBody}
+                      </span>
+                    )}
+
+                    {project.intro.blurb.body && (
+                      <span
+                        className={`${ProjectHeroClassName}__section-nav__list__item__content__body`}
+                      >
+                        {project.intro.blurb.body}
+                      </span>
+                    )}
+
+                    {project.intro.blurb.cta && (
+                      <span
+                        className={`${ProjectHeroClassName}__section-nav__list__item__content__cta`}
+                      >
+                        <OvalButton
+                          label={project.intro.blurb.cta.label}
+                          href={project.intro.blurb.cta.href}
+                          external={true}
+                        />
+                      </span>
+                    )}
+                  </span>
+                )}
+              </li>
+            )}
+
             {sections &&
               sections.map((section: LXLT_ProjectSection, idx: number) => {
                 return (
@@ -169,6 +252,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = ({
                       <span
                         className={`${ProjectHeroClassName}__section-nav__list__item__count`}
                       >
+                        {idx + 1 < 10 ? 0 : null}
                         {idx + 1}
                       </span>
                       <span
