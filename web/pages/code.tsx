@@ -56,6 +56,7 @@ const CodePage: NextPage<LMNTS_CodeFrontPage> = () => {
     <SimpleContentTemplate
       globalSidebarPanes={sidebarPanes}
       addClass={`${CodePageClassName}`}
+      showGridlines={true}
     >
       <HeadlineWrapper>
         <SvgHeadlineDisplay svgElement={CodeHeader} />

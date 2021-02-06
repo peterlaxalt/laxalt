@@ -224,6 +224,7 @@ const ProjectMetaSection: NextPage<LXLT_ProjectMetaSection> = ({ project }) => {
                 };
               })}
               tableName={`Wins`}
+
             />
           )}
         </AccordionListingRow>

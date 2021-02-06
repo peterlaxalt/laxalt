@@ -53,6 +53,7 @@ const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
     <SimpleContentTemplate
       globalSidebarPanes={sidebarPanes}
       addClass={`${ArtworkPageClassName}`}
+      showGridlines={true}
     >
       <HeadlineWrapper>
         <SvgHeadlineDisplay svgElement={ArtworkHeader} />

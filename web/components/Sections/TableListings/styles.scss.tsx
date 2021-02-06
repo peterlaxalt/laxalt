@@ -49,6 +49,10 @@ export const TableListingStyle = styled.section`
       justify-content: space-between;
 
       padding-top: calc(${Root.Size} * 1);
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        display: block;
+      }
     }
 
     .${TableListingClassName}__col {
@@ -60,6 +64,10 @@ export const TableListingStyle = styled.section`
         h3 {
           font-family: ${Theme.Font.Code};
           text-transform: uppercase;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            font-size: .9rem;
+          }
         }
       }
 

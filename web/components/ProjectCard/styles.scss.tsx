@@ -304,13 +304,25 @@ export const ProjectCardStyle = styled.div`
         transition: transform calc(${ProjectScrollSectionTransitionTime} / 2) ease, opacity calc(${ProjectScrollSectionTransitionTime} / 2) ease;
         transition-delay: transform calc(${ProjectScrollSectionTransitionTime} / 2), opacity calc(${ProjectScrollSectionTransitionTime} / 2);
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          font-size: .7rem;
+        }
+
         &--content-major {
           font-size: 1.2rem;
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            font-size: 1rem;
+          }
         }
       }
 
       &--bottom-right {
         text-align: right;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          min-width: 150px;
+        }
       }
     }
 
