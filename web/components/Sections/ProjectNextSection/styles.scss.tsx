@@ -56,6 +56,13 @@ export const ProjectNextSectionStyle = styled.section`
       width: 100%;
 
       overflow-x: hidden;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        position: relative;
+        height: auto;
+
+        overflow-x: unset;
+      }
     }
 
     .${ProjectNextSectionClassName}__content-wrapper {
@@ -76,6 +83,18 @@ export const ProjectNextSectionStyle = styled.section`
       padding-left: ${LayeredSidebarWidth};
       padding-right: 10vw;
 
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        height: auto;
+
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        display: block;
+
+        overflow: hidden;
+      }
     }
 
     .${ProjectNextSectionClassName}__horizontal-wrapper {
@@ -94,12 +113,20 @@ export const ProjectNextSectionStyle = styled.section`
 
       /* transition: transform 0.5s ease-out; */
       will-change: transform;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        position: relative;
+      }
     }
 
     .${ProjectNextSectionClassName}__outer {
       position: relative;
 
       width: 100%;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        height: auto !important;
+      }
     }
 
     .${ProjectNextSectionClassName}__headline {
@@ -112,13 +139,25 @@ export const ProjectNextSectionStyle = styled.section`
 
       z-index: 800;
 
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        font-size: 6vw;
+      }
+
       &--next {
         left: ${LayeredSidebarWidth};
         /* font-weight: 600; */
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          left: 0;
+        }
       }
 
       &--keep-browsing {
         right: ${Root.Grid.Gutter.Right};
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          right: 0;
+        }
 
         span {
           opacity: .6;
@@ -140,58 +179,60 @@ export const ProjectNextSectionStyle = styled.section`
       }
     }
 
-    .${ProjectCardClassName} {
-      padding-top: calc(${Root.Size} * 9);
-      width: calc(100vw / 1.5);
+    @media (min-width: ${Theme.Base.Media.Width.Md}) {
+      .${ProjectCardClassName} {
+        padding-top: calc(${Root.Size} * 9);
+        width: calc(100vw / 1.5);
 
-      .${ProjectCardClassName}__inner {
-        justify-content: flex-end;
+        .${ProjectCardClassName}__inner {
+          justify-content: flex-end;
 
-        margin-bottom: -40vh;
+          margin-bottom: -40vh;
 
-        &:after {
-          display: none;
-        }
-
-        &:before {
-          bottom: 40vh;
-        }
-      }
-
-      .${ProjectCardClassName}__row {
-        &--top {
-          display: none;
-        }
-
-        &--bottom {
-          div {
-            &:not(.project-card__col--bottom-right) {
-              .${ProjectCardClassName}__col__content-row--content-major {
-                font-size: 23vh;
-
-                font-weight: 200;
-                line-height: .7;
-
-                font-family: "dharma";
-              }
-            }
+          &:after {
+            display: none;
           }
 
           &:before {
-            left: calc(${CssFrameBorderWidth} * -1);
-
-            width: calc(100% + (${CssFrameBorderWidth} * 2))
-          }
-
-          .project-card__col--bottom-right {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            bottom: 40vh;
           }
         }
 
-        &--center {
-          order: 999;
+        .${ProjectCardClassName}__row {
+          &--top {
+            display: none;
+          }
+
+          &--bottom {
+            div {
+              &:not(.project-card__col--bottom-right) {
+                .${ProjectCardClassName}__col__content-row--content-major {
+                  font-size: 23vh;
+
+                  font-weight: 200;
+                  line-height: .7;
+
+                  font-family: "dharma";
+                }
+              }
+            }
+
+            &:before {
+              left: calc(${CssFrameBorderWidth} * -1);
+
+              width: calc(100% + (${CssFrameBorderWidth} * 2))
+            }
+
+            .project-card__col--bottom-right {
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+            }
+          }
+
+          &--center {
+            order: 999;
+          }
         }
       }
     }

@@ -223,6 +223,10 @@ export const AccordionListingRowStyle = styled.section`
       .${AccordionListingRowClassName}__title__btn,
       .${AccordionListingRowClassName}__content {
         padding-left: calc(${LayeredSidebarWidth} * 1);
+
+        @media(max-width: ${Theme.Base.Media.Width.Md}) {
+          padding-left: 0;
+        }
       }
     }
   }

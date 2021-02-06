@@ -133,6 +133,8 @@ export const SimpleContentTemplateStyle = styled.div`
         .${SimpleContentTemplateClassName}__gridlines__el {
           position: absolute;
 
+          pointer-events: none;
+
           display: block;
 
           left: 0;
