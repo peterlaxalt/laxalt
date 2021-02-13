@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./HeadlineWrapper\";","map":{"version":3,"sources":["/Users/manzanita/Repositories/laxalt/web/components/HeadlineWrapper/index.tsx"],"names":[],"mappings":"AAAA,cAAc,mBAAd","sourcesContent":["export * from \"./HeadlineWrapper\";\n"]},"metadata":{},"sourceType":"module"}

@@ -59,9 +59,8 @@ export const IntroSection: React.FunctionComponent<LMNTS_Section_IntroSection> =
             <p
               className={`${IntroSectionClassName}__content__item ${IntroSectionClassName}__content__item--intro`}
             >
-              <strong>Brooklyn, NYC</strong> — Peter Laxalt is a
-              multidisciplinary director, strategist, designer, educator,
-              artist, and creative technologist.
+              <strong>Brooklyn, NYC</strong> — Peter Laxalt is a director, designer, educator,
+              artist, and creative technologist who specializes in the intersection of branding and technology.
             </p>
             <p className={`${IntroSectionClassName}__content__item`}>
               He works with leading brands, sustainable businesses, impactful

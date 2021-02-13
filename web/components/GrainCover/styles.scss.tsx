@@ -6,6 +6,7 @@
 // Core
 import styled from "styled-components";
 import { Grain } from "../../constants/styles/Animation";
+import { Theme } from "../../constants/Theme";
 
 // Animations
 
@@ -42,6 +43,10 @@ const GrainCoverStyle = styled.div`
     .${GrainCoverClassName}__inner {
       background-size: 50%;
     }
+  }
+
+  @media(max-width: ${Theme.Base.Media.Width.Md}) {
+    display: none;
   }
 `;
 

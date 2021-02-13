@@ -276,7 +276,7 @@ export const ProjectIntroSection: React.FunctionComponent<LXLT_ProjectIntroSecti
 
                     {/* ____________________________________________ */}
                     {/* Featured Images */}
-                    {project.intro.featuredImages &&
+                    {project.intro && project.intro.featuredImages &&
                       project.intro.featuredImages.map((image, idx: number) => {
                         return (
                           <div

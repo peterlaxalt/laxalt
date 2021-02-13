@@ -123,6 +123,10 @@ export const ProjectIntroSectionStyle = styled.section`
 
       width: 100%;
       min-height: 100vh;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        min-height: unset;
+      }
     }
 
     .${ProjectIntroSectionClassName}__x-translate-wrapper {

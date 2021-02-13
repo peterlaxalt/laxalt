@@ -403,13 +403,13 @@ export const SiteProjects: LXLT_SiteProjects = [
         },
       },
       featuredImages: [
-        {
-          src: "/projects/allships/huge.png",
-          dimensions: {
-            width: 2000,
-            height: 1165,
-          },
-        },
+        // {
+        //   src: "/projects/allships/huge.png",
+        //   dimensions: {
+        //     width: 2000,
+        //     height: 1165,
+        //   },
+        // },
         {
           src: "/projects/allships/tall-sample.png",
           dimensions: {

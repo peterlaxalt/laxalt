@@ -1,85 +1,34 @@
-
 // Core
 import { NextPage } from "next";
 import React from "react";
 
 // Types & Constants
-import { LXLT_SidebarPane } from "../../components/LayeredSidebar";
-import {
-  getProjectData,
-  LXLT_Category,
-  SiteDesignGraph,
-} from "../../constants/site/Settings";
 import { Theme } from "../../constants/Theme";
 
 // Components
 import Image from "next/image";
-import { ProjectHero } from "../../components/Sections/ProjectHero";
-import { ProjectIntroSection } from "../../components/Sections/ProjectIntroSection";
-import { HideFooter } from "../../constants/styles/CssUtils";
-import ProjectMetaSection from "../../components/Sections/ProjectMetaSection/ProjectMetaSection";
-import { RelatedBadge } from "../../components/_svg/Headers/RelatedBadge";
-import { ProjectNextSection } from "../../components/Sections/ProjectNextSection";
-import { SimpleContentTemplate } from "../../components/SimpleContentTemplate";
-import { DesignBadge } from "../../components/_svg/Headers/DesignBadge";
 import { Root } from "../../constants/Root";
+import { ProjectTemplate } from "../../components/Templates/ProjectTemplate";
 
+// __________________________________________________________________________________________
+// Define Project Slug
+
+const __PROJECT_SLUG__ = "allships";
 
 // Begin Component
 // __________________________________________________________________________________________
 
+
 type LMNTS_ProjectPage = {};
 
-export const ProjectPageClassName = "route__project-page";
+export const ProjectPageClassName = `route__project-page--${__PROJECT_SLUG__} route__project-page`;
 
 /**
  *
- * pages/index.tsx
  * @author Peter Laxalt
  *
  */
-const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
-  // __________________________________
-  // Project data
-  let currentProject = getProjectData("allships");
-
-  // __________________________________
-  // Sidebar
-  let sidebarPanes: LXLT_SidebarPane[] = [
-    {
-      header: "Design",
-      headerBadge: DesignBadge,
-      items: SiteDesignGraph.categories.map((category: LXLT_Category) => {
-        return {
-          label: category.name,
-          href:
-            category.slug === "everything"
-              ? `/${SiteDesignGraph.rootSlug}`
-              : `/${SiteDesignGraph.rootSlug}/${category.slug}`,
-          isActive: category.slug === "everything" ? true : false,
-          isMajor: category.isMajor ? category.isMajor : false,
-        };
-      }),
-    },
-
-    {
-      header: "Related",
-      headerBadge: RelatedBadge,
-      items: currentProject.categories.map((category: LXLT_Category) => {
-        return {
-          label: category.name,
-          href: `/${category.parent}/${category.slug}`,
-          isMajor: false,
-          isActive: false,
-        };
-      }),
-    },
-
-    {
-      items: [],
-    },
-  ];
-
+const ProjectPage: NextPage<LMNTS_ProjectPage> = () => {
   // ______________________________
   // Misc
 
@@ -93,48 +42,36 @@ const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
     { src: "/projects/allships/07.gif", w: 1748, h: 790 },
     { src: "/projects/allships/08.gif", w: 2752, h: 1602 },
     { src: "/projects/allships/09.gif", w: 1856, h: 904 },
-    { src: "/projects/allships/10.png", w: 3266 , h: 1898 },
-    { src: "/projects/allships/11.png", w: 3304 , h: 1882 },
-    { src: "/projects/allships/12.png", w: 3314, h:  1708 },
+    { src: "/projects/allships/10.png", w: 3266, h: 1898 },
+    { src: "/projects/allships/11.png", w: 3304, h: 1882 },
+    { src: "/projects/allships/12.png", w: 3314, h: 1708 },
     { src: "/projects/allships/13.gif", w: 2926, h: 1399 },
-    { src: "/projects/allships/14.png", w: 3304 , h: 1576 },
+    { src: "/projects/allships/14.png", w: 3304, h: 1576 },
   ];
 
   return (
     <>
-      <HideFooter />
-      <SimpleContentTemplate
-        globalSidebarPanes={sidebarPanes}
-        addClass={`${ProjectPageClassName}`}
-        showGridlines={true}
+      <ProjectTemplate
+        projectSlug={__PROJECT_SLUG__}
+        sections={[
+          {
+            name: "Concepts",
+            anchor: "concepts",
+          },
+          {
+            name: "Shoutouts & Credits",
+            anchor: "credits",
+          },
+          {
+            name: "Approach & Tools Used",
+            anchor: "tools",
+          },
+          {
+            name: "Awards & Wins",
+            anchor: "wins",
+          },
+        ]}
       >
-        <ProjectHero
-          project={currentProject}
-          sections={[
-            {
-              name: "Concepts",
-              anchor: "concepts",
-            },
-            {
-              name: "Shoutouts & Credits",
-              anchor: "credits",
-            },
-            {
-              name: "Approach & Tools Used",
-              anchor: "tools",
-            },
-            {
-              name: "Awards & Wins",
-              anchor: "wins",
-            },
-          ]}
-        />
-
-        <ProjectIntroSection project={currentProject} hasSidebar={true} />
-
-        {/* ________________________________________________________________________________ */}
-        {/* START CONTENT */}
-
         <p
           style={{
             maxWidth: 650,
@@ -178,8 +115,20 @@ const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
         <div>
           {sampleImageArray.map((img, idx: number) => {
             return (
-              <div style={{ paddingBottom: 20, pointerEvents: "none", paddingRight: Root.Grid.Gutter.Right }}>
-                <Image draggable={false} src={img.src} width={img.w} height={img.h} key={idx} />
+              <div
+                style={{
+                  paddingBottom: 20,
+                  pointerEvents: "none",
+                  paddingRight: Root.Grid.Gutter.Right,
+                }}
+              >
+                <Image
+                  draggable={false}
+                  src={img.src}
+                  width={img.w}
+                  height={img.h}
+                  key={idx}
+                />
               </div>
             );
           })}
@@ -258,14 +207,9 @@ const SamplePage: NextPage<LMNTS_ProjectPage> = () => {
           massa velit non dolor. Maecenas eget pellentesque lacus. Sed ac lectus
           quis tellus euismod pharetra. Vivamus pretium gravida urna a posuere.
         </p>
-
-        {/* END CONTENT */}
-        {/* ________________________________________________________________________________ */}
-        <ProjectMetaSection project={currentProject} />
-        <ProjectNextSection project={currentProject} />
-      </SimpleContentTemplate>
+      </ProjectTemplate>
     </>
   );
 };
 
-export default SamplePage;
+export default ProjectPage;
