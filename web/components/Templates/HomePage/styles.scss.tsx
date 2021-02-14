@@ -8,6 +8,7 @@ import { ScaleYIn, UpAndRotate } from "../../../constants/styles/Animation";
 import { CaptionTextStyles } from "../../../constants/styles/Font";
 import { Theme } from "../../../constants/Theme";
 import { MarqueeRowClassName } from "../../Sections/MarqueeRow/styles.scss";
+import { SimpleContentTemplateClassName } from "../../SimpleContentTemplate/styles.scss";
 
 // Constants
 
@@ -34,6 +35,10 @@ export const HomePageStyle = styled.div`
     .${HomePageClassName}__content-wrapper {
       margin: 0;
       padding: 0;
+
+      .${SimpleContentTemplateClassName}__gridlines {
+        z-index: 3;
+      }
     }
 
     .${HomePageClassName}__canvas-wrapper {
@@ -47,6 +52,8 @@ export const HomePageStyle = styled.div`
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
         z-index: 1;
         position: relative;
+
+        min-height: calc(100vh - ${Root.Nav.Size});
       }
     }
 
@@ -126,6 +133,10 @@ export const HomePageStyle = styled.div`
 
     .${HomePageClassName}__canvas {
       position: relative;
+
+      .no-distort-canvas {
+        color: transparent;
+      }
 
       @media(min-width: ${Theme.Base.Media.Width.Md}) {
         position: absolute;
