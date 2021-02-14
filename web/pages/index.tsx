@@ -11,8 +11,7 @@ import { NextPage } from "next";
 import React from "react";
 
 // Components
-import { ProjectScrollSection } from "../components/Sections/ProjectScrollSection";
-import NoWaterDistortCanvas from "./projects/no-distort-with-canvas";
+import { HomePage } from "../components/Templates/HomePage";
 
 // Components
 // import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
@@ -30,28 +29,12 @@ export const HomePageClassName = "route__home-page";
  * @author Peter Laxalt
  *
  */
-const HomePage: NextPage<LMNTS_LocationsFrontPage> = () => {
+const FrontPage: NextPage<LMNTS_LocationsFrontPage> = () => {
   return (
     <div className={`${HomePageClassName}`}>
-      <div>
-        <div style={{ position: "sticky", top: "0", height: 0 }}>
-          <div
-            style={{
-              position: "absolute",
-              top: "0",
-              left: "0",
-              width: "100%",
-              height: "100vh",
-            }}
-          >
-            <NoWaterDistortCanvas />
-          </div>
-        </div>
-
-        <ProjectScrollSection />
-      </div>
+      <HomePage />
     </div>
   );
 };
 
-export default HomePage;
+export default FrontPage;

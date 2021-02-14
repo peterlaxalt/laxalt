@@ -189,9 +189,9 @@ class NoWaterDistortCanvas extends Component<
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           height: auto;
 
-          margin-top: calc(${Root.Nav.Size} * 1.5);
-
           &:first-child {
+            margin-top: calc(${Root.Nav.Size} * 1.5);
+
             canvas {
               transform: translateY(0%);
             }  
@@ -199,7 +199,7 @@ class NoWaterDistortCanvas extends Component<
 
           &:last-child {
             canvas {
-              transform: translateY(-25%);
+              transform: translateY(-10%);
             }  
           }
         }
