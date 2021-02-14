@@ -10,6 +10,7 @@ import NoWaterDistortCanvas from "../../../pages/projects/no-distort-with-canvas
 import { ProjectScrollSection } from "../../Sections/ProjectScrollSection";
 import { HeadlineWrapper } from "../../HeadlineWrapper";
 import { ProjectVerticalListings } from "../../Sections/ProjectVerticalListings";
+import { SimpleContentTemplate } from "../../SimpleContentTemplate";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -25,23 +26,34 @@ type LMNTS_HomePage = {};
 export const HomePage: NextPage<LMNTS_HomePage> = ({}) => {
   return (
     <HomePageStyle className={`${HomePageClassName}`}>
-      <div className={`${HomePageClassName}__canvas-wrapper`}>
-        <div className={`${HomePageClassName}__canvas`}>
-          <HeadlineWrapper>
-            <NoWaterDistortCanvas />
-          </HeadlineWrapper>
+      <SimpleContentTemplate
+        addClass={`${HomePageClassName}__content-wrapper`}
+        showGridlines={true}
+      >
+        <div className={`${HomePageClassName}__canvas-wrapper`}>
+          <div className={`${HomePageClassName}__canvas`}>
+            <HeadlineWrapper>
+              <NoWaterDistortCanvas />
+
+              <span className={`${HomePageClassName}__scroll-down`}>
+                <span className={`${HomePageClassName}__scroll-down__label`}>
+                  Scroll Down
+                </span>
+              </span>
+            </HeadlineWrapper>
+          </div>
         </div>
-      </div>
 
-      <div className={`${HomePageClassName}__horizontal-listings`}>
-        <ProjectScrollSection
-          addClass={`${HomePageClassName}__project-scroll`}
-        />
-      </div>
+        <div className={`${HomePageClassName}__horizontal-listings`}>
+          <ProjectScrollSection
+            addClass={`${HomePageClassName}__project-scroll`}
+          />
+        </div>
 
-      <div className={`${HomePageClassName}__vertical-listings`}>
-        <ProjectVerticalListings />
-      </div>
+        <div className={`${HomePageClassName}__vertical-listings`}>
+          <ProjectVerticalListings />
+        </div>
+      </SimpleContentTemplate>
     </HomePageStyle>
   );
 };

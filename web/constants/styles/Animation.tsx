@@ -139,6 +139,18 @@ export const ScaleXIn = keyframes`
   }
 `;
 
+
+export const ScaleYIn = keyframes`
+  from {
+    transform-origin: top center;
+    transform: scaleY(0);
+  }
+  to {
+    transform-origin: left center;
+    transform: scaleY(1);
+  }
+`;
+
 export const LoaderDot = keyframes`
  0% {
     background: #f7fafc;

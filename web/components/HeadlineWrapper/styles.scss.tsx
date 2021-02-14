@@ -26,7 +26,6 @@ export const HeadlineWrapperClassName = "headline-wrapper";
  *
  */
 export const HeadlineWrapperStyle = styled.div`
-  @media(min-width: ${Theme.Base.Media.Width.Md}) {
     &.${HeadlineWrapperClassName} {
       filter: blur(0px);
       opacity: 1;
@@ -38,7 +37,7 @@ export const HeadlineWrapperStyle = styled.div`
         opacity: 0;
       }
     }
-
+  @media(min-width: ${Theme.Base.Media.Width.Md}) {
     &.${HeadlineWrapperClassName}__after {
       filter: blur(80px);
       opacity: 0;

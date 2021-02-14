@@ -45,6 +45,10 @@ export const FooterStyle = styled.footer`
 
     &.route__home {
       display: none;
+
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        display: block;
+      }
     }
 
     @media(max-width: ${Theme.Base.Media.Width.Sm}) {

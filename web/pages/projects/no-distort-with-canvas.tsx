@@ -14,6 +14,7 @@ import { __DEBUG__ } from "../../constants/site/Settings";
 import { Theme } from "../../constants/Theme";
 import { Base } from "../../constants/styles/Base";
 import { Root } from "../../constants/Root";
+import { MarqueeRow } from "../../components/Sections/MarqueeRow";
 
 // ______________________________________________________________
 
@@ -190,16 +191,18 @@ class NoWaterDistortCanvas extends Component<
           height: auto;
 
           &:first-child {
-            margin-top: calc(${Root.Nav.Size} * 1.5);
+            margin-top: calc(${Root.Nav.Size} * 1.25);
 
             canvas {
               transform: translateY(0%);
             }  
           }
 
-          &:last-child {
+          &.${NoDistortCanvasClassName}--lower {
+            margin-top: calc(${Root.Size} * -5);
+            
             canvas {
-              transform: translateY(-10%);
+              /* transform: translateY(-10%); */
             }  
           }
         }
@@ -249,14 +252,17 @@ class NoWaterDistortCanvas extends Component<
             >
               {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_L__) : null}
             </div>
+
             <div
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }
-              className={`${NoDistortCanvasClassName}`}
+              className={`${NoDistortCanvasClassName} ${NoDistortCanvasClassName}--lower`}
             >
               {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_S__) : null}
             </div>
+
+            {/* <MarqueeRow strings={["Studio", "Design", "Code", "Artwork"]} /> */}
           </>
         )}
       </>

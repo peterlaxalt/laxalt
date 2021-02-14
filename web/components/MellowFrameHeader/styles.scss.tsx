@@ -62,9 +62,17 @@ export const MellowFrameHeaderStyle = styled.div`
     &.${MellowFrameHeaderClassName}--inactive,
     &.${MellowFrameHeaderClassName}--fill-bars-is-expanded {
 
-      &:not(.route__home) {
+      /* &:not(.route__home) { */
         .${MellowFrameHeaderClassName}__frame__nav--top {
           transform: translateY(-100%);
+        }
+      /* } */
+
+      @media(min-width: ${Theme.Base.Media.Width.Md}) {
+        &.route__home {
+          .${MellowFrameHeaderClassName}__frame__nav--top {
+            transform: translateY(0%);
+          }
         }
       }
 

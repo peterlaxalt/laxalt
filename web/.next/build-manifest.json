@@ -29,6 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/misc": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/misc.js"
+    ],
     "/studio": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
