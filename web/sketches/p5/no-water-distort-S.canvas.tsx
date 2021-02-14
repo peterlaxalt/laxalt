@@ -89,7 +89,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
   let characterCount: number = splitCharacterArray.length;
   let characterWidth: number = W / characterCount;
-  let characterSize: number = !isTablet ? H * 1.15 : H * .8;
+  let characterSize: number = !isTablet ? H * 1.15 : H * 1;
 
   let verticalSkewDivisible: number = !isTablet ? 2.75 : 2;
   let characterSkewDivisible: number = 1.36;

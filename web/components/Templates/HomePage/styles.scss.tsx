@@ -90,7 +90,7 @@ export const HomePageStyle = styled.div`
       transform: translateX(-50%);
 
       left: 50%;
-      bottom: calc(${Root.Size} * 4);
+      bottom: calc(${Root.Size} * 2);
 
       ${CaptionTextStyles};
 
@@ -108,7 +108,7 @@ export const HomePageStyle = styled.div`
 
         transform: translateX(-50%);
 
-        height: calc(${Root.Size} * 4);
+        height: calc(${Root.Size} * 2);
         width: 1px;
 
         animation: ${ScaleYIn} 2s ease 1;

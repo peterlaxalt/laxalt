@@ -21,6 +21,7 @@ import {
 } from "./styles.scss";
 import { createGlobalStyle } from "styled-components";
 import { OvalButton } from "../OvalButton";
+import { ThemePicker } from "../ThemePicker";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -183,6 +184,12 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                 Originally / Reno, Nevada
               </li>
             </ul>
+          </div>
+
+          {/* _______________________________________________ */}
+          {/* Theme Picker */}
+          <div className={`${InteractiveOverlayNavigationClassName}__theme-picker`}>
+            <ThemePicker />
           </div>
         </div>
       </InteractiveOverlayNavigationStyle>
