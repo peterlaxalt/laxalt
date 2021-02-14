@@ -41,8 +41,10 @@ export const ProjectHeroStyle = styled.div`
     display: flex;
     flex-direction: column;
 
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    padding-bottom: calc(${Root.Size} * 3);
 
     position: relative;
 
@@ -114,7 +116,7 @@ export const ProjectHeroStyle = styled.div`
         left: 0;
         bottom: 0;
 
-        height: 350px;
+        height: 450px;
         width: 100%;
 
         opacity: 1;
@@ -217,16 +219,14 @@ export const ProjectHeroStyle = styled.div`
       align-items: flex-end;
       justify-content: flex-end;
 
-      margin-left: auto;
-
-      padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+      padding: 0 ${Root.Grid.Gutter.Right} 0 0;
 
       overflow: hidden;
 
       &__el {
         /* font-family: "dharma"; */
 
-        text-align: right;
+        text-align: left;
 
         font-size: 5vw;
         font-weight: 600;
@@ -238,10 +238,8 @@ export const ProjectHeroStyle = styled.div`
       }
 
       @media(min-width: ${Theme.Base.Media.Width.Md}) {
-        background: ${Theme.Color.varForeground};
-        color: ${Theme.Color.varBackground};
-
-        margin-right: ${Root.Grid.Gutter.Right};
+        /* background: ${Theme.Color.varForeground};
+        color: ${Theme.Color.varBackground}; */
       }
 
       @media(max-width: ${Theme.Base.Media.Width.Md}) {
@@ -347,7 +345,7 @@ export const ProjectHeroStyle = styled.div`
         margin-left: calc(${Root.Grid.Gutter.Right} * -1);
         margin-right: calc(${Root.Grid.Gutter.Right} * -1);
 
-        width: calc(100% + ${Root.Grid.Gutter.Right});
+        width: calc(100% + (${Root.Grid.Gutter.Right} * 2));
 
         padding-right: ${Root.Grid.Gutter.Right};
       }
@@ -412,13 +410,13 @@ export const ProjectHeroStyle = styled.div`
 
             ${CaptionTextStyles};
 
-            &:last-child {
+            /* &:last-child {
               padding-right: 0;
-            }
+            } */
 
-            &:first-child {
+            /* &:first-child {
               padding-left: 0;
-            }
+            } */
           }
 
           &:not(.${ProjectHeroClassName}__section-nav__list__item--mobile-description) {
@@ -683,10 +681,10 @@ export const ProjectHeroStyle = styled.div`
       @media (min-width: ${Theme.Base.Media.Width.Md}) {
         width: auto;
 
-        margin-left: auto;
+        /* margin-left: auto; */
 
         display: flex;
-        justify-content: flex-end;
+        /* justify-content: flex-end; */
       }
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
@@ -710,17 +708,17 @@ export const ProjectHeroStyle = styled.div`
         @media (min-width: ${Theme.Base.Media.Width.Md}) {
           width: auto;
 
-          background: ${Theme.Color.varForeground};
-          color: ${Theme.Color.varBackground};
+          /* background: ${Theme.Color.varForeground};
+          color: ${Theme.Color.varBackground}; */
 
           margin-top: .5em;
-          margin-right: ${Root.Grid.Gutter.Right};
-          margin-left: auto;
+          /* margin-right: ${Root.Grid.Gutter.Right}; */
+          /* margin-left: auto; */
 
           display: flex;
-          justify-content: flex-end;
+          justify-content: flex-start;
 
-          padding-left: ${Root.Grid.Gutter.Right};
+          /* padding-left: ${Root.Grid.Gutter.Right}; */
           padding-right: ${Root.Grid.Gutter.Right};
           padding-top: .5em;
           padding-bottom: .5em;

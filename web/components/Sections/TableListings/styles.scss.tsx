@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 // Constants
 import { Root } from "../../../constants/Root";
-import {} from "../../../constants/styles/Animation";
+import { ScaleXIn } from "../../../constants/styles/Animation";
 import { Theme } from "../../../constants/Theme";
 import { CssFrameBorderWidth } from "../../MellowFrameHeader/styles.scss";
 import { OpenIconClassName } from "../../_svg/OpenIcon/OpenIcon";
@@ -43,6 +43,11 @@ export const TableListingStyle = styled.section`
   &.${TableListingClassName} {
     border-top: 2px solid ${Theme.Color.varForeground};
     margin-top: calc(${Root.Size} * 3);
+
+    @media (max-width: ${Theme.Base.Media.Width.Md}) {
+      margin-top: calc(${Root.Size} * 1.25);
+      padding-top: calc(${Root.Size} * 1);
+    }
 
     .${TableListingClassName}__inner {
       display: flex;
@@ -90,6 +95,33 @@ export const TableListingStyle = styled.section`
     .${TableListingClassName}__columns-data {
       columns: 3;
       column-gap: calc(${Root.Size} / 2);
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        columns: 1;
+
+        .${TableListingClassName}__item {
+          position: relative;
+
+          padding-top: 1em;
+          margin-bottom: .5em;
+
+          &:before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 1px;
+
+            animation: ${ScaleXIn} 2s ease 1;
+
+            background: currentColor;
+          }
+        }
+      }
     }
 
     .${TableListingClassName}__rows-data {
@@ -102,6 +134,8 @@ export const TableListingStyle = styled.section`
 
         padding-bottom: 0.5em;
         padding-top: 0.5em;
+
+       
 
         .${OpenIconClassName} {
           width: 25px;
@@ -151,6 +185,11 @@ export const TableListingStyle = styled.section`
 
             width: 15%;
           }
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            display: block;
+            width: 100%;
+          }
         }
       }
     }
@@ -160,6 +199,17 @@ export const TableListingStyle = styled.section`
     &.${TableRowListingClassName}--team-table {
       .${TableListingClassName}__rows-data {
         .${TableListingClassName}__row {
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            display: block;
+          }
+
+          &--headers {
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              display: none;
+            }
+          }
+
           .${TableListingClassName}__item {
             width: calc(100% / var(--${TableListingClassName}__table-columns));
 
@@ -171,6 +221,24 @@ export const TableListingStyle = styled.section`
               width: 80px;
 
               flex: unset;
+
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                position: absolute;
+
+                right: 0;
+                top: 1em;
+
+                width: unset;
+
+                padding-right: 0;
+              }
+            }
+
+            &[data-table-col="role"],
+            &[data-table-col="contact"] {
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                font-weight: 400;
+              }
             }
 
             // __________________________
@@ -179,6 +247,10 @@ export const TableListingStyle = styled.section`
               width: calc(
                 100% / var(--${TableListingClassName}__table-columns)
               );
+
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                width: 100%;
+              }
             }
 
             &:last-child {
@@ -188,6 +260,16 @@ export const TableListingStyle = styled.section`
               width: calc(
                 100% / var(--${TableListingClassName}__table-columns)
               );
+
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                width: 100%;
+                
+                text-align: left;
+              }
+            }
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              width: 100%;
             }
           }
         }

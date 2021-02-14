@@ -10,12 +10,6 @@ import {
   __DEBUG__,
 } from "../../../constants/site/Settings";
 
-// Types
-import { MarqueeRow } from "../MarqueeRow";
-
-// Components
-import { HeadlineWrapper } from "../../HeadlineWrapper";
-
 // Styles
 import {
   ProjectHeroClassName,
@@ -24,8 +18,6 @@ import {
 } from "./styles.scss";
 import { OvalButton } from "../../OvalButton";
 import LazyImage from "../../../utils/lazyImage";
-import { Theme } from "../../../constants/Theme";
-import { LXLT_ColorTheme } from "../../../constants/styles/Color";
 import { hexToRGBString } from "../../../utils/hexToRGB";
 
 // Begin Types
@@ -155,7 +147,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = React.memo
                   <span
                     className={`${ProjectHeroClassName}__detail-stacked__list__item__label`}
                   >
-                    Location
+                    Where
                   </span>
                   <span
                     className={`${ProjectHeroClassName}__detail-stacked__list__item__value`}

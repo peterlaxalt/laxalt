@@ -203,6 +203,10 @@ export const AccordionListingRowStyle = styled.section`
       .${AccordionListingRowClassName}__title__btn,
       .${AccordionListingRowClassName}__content {
         padding-right: ${Root.Grid.Gutter.Right};
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+          padding-right: 0;
+        }
       }
 
       .${AccordionListingRowClassName}__title__btn {
@@ -226,6 +230,24 @@ export const AccordionListingRowStyle = styled.section`
 
         @media(max-width: ${Theme.Base.Media.Width.Md}) {
           padding-left: 0;
+        }
+      }
+
+      .${AccordionListingRowClassName}__title__btn__label {
+
+        &--indicator {
+          &:before,
+          &:after {
+            @media(max-width: ${Theme.Base.Media.Width.Md}) {
+              right: -.35em;
+            }
+          }
+        }
+
+        &:first-child {
+          @media(max-width: ${Theme.Base.Media.Width.Md}) {
+            width: 50%;
+          }
         }
       }
     }

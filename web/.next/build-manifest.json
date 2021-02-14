@@ -24,10 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/and/eight": [
+    "/and/allships": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/and/eight.js"
+      "static/chunks/pages/and/allships.js"
     ],
     "/and/localyyz": [
       "static/chunks/main.js",
