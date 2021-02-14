@@ -189,7 +189,7 @@ class NoWaterDistortCanvas extends Component<
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           height: auto;
 
-          margin-top: ${Root.Nav.Size};
+          margin-top: calc(${Root.Nav.Size} * 1.5);
 
           &:first-child {
             canvas {
