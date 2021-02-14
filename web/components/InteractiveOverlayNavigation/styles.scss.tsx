@@ -12,6 +12,8 @@ import { UpAndRotate } from "../../constants/styles/Animation";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
 import { CssFrameBorderWidth, CssFramePaddingString, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
 import { OvalButtonClassName } from "../OvalButton/styles.scss";
+import { CaptionTextStyles } from "../../constants/styles/Font";
+import { ThemePickerClassName } from "../ThemePicker/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -50,6 +52,57 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
     z-index: 850;
 
     background: ${Theme.Color.varForeground};
+
+    /* _________________________________________________ */
+    /* Theme Picker */
+    .${InteractiveOverlayNavigationClassName}__theme-picker {
+      position: absolute;
+
+      left: 50%;
+      bottom: ${Root.Grid.Gutter.Bottom};
+
+      transform: translateX(-50%);
+
+      color: ${Theme.Color.varBackground};
+
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+        left: calc(${Root.Grid.Gutter.Left} * 2);
+        bottom: calc(${Root.Grid.Gutter.Bottom} * 2);
+
+        transform: unset;
+      }
+
+      .${ThemePickerClassName}__label {
+        ${CaptionTextStyles};
+
+        position: absolute;
+
+        bottom: 100%;
+
+        width: 100%;
+
+        margin-right: 0;
+        padding-right: 0;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          left: 50%;
+          
+          transform: translateX(-50%);
+          
+          text-align: center;
+        }
+
+        @media (min-width: ${Theme.Base.Media.Width.Md}) {
+          text-align: left;
+
+          padding-left: 1em;
+        }
+
+        &:before, &:after {
+          display: none;
+        }
+      }
+    }
 
     /* _________________________________________________ */
     /* Inner Grid */

@@ -6,7 +6,6 @@ import { NextRouter } from "next/router";
 
 // Settings
 import {
-  LXLT_LinkItem,
   LXLT_LinkItemWithCaption,
   Settings,
   SiteNavigation,
@@ -28,6 +27,7 @@ import {
   InteractiveLogotypeStyle,
 } from "./styles.scss";
 import { InteractiveOverlayNavigationClassName } from "../InteractiveOverlayNavigation/styles.scss";
+import { Base } from "../../constants/styles/Base";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -38,6 +38,7 @@ type LXLT_MellowFrameHeader_State = {
   isOverlayVisible?: boolean;
   isSidebarVisible?: boolean;
   isLogotypeExpanded?: boolean;
+  isTablet: boolean;
 
   router?: NextRouter;
 };
@@ -72,6 +73,8 @@ export class MellowFrameHeader extends Component<
       isOverlayVisible: false,
       isSidebarVisible: false,
       isLogotypeExpanded: false,
+
+      isTablet: false,
     };
 
     this.listenToScroll = this.listenToScroll.bind(this);
@@ -115,6 +118,7 @@ export class MellowFrameHeader extends Component<
 
       this.setState({
         isInactive: false,
+        isTablet: window.innerWidth > Base.Media.Width.Md ? false : true
       });
     }
   }
@@ -209,6 +213,7 @@ export class MellowFrameHeader extends Component<
     return (
       <MellowFrameHeaderDisplay
         router={this.props.router}
+        isTablet={this.state.isTablet}
         isInactive={this.state.isInactive}
         isFillBarsExpanded={this.state.isFillBarsExpanded}
         isOverlayVisible={this.state.isOverlayVisible}
@@ -235,6 +240,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
   isFillBarsExpanded,
   isLogotypeExpanded,
   isOverlayVisible,
+  isTablet,
 
   toggleOverlayAndFillBarsExpansion,
   toggleOverlayAndLogotypeExpansion,

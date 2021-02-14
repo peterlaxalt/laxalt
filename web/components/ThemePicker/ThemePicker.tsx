@@ -127,7 +127,7 @@ export class ThemePickerWithHook extends React.PureComponent<
   }
 
   setNewTheme(theme: LXLT_ColorTheme) {
-    // const { setTheme } = this.props;
+    const { setTheme } = this.props;
 
     this.setState({
       activeTheme: theme,
@@ -143,30 +143,30 @@ export class ThemePickerWithHook extends React.PureComponent<
       }
     }
 
-    // setTheme(theme);
+    setTheme(theme);
   }
 
   render() {
     let { activeTheme, availableThemes } = this.state;
 
-    const SetGlobalTheme = createGlobalStyle`
-      ${
-        activeTheme
-          ? CssUtils.CreateTheme(
-              activeTheme.primary,
-              activeTheme.secondary,
-              activeTheme.background,
-              activeTheme.foreground
-            )
-          : ""
-      }
-    `;
+    // const SetGlobalTheme = createGlobalStyle`
+    //   ${
+    //     activeTheme
+    //       ? CssUtils.CreateTheme(
+    //           activeTheme.primary,
+    //           activeTheme.secondary,
+    //           activeTheme.background,
+    //           activeTheme.foreground
+    //         )
+    //       : ""
+    //   }
+    // `;
 
     return (
       <>
-        {activeTheme && activeTheme.name !== "default" ? (
+        {/* {activeTheme && activeTheme.name !== "default" ? (
           <SetGlobalTheme />
-        ) : null}
+        ) : null} */}
         <ThemePickerStyle className={`${ThemePickerClassName}`}>
 
           <div className={`${ThemePickerClassName}__label`}>
