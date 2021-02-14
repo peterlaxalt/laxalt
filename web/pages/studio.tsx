@@ -24,6 +24,7 @@ import { SplitTextHero } from "../components/Sections/SplitTextHero";
 import { StaggeredBlocksSection } from "../components/Sections/StaggeredBlocksSection";
 import { StretchIntroSection } from "../components/Sections/StretchIntroSection";
 import { TableColumnListing } from "../components/Sections/TableListings";
+import { TableRowListingClassName } from "../components/Sections/TableListings/styles.scss";
 import { TableRowListing } from "../components/Sections/TableListings/TableRowListings";
 import { TakeoutMenu } from "../components/Sections/TakeoutMenu";
 import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
@@ -69,7 +70,6 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
   return (
     <SimpleContentTemplate addClass={`${StudioPageClassName}`}>
       <InnerGrid>
-
         <HeadlineWrapper>
           <SplitTextHero />
         </HeadlineWrapper>
@@ -101,10 +101,14 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
           />
         </AccordionListingRow>
 
-        <AccordionListingRow labelLeft={`Awards`} labelRight={`Stuff`}>
+        <AccordionListingRow
+          labelLeft={`Awards`}
+          labelRight={`Stuff`}
+        >
           <TableRowListing
             data={SiteAwards}
             tableName={`Awards`}
+            addClass={`${TableRowListingClassName}--awards-table`}
             tableHeaders={SiteAwardHeaders}
           />
         </AccordionListingRow>

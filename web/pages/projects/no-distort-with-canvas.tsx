@@ -11,6 +11,9 @@ import { LXLT_GLSL_Canvas } from "../../sketches/p5/glsl";
 import { LXLT_P5Wrapper } from "./_scaffold-p5";
 import dynamic from "next/dynamic";
 import { __DEBUG__ } from "../../constants/site/Settings";
+import { Theme } from "../../constants/Theme";
+import { Base } from "../../constants/styles/Base";
+import { Root } from "../../constants/Root";
 
 // ______________________________________________________________
 
@@ -46,7 +49,9 @@ export const NoDistortCanvasClassName = "no-distort-canvas";
  * @description The file you want to load
  *
  */
-const __CANVAS_FILE__ = "no-water-distort.canvas";
+const __CANVAS_FILE__ = "no-water-distort.canvas.tsx";
+const __CANVAS_FILE_L__ = "no-water-distort-L.canvas.tsx";
+const __CANVAS_FILE_S__ = "no-water-distort-S.canvas.tsx";
 
 /**
  *
@@ -82,6 +87,7 @@ class NoWaterDistortCanvas extends Component<
     };
 
     this.renderP5 = this.renderP5.bind(this);
+    this.updateSize = this.updateSize.bind(this);
   }
 
   /**
@@ -100,18 +106,28 @@ class NoWaterDistortCanvas extends Component<
    */
   componentDidMount() {
     if (typeof window) {
-      this.setState({
-        windowWidth: window.innerWidth - 80,
-        windowHeight: window.innerHeight - 80,
-        domLoaded: true,
+      this.updateSize();
 
-        canvasElement: false,
-        canvasTheme: window.laxaltUniversalTheme,
-        canvasParent: this.canvasParentRef,
-      });
-
-      // window.laxaltUniversalTheme = this.props.colorThemeContext;
+      window.addEventListener("resize", this.updateSize);
     }
+  }
+
+  updateSize() {
+    this.setState({
+      windowWidth:
+        window.innerWidth > Base.Media.Width.Md
+          ? window.innerWidth - 80
+          : window.innerWidth,
+      windowHeight:
+        window.innerWidth > Base.Media.Width.Md
+          ? window.innerHeight - 80
+          : window.innerHeight / 2,
+      domLoaded: true,
+
+      canvasElement: false,
+      canvasTheme: window.laxaltUniversalTheme,
+      canvasParent: this.canvasParentRef,
+    });
   }
 
   /**
@@ -170,10 +186,32 @@ class NoWaterDistortCanvas extends Component<
         align-items: center;
         justify-content: center;
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          height: auto;
+
+          margin-top: ${Root.Nav.Size};
+
+          &:first-child {
+            canvas {
+              transform: translateY(0%);
+            }  
+          }
+
+          &:last-child {
+            canvas {
+              transform: translateY(-25%);
+            }  
+          }
+        }
+
         canvas {
           transform: scale(.85) translate(0%, 2%);
           /* transform: scale(.9) translate(0%, 5%); */
           /* display: none; */
+
+          /* @media (max-width: ${Theme.Base.Media.Width.Md}) { */
+            /* transform: unset;
+          } */
         }
       }
 
@@ -184,14 +222,43 @@ class NoWaterDistortCanvas extends Component<
 
     return (
       <>
-        <WaterDistortWithCanvasGlobalStyles />
+        {this.state.windowWidth > Base.Media.Width.Md && (
+          <>
+            <WaterDistortWithCanvasGlobalStyles />
 
-        <div
-          ref={(element: HTMLDivElement) => (this.canvasParentRef = element)}
-          className={`${NoDistortCanvasClassName}`}
-        >
-          {this.state.canvasParent ? this.renderP5(__CANVAS_FILE__) : null}
-        </div>
+            <div
+              ref={(element: HTMLDivElement) =>
+                (this.canvasParentRef = element)
+              }
+              className={`${NoDistortCanvasClassName}`}
+            >
+              {this.state.canvasParent ? this.renderP5(__CANVAS_FILE__) : null}
+            </div>
+          </>
+        )}
+
+        {this.state.windowWidth < Base.Media.Width.Md && (
+          <>
+            <WaterDistortWithCanvasGlobalStyles />
+
+            <div
+              ref={(element: HTMLDivElement) =>
+                (this.canvasParentRef = element)
+              }
+              className={`${NoDistortCanvasClassName}`}
+            >
+              {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_L__) : null}
+            </div>
+            <div
+              ref={(element: HTMLDivElement) =>
+                (this.canvasParentRef = element)
+              }
+              className={`${NoDistortCanvasClassName}`}
+            >
+              {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_S__) : null}
+            </div>
+          </>
+        )}
       </>
     );
   }

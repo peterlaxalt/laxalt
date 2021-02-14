@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 // Constants
 import { Root } from "../../../constants/Root";
-import { ScaleXIn } from "../../../constants/styles/Animation";
+import { ScaleXIn, UpAndRotate } from "../../../constants/styles/Animation";
 import { Theme } from "../../../constants/Theme";
 import { CssFrameBorderWidth } from "../../MellowFrameHeader/styles.scss";
 import { OpenIconClassName } from "../../_svg/OpenIcon/OpenIcon";
@@ -90,6 +90,12 @@ export const TableListingStyle = styled.section`
       display: block;
 
       padding: 0.35em 0;
+
+      &--columns {
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          animation: ${UpAndRotate} 1s ease 1;
+        }
+      }
     }
 
     .${TableListingClassName}__columns-data {
@@ -153,6 +159,8 @@ export const TableListingStyle = styled.section`
 
             width: 100%;
             height: 1px;
+
+            animation: ${ScaleXIn} 2s ease 1;
 
             background: ${Theme.Color.varForeground};
           }
@@ -243,13 +251,71 @@ export const TableListingStyle = styled.section`
 
             // __________________________
             // Temporary
+            &:not(.${TableRowListingClassName}--awards-table) {
+              &:first-child {
+                width: calc(
+                  100% / var(--${TableListingClassName}__table-columns)
+                );
+
+                @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                  width: 100%;
+                }
+              }
+
+              &:last-child {
+                text-align: right;
+                padding-right: 0;
+
+                width: calc(
+                  100% / var(--${TableListingClassName}__table-columns)
+                );
+
+                @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                  width: 100%;
+                  
+                  text-align: left;
+                }
+              }
+            }
+
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    &.${TableRowListingClassName}--awards-table {
+      .${TableListingClassName}__rows-data {
+        .${TableListingClassName}__row {
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) {
+            display: block;
+          }
+
+          &--headers {
+            @media (max-width: ${Theme.Base.Media.Width.Md}) {
+              display: none;
+            }
+          }
+
+          .${TableListingClassName}__item {
+            width: calc(100% / var(--${TableListingClassName}__table-columns));
+
+            // __________________________
+            // Temporary
             &:first-child {
-              width: calc(
-                100% / var(--${TableListingClassName}__table-columns)
-              );
+              width: 80%;
 
               @media (max-width: ${Theme.Base.Media.Width.Md}) {
                 width: 100%;
+              }
+            }
+
+            &:not(:first-child) {
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                font-weight: 500;
               }
             }
 

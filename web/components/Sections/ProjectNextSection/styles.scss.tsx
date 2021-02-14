@@ -40,8 +40,6 @@ export const ProjectNextSectionStyle = styled.section`
   &.${ProjectNextSectionClassName} {
     --${ProjectNextSectionClassName}__dot-size: .75rem;
 
-    ${SidebarFullwidthCss};
-
 
     &.${ProjectNextSectionClassName}--is-scrolled {
 
