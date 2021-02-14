@@ -53,6 +53,8 @@ export const HomePageStyle = styled.div`
         z-index: 1;
         position: relative;
 
+        overflow: hidden;
+
         min-height: calc(100vh - ${Root.Nav.Size});
       }
     }
@@ -97,7 +99,7 @@ export const HomePageStyle = styled.div`
       transform: translateX(-50%);
 
       left: 50%;
-      bottom: calc(${Root.Size} * 2);
+      bottom: calc(${Root.Size} * 1);
 
       ${CaptionTextStyles};
 
@@ -111,11 +113,11 @@ export const HomePageStyle = styled.div`
         position: absolute;
 
         left: 50%;
-        top: calc(100% + 2em);
+        top: calc(100% + 1em);
 
         transform: translateX(-50%);
 
-        height: calc(${Root.Size} * 2);
+        height: calc(${Root.Size} * 1.35);
         width: 1px;
 
         animation: ${ScaleYIn} 2s ease 1;

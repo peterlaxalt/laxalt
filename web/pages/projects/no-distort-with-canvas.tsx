@@ -15,6 +15,7 @@ import { Theme } from "../../constants/Theme";
 import { Base } from "../../constants/styles/Base";
 import { Root } from "../../constants/Root";
 import { MarqueeRow } from "../../components/Sections/MarqueeRow";
+import { CssFrameBorderWidth } from "../../components/MellowFrameHeader/styles.scss";
 
 // ______________________________________________________________
 
@@ -122,7 +123,7 @@ class NoWaterDistortCanvas extends Component<
       windowHeight:
         window.innerWidth > Base.Media.Width.Md
           ? window.innerHeight - 80
-          : window.innerHeight / 2,
+          : window.innerHeight / 2.1,
       domLoaded: true,
 
       canvasElement: false,
@@ -187,26 +188,6 @@ class NoWaterDistortCanvas extends Component<
         align-items: center;
         justify-content: center;
 
-        @media (max-width: ${Theme.Base.Media.Width.Md}) {
-          height: auto;
-
-          &:first-child {
-            margin-top: calc(${Root.Nav.Size} * 1.25);
-
-            canvas {
-              transform: translateY(0%);
-            }  
-          }
-
-          &.${NoDistortCanvasClassName}--lower {
-            margin-top: calc(${Root.Size} * -5);
-            
-            canvas {
-              /* transform: translateY(-10%); */
-            }  
-          }
-        }
-
         canvas {
           transform: scale(.85) translate(0%, 2%);
           /* transform: scale(.9) translate(0%, 5%); */
@@ -215,6 +196,26 @@ class NoWaterDistortCanvas extends Component<
           /* @media (max-width: ${Theme.Base.Media.Width.Md}) { */
             /* transform: unset;
           } */
+        }
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          height: auto;
+
+          &:first-child {
+            margin-top: calc(${Root.Nav.Size} * 1.05);
+          }
+
+          &--mobile {
+            canvas {
+              transform: scale(1.05) translateX(2.5%);
+
+              position: relative;
+            }
+          }
+
+          &--lower {
+            margin-top: calc(${Root.Size} * -2); 
+          }
         }
       }
 
@@ -248,7 +249,7 @@ class NoWaterDistortCanvas extends Component<
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }
-              className={`${NoDistortCanvasClassName}`}
+              className={`${NoDistortCanvasClassName} ${NoDistortCanvasClassName}--mobile`}
             >
               {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_L__) : null}
             </div>
@@ -257,7 +258,7 @@ class NoWaterDistortCanvas extends Component<
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }
-              className={`${NoDistortCanvasClassName} ${NoDistortCanvasClassName}--lower`}
+              className={`${NoDistortCanvasClassName} ${NoDistortCanvasClassName}--mobile ${NoDistortCanvasClassName}--lower`}
             >
               {this.state.canvasParent ? this.renderP5(__CANVAS_FILE_S__) : null}
             </div>

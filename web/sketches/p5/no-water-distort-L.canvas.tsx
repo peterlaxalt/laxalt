@@ -112,7 +112,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   let maxCount = 3;
   let minCount = 1;
 
-  let maxCopies = 12;
+  let maxCopies = !isTablet ? 12 : 7;
   let minCopies = 1;
 
   let frameRate = 60;
