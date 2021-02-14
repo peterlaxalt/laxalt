@@ -4,5 +4,5 @@
   "/_error": "pages/_error.js",
   "/studio": "pages/studio.js",
   "/": "pages/index.js",
-  "/misc": "pages/misc.js"
+  "/design": "pages/design.js"
 }

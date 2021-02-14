@@ -50,6 +50,40 @@ export const HomePageStyle = styled.div`
       }
     }
 
+    .${HomePageClassName}__inline-nav {
+      display: none;
+
+      mix-blend-mode: exclusion;
+
+      &__list {
+        display: flex;
+
+        justify-content: space-between;
+
+        padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+
+        mix-blend-mode: exclusion;
+
+        &__item {
+          a {
+            color: ${Theme.Color.varForeground};
+
+            font-size: 5vw;
+          }
+        }
+      }
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        display: block;
+
+        position: sticky;
+
+        top: ${Root.Nav.Size};
+
+        z-index: 5;
+      }
+    }
+
     .${HomePageClassName}__scroll-down {
       position: absolute;
 

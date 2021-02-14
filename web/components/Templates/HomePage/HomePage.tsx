@@ -11,6 +11,8 @@ import { ProjectScrollSection } from "../../Sections/ProjectScrollSection";
 import { HeadlineWrapper } from "../../HeadlineWrapper";
 import { ProjectVerticalListings } from "../../Sections/ProjectVerticalListings";
 import { SimpleContentTemplate } from "../../SimpleContentTemplate";
+import { SiteNavigation } from "../../../constants/site/Settings";
+import Link from "next/link";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -42,6 +44,18 @@ export const HomePage: NextPage<LMNTS_HomePage> = ({}) => {
               </span>
             </HeadlineWrapper>
           </div>
+        </div>
+
+        <div className={`${HomePageClassName}__inline-nav`}>
+          <ul className={`${HomePageClassName}__inline-nav__list`}>
+            {SiteNavigation.OverlayNav.NavItems.map((item, idx) => {
+              return (
+                <li className={`${HomePageClassName}__inline-nav__list__item`} key={idx}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         <div className={`${HomePageClassName}__horizontal-listings`}>
