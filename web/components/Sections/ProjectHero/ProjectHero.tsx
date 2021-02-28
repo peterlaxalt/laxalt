@@ -86,7 +86,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = React.memo
         >
           {/* _________________________________________ */}
           {/* Background */}
-          <div className={`${ProjectHeroClassName}__bg`}>
+          {/* <div className={`${ProjectHeroClassName}__bg`}>
             <LazyImage
               addClass={`${ProjectHeroClassName}__bg__image ${ProjectHeroClassName}__bg__image--filtered`}
               src={project.cover}
@@ -97,12 +97,12 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = React.memo
               src={project.cover}
               alt={project.name}
             />
-          </div>
+          </div> */}
 
           {/* _________________________________________ */}
           {/* Headline */}
           <div className={`${ProjectHeroClassName}__title`}>
-            <h1 className={`${ProjectHeroClassName}__title__el`}>
+            <h1 className={`${ProjectHeroClassName}__title__el`} contentEditable>
               {project.name.toLowerCase()}
             </h1>
           </div>

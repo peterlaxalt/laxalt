@@ -16,6 +16,7 @@ import { CaptionTextStyles } from "../../../constants/styles/Font";
 import { ScaleXIn, UpAndRotate } from "../../../constants/styles/Animation";
 import { CssUtils } from "../../../constants/styles/CssUtils";
 import { OvalButtonClassName } from "../../OvalButton/styles.scss";
+import { gradientStripesCss } from "../../../utils/gradientStripesCss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -218,7 +219,7 @@ export const ProjectHeroStyle = styled.div`
       align-items: flex-end;
       justify-content: flex-end;
 
-      padding: 0 ${Root.Grid.Gutter.Right} 0 0;
+      padding: calc(${Root.Size} * 4) ${Root.Grid.Gutter.Right} 0 0;
 
       overflow: hidden;
 
@@ -229,38 +230,51 @@ export const ProjectHeroStyle = styled.div`
       transition: opacity 1s ease, filter 1s ease, transform 1s ease;
 
       &__el {
-        /* font-family: "dharma"; */
-
-        text-align: left;
+        --ruleHeight: 19vw;
+        --underlineHeight: 2px;
+        --ruleMaskHeight: calc((var(--ruleHeight)) - var(--underlineHeight));
+        
+        display: inline-block;
+        
+        color: currentColor;
+        
+        vertical-align: top;
+        font-family: sans-serif;
+        font-size: calc(var(--ruleHeight) * .9);
+        line-height: var(--ruleHeight);
+        font-weight: 600;
+        text-align: justify;
+        word-wrap: break-all;
+        overflow-wrap: break-all;
+        text-transform: uppercase;
+        
+        margin: 0 auto;
+        padding: 0px;
+        
+        resize: none;
+        
+        min-height: 0px;
+        
+        background-color: transparent;
+        background-image: 
+          -moz-linear-gradient(top, transparent, transparent var(--ruleMaskHeight), currentColor 0px);
+        background-image: 
+          -webkit-linear-gradient(top, transparent, transparent var(--ruleMaskHeight), currentColor 0);
+        -webkit-background-size: 100% var(--ruleHeight);
+        background-size: 100% var(--ruleHeight);
+        
+        border: unset;
+        outline: unset;
+        
+        appearance: none;
 
         width: 100%;
         max-width: 100%;
 
-        text-align: justify;
-
-        display: inline;
-
-        font-size: 20vw;
-        font-weight: 600;
-        line-height: 1;
-
-        text-decoration: none;
-        /* background-image: linear-gradient(to bottom, transparent 20%, currentColor 21%);
-        background-position: 0% 100%;
-        background-repeat: no-repeat;
-        background-size: 100% 2px; */
-
-        word-wrap: break-all;
-        overflow-wrap: break-all;
-
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         -ms-hyphens: auto;
-        hyphens: auto;
-        
-        text-transform: uppercase;
-
-        /* animation: ${UpAndRotate} 1s ease 1; */
+        hyphens: auto;        
       }
 
       @media(min-width: ${Theme.Base.Media.Width.Md}) {
@@ -289,6 +303,8 @@ export const ProjectHeroStyle = styled.div`
     }
 
     .${ProjectHeroClassName}__detail-stacked {
+
+      display: none;
 
       @media(max-width: ${Theme.Base.Media.Width.Md}) {
         width: 100%;

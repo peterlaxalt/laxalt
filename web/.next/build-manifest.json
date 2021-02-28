@@ -34,11 +34,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/and/localyyz.js"
     ],
-    "/artwork": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/artwork.js"
-    ],
     "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

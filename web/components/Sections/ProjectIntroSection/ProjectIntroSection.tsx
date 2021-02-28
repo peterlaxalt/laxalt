@@ -182,7 +182,9 @@ export const ProjectIntroSection: React.FunctionComponent<LXLT_ProjectIntroSecti
                               <h2
                                 className={`${ProjectIntroSectionClassName}__intro-section__top__headline`}
                               >
-                                {project.intro.blurb.headline}
+                                <span>
+                                  {project.intro.blurb.headline}
+                                </span>
                               </h2>
                             )}
 

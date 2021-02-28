@@ -232,6 +232,39 @@ export const ProjectIntroSectionStyle = styled.section`
           font-size: 1.5rem;
 
           text-transform: uppercase;
+
+          position: relative;
+
+          color: ${Theme.Color.varBackground};
+
+          display: block;
+
+          span {
+            color: ${Theme.Color.varBackground};
+            position: relative;
+            z-index: 2;
+          }
+
+          &:before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: ${Theme.Color.varForeground};
+
+            width: 150%;
+            height: 150%;
+
+            border-radius: 50%;
+
+            filter: blur(20px);
+
+          }
         }
 
         &__large-body {

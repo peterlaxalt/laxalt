@@ -180,7 +180,7 @@ export const SiteProjects: LXLT_SiteProjects = [
   // ********** LOCALYYZ *******************************************************************
   // *************************************************************************
   {
-    name: "Localyyz",
+    name: "Smarter fashion trends",
     slug: "localyyz",
     cover:
       "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
@@ -198,8 +198,10 @@ export const SiteProjects: LXLT_SiteProjects = [
     ],
     type: "Project",
     parentSlug: "design",
-    location: "San Francisco, CA",
-    duration: "2016 - Present",
+    location: "Toronto, Ontario",
+    duration: "2019",
+    agency: "Laxalt & McIver",
+    partner: "Localyyz",
   },
 
   // ____________________________________________________________________
@@ -207,7 +209,7 @@ export const SiteProjects: LXLT_SiteProjects = [
   // ********** ALLSHIPS *******************************************************************
   // *************************************************************************
   {
-    name: "Allships Will Rise",
+    name: "The Anti-algorithm Social Club",
     slug: "allships",
     cover: "/projects/allships/huge.png",
     categories: [

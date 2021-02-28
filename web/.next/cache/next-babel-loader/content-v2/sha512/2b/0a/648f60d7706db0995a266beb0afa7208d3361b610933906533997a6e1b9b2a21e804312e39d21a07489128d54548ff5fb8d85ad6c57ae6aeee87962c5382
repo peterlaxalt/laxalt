@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from \"./ProjectTemplateAlpha\";","map":{"version":3,"sources":["/Users/manzanita/Repositories/laxalt/web/components/Templates/ProjectTemplateAlpha/index.tsx"],"names":[],"mappings":"AAAA,cAAc,wBAAd","sourcesContent":["export * from \"./ProjectTemplateAlpha\";"]},"metadata":{},"sourceType":"module"}
