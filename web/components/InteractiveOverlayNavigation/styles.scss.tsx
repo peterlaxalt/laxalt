@@ -245,6 +245,24 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         display: flex;
         align-items: center;
 
+        position: relative;
+
+        width: 100%;
+
+        &:before {
+          content: "";
+
+          position: absolute;
+
+          left: 0;
+          bottom: 0;
+
+          height: 2px;
+          width: 100%;
+
+          background: ${Theme.Color.varBackground};
+        }
+
         @media(max-width: ${Theme.Base.Media.Width.Sm}) {
           font-size: 12vw;
         }

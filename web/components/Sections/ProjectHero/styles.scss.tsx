@@ -36,7 +36,7 @@ export const ProjectHeroClassName = "project-hero";
  */
 export const ProjectHeroStyle = styled.div`
   &.${ProjectHeroClassName} {
-    height: calc(100vh - calc(${CssFrameSizeWithBorderString} * 2));
+    min-height: calc(100vh - calc(${CssFrameSizeWithBorderString} * 2));
 
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ export const ProjectHeroStyle = styled.div`
       justify-content: space-between;
 
       padding-bottom: 3em;
-      padding-top: 550px;
+      padding-top: calc(${Root.Size} * 6);
     }
 
     .${ProjectHeroClassName}__bg {
@@ -193,7 +193,6 @@ export const ProjectHeroStyle = styled.div`
       .${ProjectHeroClassName}__detail-stacked {
         opacity: 0;
         filter: blur(20px);
-        transform: translateY(-100%) rotate(3deg);
       }
       
       .${ProjectHeroClassName}__bg {
@@ -223,18 +222,45 @@ export const ProjectHeroStyle = styled.div`
 
       overflow: hidden;
 
+      width: 100%;
+
+      text-align: justify;
+
+      transition: opacity 1s ease, filter 1s ease, transform 1s ease;
+
       &__el {
         /* font-family: "dharma"; */
 
         text-align: left;
 
-        font-size: 5vw;
+        width: 100%;
+        max-width: 100%;
+
+        text-align: justify;
+
+        display: inline;
+
+        font-size: 20vw;
         font-weight: 600;
         line-height: 1;
+
+        text-decoration: none;
+        /* background-image: linear-gradient(to bottom, transparent 20%, currentColor 21%);
+        background-position: 0% 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 2px; */
+
+        word-wrap: break-all;
+        overflow-wrap: break-all;
+
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
         
         text-transform: uppercase;
 
-        animation: ${UpAndRotate} 1s ease 1;
+        /* animation: ${UpAndRotate} 1s ease 1; */
       }
 
       @media(min-width: ${Theme.Base.Media.Width.Md}) {
@@ -249,11 +275,15 @@ export const ProjectHeroStyle = styled.div`
 
         padding: 0 0 0 0;
 
+        margin-top: auto;
+
+        min-height: 450px;
+
         .${ProjectHeroClassName}__title__el {
           text-align: left;
 
-          font-size: 7vw;
-          font-weight: 800;
+          font-size: 26vw;
+          font-weight: 700;
         }
       }
     }

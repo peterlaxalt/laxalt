@@ -48,7 +48,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = React.memo
     let heroRef = useRef<HTMLDivElement>();
 
     const listenToScroll = () => {
-      if (window.scrollY > 10) {
+      if (heroRef.current && window.scrollY > heroRef.current.getBoundingClientRect().height * .5) {
         toggleScroll(true);
 
         return;
@@ -103,7 +103,7 @@ export const ProjectHero: React.FunctionComponent<LXLT_ProjectHero> = React.memo
           {/* Headline */}
           <div className={`${ProjectHeroClassName}__title`}>
             <h1 className={`${ProjectHeroClassName}__title__el`}>
-              {project.name}
+              {project.name.toLowerCase()}
             </h1>
           </div>
 
