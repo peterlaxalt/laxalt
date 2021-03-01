@@ -22,6 +22,7 @@ import { NextRouter, useRouter } from "next/router";
 import { ColorContext } from "../../constants/styles/Color";
 import { createGlobalStyle } from "styled-components";
 import { CssUtils } from "../../constants/styles/CssUtils";
+import { ColorThemes } from "../ThemePicker";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -53,6 +54,8 @@ export const Layout = ({ children }: Layout) => {
           : ""
       }
     `;
+
+  
 
   return (
     <>

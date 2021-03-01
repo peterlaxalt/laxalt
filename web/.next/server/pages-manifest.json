@@ -3,6 +3,8 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/and/allships": "pages/and/allships.js",
-  "/and/localyyz": "pages/and/localyyz.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/and/deso": "pages/and/deso.js",
+  "/design": "pages/design.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/and/localyyz": "pages/and/localyyz.js"
 }

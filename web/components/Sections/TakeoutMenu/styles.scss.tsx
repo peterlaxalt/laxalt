@@ -36,8 +36,16 @@ export const TakeoutMenuStyle = styled.section`
       padding-top: calc(${Root.Size} * 4);
       padding-bottom: calc(${Root.Size} * 2);
 
+      @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+        display: block;
+      }
+
       &__col {
         width: 50%;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+          width: 100%;
+        }
 
         &__row {
           width: 100%;
@@ -65,8 +73,16 @@ export const TakeoutMenuStyle = styled.section`
       .${TakeoutMenuColumnClassName} {
         width: calc(100% / 3);
 
+        @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+          width: 100%;
+        }
+
         &--is-alternate-row {
           width: calc(100% / 1);
+
+          @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+            width: 100%;
+          }
         }
       }
     }
@@ -146,6 +162,10 @@ export const TakeoutMenuColumnStyle = styled.div`
         column-gap: calc(${Root.Size} * 4);
         column-fill: balance-all;
         break-inside: avoid;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) { 
+          columns: 1;
+        }
 
 
         &__item {

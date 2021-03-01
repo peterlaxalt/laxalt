@@ -34,10 +34,11 @@ export const Color = {
   varForeground: "var(--clrForeground)",
 
   // Core Colors
-  Primary: "#312d63",
+  // Primary: "#312d63",
+  Primary: "#000000",
   Secondary: "#ff7186",
   Background: "#FFF8DC",
-  Text: "#312d63",
+  Text: "#000000",
 
   // Grayscale Palette
   Black: "#000000",
@@ -71,6 +72,7 @@ export const Color = {
   Success: "#40DA33",
 };
 
+
 /**
  *
  * @name ColorContext_Defaults
@@ -82,6 +84,14 @@ export const ColorContext_Defaults: LXLT_ColorTheme = {
   secondary: Color.Secondary,
   foreground: Color.Text,
   background: Color.Background,
+  setTheme: () => {},
+};
+
+export const ColorContext_Dark_Defaults: LXLT_ColorTheme = {
+  primary: Color.Primary,
+  secondary: Color.White,
+  foreground: Color.White,
+  background: Color.Black,
   setTheme: () => {},
 };
 

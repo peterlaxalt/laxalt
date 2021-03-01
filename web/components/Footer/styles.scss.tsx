@@ -122,7 +122,7 @@ export const FooterStyle = styled.footer`
     .${FooterClassName}__nav-list {
       width: 100%;
 
-      margin-left: calc(${Root.Size} * -.5);
+      margin-left: calc(${Root.Size} * -0);
 
       &__item {
         overflow: hidden;
@@ -132,6 +132,11 @@ export const FooterStyle = styled.footer`
 
         display: flex;
         align-items: center;
+
+        font-weight: 600;
+
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: ${Theme.Color.varBackground};
 
         @media(max-width: ${Theme.Base.Media.Width.Sm}) {
           font-size: 3.5rem;
@@ -283,6 +288,8 @@ export const FooterStyle = styled.footer`
 
         &__label {
           display: block;
+          
+          font-weight: 600;
         }
 
         strong {
@@ -318,6 +325,8 @@ export const FooterStyle = styled.footer`
             .${OvalButtonClassName} {
               &__el {
                 font-size: .65rem;
+
+                font-weight: 600;
               }
             }
           }

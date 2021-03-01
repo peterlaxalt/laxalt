@@ -72,6 +72,13 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         transform: unset;
       }
 
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        .${ThemePickerClassName}__option {
+          width: 8vw;
+          height: 8vw;
+        }
+      }
+
       .${ThemePickerClassName}__label {
         ${CaptionTextStyles};
 

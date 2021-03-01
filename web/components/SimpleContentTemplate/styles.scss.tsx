@@ -32,9 +32,10 @@ export const SimpleContentTemplateStyle = styled.div`
   &.${SimpleContentTemplateClassName} {
     background: ${Theme.Color.varBackground};
     padding: ${CssFrameSizeWithBorderString};
+    padding-bottom: 0;
 
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
-      padding: ${Root.Grid.Gutter.Top} ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+      padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
 
       .${InnerGridClassName} {
         padding: 0;

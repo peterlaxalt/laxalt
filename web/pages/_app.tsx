@@ -1,8 +1,8 @@
 // /pages/_app_.js
-import React from "react";
+import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import { Layout } from "../components/Layout";
-import { ColorContext, useColorContext } from "../constants/styles/Color";
+import { ColorContext, ColorContext_Dark_Defaults, useColorContext } from "../constants/styles/Color";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -21,6 +21,7 @@ type LMNTS_CustomAppData = AppProps & {};
 
 const MyApp = ({ Component, pageProps }: LMNTS_CustomAppData) => {
   const colorTheme = useColorContext();
+  const { setTheme } = useColorContext();
 
   // Render our App
   return (

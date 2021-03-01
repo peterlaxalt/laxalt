@@ -9,6 +9,7 @@ import { Theme } from "../../constants/Theme";
 import Image from "next/image";
 import { Root } from "../../constants/Root";
 import { ProjectTemplate } from "../../components/Templates/ProjectTemplate";
+import { ProjectTemplateAlpha } from "../../components/Templates/ProjectTemplateAlpha";
 
 // __________________________________________________________________________________________
 // Define Project Slug
@@ -51,7 +52,7 @@ const ProjectPage: NextPage<LMNTS_ProjectPage> = () => {
 
   return (
     <>
-      <ProjectTemplate
+      <ProjectTemplateAlpha
         projectSlug={__PROJECT_SLUG__}
         sections={[
           {
@@ -207,7 +208,7 @@ const ProjectPage: NextPage<LMNTS_ProjectPage> = () => {
           massa velit non dolor. Maecenas eget pellentesque lacus. Sed ac lectus
           quis tellus euismod pharetra. Vivamus pretium gravida urna a posuere.
         </p>
-      </ProjectTemplate>
+      </ProjectTemplateAlpha>
     </>
   );
 };

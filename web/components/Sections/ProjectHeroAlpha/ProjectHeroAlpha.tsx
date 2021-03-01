@@ -49,53 +49,55 @@ export const ProjectHeroAlpha: React.FunctionComponent<LXLT_ProjectHeroAlpha> = 
       <>
         <ProjectHeroAlphaGlobalStyles />
         <ProjectHeroAlphaStyle
-          className={`${ProjectHeroAlphaClassName} ${addClass ? addClass : ""} `}
+          className={`${ProjectHeroAlphaClassName} ${
+            addClass ? addClass : ""
+          } `}
         >
-          {/* _________________________________________ */}
-          {/* Background */}
-          {/* <div className={`${ProjectHeroAlphaClassName}__bg`}>
-            <LazyImage
-              addClass={`${ProjectHeroAlphaClassName}__bg__image ${ProjectHeroAlphaClassName}__bg__image--filtered`}
-              src={project.cover}
-              alt={project.name}
-            />
-            <LazyImage
-              addClass={`${ProjectHeroAlphaClassName}__bg__image ${ProjectHeroAlphaClassName}__bg__image--normal`}
-              src={project.cover}
-              alt={project.name}
-            />
-          </div> */}
-
           {/* _________________________________________ */}
           {/* Headline */}
           <div className={`${ProjectHeroAlphaClassName}__title`}>
             <p className={`${ProjectHeroAlphaClassName}__title__date`}>
-              <span className={`${ProjectHeroAlphaClassName}__title__date__highlight`}>
+              <span
+                className={`${ProjectHeroAlphaClassName}__title__date__highlight`}
+              >
                 <span>
                   <Link href={`/${project.parentSlug}`}>
                     <a>Laxalt</a>
-                  </Link>
-                  {" "}/{" "}
+                  </Link>{" "}
+                  /{" "}
                   <Link href={`/${project.parentSlug}`}>
                     <a>{project.parentSlug}</a>
                   </Link>
                 </span>
               </span>
 
-              <span className={`${ProjectHeroAlphaClassName}__title__date__year`}>
+              <span
+                className={`${ProjectHeroAlphaClassName}__title__date__year`}
+              >
                 {project.duration.toLowerCase()}
               </span>
 
-              <span>
-                {project.location.toLowerCase()}
-              </span>
+              <span>{project.location.toLowerCase()}</span>
             </p>
             <h1 className={`${ProjectHeroAlphaClassName}__title__el`}>
               {project.name.toLowerCase()}
             </h1>
             <p className={`${ProjectHeroAlphaClassName}__title__details`}>
-              A collaboration with {project.partner.toLowerCase()}{project.agency && ` and agency partner ${project.agency.toLowerCase()}`}.
+              A collaboration with {project.partner.toLowerCase()}
+              {project.agency &&
+                ` and agency partner ${project.agency.toLowerCase()}`}
+              .
             </p>
+
+            {/* _________________________________________ */}
+            {/* Desktop Section Navigation */}
+            <SectionNavigation
+              project={project}
+              mobileDescriptionOpen={mobileDescriptionOpen}
+              setMobileDescriptionOpen={setMobileDescriptionOpen}
+              sections={sections}
+              addClass={`${ProjectHeroAlphaClassName}__section-nav--desktop`}
+            />
           </div>
 
           {/* _________________________________________ */}
@@ -131,175 +133,188 @@ export const ProjectHeroAlpha: React.FunctionComponent<LXLT_ProjectHeroAlpha> = 
           </div>
 
           {/* _________________________________________ */}
-          {/* Section Navigation */}
-          <div className={`${ProjectHeroAlphaClassName}__section-nav`}>
-            <ul className={`${ProjectHeroAlphaClassName}__section-nav__list`}>
-              {/* ________________________________________________ */}
-              {/* Mobile Description */}
-              {project.intro && project.intro.blurb && (
-                <li
-                  className={`${ProjectHeroAlphaClassName}__section-nav__list__item ${ProjectHeroAlphaClassName}__section-nav__list__item--${
-                    mobileDescriptionOpen ? "is-expanded" : "is-not-expanded"
-                  } ${ProjectHeroAlphaClassName}__section-nav__list__item--mobile-description`}
-                >
-                  {/* ____________________________ */}
-                  {/* Toggle */}
-                  <span
-                    className={`${ProjectHeroAlphaClassName}__section-nav__list__item__inner`}
-                    onClick={() =>
-                      mobileDescriptionOpen
-                        ? setMobileDescriptionOpen(false)
-                        : setMobileDescriptionOpen(true)
-                    }
-                    role="button"
-                    aria-expanded={mobileDescriptionOpen ? true : false}
-                  >
-                    <span
-                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__count`}
-                    >
-                      {mobileDescriptionOpen ? (
-                        <span className="__visually-hidden">Close</span>
-                      ) : (
-                        <span className="__visually-hidden">Open</span>
-                      )}
-                    </span>
-                    <span
-                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__label`}
-                    >
-                      Description
-                    </span>
-                  </span>
-
-                  {/* ____________________________ */}
-                  {/* Content */}
-                  {mobileDescriptionOpen && (
-                    <span
-                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content`}
-                    >
-                      {/* ___________________________ */}
-                      {/* Top */}
-                      <span
-                        className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__top`}
-                      >
-                        {project.intro.blurb.headline && (
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__headline`}
-                          >
-                            <span>
-                              {project.intro.blurb.headline}
-                            </span>
-                          </span>
-                        )}
-
-                        {project.intro.blurb.largeBody && (
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__large-body`}
-                          >
-                            {project.intro.blurb.largeBody}
-                          </span>
-                        )}
-
-                        {project.intro.blurb.body && (
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__body`}
-                          >
-                            {project.intro.blurb.body}
-                          </span>
-                        )}
-
-                        {project.intro.blurb.cta && (
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__cta`}
-                          >
-                            <OvalButton
-                              label={project.intro.blurb.cta.label}
-                              href={project.intro.blurb.cta.href}
-                              external={true}
-                            />
-                          </span>
-                        )}
-                      </span>
-
-                      {/* ____________________________________________ */}
-                      {/* Bottom Section */}
-                      {project.meta && project.meta.team && (
-                        <span
-                          className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom`}
-                        >
-                          {/* ____________________________________ */}
-                          {/* Title */}
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__header`}
-                          >
-                            Team
-                          </span>
-
-                          {/* ____________________________________ */}
-                          {/* List Items */}
-                          <span
-                            className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list`}
-                          >
-                            {project.meta.team.core &&
-                              project.meta.team.core.map(
-                                (person, idx: number) => {
-                                  return (
-                                    <span
-                                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item`}
-                                      key={idx}
-                                    >
-                                      <span
-                                        className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item__label`}
-                                      >
-                                        {person.name}
-                                      </span>
-                                      <span
-                                        className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item__subtext`}
-                                      >
-                                        {person.role}
-                                      </span>
-                                    </span>
-                                  );
-                                }
-                              )}
-                          </span>
-                        </span>
-                      )}
-                    </span>
-                  )}
-                </li>
-              )}
-
-              {/* _______________________________________ */}
-              {/* Section Navigation */}
-              {sections &&
-                sections.map((section: LXLT_ProjectSection, idx: number) => {
-                  return (
-                    <li
-                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item`}
-                      key={idx}
-                    >
-                      <span
-                        className={`${ProjectHeroAlphaClassName}__section-nav__list__item__inner`}
-                      >
-                        <span
-                          className={`${ProjectHeroAlphaClassName}__section-nav__list__item__count`}
-                        >
-                          {idx + 1 < 10 ? 0 : null}
-                          {idx + 1}
-                        </span>
-                        <span
-                          className={`${ProjectHeroAlphaClassName}__section-nav__list__item__label`}
-                        >
-                          {section.name}
-                        </span>
-                      </span>
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
+          {/* Mobile Section Navigation */}
+          <SectionNavigation
+            project={project}
+            mobileDescriptionOpen={mobileDescriptionOpen}
+            setMobileDescriptionOpen={setMobileDescriptionOpen}
+            sections={sections}
+            addClass={`${ProjectHeroAlphaClassName}__section-nav--mobile`}
+          />
         </ProjectHeroAlphaStyle>
       </>
     );
   }
 );
+
+/**
+ * 
+ * @name SectionNavigation
+ * 
+ */
+const SectionNavigation = ({ project, mobileDescriptionOpen, setMobileDescriptionOpen, sections, addClass}) => {
+  return (
+    <div className={`${ProjectHeroAlphaClassName}__section-nav ${addClass ? addClass : ''}`}>
+      <ul className={`${ProjectHeroAlphaClassName}__section-nav__list`}>
+        {/* ________________________________________________ */}
+        {/* Mobile Description */}
+        {project.intro && project.intro.blurb && (
+          <li
+            className={`${ProjectHeroAlphaClassName}__section-nav__list__item ${ProjectHeroAlphaClassName}__section-nav__list__item--${
+              mobileDescriptionOpen ? "is-expanded" : "is-not-expanded"
+            } ${ProjectHeroAlphaClassName}__section-nav__list__item--mobile-description`}
+          >
+            {/* ____________________________ */}
+            {/* Toggle */}
+            <span
+              className={`${ProjectHeroAlphaClassName}__section-nav__list__item__inner`}
+              onClick={() =>
+                mobileDescriptionOpen
+                  ? setMobileDescriptionOpen(false)
+                  : setMobileDescriptionOpen(true)
+              }
+              role="button"
+              aria-expanded={mobileDescriptionOpen ? true : false}
+            >
+              <span
+                className={`${ProjectHeroAlphaClassName}__section-nav__list__item__count`}
+              >
+                {mobileDescriptionOpen ? (
+                  <span className="__visually-hidden">Close</span>
+                ) : (
+                  <span className="__visually-hidden">Open</span>
+                )}
+              </span>
+              <span
+                className={`${ProjectHeroAlphaClassName}__section-nav__list__item__label`}
+              >
+                Description
+              </span>
+            </span>
+
+            {/* ____________________________ */}
+            {/* Content */}
+            {mobileDescriptionOpen && (
+              <span
+                className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content`}
+              >
+                {/* ___________________________ */}
+                {/* Top */}
+                <span
+                  className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__top`}
+                >
+                  {project.intro.blurb.headline && (
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__headline`}
+                    >
+                      <span>{project.intro.blurb.headline}</span>
+                    </span>
+                  )}
+
+                  {project.intro.blurb.largeBody && (
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__large-body`}
+                    >
+                      {project.intro.blurb.largeBody}
+                    </span>
+                  )}
+
+                  {project.intro.blurb.body && (
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__body`}
+                    >
+                      {project.intro.blurb.body}
+                    </span>
+                  )}
+
+                  {project.intro.blurb.cta && (
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__cta`}
+                    >
+                      <OvalButton
+                        label={project.intro.blurb.cta.label}
+                        href={project.intro.blurb.cta.href}
+                        external={true}
+                      />
+                    </span>
+                  )}
+                </span>
+
+                {/* ____________________________________________ */}
+                {/* Bottom Section */}
+                {project.meta && project.meta.team && (
+                  <span
+                    className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom`}
+                  >
+                    {/* ____________________________________ */}
+                    {/* Title */}
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__header`}
+                    >
+                      Team
+                    </span>
+
+                    {/* ____________________________________ */}
+                    {/* List Items */}
+                    <span
+                      className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list`}
+                    >
+                      {project.meta.team.core &&
+                        project.meta.team.core.map((person, idx: number) => {
+                          return (
+                            <span
+                              className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item`}
+                              key={idx}
+                            >
+                              <span
+                                className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item__label`}
+                              >
+                                {person.name}
+                              </span>
+                              <span
+                                className={`${ProjectHeroAlphaClassName}__section-nav__list__item__content__bottom__list__item__subtext`}
+                              >
+                                {person.role}
+                              </span>
+                            </span>
+                          );
+                        })}
+                    </span>
+                  </span>
+                )}
+              </span>
+            )}
+          </li>
+        )}
+
+        {/* _______________________________________ */}
+        {/* Section Navigation */}
+        {sections &&
+          sections.map((section: LXLT_ProjectSection, idx: number) => {
+            return (
+              <li
+                className={`${ProjectHeroAlphaClassName}__section-nav__list__item`}
+                key={idx}
+              >
+                <span
+                  className={`${ProjectHeroAlphaClassName}__section-nav__list__item__inner`}
+                >
+                  <span
+                    className={`${ProjectHeroAlphaClassName}__section-nav__list__item__count`}
+                  >
+                    {idx + 1 < 10 ? 0 : null}
+                    {idx + 1}
+                  </span>
+                  <span
+                    className={`${ProjectHeroAlphaClassName}__section-nav__list__item__label`}
+                  >
+                    {section.name}
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+      </ul>
+    </div>
+  );
+};

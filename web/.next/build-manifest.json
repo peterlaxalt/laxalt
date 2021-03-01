@@ -29,10 +29,20 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/and/allships.js"
     ],
+    "/and/deso": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/and/deso.js"
+    ],
     "/and/localyyz": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/and/localyyz.js"
+    ],
+    "/design": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/design.js"
     ],
     "/next/dist/pages/_error": [
       "static/chunks/main.js",

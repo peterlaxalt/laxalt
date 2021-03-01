@@ -40,6 +40,8 @@ export const ProjectNextSectionStyle = styled.section`
   &.${ProjectNextSectionClassName} {
     --${ProjectNextSectionClassName}__dot-size: .75rem;
 
+    ${SidebarFullwidthCss};
+
 
     &.${ProjectNextSectionClassName}--is-scrolled {
 
@@ -78,8 +80,9 @@ export const ProjectNextSectionStyle = styled.section`
       justify-content: flex-start;
       align-items: center;
 
-      padding-left: ${LayeredSidebarWidth};
       padding-right: 10vw;
+
+      padding-left: calc(${LayeredSidebarWidth} * 1);
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
         height: auto;
@@ -147,6 +150,8 @@ export const ProjectNextSectionStyle = styled.section`
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           left: 0;
+
+          font-weight: 600;
         }
       }
 
@@ -155,6 +160,8 @@ export const ProjectNextSectionStyle = styled.section`
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           right: 0;
+
+          font-weight: 600;
         }
 
         span {
@@ -185,7 +192,7 @@ export const ProjectNextSectionStyle = styled.section`
         .${ProjectCardClassName}__inner {
           justify-content: flex-end;
 
-          margin-bottom: -40vh;
+          margin-bottom: -20vh;
 
           &:after {
             display: none;
@@ -205,12 +212,10 @@ export const ProjectNextSectionStyle = styled.section`
             div {
               &:not(.project-card__col--bottom-right) {
                 .${ProjectCardClassName}__col__content-row--content-major {
-                  font-size: 23vh;
+                  font-size: 5vw;
 
-                  font-weight: 200;
-                  line-height: .7;
-
-                  font-family: "dharma";
+                  font-weight: 600;
+                  line-height: .9;
                 }
               }
             }

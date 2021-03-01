@@ -294,8 +294,8 @@ export const SiteProjects: LXLT_SiteProjects = [
           {
             name: "Meeko Laxalt",
             role: "Emotional Support",
-            web: "https://www.instagram.com/meeko.suave.laxalt/",
-            contact: "IG: @meeko.suave.laxalt",
+            web: "https://www.instagram.com/newyorkmeeko/",
+            contact: "IG: @newyorkmeeko",
           },
         ],
       },
@@ -575,8 +575,10 @@ export const SiteProjects: LXLT_SiteProjects = [
     ],
     type: "Project",
     parentSlug: "design",
-    location: "Los Angeles, CA",
+    location: "San Francisco, CA",
     duration: "2019",
+    agency: "Laxalt & McIver",
+    partner: "Deso",
   },
 
   // ____________________________________________________________________

@@ -170,6 +170,10 @@ export const ProjectCardStyle = styled.div`
       border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
 
       transition: opacity 2s ease;
+
+      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        display: none;
+      }
     }
 
     &:hover {
@@ -341,6 +345,12 @@ export const ProjectCardStyle = styled.div`
       overflow: hidden;
 
       width: 100%;
+
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
+        width: calc(100% - 4px);
+        
+        margin-left: 2px;
+      }
 
       &:after {
         content: "";

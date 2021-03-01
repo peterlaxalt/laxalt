@@ -7,9 +7,18 @@ import styled, { createGlobalStyle } from "styled-components";
 // Constants
 import { Theme } from "../../../constants/Theme";
 import { Root } from "../../../constants/Root";
-import { CssFrameBorderWidth, CssFrameSizeWithBorderString } from "../../MellowFrameHeader/styles.scss";
-import { MarqueeRowClassName, MarqueeRowOffsetVariableName } from "../MarqueeRow/styles.scss";
-import { LayeredSidebarWidth, SidebarFullwidthCss } from "../../LayeredSidebar/styles.scss";
+import {
+  CssFrameBorderWidth,
+  CssFrameSizeWithBorderString,
+} from "../../MellowFrameHeader/styles.scss";
+import {
+  MarqueeRowClassName,
+  MarqueeRowOffsetVariableName,
+} from "../MarqueeRow/styles.scss";
+import {
+  LayeredSidebarWidth,
+  SidebarFullwidthCss,
+} from "../../LayeredSidebar/styles.scss";
 import { CaptionTextStyles } from "../../../constants/styles/Font";
 
 // Animation
@@ -49,7 +58,7 @@ export const ProjectHeroAlphaStyle = styled.div`
 
     position: relative;
 
-    @media(max-width: ${Theme.Base.Media.Width.Md}) {
+    @media (max-width: ${Theme.Base.Media.Width.Md}) {
       height: auto;
       justify-content: space-between;
 
@@ -72,22 +81,22 @@ export const ProjectHeroAlphaStyle = styled.div`
     }
 
     .${ProjectHeroAlphaClassName}__title,
-    .${ProjectHeroAlphaClassName}__detail-top,
-    .${ProjectHeroAlphaClassName}__detail-stacked,
-    .${ProjectHeroAlphaClassName}__section-nav {
+      .${ProjectHeroAlphaClassName}__detail-top,
+      .${ProjectHeroAlphaClassName}__detail-stacked,
+      .${ProjectHeroAlphaClassName}__section-nav {
       z-index: 5;
 
       color: ${Theme.Color.varForeground};
 
-      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
         color: ${Theme.Color.varForeground};
       }
     }
 
     .${ProjectHeroAlphaClassName}__title,
-    .${ProjectHeroAlphaClassName}__detail-top__list,
-    .${ProjectHeroAlphaClassName}__detail-stacked,
-    .${ProjectHeroAlphaClassName}__section-nav {
+      .${ProjectHeroAlphaClassName}__detail-top__list,
+      .${ProjectHeroAlphaClassName}__detail-stacked,
+      .${ProjectHeroAlphaClassName}__section-nav {
       opacity: 1;
       filter: blur(0px);
       transform: translateY(0%) rotate(0deg);
@@ -96,14 +105,13 @@ export const ProjectHeroAlphaStyle = styled.div`
     }
 
     &.${ProjectHeroAlphaClassName}--is-scrolled {
-
       .${ProjectHeroAlphaClassName}__title,
-      .${ProjectHeroAlphaClassName}__detail-top__list,
-      .${ProjectHeroAlphaClassName}__detail-stacked {
+        .${ProjectHeroAlphaClassName}__detail-top__list,
+        .${ProjectHeroAlphaClassName}__detail-stacked {
         opacity: 0;
         filter: blur(20px);
       }
-      
+
       .${ProjectHeroAlphaClassName}__bg {
         &:after {
           opacity: 0;
@@ -139,6 +147,10 @@ export const ProjectHeroAlphaStyle = styled.div`
 
       position: relative;
 
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+        margin-top: 15vh;
+      }
+
       &__el,
       &__details {
         width: 100%;
@@ -154,37 +166,45 @@ export const ProjectHeroAlphaStyle = styled.div`
         --ruleHeight: 11vw;
         --underlineHeight: 2px;
         --ruleMaskHeight: calc((var(--ruleHeight)) - var(--underlineHeight));
-        
+
         display: block;
-        
+
         color: currentColor;
-        
-        font-size: calc(var(--ruleHeight) * .9);
+
+        font-size: calc(var(--ruleHeight) * 0.9);
         line-height: var(--ruleHeight);
         font-weight: 600;
         text-align: left;
         word-wrap: break-all;
         overflow-wrap: break-all;
         text-transform: uppercase;
-        
+
         margin: 0 auto;
         padding: 0px;
-        
+
         resize: none;
-        
+
         min-height: 0px;
-        
+
         background-color: transparent;
-        background-image: 
-          -moz-linear-gradient(top, transparent, transparent var(--ruleMaskHeight), currentColor 0px);
-        background-image: 
-          -webkit-linear-gradient(top, transparent, transparent var(--ruleMaskHeight), currentColor 0);
+        background-image: -moz-linear-gradient(
+          top,
+          transparent,
+          transparent var(--ruleMaskHeight),
+          currentColor 0px
+        );
+        background-image: -webkit-linear-gradient(
+          top,
+          transparent,
+          transparent var(--ruleMaskHeight),
+          currentColor 0
+        );
         -webkit-background-size: 100% var(--ruleHeight);
         background-size: 100% var(--ruleHeight);
-        
+
         border: unset;
         outline: unset;
-        
+
         appearance: none;
 
         width: 100%;
@@ -193,9 +213,9 @@ export const ProjectHeroAlphaStyle = styled.div`
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         -ms-hyphens: auto;
-        hyphens: auto;        
+        hyphens: auto;
       }
-      
+
       &__date {
         text-align: left;
         text-transform: uppercase;
@@ -209,7 +229,7 @@ export const ProjectHeroAlphaStyle = styled.div`
         border-bottom: 2px solid currentColor;
 
         display: flex;
-        
+
         justify-content: space-between;
 
         &__highlight {
@@ -243,7 +263,6 @@ export const ProjectHeroAlphaStyle = styled.div`
             border-radius: 50%;
 
             filter: blur(5px);
-
           }
         }
 
@@ -262,15 +281,15 @@ export const ProjectHeroAlphaStyle = styled.div`
 
         background-image: none;
 
-        margin-top: .5em;
+        margin-top: 0.5em;
       }
 
-      @media(min-width: ${Theme.Base.Media.Width.Md}) {
+      @media (min-width: ${Theme.Base.Media.Width.Md}) {
         /* background: ${Theme.Color.varForeground};
         color: ${Theme.Color.varBackground}; */
       }
 
-      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
         width: 100%;
 
         display: flex;
@@ -313,7 +332,7 @@ export const ProjectHeroAlphaStyle = styled.div`
 
         .${ProjectHeroAlphaClassName}__title__details {
           --ruleHeight: 2.5vw;
-          
+
           background-image: none;
 
           margin-top: 1em;
@@ -324,8 +343,7 @@ export const ProjectHeroAlphaStyle = styled.div`
     }
 
     .${ProjectHeroAlphaClassName}__detail-stacked {
-
-      @media(max-width: ${Theme.Base.Media.Width.Md}) {
+      @media (max-width: ${Theme.Base.Media.Width.Md}) {
         width: 100%;
 
         margin-bottom: 1em;
@@ -341,20 +359,19 @@ export const ProjectHeroAlphaStyle = styled.div`
 
         border-radius: 50%;
 
-        padding: calc(${Root.Grid.Gutter.Left} * 2) calc(${Root.Grid.Gutter.Left} * 3);
+        padding: calc(${Root.Grid.Gutter.Left} * 2)
+          calc(${Root.Grid.Gutter.Left} * 3);
 
         right: ${Root.Grid.Gutter.Right};
         top: calc(${CssFrameSizeWithBorderString} * 3.5);
       }
 
       &__list {
-
         &__item {
-
           display: flex;
           align-items: center;
 
-          margin-bottom: .25em;
+          margin-bottom: 0.25em;
 
           &__label {
             ${CaptionTextStyles}
@@ -367,7 +384,7 @@ export const ProjectHeroAlphaStyle = styled.div`
           }
         }
 
-        @media(max-width: ${Theme.Base.Media.Width.Md}) {
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
           display: flex;
 
           flex-wrap: wrap;
@@ -404,18 +421,66 @@ export const ProjectHeroAlphaStyle = styled.div`
       position: relative;
       z-index: 5;
 
+      &.${ProjectHeroAlphaClassName}__section-nav--mobile {
+        display: none;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          display: block;
+        }
+      }
+
+      &.${ProjectHeroAlphaClassName}__section-nav--desktop {
+        display: block;
+
+        @media (max-width: ${Theme.Base.Media.Width.Md}) {
+          display: none;
+        }
+
+        .${ProjectHeroAlphaClassName}__section-nav__list {
+          &__item {
+
+            &:hover {
+              .${ProjectHeroAlphaClassName}__section-nav__list__item__count {
+                &:after {
+                  transform: scaleX(1);
+                }
+              }
+            }
+
+            &__count {
+              &:after {
+                transform: scaleX(0);
+              }
+            }
+
+            &__inner {
+              margin-top: 1em;
+            
+              position: relative;
+
+              &:before {
+                content: "";
+
+                position: absolute;
+
+                left: 0;
+                top: 0;
+
+                width: 100%;
+                height: 2px;
+
+                background: currentColor;
+              }
+            }
+          }
+        }
+      }
+
       @media (min-width: ${Theme.Base.Media.Width.Md}) {
-        position: absolute;
-
-        left: 0;
-        bottom: calc(${CssFrameSizeWithBorderString} * 1);
-
         margin-left: calc(${Root.Grid.Gutter.Right} * -1);
         margin-right: calc(${Root.Grid.Gutter.Right} * -1);
 
         width: calc(100% + (${Root.Grid.Gutter.Right} * 2));
-
-        padding-right: ${Root.Grid.Gutter.Right};
       }
 
       &__list {
@@ -427,7 +492,7 @@ export const ProjectHeroAlphaStyle = styled.div`
 
         &__item {
           display: block;
-          
+
           position: relative;
 
           animation: ${UpAndRotate} 1s ease 1;
@@ -450,7 +515,7 @@ export const ProjectHeroAlphaStyle = styled.div`
               height: 1px;
               width: auto;
 
-              margin: 0 .5em;
+              margin: 0 0.5em;
 
               flex: 1;
 
@@ -500,13 +565,13 @@ export const ProjectHeroAlphaStyle = styled.div`
 
                 position: absolute;
 
-                right: .5em;
+                right: 0.5em;
                 top: 50%;
 
                 transform: translateY(-50%) rotate(-45deg);
 
-                height: .5em;
-                width: .5em;
+                height: 0.5em;
+                width: 0.5em;
 
                 border-right: 1px solid currentColor;
                 border-bottom: 1px solid currentColor;
@@ -541,30 +606,30 @@ export const ProjectHeroAlphaStyle = styled.div`
 
                 background: currentColor;
 
-                transition: transform .5s ease;
+                transition: transform 0.5s ease;
               }
 
               &:after {
-                left: .5em;
+                left: 0.5em;
 
                 transform: rotate(90deg);
               }
 
               &:before {
-                left: .5em;
+                left: 0.5em;
 
                 transform: rotate(0deg);
               }
 
               &.${ProjectHeroAlphaClassName}__section-nav__list__item--is-expanded {
                 &:after {
-                  left: .5em;
+                  left: 0.5em;
 
                   transform: rotate(225deg);
                 }
 
                 &:before {
-                  left: .5em;
+                  left: 0.5em;
 
                   transform: rotate(135deg);
                 }
@@ -637,11 +702,9 @@ export const ProjectHeroAlphaStyle = styled.div`
                 background: currentColor;
               }
             }
-
           }
 
           &__content {
-
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
@@ -670,7 +733,6 @@ export const ProjectHeroAlphaStyle = styled.div`
 
               width: auto;
 
-
               span {
                 color: ${Theme.Color.varBackground};
                 position: relative;
@@ -695,7 +757,6 @@ export const ProjectHeroAlphaStyle = styled.div`
                 border-radius: 50%;
 
                 filter: blur(8px);
-
               }
             }
 
@@ -829,11 +890,10 @@ export const ProjectHeroAlphaStyle = styled.div`
       }
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
-        font-size: .7rem;
+        font-size: 0.7rem;
       }
 
       &__list {
-
         display: flex;
 
         @media (min-width: ${Theme.Base.Media.Width.Md}) {
@@ -842,7 +902,7 @@ export const ProjectHeroAlphaStyle = styled.div`
           /* background: ${Theme.Color.varForeground};
           color: ${Theme.Color.varBackground}; */
 
-          margin-top: .5em;
+          margin-top: 0.5em;
           /* margin-right: ${Root.Grid.Gutter.Right}; */
           /* margin-left: auto; */
 
@@ -853,8 +913,8 @@ export const ProjectHeroAlphaStyle = styled.div`
 
           /* padding-left: ${Root.Grid.Gutter.Right}; */
           padding-right: ${Root.Grid.Gutter.Right};
-          padding-top: .5em;
-          padding-bottom: .5em;
+          padding-top: 0.5em;
+          padding-bottom: 0.5em;
 
           overflow: hidden;
         }
@@ -865,7 +925,7 @@ export const ProjectHeroAlphaStyle = styled.div`
 
           overflow-x: auto;
 
-          padding: .5em 0;
+          padding: 0.5em 0;
 
           line-height: 1.5;
 
@@ -887,9 +947,8 @@ export const ProjectHeroAlphaStyle = styled.div`
         }
 
         &__item {
-
           text-transform: uppercase;
-          
+
           animation: ${UpAndRotate} 1s ease 1;
 
           display: flex;
@@ -923,9 +982,6 @@ export const ProjectHeroAlphaStyle = styled.div`
               text-decoration: none;
             }
           }
-
-      
-
 
           /* @media (min-width: ${Theme.Base.Media.Width.Md}) {
             &:after {
@@ -972,4 +1028,4 @@ export const ProjectHeroAlphaGlobalStyles = createGlobalStyle`
       }
     }   
   }
-`
+`;
