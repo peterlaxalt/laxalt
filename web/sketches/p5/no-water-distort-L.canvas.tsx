@@ -105,7 +105,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   // ____________________________
   // Strokes
   let strokeWidth: number = !isTablet ? 4 : 2;
-  let strokeOffset: number = strokeWidth * 1.5;
+  let strokeOffset: number = !isTablet ? strokeWidth * 1.5 : strokeWidth * 1.25;
 
   // ____________________________
   // Limits
@@ -121,7 +121,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
   // Translation
   // let previousVerticalTranslation: number = H / 2.25;
 
-  let verticalTranslationWhitespaceCompensation: number = 2.25;
+  let verticalTranslationWhitespaceCompensation: number = !isTablet ? 2.25 : 2.75;
   const previousHorizontalTranslation = (idx: number) =>
     -60 + (characterWidth * idx + characterWidth / 1.5 + strokeOffset);
 

@@ -207,7 +207,7 @@ class NoWaterDistortCanvas extends Component<
 
           &--mobile {
             canvas {
-              transform: scale(1.05) translateX(2.5%);
+              transform: scale(1.05) translate(7vw, 2vw);
 
               position: relative;
             }
