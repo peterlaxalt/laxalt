@@ -103,15 +103,30 @@ export const SplitTextHeroStyle = styled.section`
           animation: ${UpAndRotateXL} 2s ease 1 forwards;
           animation-delay: var(--animDelay);
 
-          filter: blur(0);
+          user-select: none; /* supported by Chrome and Opera */
+          -webkit-user-select: none; /* Safari */
+          -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+
+          /* filter: blur(0); */
 
           padding-top: 20px;
 
           transition: filter 1s ease;
 
-          &:hover {
-            filter: blur(10px);
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: ${Theme.Color.varForeground};
+
+          cursor: pointer;
+
+          &--is-not-active {
+            color: ${Theme.Color.varBackground};
           }
+
+          /* &:hover {
+            filter: blur(10px);
+          } */
         }
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {

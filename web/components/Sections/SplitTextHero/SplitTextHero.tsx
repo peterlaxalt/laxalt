@@ -1,5 +1,5 @@
 // Core
-import React from "react";
+import React, { useState } from "react";
 import { CSSProperties } from "styled-components";
 import { LXLT_SimpleContentNode } from "../../SimpleContentTemplate";
 
@@ -40,9 +40,13 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
         <h1 className={`${SplitTextHeroClassName}__headline`}>
           <span className={`${SplitTextHeroClassName}__headline__item`}>
             {stringOne.split("").map((letter: string, idx: number) => {
+
+              const [isActive, toggleActive] = useState(true);
+
               return (
                 <span
-                  className={`${SplitTextHeroClassName}__headline__item__letter`}
+                  onClick={isActive ? () => toggleActive(false) : () => toggleActive(true)}
+                  className={`${SplitTextHeroClassName}__headline__item__letter ${SplitTextHeroClassName}__headline__item__letter--is-${isActive ? 'active' : 'not-active'}`}
                   style={{ ["--animDelay" as any]: `${(idx + 1) * 0.05}s` }}
                 >
                   {letter}
@@ -52,9 +56,13 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
           </span>
           <span className={`${SplitTextHeroClassName}__headline__item`}>
             {stringTwo.split("").map((letter: string, idx: number) => {
+
+              const [isActive, toggleActive] = useState(true);
+
               return (
                 <span
-                  className={`${SplitTextHeroClassName}__headline__item__letter`}
+                onClick={isActive ? () => toggleActive(false) : () => toggleActive(true)}
+                className={`${SplitTextHeroClassName}__headline__item__letter ${SplitTextHeroClassName}__headline__item__letter--is-${isActive ? 'active' : 'not-active'}`}
                   style={{ ["--animDelay" as any]: `${(idx + stringOne.split("").length) * 0.05}s` }}
                 >
                   {letter}
