@@ -69,12 +69,12 @@ export class MellowFrameHeader extends Component<
     super(props);
 
     this.state = {
-      isInactive: false, // true
-      isFillBarsExpanded: false, // false
-      isOverlayVisible: true, // false
+      isInactive: true, // true
+      isFillBarsExpanded: false, 
+      isOverlayVisible: false, // false
       isScrolled: false,
       isSidebarVisible: false,
-      isLogotypeExpanded: true, // false
+      isLogotypeExpanded: false, // false
 
       isTablet: false,
     };

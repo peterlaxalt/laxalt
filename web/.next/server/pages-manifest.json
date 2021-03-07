@@ -4,5 +4,6 @@
   "/_error": "pages/_error.js",
   "/design": "pages/design.js",
   "/artwork": "pages/artwork.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/": "pages/index.js"
 }
