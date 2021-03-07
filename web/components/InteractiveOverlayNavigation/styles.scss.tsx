@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
-import { UpAndRotate } from "../../constants/styles/Animation";
+import { ScaleXIn, ScaleXInInitialCss, ScaleYInFromBottom, SlideFromLeft, SlideFromLeftInitialCss, SlideFromTop, SlideFromTopInitialCss, SlideFromTopXL, SlideFromTopXLInitialCss, UpAndRotate, UpAndRotateInitialCss } from "../../constants/styles/Animation";
 import { InteractiveEyeballClassName } from "../InteractiveEyeball/styles.scss";
 import { CssFrameBorderWidth, CssFramePaddingString, CssFrameSizeWithBorderString } from "../MellowFrameHeader/styles.scss";
 import { OvalButtonClassName } from "../OvalButton/styles.scss";
@@ -25,6 +25,9 @@ import { ThemePickerClassName } from "../ThemePicker/styles.scss";
  *
  */
 export const InteractiveOverlayNavigationClassName = "interactive-overlay-nav";
+
+export const InteractiveOverlayNavigationIntroAnimDuration = "1s";
+
 
 /**
  *
@@ -51,11 +54,32 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
     z-index: 850;
 
-    background: ${Theme.Color.varForeground};
+    /* background: ${Theme.Color.varForeground}; */
+
+    &:before {
+      content: "";
+      
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      
+      width: 100vw;
+      height: 100vh;
+
+      transform: scaleY(0);
+      transform-origin: bottom center;
+
+      transition: transform ${InteractiveOverlayNavigationIntroAnimDuration} ease;
+
+      animation: ${ScaleYInFromBottom} ${InteractiveOverlayNavigationIntroAnimDuration} ease 1 forwards;
+
+      background: ${Theme.Color.varForeground};
+    }
 
     /* _________________________________________________ */
     /* Theme Picker */
-    .${InteractiveOverlayNavigationClassName}__theme-picker {
+    /* .${InteractiveOverlayNavigationClassName}__theme-picker {
       position: absolute;
 
       left: 50%;
@@ -109,7 +133,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
           display: none;
         }
       }
-    }
+    } */
 
     /* _________________________________________________ */
     /* Inner Grid */
@@ -132,6 +156,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
     /* Oval Buttons */
     .${InteractiveOverlayNavigationClassName}__oval-btn {
       position: relative;
+      
 
       &--home,
       &--close {
@@ -140,6 +165,20 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         top: calc((${CssFramePaddingString}) * 2);
 
         z-index: 10;
+
+        .${OvalButtonClassName}__el {
+          ${SlideFromTopInitialCss};
+
+          animation: ${SlideFromTop} 1s ease 1 forwards;
+          animation-delay: calc((${InteractiveOverlayNavigationIntroAnimDuration} * .5) + var(--animDelay));
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            ${SlideFromTopXLInitialCss};
+
+            animation: ${SlideFromTopXL} 1s ease 1 forwards;
+            animation-delay: calc((${InteractiveOverlayNavigationIntroAnimDuration} * .5) + var(--animDelay));
+          }
+        }
 
         @media(max-width: ${Theme.Base.Media.Width.Sm}) {
           top: 2.25rem;
@@ -196,14 +235,73 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         font-family: ${Theme.Font.Code};
         font-style: italic;
 
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          font-size: 1.25rem;
+        }
+
+        &--desktop {
+          display: flex;
+
+          flex-direction: column;
+
+          position: absolute;
+
+          top: 0;
+          right: 0;
+
+          height: 100%;
+
+          text-transform: none;
+
+          font-size: 1vw;
+
+          min-width: 175px;
+
+          .${InteractiveOverlayNavigationClassName}__social__list__item {
+            flex: 1;
+
+            display: flex;
+            
+            .${InteractiveOverlayNavigationClassName}__social__list__item__label {
+              width: 100%;
+
+              padding: 0;
+
+              display: flex;
+
+              align-items: center;
+              justify-content: flex-start;
+            }
+          }
+        
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: none;
+          }
+        }
+
+        &--mobile {
+          display: none;
+
+          @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+            display: block;
+          }
+        }
+
         &__item {
           position: relative;
+
+          overflow: hidden;
 
           &__label {
             color: ${Theme.Color.varBackground};
             display: block;
 
             padding: .5rem 0;
+
+            ${UpAndRotateInitialCss};
+
+            animation: ${UpAndRotate} 1s ease 1 forwards;
+            animation-delay: calc(${InteractiveOverlayNavigationIntroAnimDuration} * .5);
 
             &:hover {
               text-decoration: none;
@@ -235,10 +333,12 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
     .${InteractiveOverlayNavigationClassName}__nav-list {
       width: 100%;
 
-      margin-left: calc((${CssFramePaddingString}) * 1.5);
+      padding-left: calc((${CssFramePaddingString}) * 1.5);
+      padding-right: calc((${CssFramePaddingString}) * 1.5);
 
       @media(max-width: ${Theme.Base.Media.Width.Sm}) {
-        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
 
         padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
       }
@@ -246,7 +346,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
       &__item {
         overflow: hidden;
 
-        font-size: 10vw;
+        font-size: 9vw;
         text-transform: uppercase;
 
         display: flex;
@@ -255,6 +355,13 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
         position: relative;
 
         width: 100%;
+
+        &__eyeball {
+          ${SlideFromLeftInitialCss};
+
+          animation: ${SlideFromLeft} 2s ease forwards;
+          animation-delay: calc((${InteractiveOverlayNavigationIntroAnimDuration} * .5) + var(--animDelay));
+        }
 
         &:before {
           content: "";
@@ -266,6 +373,11 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
           height: 2px;
           width: 100%;
+
+          ${ScaleXInInitialCss};
+
+          animation: ${ScaleXIn} 2s ease forwards;
+          animation-delay: calc(${InteractiveOverlayNavigationIntroAnimDuration} * .5);
 
           background: ${Theme.Color.varBackground};
         }
@@ -330,7 +442,10 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
           display: flex;
           align-items: center;
 
-          animation: ${UpAndRotate} 1s ease 1;
+          ${UpAndRotateInitialCss};
+
+          animation: ${UpAndRotate} 1s ease 1 forwards;
+          animation-delay: calc(${InteractiveOverlayNavigationIntroAnimDuration} * .5);
 
           &:hover {
             text-decoration: none;

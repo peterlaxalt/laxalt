@@ -1,5 +1,5 @@
 // Core
-import { keyframes } from "styled-components";
+import { css, keyframes } from "styled-components";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -19,9 +19,13 @@ export const FadeIn = keyframes`
   }
 `;
 
+export const UpAndRotateInitialCss = css`
+  transform: translateY(100%) rotate(3deg);
+`;
+
 export const UpAndRotate = keyframes`
   from {
-    transform: translateY(100%) rotate(3deg);
+    ${UpAndRotateInitialCss}
     /* opacity: 0; */
   }
   to {
@@ -117,6 +121,46 @@ export const SlideFromRight = keyframes`
   }
 `;
 
+export const SlideFromLeftInitialCss = css`
+  transform: translateX(-100%);
+`;
+
+export const SlideFromLeft = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+`;
+
+
+export const SlideFromTopInitialCss = css`
+  transform: translateY(-150%);
+`;
+
+export const SlideFromTop = keyframes`
+  from {
+    transform: ${SlideFromTopInitialCss};
+  }
+  to {
+    transform: translateY(0%);
+  }
+`;
+
+export const SlideFromTopXLInitialCss = css`
+  transform: translateY(-250%);
+`;
+
+export const SlideFromTopXL = keyframes`
+  from {
+    transform: ${SlideFromTopXLInitialCss};
+  }
+  to {
+    transform: translateY(0%);
+  }
+`;
+
 export const SlideUp = keyframes`
   from {
     opacity: 0;
@@ -126,6 +170,11 @@ export const SlideUp = keyframes`
     opacity: 1;
     transform: translateX(0%);
   }
+`;
+
+export const ScaleXInInitialCss = css`
+  transform-origin: left center;
+  transform: scaleX(0);
 `;
 
 export const ScaleXIn = keyframes`
@@ -146,7 +195,18 @@ export const ScaleYIn = keyframes`
     transform: scaleY(0);
   }
   to {
-    transform-origin: left center;
+    transform-origin: top center;
+    transform: scaleY(1);
+  }
+`;
+
+export const ScaleYInFromBottom = keyframes`
+  from {
+    transform-origin: bottom center;
+    transform: scaleY(0);
+  }
+  to {
+    transform-origin: bottom center;
     transform: scaleY(1);
   }
 `;

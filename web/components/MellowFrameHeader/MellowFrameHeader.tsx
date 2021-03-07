@@ -34,6 +34,7 @@ import { Base } from "../../constants/styles/Base";
 
 type LXLT_MellowFrameHeader_State = {
   isInactive?: boolean;
+  isScrolled?: boolean;
   isFillBarsExpanded?: boolean;
   isOverlayVisible?: boolean;
   isSidebarVisible?: boolean;
@@ -68,11 +69,12 @@ export class MellowFrameHeader extends Component<
     super(props);
 
     this.state = {
-      isInactive: true,
-      isFillBarsExpanded: false,
-      isOverlayVisible: false,
+      isInactive: false, // true
+      isFillBarsExpanded: false, // false
+      isOverlayVisible: true, // false
+      isScrolled: false,
       isSidebarVisible: false,
-      isLogotypeExpanded: false,
+      isLogotypeExpanded: true, // false
 
       isTablet: false,
     };
@@ -200,10 +202,12 @@ export class MellowFrameHeader extends Component<
       if (scrollPosition > 10) {
         this.setState({
           isInactive: true,
+          isScrolled: true
         });
       } else {
         this.setState({
           isInactive: false,
+          isScrolled: false
         });
       }
     }
@@ -215,6 +219,7 @@ export class MellowFrameHeader extends Component<
         router={this.props.router}
         isTablet={this.state.isTablet}
         isInactive={this.state.isInactive}
+        isScrolled={this.state.isScrolled}
         isFillBarsExpanded={this.state.isFillBarsExpanded}
         isOverlayVisible={this.state.isOverlayVisible}
         isSidebarVisible={this.state.isSidebarVisible}
@@ -240,6 +245,7 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
   isFillBarsExpanded,
   isLogotypeExpanded,
   isOverlayVisible,
+  isScrolled,
   isTablet,
 
   toggleOverlayAndFillBarsExpansion,
@@ -265,6 +271,10 @@ const MellowFrameHeaderDisplay: React.FunctionComponent<LXLT_MellowFrameHeaderDi
           isFillBarsExpanded || isOverlayVisible
             ? `fill-bars-is-expanded`
             : `fill-bars-is-not-expanded`
+        } ${MellowFrameHeaderClassName}--${
+          isScrolled
+            ? `is-scrolled`
+            : `is-not-scrolled`
         } ${currentRouteClass}`}
       >
         {/* ______________________________________________ */}

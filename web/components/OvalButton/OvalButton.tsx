@@ -9,6 +9,7 @@ import Link from "next/link";
 
 // Styles
 import { OvalButtonClassName, OvalButtonStyle } from "./styles.scss";
+import { CSSProperties } from "styled-components";
 
 // Begin Types
 // __________________________________________________________________________________________
@@ -18,6 +19,7 @@ export type LXLT_OvalButton = LXLT_LinkItem & {
   onClick?: () => void;
   invert?: boolean;
   external?: boolean;
+  addStyles?: CSSProperties;
 };
 
 // Begin Data
@@ -37,10 +39,11 @@ export const OvalButton: React.FunctionComponent<LXLT_OvalButton> = ({
   onClick,
   external,
   invert = false,
+  addStyles
 }) => {
   return (
     <>
-      <OvalButtonStyle className={`${OvalButtonClassName} ${addClass}`}>
+      <OvalButtonStyle style={addStyles ? addStyles : null} className={`${OvalButtonClassName} ${addClass}`}>
         {/* _________________________________________________ */}
         {/* Non Links */}
         {!href && (

@@ -9,6 +9,9 @@ import { Theme } from "../../constants/Theme";
 import { Root } from "../../constants/Root";
 import {} from "../../constants/styles/CssUtils";
 import { hexToRGB } from "../../utils/hexToRGB";
+import { InteractiveOverlayNavigationClassName } from "../InteractiveOverlayNavigation/styles.scss";
+import { CaptionTextStyles } from "../../constants/styles/Font";
+import { ThemePickerClassName } from "../ThemePicker/styles.scss";
 
 // Begin Styles
 // _________________________________________________________________________
@@ -58,7 +61,6 @@ export const MellowFrameHeaderStyle = styled.div`
 
     pointer-events: none;
 
-
     &.${MellowFrameHeaderClassName}--inactive,
     &.${MellowFrameHeaderClassName}--fill-bars-is-expanded {
 
@@ -75,9 +77,44 @@ export const MellowFrameHeaderStyle = styled.div`
           }
         }
       }
+    }
 
+    &.${MellowFrameHeaderClassName}--fill-bars-is-expanded {
+      .${MellowFrameHeaderClassName}__frame__nav--bottom {
+        transform: translateY(0%) !important;
+
+        background: ${Theme.Color.varForeground};
+        color: ${Theme.Color.varBackground};
+
+        .${MellowFrameHeaderClassName}__frame__nav__linklist__item__el {
+          color: ${Theme.Color.varBackground};
+        }
+
+        .${MellowFrameHeaderClassName}__frame__nav__linklist {
+          &:before {
+            background: ${Theme.Color.varBackground};
+          }
+        }
+      }
+    }
+
+    &.${MellowFrameHeaderClassName}--is-not-scrolled {
+      .${MellowFrameHeaderClassName}__frame__nav--bottom {
+        transform: translateY(0%);
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          transform: translateY(250%);
+        }
+      }
+    }
+
+    &.${MellowFrameHeaderClassName}--is-scrolled {
       .${MellowFrameHeaderClassName}__frame__nav--bottom {
         transform: translateY(100%);
+
+        @media(max-width: ${Theme.Base.Media.Width.Sm}) {
+          transform: translateY(250%);
+        }
       }
     }
 
@@ -155,7 +192,66 @@ export const MellowFrameHeaderStyle = styled.div`
           transform-origin: bottom center;
 
           @media(max-width: ${Theme.Base.Media.Width.Sm}) {
-            display: none;
+
+            border: unset;
+            background: unset;
+
+            .${MellowFrameHeaderClassName}__frame__nav__inner-col--contact-btn {
+              display: none;
+            }
+
+            .${MellowFrameHeaderClassName}__frame__nav__inner-col--theme-picker {
+              width: 100%;
+            }
+
+            .${MellowFrameHeaderClassName}__frame__nav__col--right {
+              padding: 0 0 2em 0;
+            }
+
+            .${ThemePickerClassName} {
+              width: 100%;
+
+              display: flex;
+
+              align-items: center;
+              justify-content: center;
+            }
+
+            .${ThemePickerClassName}__option {
+              width: 8vw;
+              height: 8vw;
+            }
+
+            .${ThemePickerClassName}__label {
+              ${CaptionTextStyles};
+
+              position: absolute;
+
+              bottom: calc(100% + 2em);
+
+              width: 100%;
+
+              margin-right: 0;
+              padding-right: 0;
+
+              @media (max-width: ${Theme.Base.Media.Width.Md}) {
+                left: 50%;
+                
+                transform: translateX(-50%);
+                
+                text-align: center;
+              }
+
+              @media (min-width: ${Theme.Base.Media.Width.Md}) {
+                text-align: left;
+
+                padding-left: 1em;
+              }
+
+              &:before, &:after {
+                display: none;
+              }
+            }
           }
         }
 

@@ -65,6 +65,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           {/* _______________________________________________ */}
           {/* Home Button */}
           <OvalButton
+            addStyles={{ ["--animDelay" as any]: '.25s' }}
             label={`Home`}
             href={`/`}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
@@ -75,6 +76,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           {/* _______________________________________________ */}
           {/* Close Button */}
           <OvalButton
+            addStyles={{ ["--animDelay" as any]: '.5s' }}
             label={`Misc`}
             href={Settings.miscPage}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
@@ -94,6 +96,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                   >
                     <span
                       className={`${InteractiveOverlayNavigationClassName}__nav-list__item__eyeball`}
+                      style={{ ["--animDelay" as any]: `${(idx + 1) * .15}s` }}
                     >
                       <InteractiveEyeball
                         scrollContainer={InteractiveOverlayRef}
@@ -124,6 +127,33 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                         </Link>
                       </span>
                     </span>
+
+                    {/* _______________________________________________ */}
+                    {/* Social Desktop */}
+                    {item.label.toLowerCase() === "studio" && (
+                      <ul
+                        className={`${InteractiveOverlayNavigationClassName}__social__list ${InteractiveOverlayNavigationClassName}__social__list--desktop`}
+                      >
+                        {SiteNavigation.OverlayNav.SocialItems.map(
+                          (item: LXLT_LinkItem, idx: number) => {
+                            return (
+                              <li
+                                className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
+                                key={idx}
+                              >
+                                <Link href={item.href}>
+                                  <a
+                                    className={`${InteractiveOverlayNavigationClassName}__social__list__item__label ${InteractiveOverlayNavigationClassName}__social__list__item__label--anchor`}
+                                  >
+                                    {item.label}
+                                  </a>
+                                </Link>
+                              </li>
+                            );
+                          }
+                        )}
+                      </ul>
+                    )}
                   </li>
                 );
               }
@@ -134,7 +164,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
           {/* Social Container */}
           <div className={`${InteractiveOverlayNavigationClassName}__social`}>
             <ul
-              className={`${InteractiveOverlayNavigationClassName}__social__list`}
+              className={`${InteractiveOverlayNavigationClassName}__social__list ${InteractiveOverlayNavigationClassName}__social__list--mobile`}
             >
               {/* _______________________________________________ */}
               {/* Subscribe Button */}
@@ -147,6 +177,16 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                   Subscribe
                 </span>
               </li> */}
+
+              <li
+                className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
+              >
+                <strong
+                  className={`${InteractiveOverlayNavigationClassName}__social__list__item__label ${InteractiveOverlayNavigationClassName}__social__list__item__label--anchor`}
+                >
+                  Let's talk
+                </strong>
+              </li>
 
               {/* _______________________________________________ */}
               {/* Social List */}
@@ -170,7 +210,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
               )}
             </ul>
 
-            <ul
+            {/* <ul
               className={`${InteractiveOverlayNavigationClassName}__social__minor-list`}
             >
               <li
@@ -183,12 +223,12 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
               >
                 Originally / Reno, Nevada
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           {/* _______________________________________________ */}
           {/* Theme Picker */}
-          <div
+          {/* <div
             className={`${InteractiveOverlayNavigationClassName}__theme-picker`}
           >
             <span
@@ -196,7 +236,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
             >
               <ThemePicker />
             </span>
-          </div>
+          </div> */}
         </div>
       </InteractiveOverlayNavigationStyle>
     </>
