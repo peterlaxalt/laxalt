@@ -34,6 +34,19 @@ export const UpAndRotate = keyframes`
   }
 `;
 
+export const UpAndRotateXLInitialCss = css`
+  transform: translateY(100%) rotate(10deg);
+`;
+
+export const UpAndRotateXL = keyframes`
+  from {
+    ${UpAndRotateXLInitialCss}
+  }
+  to {
+    transform: translateY(0%) rotate(0deg);
+  }
+`;
+
 export const PulseStroke = keyframes`
   0% {
     stroke-width: .15px;
@@ -110,10 +123,29 @@ export const Marquee = keyframes`
   }
 `;
 
+export const SlideFromRightInitialCss = css`
+  opacity: 0;
+  transform: translateX(100%);
+`;
+
 export const SlideFromRight = keyframes`
   from {
-    opacity: 0;
-    transform: translateX(100%);
+    ${SlideFromRightInitialCss}
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+`;
+
+export const SlideFromLeftMinorInitialCss = css`
+  opacity: 0;
+  transform: translateX(-25%);
+`;
+
+export const SlideFromLeftMinor = keyframes`
+  from {
+    ${SlideFromLeftMinorInitialCss}
   }
   to {
     opacity: 1;

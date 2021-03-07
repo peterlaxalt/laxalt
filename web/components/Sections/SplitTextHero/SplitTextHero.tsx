@@ -24,6 +24,9 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
   style,
   hasSidebar,
 }) => {
+  let stringOne = "STUDIO";
+  let stringTwo = "LAXALT";
+
   return (
     <SplitTextHeroStyle
       style={style}
@@ -36,10 +39,28 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
         {/* Headline */}
         <h1 className={`${SplitTextHeroClassName}__headline`}>
           <span className={`${SplitTextHeroClassName}__headline__item`}>
-            STUDIO
+            {stringOne.split("").map((letter: string, idx: number) => {
+              return (
+                <span
+                  className={`${SplitTextHeroClassName}__headline__item__letter`}
+                  style={{ ["--animDelay" as any]: `${(idx + 1) * 0.05}s` }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
           </span>
           <span className={`${SplitTextHeroClassName}__headline__item`}>
-            LAXALT
+            {stringTwo.split("").map((letter: string, idx: number) => {
+              return (
+                <span
+                  className={`${SplitTextHeroClassName}__headline__item__letter`}
+                  style={{ ["--animDelay" as any]: `${(idx + stringOne.split("").length) * 0.05}s` }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
           </span>
         </h1>
 
@@ -53,7 +74,9 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
           </div>
 
           <div className={`${SplitTextHeroClassName}__bottom-details__col`}>
-            It serves as a personal archive & knowledge-base.
+            <span>
+              It serves as a personal archive & knowledge-base.
+            </span>
           </div>
         </div>
       </div>

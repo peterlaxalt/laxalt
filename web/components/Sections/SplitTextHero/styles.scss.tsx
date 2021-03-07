@@ -14,7 +14,7 @@ import styled, { keyframes } from "styled-components";
 
 // Constants
 import { Root } from "../../../constants/Root";
-import { ScaleXIn } from "../../../constants/styles/Animation";
+import { ScaleXIn, SlideFromLeftMinor, SlideFromLeftMinorInitialCss, UpAndRotateXL, UpAndRotateXLInitialCss } from "../../../constants/styles/Animation";
 import { Theme } from "../../../constants/Theme";
 import {} from "../../MellowFrameHeader/styles.scss";
 
@@ -81,7 +81,38 @@ export const SplitTextHeroStyle = styled.section`
       }
 
       &__item {
-        display: block;
+        display: flex;
+
+        overflow: hidden;
+
+
+        @media (min-width: ${Theme.Base.Media.Width.Md}) {
+          width: calc(100% / 2);
+
+          &:last-child {
+            justify-content: flex-end;
+          }
+        }
+
+        &__letter {
+          position: relative;
+          display: block;
+          
+          ${UpAndRotateXLInitialCss};
+
+          animation: ${UpAndRotateXL} 2s ease 1 forwards;
+          animation-delay: var(--animDelay);
+
+          filter: blur(0);
+
+          padding-top: 20px;
+
+          transition: filter 1s ease;
+
+          &:hover {
+            filter: blur(10px);
+          }
+        }
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           &:last-child {
@@ -96,6 +127,17 @@ export const SplitTextHeroStyle = styled.section`
 
       &__col {
         font-size: 1rem;
+        
+        span,
+        strong {
+          display: block;
+          position: relative;
+
+          ${SlideFromLeftMinorInitialCss};
+
+          animation: ${SlideFromLeftMinor} 2s ease 1 forwards;
+          animation-delay: 1s;
+        }
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
           &:first-child {
