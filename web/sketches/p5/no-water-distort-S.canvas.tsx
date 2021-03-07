@@ -104,7 +104,7 @@ const DharmaCanvasDisplay: LXLT_DharmaCanvasDisplay = (
 
   // ____________________________
   // Strokes
-  let strokeWidth: number = 4;
+  let strokeWidth: number = !isTablet ? 4 : 2;
   let strokeOffset: number = strokeWidth * 1.5;
 
   // ____________________________
