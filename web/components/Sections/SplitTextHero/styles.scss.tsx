@@ -140,6 +140,9 @@ export const SplitTextHeroStyle = styled.section`
         }
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {
+
+          font-size: 3.25vw;
+
           &:first-child {
             padding-bottom: .5em;
           }
