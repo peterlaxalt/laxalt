@@ -115,18 +115,89 @@ export const SplitTextHeroStyle = styled.section`
 
           transition: filter 1s ease;
 
-          -webkit-text-stroke-width: 1px;
-          -webkit-text-stroke-color: ${Theme.Color.varForeground};
-
           cursor: pointer;
 
-          &--is-not-active {
-            color: ${Theme.Color.varBackground};
+          &:hover {
+            .${SplitTextHeroClassName}__headline__item__letter__el {
+              &:before {
+                transform: translateY(-100%);
+              }
+
+              &:after {
+                transform: translateY(0%);
+              }
+            }
           }
 
-          /* &:hover {
-            filter: blur(10px);
-          } */
+          &--is-not-active {
+            .${SplitTextHeroClassName}__headline__item__letter__el {
+              &:before {
+                transform: translateY(-100%);
+              }
+
+              &:after {
+                transform: translateY(0%);
+              }
+            }
+
+            &:hover {
+              .${SplitTextHeroClassName}__headline__item__letter__el {
+                &:before {
+                  transform: translateY(0%);
+                }
+
+                &:after {
+                  transform: translateY(100%);
+                }
+              }
+            }
+
+            &:active,
+            &:focus {
+              &:before {
+                transform: translateY(-100%);
+              }
+
+              &:after {
+                transform: translateY(0%);
+              }
+            }
+          }
+
+          &__el {
+            color: ${Theme.Color.varBackground};
+
+            &:before,
+            &:after {
+              content: attr(data-letter);
+
+              position: absolute;
+
+              padding-top: 20px;
+
+              left: 0;
+              top: 0;
+
+              transition: transform 1s ease;
+
+              /* transform: translateY(-50%); */
+            }
+
+            &:before {
+              color: ${Theme.Color.varForeground};
+
+              transform: translateY(0%);
+            }
+
+            &:after {
+              color: ${Theme.Color.varBackground};
+
+              transform: translateY(100%);
+
+              -webkit-text-stroke-width: 1px;
+              -webkit-text-stroke-color: ${Theme.Color.varForeground};
+            }
+          }
         }
 
         @media (max-width: ${Theme.Base.Media.Width.Md}) {

@@ -49,7 +49,9 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
                   className={`${SplitTextHeroClassName}__headline__item__letter ${SplitTextHeroClassName}__headline__item__letter--is-${isActive ? 'active' : 'not-active'}`}
                   style={{ ["--animDelay" as any]: `${(idx + 1) * 0.05}s` }}
                 >
-                  {letter}
+                  <span className={`${SplitTextHeroClassName}__headline__item__letter__el`} data-letter={letter}>
+                    {letter}
+                  </span>
                 </span>
               );
             })}
@@ -65,7 +67,9 @@ export const SplitTextHero: React.FunctionComponent<LMNTS_Section_SplitTextHero>
                 className={`${SplitTextHeroClassName}__headline__item__letter ${SplitTextHeroClassName}__headline__item__letter--is-${isActive ? 'active' : 'not-active'}`}
                   style={{ ["--animDelay" as any]: `${(idx + stringOne.split("").length) * 0.05}s` }}
                 >
-                  {letter}
+                  <span className={`${SplitTextHeroClassName}__headline__item__letter__el`} data-letter={letter}>
+                    {letter}
+                  </span>
                 </span>
               );
             })}
