@@ -117,14 +117,16 @@ export const SplitTextHeroStyle = styled.section`
 
           cursor: pointer;
 
-          &:hover {
-            .${SplitTextHeroClassName}__headline__item__letter__el {
-              &:before {
-                transform: translateY(-100%);
-              }
+          @media (hover: hover) {
+            &:hover {
+              .${SplitTextHeroClassName}__headline__item__letter__el {
+                &:before {
+                  transform: translateY(-100%);
+                }
 
-              &:after {
-                transform: translateY(0%);
+                &:after {
+                  transform: translateY(0%);
+                }
               }
             }
           }
@@ -140,19 +142,21 @@ export const SplitTextHeroStyle = styled.section`
               }
             }
 
-            &:hover {
-              .${SplitTextHeroClassName}__headline__item__letter__el {
-                &:before {
-                  transform: translateY(0%);
-                }
+            @media (hover: hover) {
+              &:hover {
+                .${SplitTextHeroClassName}__headline__item__letter__el {
+                  &:before {
+                    transform: translateY(0%);
+                  }
 
-                &:after {
-                  transform: translateY(100%);
+                  &:after {
+                    transform: translateY(100%);
+                  }
                 }
               }
             }
 
-            &:active,
+            /* &:active,
             &:focus {
               &:before {
                 transform: translateY(-100%);
@@ -161,7 +165,7 @@ export const SplitTextHeroStyle = styled.section`
               &:after {
                 transform: translateY(0%);
               }
-            }
+            } */
           }
 
           &__el {
