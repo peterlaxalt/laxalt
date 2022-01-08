@@ -712,20 +712,20 @@ export const SiteNavigation: LXLT_SiteNavigation = {
   OverlayNav: {
     NavItems: [
       {
-        label: "Artwork",
-        href: "/artwork",
+        label: "Work",
+        href: "/does",
         caption: "Lorem ipsum",
       },
-      {
-        label: "Design",
-        href: "/design",
-        caption: "Lorem ipsum",
-      },
-      {
-        label: "Code",
-        href: "/code",
-        caption: "Lorem ipsum",
-      },
+      // {
+      //   label: "Design",
+      //   href: "/design",
+      //   caption: "Lorem ipsum",
+      // },
+      // {
+      //   label: "Code",
+      //   href: "/code",
+      //   caption: "Lorem ipsum",
+      // },
       {
         label: "Studio",
         href: "/studio",

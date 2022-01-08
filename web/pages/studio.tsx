@@ -80,13 +80,13 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
 
         <StretchIntroSection />
 
-        <AccordionListingRow labelLeft={`Profile`} labelRight={`Story`}>
+        {/* <AccordionListingRow labelLeft={`Profile`} labelRight={`Story`}>
           <StaggeredBlocksSection />
-        </AccordionListingRow>
+        </AccordionListingRow> */}
 
-        <AccordionListingRow labelLeft={`Disciplines`} labelRight={`Skills`}>
+        {/* <AccordionListingRow labelLeft={`Disciplines`} labelRight={`Skills`}>
           <TakeoutMenu />
-        </AccordionListingRow>
+        </AccordionListingRow> */}
 
         <AccordionListingRow labelLeft={`Photos`} labelRight={`Life`}>
           <MasonryGallery />
@@ -113,13 +113,13 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
           />
         </AccordionListingRow>
 
-        <AccordionListingRow
+        {/* <AccordionListingRow
           labelLeft={`Selected`}
           labelRight={`Work`}
           isInitiallyExpanded
         >
           <ProjectVerticalListings />
-        </AccordionListingRow>
+        </AccordionListingRow> */}
       </InnerGrid>
     </SimpleContentTemplate>
   );

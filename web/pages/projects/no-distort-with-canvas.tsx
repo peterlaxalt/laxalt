@@ -189,7 +189,7 @@ class NoWaterDistortCanvas extends Component<
         justify-content: center;
 
         canvas {
-          transform: scale(.85) translate(0%, 2%);
+          transform: scale(.9) translate(0%, 5%);
           /* transform: scale(.9) translate(0%, 5%); */
           /* display: none; */
 

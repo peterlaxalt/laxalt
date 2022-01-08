@@ -177,7 +177,7 @@ export const Footer: React.FunctionComponent<LXLT_Footer> = ({ router }) => {
 
         {/* ____________________________________________________________ */}
         {/* Footer Bottom */}
-        <div className={`${FooterClassName}__bottom`}>
+        <div className={`${FooterClassName}__bottom`} style={{ display: "none" }}>
           {/* ____________________________________________________________ */}
           {/* Footer Bottom Column */}
           <div

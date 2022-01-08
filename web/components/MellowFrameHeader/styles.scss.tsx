@@ -178,6 +178,8 @@ export const MellowFrameHeaderStyle = styled.div`
         will-change: transform;
         transition: transform .5s ease-in-out;
 
+        font-size: 13px;
+
         @media(max-width: ${Theme.Base.Media.Width.Md}) {
           font-size: .8rem;
         }
@@ -190,6 +192,8 @@ export const MellowFrameHeaderStyle = styled.div`
         &--bottom {
           border-top: ${CssFrameBorderString};
           transform-origin: bottom center;
+
+          display: none;
 
           @media(max-width: ${Theme.Base.Media.Width.Sm}) {
 

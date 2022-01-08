@@ -130,7 +130,7 @@ export const Base = {
 
   // Frame
   FrameSize: {
-    Lg: 3, // rem
+    Lg: 2.5, // rem
     Md: 3.25, // rem
     Sm: 3.5, // rem
   },

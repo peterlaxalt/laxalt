@@ -65,7 +65,7 @@ export const Layout = ({ children }: Layout) => {
       <GrainCover />
       <MellowFrameHeader router={router} />
       <main>{children}</main>
-      <Footer router={router} />
+      {/* <Footer router={router} /> */}
       {/* <CanvasCursor /> */}
     </>
   );
