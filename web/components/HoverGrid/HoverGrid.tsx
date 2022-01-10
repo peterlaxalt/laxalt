@@ -29,6 +29,8 @@ export class HoverGrid extends Component<{}, any> {
       mouseX: 0,
       mouseY: 0,
 
+      isActive: false,
+
       winW: 0,
       winH: 0,
 
@@ -48,19 +50,20 @@ export class HoverGrid extends Component<{}, any> {
     this.quadrant = React.createRef();
     this.view = React.createRef();
 
-    // this.setHoverGridPosition = this.setHoverGridPosition.bind(this);
-    // // this.toggleHoverGridState = this.toggleHoverGridState.bind(this);
+    this.killActive = this.killActive.bind(this);
+    this.setActive = this.setActive.bind(this);
   }
 
   componentDidMount(): void {
     this.setState({
       winW: window.innerWidth,
       winH: window.innerHeight,
+      isActive: true,
     });
 
     this.setQuadrantCoords();
     this.createQuadrants();
-    
+
     document.addEventListener("mousemove", this.setMouseCoords);
 
     window.requestAnimationFrame(this.updateGridCoords);
@@ -73,8 +76,28 @@ export class HoverGrid extends Component<{}, any> {
     document.removeEventListener("mousemove", this.setMouseCoords, false);
   }
 
-  requestUpdate = (e: MouseEvent) => {
-    this.setMouseCoords(e);
+  killActive = () => {
+    let { isActive } = this.state;
+
+    if (isActive) {
+      this.setState({
+        isActive: false,
+      });
+    } else {
+      return;
+    }
+  };
+
+  setActive = () => {
+    let { isActive } = this.state;
+
+    if (isActive) {
+      return;
+    } else {
+      this.setState({
+        isActive: true,
+      });
+    }
   };
 
   createQuadrants = () => {
@@ -124,7 +147,6 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   setGridCoords = (q: HTMLDivElement) => {
-
     let qW = q.clientWidth;
     let qH = q.clientHeight;
 
@@ -151,7 +173,14 @@ export class HoverGrid extends Component<{}, any> {
       quadH,
       gX,
       gY,
+      isActive,
     } = this.state;
+
+    if (!isActive) {
+      window.requestAnimationFrame(this.updateGridCoords);
+
+      return;
+    }
 
     let prevMouseX = mouseX;
     let prevMouseY = mouseY;
@@ -199,6 +228,11 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   setMouseCoords = (e: MouseEvent) => {
+
+    if (!this.state.isActive) {
+      this.setActive();
+    }
+
     this.setState({
       mouseX: e.clientX,
       mouseY: e.clientY,
@@ -304,6 +338,8 @@ export class HoverGrid extends Component<{}, any> {
           style={{
             [`--c` as any]: 3,
           }}
+          onMouseEnter={() => this.setActive()}
+          onMouseLeave={() => this.killActive()}
         >
           <div
             className="v"

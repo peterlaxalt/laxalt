@@ -62,8 +62,8 @@ export const Layout = ({ children }: Layout) => {
       <GlobalStyle />
       <SetGlobalTheme />
       <SiteHead title="LAXALT" />
-      {/* <GrainCover /> */}
-      {/* <MellowFrameHeader router={router} /> */}
+      <GrainCover />
+      <MellowFrameHeader router={router} />
       <main>{children}</main>
       {/* <Footer router={router} /> */}
       {/* <CanvasCursor /> */}
