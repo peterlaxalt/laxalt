@@ -320,6 +320,7 @@ export class HoverGrid extends Component<{}, any> {
       y = "center";
     }
 
+    
     this.setState({
       posY: y,
       posX: x,

@@ -10,3 +10,7 @@ web/.next/*
 cache
 */cache/*
 cache/*
+.next 
+/.next/
+*/.next/
+*/.next/*
