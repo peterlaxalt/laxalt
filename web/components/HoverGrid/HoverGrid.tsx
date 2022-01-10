@@ -189,8 +189,8 @@ export class HoverGrid extends Component<{}, any> {
 
     let strength = 20;
 
-    let xSensitivity = 0.99;
-    let ySensitivity = 0.99;
+    let xSensitivity = 0.995;
+    let ySensitivity = 0.995;
 
     let inc = (r: number) => {
       return strength * (1 - r);
