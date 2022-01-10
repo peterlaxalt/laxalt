@@ -43,6 +43,9 @@ export class HoverGrid extends Component<{}, any> {
       gX: 0,
       gY: 0,
 
+      rootGridX: 0,
+      rootGridY: 0,
+
       quadW: 0,
       quadH: 0,
     };
@@ -138,7 +141,7 @@ export class HoverGrid extends Component<{}, any> {
     if (q) {
       console.log("quadrant:", q);
 
-      this.setGridCoords(q);
+      this.setInitialGridCoords(q);
 
       return;
     } else {
@@ -146,17 +149,53 @@ export class HoverGrid extends Component<{}, any> {
     }
   };
 
-  setGridCoords = (q: HTMLDivElement) => {
+  setInitialGridCoords = (q: HTMLDivElement) => {
     let qW = q.clientWidth;
     let qH = q.clientHeight;
+
+    let offsetX = qW * -1;
+    let offsetY = qH * -1;
 
     this.setState({
       quadW: qW,
       quadH: qH,
 
-      gX: qW * -1,
-      gY: qH * -1,
+      gX: offsetX,
+      gY: offsetY,
+
+      rootGridX: offsetX,
+      rootGridY: offsetY,
     });
+  };
+
+  resetGridCoords = (
+    x: boolean,
+    y: boolean,
+    xRemainder: number = 0,
+    yRemainder: number = 0
+  ) => {
+    if (!y && !x) return;
+
+    let { rootGridX, rootGridY } = this.state;
+
+    if (y && !x) {
+      this.setState({
+        gY: rootGridY
+      })
+    }
+
+    if (!y && x) {
+      this.setState({
+        gX: rootGridX
+      })
+    }
+
+    if (y && x) {
+      this.setState({
+        gX: rootGridX,
+        gY: rootGridY,
+      })
+    }
   };
 
   updateGridCoords = () => {
@@ -201,12 +240,20 @@ export class HoverGrid extends Component<{}, any> {
         this.setState({
           gX: gX - inc(cxRatio),
         });
+      } else {
+        if (posX == "right") {
+          this.resetGridCoords(true, false);
+        }
       }
 
       if (posX == "left" && gX + inc(cxRatio) <= 0) {
         this.setState({
           gX: gX + inc(cxRatio),
         });
+      } else {
+        if (posX == "left") {
+          this.resetGridCoords(true, false);
+        }
       }
     }
 
@@ -215,12 +262,20 @@ export class HoverGrid extends Component<{}, any> {
         this.setState({
           gY: gY + inc(cyRatio),
         });
+      } else {
+        if (posY == "top") {
+          this.resetGridCoords(false, true);
+        }
       }
 
       if (posY == "bottom" && gY - inc(cyRatio) >= quadH * -2) {
         this.setState({
           gY: gY - inc(cyRatio),
         });
+      } else {
+        if (posY == "bottom") {
+          this.resetGridCoords(false, true);
+        }
       }
     }
 
@@ -228,7 +283,6 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   setMouseCoords = (e: MouseEvent) => {
-
     if (!this.state.isActive) {
       this.setActive();
     }
