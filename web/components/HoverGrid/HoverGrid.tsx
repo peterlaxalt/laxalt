@@ -187,10 +187,10 @@ export class HoverGrid extends Component<{}, any> {
 
     // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
 
-    let strength = 30;
+    let strength = 20;
 
-    let xSensitivity = 0.97;
-    let ySensitivity = 0.97;
+    let xSensitivity = 0.99;
+    let ySensitivity = 0.99;
 
     let inc = (r: number) => {
       return strength * (1 - r);
@@ -320,7 +320,6 @@ export class HoverGrid extends Component<{}, any> {
       y = "center";
     }
 
-    
     this.setState({
       posY: y,
       posX: x,
