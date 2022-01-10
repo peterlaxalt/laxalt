@@ -7,6 +7,7 @@
  */
 
 // Core
+import { timeStamp } from "console";
 import React, { Component, createRef } from "react";
 import { createGlobalStyle } from "styled-components";
 
@@ -19,70 +20,283 @@ import { HoverGridStyle } from "./styles.scss";
 // HoverGrid
 export class HoverGrid extends Component<{}, any> {
   quadrant: React.RefObject<HTMLDivElement>;
+  view: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
     super(props);
 
     this.state = {
-      // mouseX: undefined,
-      // mouseY: undefined,
-      // xPos: undefined,
-      // yPos: undefined,
-      // dx: undefined,
-      // dy: undefined,
-      // mouseSize: 20,
-      // scale: 1,
-      // opacity: 0,
-      // active: false,
+      mouseX: 0,
+      mouseY: 0,
+
+      winW: 0,
+      winH: 0,
+
+      posX: "center",
+      posY: "center",
+
+      cxRatio: 0, // Ratio from the center, 0 is center
+      cyRatio: 0, // Ratio from the center, 0 is center
+
+      gX: 0,
+      gY: 0,
+
+      quadW: 0,
+      quadH: 0,
     };
 
     this.quadrant = React.createRef();
+    this.view = React.createRef();
 
     // this.setHoverGridPosition = this.setHoverGridPosition.bind(this);
     // // this.toggleHoverGridState = this.toggleHoverGridState.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.setState({
-      xPos: window.innerWidth / 2,
-      yPos: window.innerHeight / 2,
-      mouseX: window.innerWidth / 2,
-      mouseY: window.innerHeight / 2,
-      opacity: 0,
+      winW: window.innerWidth,
+      winH: window.innerHeight,
     });
 
-    // document.addEventListener("mousemove", this.setHoverGridPosition, false);
+    this.setQuadrantCoords();
+    this.createQuadrants();
+    
+    document.addEventListener("mousemove", this.setMouseCoords);
+
+    window.requestAnimationFrame(this.updateGridCoords);
+
     // document.addEventListener("mousedown", this.toggleHoverGridState, false);
     // document.addEventListener("mouseup", this.toggleHoverGridState, false);
   }
 
-  // /**
-  //  *
-  //  * @name Set HoverGrid Position
-  //  * @param e : Event from "mousemove" event listener.
-  //  * @description This positions the HoverGrid throughout the page.
-  //  *
-  //  */
-  // setHoverGridPosition = (e: any) => {
-  //   let xPos = this.state.mouseX - this.state.mouseSize / 2;
-  //   let yPos = this.state.mouseY - this.state.mouseSize / 2;
+  componentWillUnmount(): void {
+    document.removeEventListener("mousemove", this.setMouseCoords, false);
+  }
 
-  //   let dX = this.state.mouseX - this.state.xPos;
-  //   let dY = this.state.mouseY - this.state.yPos;
+  requestUpdate = (e: MouseEvent) => {
+    this.setMouseCoords(e);
+  };
 
-  //   this.setState({
-  //     xPos: xPos + dX / 10,
-  //     yPos: yPos + dY / 10,
-  //     mouseX: e.clientX,
-  //     mouseY: e.clientY,
-  //     opacity: 1,
-  //   });
-  //   // console.log("x: " + this.state.mouseX, "y: " + this.state.mouseY);
-  // };
+  createQuadrants = () => {
+    let { quadrant, view } = this;
+
+    let v = view.current;
+    let q = quadrant.current;
+
+    function cloneAndAddNode(
+      n: HTMLDivElement,
+      view: HTMLDivElement,
+      c: string
+    ) {
+      let nClone = n.cloneNode(true) as HTMLDivElement;
+
+      nClone.classList.remove("--root");
+      nClone.classList.add(c);
+
+      view.appendChild(nClone);
+    }
+
+    cloneAndAddNode(q, v, "--1a");
+    cloneAndAddNode(q, v, "--2a");
+    cloneAndAddNode(q, v, "--3a");
+    cloneAndAddNode(q, v, "--1b");
+    cloneAndAddNode(q, v, "--3b");
+    cloneAndAddNode(q, v, "--1c");
+    cloneAndAddNode(q, v, "--2c");
+    cloneAndAddNode(q, v, "--3c");
+  };
+
+  setQuadrantCoords = () => {
+    let { mouseX, mouseY, winH, winW } = this.state;
+    let { quadrant } = this;
+
+    let q = quadrant.current;
+
+    if (q) {
+      console.log("quadrant:", q);
+
+      this.setGridCoords(q);
+
+      return;
+    } else {
+      console.log("quadrant not found");
+    }
+  };
+
+  setGridCoords = (q: HTMLDivElement) => {
+
+    let qW = q.clientWidth;
+    let qH = q.clientHeight;
+
+    this.setState({
+      quadW: qW,
+      quadH: qH,
+
+      gX: qW * -1,
+      gY: qH * -1,
+    });
+  };
+
+  updateGridCoords = () => {
+    let {
+      mouseX,
+      mouseY,
+      winH,
+      winW,
+      cxRatio,
+      cyRatio,
+      posX,
+      posY,
+      quadW,
+      quadH,
+      gX,
+      gY,
+    } = this.state;
+
+    let prevMouseX = mouseX;
+    let prevMouseY = mouseY;
+
+    // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
+
+    let strength = 30;
+
+    let xSensitivity = 0.97;
+    let ySensitivity = 0.97;
+
+    let inc = (r: number) => {
+      return strength * (1 - r);
+    };
+
+    if (cxRatio <= xSensitivity) {
+      if (posX == "right" && gX - inc(cxRatio) >= quadW * -2) {
+        this.setState({
+          gX: gX - inc(cxRatio),
+        });
+      }
+
+      if (posX == "left" && gX + inc(cxRatio) <= 0) {
+        this.setState({
+          gX: gX + inc(cxRatio),
+        });
+      }
+    }
+
+    if (cyRatio <= ySensitivity) {
+      if (posY == "top" && gY + inc(cyRatio) <= 0) {
+        this.setState({
+          gY: gY + inc(cyRatio),
+        });
+      }
+
+      if (posY == "bottom" && gY - inc(cyRatio) >= quadH * -2) {
+        this.setState({
+          gY: gY - inc(cyRatio),
+        });
+      }
+    }
+
+    window.requestAnimationFrame(this.updateGridCoords);
+  };
+
+  setMouseCoords = (e: MouseEvent) => {
+    this.setState({
+      mouseX: e.clientX,
+      mouseY: e.clientY,
+    });
+
+    this.setMousePosition();
+  };
+
+  setMousePosition = () => {
+    let { mouseX, mouseY, winH, winW } = this.state;
+
+    let cY = winH / 2;
+    let cX = winW / 2;
+
+    let cxRatio = cX;
+    let cyRatio = 0;
+
+    let l = false;
+    let r = false;
+    let t = false;
+    let b = false;
+
+    let pos = "initial";
+
+    let x = "initial";
+    let y = "initial";
+
+    // Center ratio
+    if (mouseX <= cX) {
+      cxRatio = mouseX / cX;
+    }
+
+    if (mouseX > cX) {
+      cxRatio = (winW - mouseX) / cX;
+    }
+
+    if (mouseY <= cY) {
+      cyRatio = mouseY / cY;
+    }
+
+    if (mouseY > cY) {
+      cyRatio = (winH - mouseY) / cY;
+    }
+
+    // Positions
+    if (mouseX < cX) {
+      l = true;
+      r = false;
+
+      x = "left";
+    }
+
+    if (mouseX > cX) {
+      l = false;
+      r = true;
+
+      x = "right";
+    }
+
+    if (mouseX == cX) {
+      l = false;
+      r = false;
+
+      x = "center";
+    }
+
+    if (mouseY > cY) {
+      b = true;
+      t = false;
+
+      y = "bottom";
+    }
+
+    if (mouseY < cY) {
+      b = false;
+      t = true;
+
+      y = "top";
+    }
+
+    if (mouseY == cY) {
+      b = false;
+      t = false;
+
+      y = "center";
+    }
+
+    this.setState({
+      posY: y,
+      posX: x,
+
+      cxRatio: cxRatio,
+      cyRatio: cyRatio,
+    });
+  };
 
   render() {
     let items = [1, 2, 3, 4, 5, 6];
-    let columns = 4;
 
     return (
       <>
@@ -91,12 +305,51 @@ export class HoverGrid extends Component<{}, any> {
             [`--c` as any]: 3,
           }}
         >
-          <div className="q --root" ref={this.quadrant}>
-            {items.map((i, idx) => {
-              return <div className={`i i--${i}`}>{i}</div>;
-            })}
+          <div
+            className="v"
+            style={{
+              transform: `translate(${this.state.gX}px, ${this.state.gY}px)`,
+            }}
+            ref={this.view}
+          >
+            <div className="q --root" ref={this.quadrant}>
+              {items.map((i, idx) => {
+                return (
+                  <div className={`i i--${i}`}>
+                    <div data-i={i} className="i-i" />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </HoverGridStyle>
+
+        {/* <div className={`_dbg ${this.state.mouseX}`}>
+          mouseX: <strong>{this.state.mouseX} </strong>
+          <br />
+          mouseY: <strong>{this.state.mouseY} </strong>
+          <br />
+          winW: <strong>{this.state.winW} </strong>
+          <br />
+          winH: <strong>{this.state.winH} </strong>
+          <br />
+          posY: <strong>{this.state.posY}</strong>
+          <br />
+          posX: <strong>{this.state.posX}</strong>
+          <br />
+          cxRatio: <strong>{this.state.cxRatio}</strong>
+          <br />
+          cyRatio: <strong>{this.state.cyRatio}</strong>
+          <br />
+          gX: <strong>{this.state.gX}</strong>
+          <br />
+          gY: <strong>{this.state.gY}</strong>
+          <br />
+          quadW: <strong>{this.state.quadW}</strong>
+          <br />
+          quadH: <strong>{this.state.quadH}</strong>
+          <br />
+        </div> */}
       </>
     );
   }
