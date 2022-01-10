@@ -7,3 +7,6 @@ web/.next
 web/node_modules
 */web/node_modules/*
 web/.next/*
+cache
+*/cache/*
+cache/*
