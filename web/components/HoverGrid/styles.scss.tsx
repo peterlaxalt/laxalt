@@ -3,6 +3,7 @@
 
 // Core
 import styled from "styled-components";
+import { Root } from "../../constants/Root";
 
 // Constants
 // import { Theme } from "../../constants/Theme";
@@ -80,13 +81,13 @@ export const HoverGridStyle = styled.div`
 
   // Quadrants
   .q {
-    background: black;
+    /* background: black; */
 
     display: grid;
 
     backface-visibility: hidden;
 
-    grid-template-columns: repeat(var(--c), var(--cw));
+    grid-template-columns: repeat(2, var(--cw));
     grid-auto-rows: auto;
     grid-auto-flow: row;
 
@@ -139,9 +140,10 @@ export const HoverGridStyle = styled.div`
     // |____|____|____|
     /*  */
 
-    &[id="${rootQuadrantId}"] {
+    ${_DEBUG_ &&
+    `&[id="${rootQuadrantId}"] {
       filter: hue-rotate(180deg);
-    }
+    }`}
 
     // Rows
     &[id="${topLeftQuadrantId}"],
@@ -193,39 +195,47 @@ export const HoverGridStyle = styled.div`
       background: navy;
     }`}
 
-    display: grid;
+    &:nth-child(odd) {
+      margin-top: calc(${Root.Size} * -20);
+      padding-bottom: calc(${Root.Size} * 20);
+    }
 
     .i-i {
       color: white;
-
-      display: grid;
-      place-items: center;
-
-      font-size: 20vw;
-      font-weight: 800;
 
       min-height: var(--rh);
       width: 100%;
 
       position: relative;
 
-      &:before {
-        content: attr(data-i);
-
-        display: block;
-
-        position: absolute;
-
-        left: 50%;
-        top: 50%;
-
-        transition: transform 0.25s ease;
-        transform: translate(-50%, -50%) scale(1);
-      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         &:before {
           transform: translate(-50%, -50%) scale (1.5);
+        }
+      }
+    }
+
+    .i-t {
+      width: 95%;
+
+      padding: calc(${Root.Size} * 2);
+
+      img {
+        width: 100%;
+        max-width: 100%;
+
+        line-height: 0;
+
+        box-shadow: 0px 0px 0px 0 white;
+
+        transition: box-shadow .5s ease;
+
+        &:hover {
+          box-shadow: 0px 0px 0px calc(${Root.Size} * 2) white;
         }
       }
     }

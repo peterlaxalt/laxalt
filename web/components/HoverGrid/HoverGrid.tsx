@@ -10,6 +10,8 @@
 import { timeStamp } from "console";
 import React, { Component, createRef } from "react";
 import { createGlobalStyle } from "styled-components";
+import LazyImage from "../../utils/lazyImage";
+import { DuotoneImage } from "../DuotoneImage";
 
 // Styles
 import {
@@ -32,6 +34,7 @@ import {
 export class HoverGrid extends Component<{}, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
+  bottomRenderThreshold: number;
 
   constructor(props: any) {
     super(props);
@@ -42,6 +45,10 @@ export class HoverGrid extends Component<{}, any> {
 
       isActive: false,
       quadrantCalculated: false,
+
+      imagesLoaded: false,
+      totalImages: 0,
+      imageCounter: 0,
 
       winW: 0,
       winH: 0,
@@ -64,6 +71,7 @@ export class HoverGrid extends Component<{}, any> {
 
     this.quadrant = React.createRef();
     this.view = React.createRef();
+    this.bottomRenderThreshold = .75;
 
     this.killActive = this.killActive.bind(this);
     this.setActive = this.setActive.bind(this);
@@ -77,11 +85,7 @@ export class HoverGrid extends Component<{}, any> {
       isActive: true,
     });
 
-    this.findRootQuadrantAndInitializeCoordinates();
-
-    document.addEventListener("mousemove", this.setMouseCoords);
-
-    window.requestAnimationFrame(this.updateGridCoords);
+    this.loadImages();
 
     // document.addEventListener("mousedown", this.toggleHoverGridState, false);
     // document.addEventListener("mouseup", this.toggleHoverGridState, false);
@@ -89,6 +93,17 @@ export class HoverGrid extends Component<{}, any> {
 
   componentWillUnmount(): void {
     document.removeEventListener("mousemove", this.setMouseCoords, false);
+  }
+
+  // _________________________________
+  // Initialize
+
+  init = () => {
+    this.findRootQuadrantAndInitializeCoordinates();
+
+    document.addEventListener("mousemove", this.setMouseCoords);
+
+    window.requestAnimationFrame(this.updateGridCoords);
   }
 
   // _________________________________
@@ -115,6 +130,40 @@ export class HoverGrid extends Component<{}, any> {
         isActive: true,
       });
     }
+  };
+
+  // _________________________________
+  // Check when all images are loaded
+  loadImages = () => {
+    let imgs = document.images;
+    let count = 0;
+    
+    this.setState({
+      totalImages: imgs.length,
+    });
+
+    const incrementCount = () => { 
+      count++
+
+      if (count === imgs.length) {
+        console.log('Images loaded');
+
+        this.setState({
+          imagesLoaded: true,
+          imageCounter: count
+        })
+
+        this.init();
+      }
+    };
+
+    Array.from(imgs).forEach((img: HTMLImageElement) => {
+      console.log("loading image", count);
+      
+      if (img.complete) incrementCount();
+
+      else img.addEventListener("load", incrementCount, false);
+    });
   };
 
   // _________________________________
@@ -147,7 +196,7 @@ export class HoverGrid extends Component<{}, any> {
 
     if (!v) return;
     if (!v.querySelector(`#${id}`)) return;
-    
+
     let el = v.querySelector(`#${id}`);
 
     v.removeChild(el);
@@ -158,8 +207,8 @@ export class HoverGrid extends Component<{}, any> {
 
     let leftVisible = gX > rootGridX;
     let topVisible = gY > rootGridY;
-    let rightVisible = gX < (rootGridX * 2) + winW;
-    let bottomVisible = gY < (rootGridY * 2) + winH;
+    let rightVisible = gX < rootGridX * 2 + winW;
+    let bottomVisible = gY < rootGridY * 2 + (winH + (winH * this.bottomRenderThreshold));
 
     if (leftVisible) {
       this.createQuadrant(middleLeftQuadrantId);
@@ -172,13 +221,13 @@ export class HoverGrid extends Component<{}, any> {
     } else {
       this.destroyQuadrant(topCenterQuadrantId);
     }
-    
+
     if (rightVisible) {
       this.createQuadrant(middleRightQuadrantId);
     } else {
       this.destroyQuadrant(middleRightQuadrantId);
     }
-    
+
     if (bottomVisible) {
       this.createQuadrant(bottomCenterQuadrantId);
     } else {
@@ -209,7 +258,7 @@ export class HoverGrid extends Component<{}, any> {
     } else {
       this.destroyQuadrant(bottomLeftQuadrantId);
     }
-  }
+  };
 
   // __temporary__createPhantomQuadrants = () => {
   //   let { quadW, quadH } = this.state;
@@ -285,7 +334,7 @@ export class HoverGrid extends Component<{}, any> {
     let { quadrant } = this;
 
     let q = quadrant.current;
-  
+
     q.style.height = `${q.clientHeight}px`;
     q.style.width = `${q.clientWidth}px`;
 
@@ -560,8 +609,32 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   render() {
-    let count = 33;
-    let items =  [...Array(count).keys()];
+    let items = [
+      {
+        src: "/projects/flash/esmerelda-sm.jpg",
+        alt: "Esmerelda"
+      },
+      {
+        src: "/projects/flash/rr-sm.jpg",
+        alt: "Road Runner"
+      },
+      {
+        src: "/projects/flash/coyote-sm.jpg",
+        alt: "Coyote"
+      },
+      {
+        src: "/projects/flash/vvinemulca-sm.jpg",
+        alt: "Winnemucca"
+      },
+      {
+        src: "/projects/flash/rooster-sm.jpg",
+        alt: "Rooster"
+      },
+      {
+        src: "/projects/flash/ormsby-sm.jpg",
+        alt: "Ormsby"
+      }
+    ]
 
     return (
       <>
@@ -584,7 +657,14 @@ export class HoverGrid extends Component<{}, any> {
               {items.map((i, idx) => {
                 return (
                   <div className={`i`}>
-                    <div data-i={idx} className="i-i" />
+                    <div className="i-i">
+                      <div className="i-t">
+                        <img
+                          src={i.src}
+                          alt={i.alt}
+                        />
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -617,6 +697,12 @@ export class HoverGrid extends Component<{}, any> {
           <br />
           quadH: <strong>{this.state.quadH}</strong>
           <br />
+          totalImages: <strong>{this.state.totalImages}</strong>
+          <br />
+          imageCounter: <strong>{this.state.imageCounter}</strong>
+          <br />
+          imagesLoaded:{" "}
+          <strong>{this.state.imagesLoaded ? "true" : "false"}</strong>
         </div> */}
       </>
     );
