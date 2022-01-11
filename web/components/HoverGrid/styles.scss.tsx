@@ -24,7 +24,6 @@ import styled from "styled-components";
 
 export const HoverGridStyle = styled.div`
   --cw: 1fr;
-
   --rh: calc(100vh / var(--c));
 
   background: black;
@@ -56,8 +55,13 @@ export const HoverGridStyle = styled.div`
 
     backface-visibility: hidden;
 
-    grid-template-columns: repeat(var(--c), 1fr);
+    grid-template-columns: repeat(var(--c), 100vw);
     grid-template-rows: repeat(var(--c), auto);
+
+    &.--i {
+      grid-template-rows: repeat(var(--c), var(--qh));
+    }
+    /* grid-template-rows: repeat(var(--c), auto); */
   }
 
   // Quadrants
@@ -72,15 +76,11 @@ export const HoverGridStyle = styled.div`
     grid-auto-rows: auto;
     grid-auto-flow: row;
 
-    /* position: absolute;
-
-    left: 0;
-    top: 0; */
-
     width: auto;
     min-width: 100vw;
-    height: auto;
-    min-height: 100vh;
+    
+    /* height: auto;
+    min-height: 100vh; */
 
     //  _____ _____ _____
     // | 123 | 123 | 123 |
@@ -133,6 +133,10 @@ export const HoverGridStyle = styled.div`
     }
 
     // Rows
+    &[id='root'] {
+      filter: hue-rotate(180deg);
+    }
+
     &[id='root'],
     &[id='1b'],
     &[id='2b'],
@@ -169,7 +173,11 @@ export const HoverGridStyle = styled.div`
 
   // Items
   .i {
-    background: black;
+    background: blue;
+
+    &:nth-child(odd) {
+      background: navy;
+    }
 
     box-shadow: 0px 0px 0px 1px white;
 
@@ -185,6 +193,7 @@ export const HoverGridStyle = styled.div`
       font-weight: 800;
 
       min-height: var(--rh);
+      width: 100%;
 
       position: relative;
       

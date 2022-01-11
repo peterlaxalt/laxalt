@@ -42,6 +42,7 @@ export class HoverGrid extends Component<{}, any> {
       mouseY: 0,
 
       isActive: false,
+      quadrantCalculated: false,
 
       winW: 0,
       winH: 0,
@@ -85,11 +86,13 @@ export class HoverGrid extends Component<{}, any> {
     this.setState({
       winW: window.innerWidth,
       winH: window.innerHeight,
+      
       isActive: true,
     });
 
     this.findRootQuadrantAndInitializeCoordinates();
     this.__temporary__CreateQuadrants();
+    // this.__temporary__createPhantomQuadrants();
 
     document.addEventListener("mousemove", this.setMouseCoords);
 
@@ -133,6 +136,7 @@ export class HoverGrid extends Component<{}, any> {
   // _________________________________
   // Quadrant management
   createQuadrant = (id: string) => {
+    let { quadW, quadH } = this.state;
     let { quadrant, view } = this;
     let v = view.current;
     let q = quadrant.current;
@@ -143,6 +147,8 @@ export class HoverGrid extends Component<{}, any> {
       let qClone = q.cloneNode(true) as HTMLDivElement;
 
       qClone.id = id;
+      qClone.style.height = `${q.clientHeight}px`;
+      qClone.style.width = `${q.clientWidth}px`;
 
       v.appendChild(qClone);
     } else {
@@ -152,7 +158,45 @@ export class HoverGrid extends Component<{}, any> {
 
   destroyQuadrant = (id: string) => {}
 
+  __temporary__createPhantomQuadrants = () => {
+    let { quadW, quadH } = this.state;
+    let { quadrant, view } = this;
+
+    let v = view.current;
+    let q = quadrant.current;
+    let phantom = document.createElement("div");
+    
+    phantom.style.height = `${q.clientHeight}px`;
+    phantom.style.width = `${q.clientWidth}px`;
+
+    function cloneAndAddNode(
+      n: HTMLDivElement,
+      view: HTMLDivElement,
+      c: string
+    ) {
+      let nClone = n.cloneNode(true) as HTMLDivElement;
+
+      nClone.id = c;
+
+      view.appendChild(nClone);
+    }
+
+
+    cloneAndAddNode(phantom, v, this.topLeftQuadrantId);
+    cloneAndAddNode(phantom, v, this.middleLeftQuadrantId);
+    cloneAndAddNode(phantom, v, this.bottomLeftQuadrantId);
+
+    cloneAndAddNode(phantom, v, this.topCenterQuadrantId);
+    // Root exists
+    cloneAndAddNode(phantom, v, this.bottomCenterQuadrantId);
+
+    cloneAndAddNode(phantom, v, this.topRightQuadrantId);
+    cloneAndAddNode(phantom, v, this.middleRightQuadrantId);
+    cloneAndAddNode(phantom, v, this.bottomRightQuadrantId);
+  };
+
   __temporary__CreateQuadrants = () => {
+    let { quadW, quadH } = this.state;
     let { quadrant, view } = this;
 
     let v = view.current;
@@ -186,7 +230,6 @@ export class HoverGrid extends Component<{}, any> {
   // _________________________________
   // Coordinates
   findRootQuadrantAndInitializeCoordinates = () => {
-    let { mouseX, mouseY, winH, winW } = this.state;
     let { quadrant } = this;
 
     let q = quadrant.current;
@@ -203,6 +246,10 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   setInitialGridCoords = (q: HTMLDivElement) => {
+    let { innerWidth, innerHeight } = window;
+    let winW = innerWidth;
+    let winH = innerHeight;
+
     let qW = q.clientWidth;
     let qH = q.clientHeight;
 
@@ -218,35 +265,50 @@ export class HoverGrid extends Component<{}, any> {
 
       rootGridX: offsetX,
       rootGridY: offsetY,
+
+      quadrantCalculated: true
     });
   };
 
   resetGridCoords = (
     x: boolean,
     y: boolean,
+    fromBottom: boolean = false,
+    fromRight: boolean = true, // not used until > 100vw
     xRemainder: number = 0,
     yRemainder: number = 0
   ) => {
     if (!y && !x) return;
 
-    let { rootGridX, rootGridY } = this.state;
+    let { rootGridX, rootGridY, winH, winW } = this.state;
+
+    let yReset = rootGridY;
+    let xReset = rootGridX;
+
+    if (fromBottom) {
+      yReset = (rootGridY * 2) + winH
+    }
+
+    if (fromRight) {
+      xReset = (rootGridX * 2) + winW
+    }
 
     if (y && !x) {
       this.setState({
-        gY: rootGridY
+        gY: yReset
       })
     }
 
     if (!y && x) {
       this.setState({
-        gX: rootGridX
+        gX: xReset
       })
     }
 
     if (y && x) {
       this.setState({
-        gX: rootGridX,
-        gY: rootGridY,
+        gX: xReset,
+        gY: yReset,
       })
     }
   };
@@ -289,7 +351,7 @@ export class HoverGrid extends Component<{}, any> {
     };
 
     if (cxRatio <= xSensitivity) {
-      if (posX == "right" && gX - inc(cxRatio) >= quadW * -2) {
+      if (posX == "right" && gX - inc(cxRatio) >= ((quadW * -3) + winW)) {
         this.setState({
           gX: gX - inc(cxRatio),
         });
@@ -320,14 +382,14 @@ export class HoverGrid extends Component<{}, any> {
           this.resetGridCoords(false, true);
         }
       }
-
-      if (posY == "bottom" && gY - inc(cyRatio) >= quadH * -2) {
+      
+      if (posY == "bottom" && gY - inc(cyRatio) >= ((quadH * -3) + winH)) {
         this.setState({
           gY: gY - inc(cyRatio),
         });
       } else {
         if (posY == "bottom") {
-          this.resetGridCoords(false, true);
+          this.resetGridCoords(false, true, true);
         }
       }
     }
@@ -446,12 +508,13 @@ export class HoverGrid extends Component<{}, any> {
         <HoverGridStyle
           style={{
             [`--c` as any]: 3,
+            [`--qh` as any]: `${this.state.quadH}px`
           }}
           onMouseEnter={() => this.setActive()}
           onMouseLeave={() => this.killActive()}
         >
           <div
-            className="v"
+            className={`v ${this.state.quadrantCalculated ? '--i' : ''}`}
             style={{
               transform: `translate(${this.state.gX}px, ${this.state.gY}px)`,
             }}
