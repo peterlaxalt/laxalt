@@ -71,7 +71,7 @@ export class HoverGrid extends Component<{}, any> {
 
     this.quadrant = React.createRef();
     this.view = React.createRef();
-    this.bottomRenderThreshold = .75;
+    this.bottomRenderThreshold = 0;
 
     this.killActive = this.killActive.bind(this);
     this.setActive = this.setActive.bind(this);
