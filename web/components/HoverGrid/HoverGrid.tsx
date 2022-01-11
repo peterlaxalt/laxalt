@@ -447,7 +447,7 @@ export class HoverGrid extends Component<{}, any> {
 
     // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
 
-    let strength = 10;
+    let strength = 13;
 
     let xSensitivity = 0.995;
     let ySensitivity = 0.995;
@@ -649,14 +649,14 @@ export class HoverGrid extends Component<{}, any> {
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
             style={{
-              transform: `translate(${this.state.gX}px, ${this.state.gY}px)`,
+              transform: `translate3d(${this.state.gX}px, ${this.state.gY}px, 0px)`,
             }}
             ref={this.view}
           >
             <div className="q" id={rootQuadrantId} ref={this.quadrant}>
               {items.map((i, idx) => {
                 return (
-                  <div className={`i`}>
+                  <div key={idx} className={`i`}>
                     <div className="i-i">
                       <div className="i-t">
                         <img
