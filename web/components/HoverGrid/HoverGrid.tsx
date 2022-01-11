@@ -11,6 +11,7 @@ import { timeStamp } from "console";
 import React, { Component, createRef } from "react";
 import { createGlobalStyle } from "styled-components";
 import LazyImage from "../../utils/lazyImage";
+import shuffle from "../../utils/shuffle";
 import { DuotoneImage } from "../DuotoneImage";
 
 // Styles
@@ -67,6 +68,33 @@ export class HoverGrid extends Component<{}, any> {
 
       quadW: 0,
       quadH: 0,
+
+      items: [
+        {
+          src: "/projects/flash/esmerelda-sm.jpg",
+          alt: "Esmerelda",
+        },
+        {
+          src: "/projects/flash/rr-sm.jpg",
+          alt: "Road Runner",
+        },
+        {
+          src: "/projects/flash/coyote-sm.jpg",
+          alt: "Coyote",
+        },
+        {
+          src: "/projects/flash/vvinemulca-sm.jpg",
+          alt: "Winnemucca",
+        },
+        {
+          src: "/projects/flash/rooster-sm.jpg",
+          alt: "Rooster",
+        },
+        {
+          src: "/projects/flash/ormsby-sm.jpg",
+          alt: "Ormsby",
+        },
+      ],
     };
 
     this.quadrant = React.createRef();
@@ -83,6 +111,8 @@ export class HoverGrid extends Component<{}, any> {
       winH: window.innerHeight,
 
       isActive: true,
+
+      items: shuffle(this.state.items)
     });
 
     this.loadImages();
@@ -104,7 +134,7 @@ export class HoverGrid extends Component<{}, any> {
     document.addEventListener("mousemove", this.setMouseCoords);
 
     window.requestAnimationFrame(this.updateGridCoords);
-  }
+  };
 
   // _________________________________
   // Active / inactive renderer
@@ -137,21 +167,21 @@ export class HoverGrid extends Component<{}, any> {
   loadImages = () => {
     let imgs = document.images;
     let count = 0;
-    
+
     this.setState({
       totalImages: imgs.length,
     });
 
-    const incrementCount = () => { 
-      count++
+    const incrementCount = () => {
+      count++;
 
       if (count === imgs.length) {
-        console.log('Images loaded');
+        console.log("Images loaded");
 
         this.setState({
           imagesLoaded: true,
-          imageCounter: count
-        })
+          imageCounter: count,
+        });
 
         this.init();
       }
@@ -159,9 +189,8 @@ export class HoverGrid extends Component<{}, any> {
 
     Array.from(imgs).forEach((img: HTMLImageElement) => {
       console.log("loading image", count);
-      
-      if (img.complete) incrementCount();
 
+      if (img.complete) incrementCount();
       else img.addEventListener("load", incrementCount, false);
     });
   };
@@ -208,7 +237,7 @@ export class HoverGrid extends Component<{}, any> {
     let leftVisible = gX > rootGridX;
     let topVisible = gY > rootGridY;
     let rightVisible = gX < rootGridX * 2 + winW;
-    let bottomVisible = gY < rootGridY * 2 + (winH + (winH * this.bottomRenderThreshold));
+    let bottomVisible = gY < rootGridY * 2 + (winH + winH);
 
     if (leftVisible) {
       this.createQuadrant(middleLeftQuadrantId);
@@ -609,33 +638,6 @@ export class HoverGrid extends Component<{}, any> {
   };
 
   render() {
-    let items = [
-      {
-        src: "/projects/flash/esmerelda-sm.jpg",
-        alt: "Esmerelda"
-      },
-      {
-        src: "/projects/flash/rr-sm.jpg",
-        alt: "Road Runner"
-      },
-      {
-        src: "/projects/flash/coyote-sm.jpg",
-        alt: "Coyote"
-      },
-      {
-        src: "/projects/flash/vvinemulca-sm.jpg",
-        alt: "Winnemucca"
-      },
-      {
-        src: "/projects/flash/rooster-sm.jpg",
-        alt: "Rooster"
-      },
-      {
-        src: "/projects/flash/ormsby-sm.jpg",
-        alt: "Ormsby"
-      }
-    ]
-
     return (
       <>
         <HoverGridStyle
@@ -654,15 +656,12 @@ export class HoverGrid extends Component<{}, any> {
             ref={this.view}
           >
             <div className="q" id={rootQuadrantId} ref={this.quadrant}>
-              {items.map((i, idx) => {
+              {this.state.items.map((i, idx) => {
                 return (
                   <div key={idx} className={`i`}>
                     <div className="i-i">
                       <div className="i-t">
-                        <img
-                          src={i.src}
-                          alt={i.alt}
-                        />
+                        <img src={i.src} alt={i.alt} />
                       </div>
                     </div>
                   </div>
