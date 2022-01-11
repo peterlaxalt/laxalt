@@ -22,17 +22,19 @@ import styled from "styled-components";
 // | _bl | _bc | _br |
 // |_____|_____|_____|
 
-export const topLeftQuadrantId = '_tl';
-export const middleLeftQuadrantId = '_ml';
-export const bottomLeftQuadrantId = '_bl';
+export const topLeftQuadrantId = "_tl";
+export const middleLeftQuadrantId = "_ml";
+export const bottomLeftQuadrantId = "_bl";
 
-export const topCenterQuadrantId = '_tc';
-export const rootQuadrantId = 'root'; // middle center
-export const bottomCenterQuadrantId = '_bc';
+export const topCenterQuadrantId = "_tc";
+export const rootQuadrantId = "root"; // middle center
+export const bottomCenterQuadrantId = "_bc";
 
-export const topRightQuadrantId = '_tr';
-export const middleRightQuadrantId = '_mr';
-export const bottomRightQuadrantId = '_br';
+export const topRightQuadrantId = "_tr";
+export const middleRightQuadrantId = "_mr";
+export const bottomRightQuadrantId = "_br";
+
+const _DEBUG_ = false;
 
 export const HoverGridStyle = styled.div`
   --cw: 1fr;
@@ -90,7 +92,7 @@ export const HoverGridStyle = styled.div`
 
     width: auto;
     min-width: 100vw;
-    
+
     /* height: auto;
     min-height: 100vh; */
 
@@ -104,7 +106,6 @@ export const HoverGridStyle = styled.div`
     // | 123 | 123 | 123 |
     // | 456 | 456 | 456 |
     //  ----- ----- -----
-
 
     //  _____ _____ _____
     // | 123 | 123 | 123 |
@@ -137,59 +138,60 @@ export const HoverGridStyle = styled.div`
     // |    |    |    |
     // |____|____|____|
     /*  */
-    
-    &[id='${rootQuadrantId}'] {
+
+    &[id="${rootQuadrantId}"] {
       filter: hue-rotate(180deg);
     }
 
     // Rows
-    &[id='${topLeftQuadrantId}'],
-    &[id='${topCenterQuadrantId}'],
-    &[id='${topRightQuadrantId}'] {
+    &[id="${topLeftQuadrantId}"],
+    &[id="${topCenterQuadrantId}"],
+    &[id="${topRightQuadrantId}"] {
       grid-row: 1 / span 1;
     }
 
-    &[id='${rootQuadrantId}'],
-    &[id='${middleLeftQuadrantId}'],
-    &[id='${middleRightQuadrantId}'] {
+    &[id="${rootQuadrantId}"],
+    &[id="${middleLeftQuadrantId}"],
+    &[id="${middleRightQuadrantId}"] {
       grid-row: calc(var(--c) - 1) / span 1;
     }
 
-    &[id='${bottomLeftQuadrantId}'],
-    &[id='${bottomCenterQuadrantId}'],
-    &[id='${bottomRightQuadrantId}'] {
+    &[id="${bottomLeftQuadrantId}"],
+    &[id="${bottomCenterQuadrantId}"],
+    &[id="${bottomRightQuadrantId}"] {
       grid-row: var(--c) / span 1;
     }
 
     // Columns
-    &[id='${topLeftQuadrantId}'],
-    &[id='${middleLeftQuadrantId}'],
-    &[id='${bottomLeftQuadrantId}'] {
+    &[id="${topLeftQuadrantId}"],
+    &[id="${middleLeftQuadrantId}"],
+    &[id="${bottomLeftQuadrantId}"] {
       grid-column: 1 / span 1;
     }
-    
-    &[id='${rootQuadrantId}'],
-    &[id='${topCenterQuadrantId}'],
-    &[id='${bottomCenterQuadrantId}'] {
+
+    &[id="${rootQuadrantId}"],
+    &[id="${topCenterQuadrantId}"],
+    &[id="${bottomCenterQuadrantId}"] {
       grid-column: calc(var(--c) - 1) / span 1;
     }
 
-    &[id='${topRightQuadrantId}'],
-    &[id='${middleRightQuadrantId}'],
-    &[id='${bottomRightQuadrantId}'] {
+    &[id="${topRightQuadrantId}"],
+    &[id="${middleRightQuadrantId}"],
+    &[id="${bottomRightQuadrantId}"] {
       grid-column: var(--c) / span 1;
     }
   }
 
   // Items
   .i {
-    background: blue;
+    background: black;
+
+    ${_DEBUG_ &&
+    `background: blue;
 
     &:nth-child(odd) {
       background: navy;
-    }
-
-    box-shadow: 0px 0px 0px 1px white;
+    }`}
 
     display: grid;
 
@@ -206,28 +208,27 @@ export const HoverGridStyle = styled.div`
       width: 100%;
 
       position: relative;
-      
+
       &:before {
         content: attr(data-i);
-        
+
         display: block;
-        
+
         position: absolute;
-        
+
         left: 50%;
         top: 50%;
 
         transition: transform 0.25s ease;
         transform: translate(-50%, -50%) scale(1);
       }
-  
+
       &:hover {
         &:before {
           transform: translate(-50%, -50%) scale (1.5);
         }
       }
     }
-
   }
 
   // Debugger
