@@ -57,7 +57,7 @@ export const HoverGridStyle = styled.div`
     backface-visibility: hidden;
 
     grid-template-columns: repeat(var(--c), 1fr);
-    grid-template-rows: repeat(var(--c), 100vh);
+    grid-template-rows: repeat(var(--c), auto);
   }
 
   // Quadrants
@@ -72,66 +72,97 @@ export const HoverGridStyle = styled.div`
     grid-auto-rows: auto;
     grid-auto-flow: row;
 
-    position: absolute;
+    /* position: absolute;
 
     left: 0;
-    top: 0;
+    top: 0; */
 
     width: auto;
     min-width: 100vw;
     height: auto;
     min-height: 100vh;
 
+    //  _____ _____ _____
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    //  ----- ----- -----
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    //  ----- ----- -----
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    //  ----- ----- -----
+
+
+    //  _____ _____ _____
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    // |  7  |  7  |  7  |
+    //  ----- ----- -----
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    // |  7  |  7  |  7  |
+    //  ----- ----- -----
+    // | 123 | 123 | 123 |
+    // | 456 | 456 | 456 |
+    // |  7  |  7  |  7  |
+    //  ----- ----- -----
+
     //  ____ ____ ____
     // | 1a | 2a | 3a |
+    // |    |    |    |
+    // |    |    |    |
+    // |    |    |    |
     // |____|____|____|
     // | 1b | 2b | 3b |
+    // |    |    |    |
+    // |    |    |    |
+    // |    |    |    |
     // |____|____|____|
     // | 1c | 2c | 3c |
+    // |    |    |    |
+    // |    |    |    |
+    // |    |    |    |
     // |____|____|____|
-    &.--root {
-      // aka 2b
-      grid-row: calc(var(--c) - 1) / span 1;
-      grid-column: calc(var(--c) - 1) / span 1;
-    }
+    /*  */
 
-    &.--1a,
-    &.--2a,
-    &.--3a {
+    &[id='1a'],
+    &[id='2a'],
+    &[id='3a'] {
       grid-row: 1 / span 1;
     }
 
     // Rows
-    &.--root,
-    &.--1b,
-    &.--2b,
-    &.--3b {
+    &[id='root'],
+    &[id='1b'],
+    &[id='2b'],
+    &[id='3b'] {
       grid-row: calc(var(--c) - 1) / span 1;
     }
 
-    &.--1c,
-    &.--2c,
-    &.--3c {
+    &[id='1c'],
+    &[id='2c'],
+    &[id='3c'] {
       grid-row: var(--c) / span 1;
     }
 
     // Columns
-    &.--1a,
-    &.--1b,
-    &.--1c {
+    &[id='1a'],
+    &[id='1b'],
+    &[id='1c'] {
       grid-column: 1 / span 1;
     }
-
-    &.--2a,
-    &.--2b,
-    &.--2c,
-    &.--root {
+    
+    &[id='root'],
+    &[id='2a'],
+    &[id='2b'],
+    &[id='2c'] {
       grid-column: calc(var(--c) - 1) / span 1;
     }
 
-    &.--3a,
-    &.--3b,
-    &.--3c {
+    &[id='3a'],
+    &[id='3b'],
+    &[id='3c'] {
       grid-column: var(--c) / span 1;
     }
   }
