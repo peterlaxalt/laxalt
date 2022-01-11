@@ -53,7 +53,7 @@ export const HoverGridStyle = styled.div`
   width: 100vw;
   height: 100vh;
 
-  transform: scale(1.0001);
+  /* transform: scale(1.0001); */
 
   // View
   .v {
@@ -93,6 +93,10 @@ export const HoverGridStyle = styled.div`
 
     width: auto;
     min-width: 100vw;
+
+    @media (min-width: 1600px) {
+      grid-template-columns: repeat(3, var(--cw));
+    }
 
     /* height: auto;
     min-height: 100vh; */
@@ -188,6 +192,10 @@ export const HoverGridStyle = styled.div`
   .i {
     background: black;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     ${_DEBUG_ &&
     `background: blue;
 
@@ -198,6 +206,13 @@ export const HoverGridStyle = styled.div`
     &:nth-child(odd) {
       margin-top: calc(${Root.Size} * -20);
       padding-bottom: calc(${Root.Size} * 20);
+    }
+
+    @media (min-width: 1600px) {
+      &:nth-child(odd) {
+        margin-top: 0;
+        padding-bottom: 0;
+      }
     }
 
     .i-i {
@@ -212,11 +227,7 @@ export const HoverGridStyle = styled.div`
       align-items: center;
       justify-content: center;
 
-      &:hover {
-        &:before {
-          transform: translate(-50%, -50%) scale (1.5);
-        }
-      }
+      transform: scale(1.0001);
     }
 
     .i-t {
@@ -233,6 +244,8 @@ export const HoverGridStyle = styled.div`
         box-shadow: 0px 0px 0px 0 white;
 
         transition: box-shadow .5s ease;
+
+        transform: scale(1.0001);
 
         &:hover {
           box-shadow: 0px 0px 0px calc(${Root.Size} * 2) white;
