@@ -14,13 +14,25 @@ import styled from "styled-components";
 // Begin Styles
 //////////////////////////////////////////////////////////////////////
 
-//  ____ ____ ____
-// | 1a | 2a | 3a |
-// |____|____|____|
-// | 1b | 2b | 3b |
-// |____|____|____|
-// | 1c | 2c | 3c |
-// |____|____|____|
+//  _____ _____ _____
+// | _tl | _tc | _tr |
+// |_____|_____|_____|
+// | _ml |rooot| _mr |
+// |_____|_____|_____|
+// | _bl | _bc | _br |
+// |_____|_____|_____|
+
+export const topLeftQuadrantId = '_tl';
+export const middleLeftQuadrantId = '_ml';
+export const bottomLeftQuadrantId = '_bl';
+
+export const topCenterQuadrantId = '_tc';
+export const rootQuadrantId = 'root'; // middle center
+export const bottomCenterQuadrantId = '_bc';
+
+export const topRightQuadrantId = '_tr';
+export const middleRightQuadrantId = '_mr';
+export const bottomRightQuadrantId = '_br';
 
 export const HoverGridStyle = styled.div`
   --cw: 1fr;
@@ -125,48 +137,46 @@ export const HoverGridStyle = styled.div`
     // |    |    |    |
     // |____|____|____|
     /*  */
-
-    &[id='1a'],
-    &[id='2a'],
-    &[id='3a'] {
-      grid-row: 1 / span 1;
-    }
-
-    // Rows
-    &[id='root'] {
+    
+    &[id='${rootQuadrantId}'] {
       filter: hue-rotate(180deg);
     }
 
-    &[id='root'],
-    &[id='1b'],
-    &[id='2b'],
-    &[id='3b'] {
+    // Rows
+    &[id='${topLeftQuadrantId}'],
+    &[id='${topCenterQuadrantId}'],
+    &[id='${topRightQuadrantId}'] {
+      grid-row: 1 / span 1;
+    }
+
+    &[id='${rootQuadrantId}'],
+    &[id='${middleLeftQuadrantId}'],
+    &[id='${middleRightQuadrantId}'] {
       grid-row: calc(var(--c) - 1) / span 1;
     }
 
-    &[id='1c'],
-    &[id='2c'],
-    &[id='3c'] {
+    &[id='${bottomLeftQuadrantId}'],
+    &[id='${bottomCenterQuadrantId}'],
+    &[id='${bottomRightQuadrantId}'] {
       grid-row: var(--c) / span 1;
     }
 
     // Columns
-    &[id='1a'],
-    &[id='1b'],
-    &[id='1c'] {
+    &[id='${topLeftQuadrantId}'],
+    &[id='${middleLeftQuadrantId}'],
+    &[id='${bottomLeftQuadrantId}'] {
       grid-column: 1 / span 1;
     }
     
-    &[id='root'],
-    &[id='2a'],
-    &[id='2b'],
-    &[id='2c'] {
+    &[id='${rootQuadrantId}'],
+    &[id='${topCenterQuadrantId}'],
+    &[id='${bottomCenterQuadrantId}'] {
       grid-column: calc(var(--c) - 1) / span 1;
     }
 
-    &[id='3a'],
-    &[id='3b'],
-    &[id='3c'] {
+    &[id='${topRightQuadrantId}'],
+    &[id='${middleRightQuadrantId}'],
+    &[id='${bottomRightQuadrantId}'] {
       grid-column: var(--c) / span 1;
     }
   }
