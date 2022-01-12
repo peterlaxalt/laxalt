@@ -10,9 +10,11 @@
 import { timeStamp } from "console";
 import React, { Component, createRef } from "react";
 import { createGlobalStyle } from "styled-components";
+import NoWaterDistortCanvas from "../../pages/projects/no-distort-with-canvas";
 import LazyImage from "../../utils/lazyImage";
 import shuffle from "../../utils/shuffle";
 import { DuotoneImage } from "../DuotoneImage";
+import { DharmaCounter } from "../_interactive/DharmaCounter";
 
 // Styles
 import {
@@ -35,6 +37,7 @@ import {
 export class HoverGrid extends Component<{}, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
+  deadItem: React.RefObject<HTMLDivElement>;
   bottomRenderThreshold: number;
 
   constructor(props: any) {
@@ -69,7 +72,7 @@ export class HoverGrid extends Component<{}, any> {
       quadW: 0,
       quadH: 0,
 
-      items: [
+      items: shuffle([
         {
           src: "/projects/flash/esmerelda-sm.jpg",
           alt: "Esmerelda",
@@ -94,11 +97,36 @@ export class HoverGrid extends Component<{}, any> {
           src: "/projects/flash/ormsby-sm.jpg",
           alt: "Ormsby",
         },
-      ],
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
+          alt: "Deso"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+          alt: "Dribbble"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+          alt: "Communion"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+          alt: "Nonvector"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/6860546/nv-4_4x.jpg?compress=1&resize=1600x1200&vertical=top",
+          alt: "Nonvector"
+        },
+        {
+          src: "/projects/allships/crazy-gif.gif",
+          alt: "Allships"
+        }
+      ]),
     };
 
     this.quadrant = React.createRef();
     this.view = React.createRef();
+    this.deadItem = React.createRef();
     this.bottomRenderThreshold = 0;
 
     this.killActive = this.killActive.bind(this);
@@ -112,7 +140,7 @@ export class HoverGrid extends Component<{}, any> {
 
       isActive: true,
 
-      items: shuffle(this.state.items)
+      items: this.state.items
     });
 
     this.loadImages();
@@ -476,7 +504,7 @@ export class HoverGrid extends Component<{}, any> {
 
     // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
 
-    let strength = 13;
+    let strength = 8;
 
     let xSensitivity = 0.995;
     let ySensitivity = 0.995;
@@ -492,7 +520,7 @@ export class HoverGrid extends Component<{}, any> {
         });
       } else {
         if (posX == "right") {
-          this.resetGridCoords(true, false);
+          this.resetGridCoords(true, false, false, true);
         }
       }
 
@@ -502,7 +530,7 @@ export class HoverGrid extends Component<{}, any> {
         });
       } else {
         if (posX == "left") {
-          this.resetGridCoords(true, false);
+          this.resetGridCoords(true, false, false, false);
         }
       }
     }
@@ -529,8 +557,8 @@ export class HoverGrid extends Component<{}, any> {
       }
     }
 
-    this.updateQuadrants();
-
+    
+    window.requestAnimationFrame(this.updateQuadrants);
     window.requestAnimationFrame(this.updateGridCoords);
   };
 
@@ -556,7 +584,7 @@ export class HoverGrid extends Component<{}, any> {
     let cX = winW / 2;
 
     let cxRatio = cX;
-    let cyRatio = 0;
+    let cyRatio = cY;
 
     let l = false;
     let r = false;
@@ -656,6 +684,7 @@ export class HoverGrid extends Component<{}, any> {
             ref={this.view}
           >
             <div className="q" id={rootQuadrantId} ref={this.quadrant}>
+              <div className={`i --dead`} ref={this.deadItem} />
               {this.state.items.map((i, idx) => {
                 return (
                   <div key={idx} className={`i`}>
@@ -671,7 +700,7 @@ export class HoverGrid extends Component<{}, any> {
           </div>
         </HoverGridStyle>
 
-        {/* <div className={`_dbg`}>
+        <div className={`_dbg`} style={{ display: "none" }}>
           mouseX: <strong>{this.state.mouseX} </strong>
           <br />
           mouseY: <strong>{this.state.mouseY} </strong>
@@ -702,7 +731,7 @@ export class HoverGrid extends Component<{}, any> {
           <br />
           imagesLoaded:{" "}
           <strong>{this.state.imagesLoaded ? "true" : "false"}</strong>
-        </div> */}
+        </div>
       </>
     );
   }

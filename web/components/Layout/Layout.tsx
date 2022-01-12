@@ -13,7 +13,7 @@ import { GrainCover } from "../GrainCover";
 
 // Components
 import { SiteHead } from "../SiteHead";
-import { MellowFrameHeader } from "../MellowFrameHeader";
+import { FilterFrameHeader } from "../FilterFrameHeader";
 import { Footer } from "../Footer";
 import { CanvasCursor } from "../CanvasCursor";
 
@@ -23,6 +23,7 @@ import { ColorContext } from "../../constants/styles/Color";
 import { createGlobalStyle } from "styled-components";
 import { CssUtils } from "../../constants/styles/CssUtils";
 import { ColorThemes } from "../ThemePicker";
+import { Cursor } from "../Cursor";
 
 // Begin Interface
 //////////////////////////////////////////////////////////////////////
@@ -63,10 +64,11 @@ export const Layout = ({ children }: Layout) => {
       <SetGlobalTheme />
       <SiteHead title="LAXALT" />
       <GrainCover />
-      <MellowFrameHeader router={router} />
+      <FilterFrameHeader router={router} />
       <main>{children}</main>
-      {/* <Footer router={router} /> */}
+      <Footer router={router} />
       {/* <CanvasCursor /> */}
+      {/* <Cursor /> */}
     </>
   );
 };

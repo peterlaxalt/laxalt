@@ -713,7 +713,7 @@ export const SiteNavigation: LXLT_SiteNavigation = {
     NavItems: [
       {
         label: "Work",
-        href: "/does",
+        href: "/",
         caption: "Lorem ipsum",
       },
       // {
@@ -755,19 +755,19 @@ export const SiteNavigation: LXLT_SiteNavigation = {
     SocialItems: [
       {
         label: "Dribbble",
-        href: "/",
+        href: "https://dribbble.com/peterlaxalt",
       },
       {
         label: "Github",
-        href: "/",
+        href: "https://github.com/peterlaxalt",
       },
       {
         label: "Instagram",
-        href: "/",
+        href: "https://instagram.com/peterlaxalt",
       },
       {
         label: "LinkedIn",
-        href: "/",
+        href: "https://www.linkedin.com/in/peter-laxalt-1b2442b5/",
       },
     ],
   },
@@ -1815,6 +1815,7 @@ export const SiteCollaborators: LXLT_Section_TableColumnField[] = [
   { label: "LOS LOBOS" },
   { label: "GD USA" },
   { label: "SKILLSUSA" },
+  { label: "Laxalt & McIver" },
 ];
 
 export const SiteAwardHeaders: string[] = ["Award", "Project", "Team", "Year"];

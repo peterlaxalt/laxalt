@@ -79,13 +79,14 @@ class FooterP5Canvas extends Component<any, any> {
    *
    */
   renderP5 = (filename: string) => {
-    const sketch: LXLT_GLSL_Canvas = require(`../../sketches/p5/${filename}`).default(
-      this.state.windowWidth,
-      this.state.windowHeight,
-      1,
-      // this.state.canvasTheme,
-      this.state.canvasParent
-    );
+    const sketch: LXLT_GLSL_Canvas =
+      require(`../../sketches/p5/${filename}`).default(
+        this.state.windowWidth,
+        this.state.windowHeight,
+        1,
+        // this.state.canvasTheme,
+        this.state.canvasParent
+      );
 
     return <P5Wrapper sketch={sketch} />;
   };
@@ -114,7 +115,8 @@ export const Footer: React.FunctionComponent<LXLT_Footer> = ({ router }) => {
     };
   });
 
-  let currentRouteClass = router.pathname == "/" ? "route__home" : "";
+  let currentRouteClass =
+    router.pathname == "/" || router.pathname == "/does" ? "route__home" : "";
 
   return (
     <FooterStyle className={`${FooterClassName} ${currentRouteClass}`}>
@@ -136,48 +138,40 @@ export const Footer: React.FunctionComponent<LXLT_Footer> = ({ router }) => {
             {/* _______________________________________________ */}
             {/* Navigation List */}
             <ul className={`${FooterClassName}__nav-list`}>
-              {SiteNavigation.OverlayNav.NavItems.map(
-                (item: LXLT_LinkItemWithCaption, idx: number) => {
-                  return (
-                    <li
-                      key={idx}
-                      className={`${FooterClassName}__nav-list__item`}
-                    >
-                      {/* _______________________________________________ */}
-                      {/* Inner Item */}
-                      <span
-                        className={`${FooterClassName}__nav-list__item__overflow-wrapper`}
+              <li className={`${FooterClassName}__nav-list__item`}>
+                {/* _______________________________________________ */}
+                {/* Inner Item */}
+                <span
+                  className={`${FooterClassName}__nav-list__item__overflow-wrapper`}
+                >
+                  <span className={`${FooterClassName}__nav-list__item__inner`}>
+                    <Link href="/">
+                      <a
+                        className={`${FooterClassName}__nav-list__item__anchor`}
                       >
                         <span
-                          className={`${FooterClassName}__nav-list__item__inner`}
+                          className={`${FooterClassName}__nav-list__item__anchor__indicator`}
+                        />
+                        <span
+                          className={`${FooterClassName}__nav-list__item__anchor__label`}
                         >
-                          <Link href={item.href}>
-                            <a
-                              className={`${FooterClassName}__nav-list__item__anchor`}
-                            >
-                              <span
-                                className={`${FooterClassName}__nav-list__item__anchor__indicator`}
-                              />
-                              <span
-                                className={`${FooterClassName}__nav-list__item__anchor__label`}
-                              >
-                                {item.label}
-                              </span>
-                            </a>
-                          </Link>
+                          View work
                         </span>
-                      </span>
-                    </li>
-                  );
-                }
-              )}
+                      </a>
+                    </Link>
+                  </span>
+                </span>
+              </li>
             </ul>
           </div>
         </div>
 
         {/* ____________________________________________________________ */}
         {/* Footer Bottom */}
-        <div className={`${FooterClassName}__bottom`} style={{ display: "none" }}>
+        <div
+          className={`${FooterClassName}__bottom`}
+          style={{ display: "none" }}
+        >
           {/* ____________________________________________________________ */}
           {/* Footer Bottom Column */}
           <div

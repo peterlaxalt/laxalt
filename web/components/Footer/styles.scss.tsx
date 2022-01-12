@@ -39,7 +39,7 @@ export const FooterStyle = styled.footer`
     background: ${Theme.Color.varBackground};
     color: ${Theme.Color.varForeground};
 
-    padding: 0 ${CssFramePaddingString} ${CssFramePaddingString} ${CssFramePaddingString};
+    /* padding: 0 ${CssFramePaddingString} ${CssFramePaddingString} ${CssFramePaddingString}; */
 
     overflow: hidden;
 

@@ -11,7 +11,7 @@ import { NextPage } from "next";
 import React from "react";
 
 // Components
-import { HomePage } from "../components/Templates/HomePage";
+import { HomePageFeed } from "../components/Templates/HomePageFeed";
 
 // Components
 // import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
@@ -32,7 +32,7 @@ export const HomePageClassName = "route__home-page";
 const FrontPage: NextPage<LMNTS_LocationsFrontPage> = () => {
   return (
     <div className={`${HomePageClassName}`}>
-      <HomePage />
+      <HomePageFeed />
     </div>
   );
 };

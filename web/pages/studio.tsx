@@ -103,7 +103,7 @@ const StudioPage: NextPage<LMNTS_LocationsFrontPage> = () => {
 
         <AccordionListingRow
           labelLeft={`Awards`}
-          labelRight={`Stuff`}
+          labelRight={`Crap`}
         >
           <TableRowListing
             data={SiteAwards}

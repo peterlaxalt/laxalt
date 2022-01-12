@@ -140,14 +140,12 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
                               <li
                                 className={`${InteractiveOverlayNavigationClassName}__social__list__item`}
                                 key={idx}
-                              >
-                                <Link href={item.href}>
-                                  <a
+                              >                                
+                                  <a href={item.href} target="_blank"
                                     className={`${InteractiveOverlayNavigationClassName}__social__list__item__label ${InteractiveOverlayNavigationClassName}__social__list__item__label--anchor`}
                                   >
                                     {item.label}
                                   </a>
-                                </Link>
                               </li>
                             );
                           }

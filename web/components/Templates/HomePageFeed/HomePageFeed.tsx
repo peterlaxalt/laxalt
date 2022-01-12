@@ -35,27 +35,13 @@ export const HomePageFeed: NextPage<LMNTS_HomePageFeed> = ({}) => {
         <div className={`${HomePageFeedClassName}__canvas-wrapper`}>
           <div className={`${HomePageFeedClassName}__canvas`}>
             <HeadlineWrapper>
-              <NoWaterDistortCanvas />
-
-              <span className={`${HomePageFeedClassName}__scroll-down`}>
-                <span className={`${HomePageFeedClassName}__scroll-down__label`}>
-                  Scroll Down
-                </span>
-              </span>
+              <Link href="/does">
+                <a>
+                  <NoWaterDistortCanvas />
+                </a>
+              </Link>
             </HeadlineWrapper>
           </div>
-        </div>
-
-        <div className={`${HomePageFeedClassName}__inline-nav`}>
-          <ul className={`${HomePageFeedClassName}__inline-nav__list`}>
-            {SiteNavigation.OverlayNav.NavItems.map((item, idx) => {
-              return (
-                <li className={`${HomePageFeedClassName}__inline-nav__list__item`} key={idx}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </SimpleContentTemplate>
     </HomePageFeedStyle>

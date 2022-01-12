@@ -31,11 +31,12 @@ export const SimpleContentTemplateClassName = "simple-content";
 export const SimpleContentTemplateStyle = styled.div`
   &.${SimpleContentTemplateClassName} {
     background: ${Theme.Color.varBackground};
-    padding: ${CssFrameSizeWithBorderString};
+    padding: 0 0 0 ${CssFrameSizeWithBorderString};
     padding-bottom: 0;
+    min-height: 100vh;
 
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
-      padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+      /* padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left}; */
 
       .${InnerGridClassName} {
         padding: 0;
@@ -84,6 +85,7 @@ export const SimpleContentTemplateStyle = styled.div`
       .${SimpleContentTemplateClassName}__inner {
         display: flex;
         flex-wrap: nowrap;
+        min-height: 100vh;
       }
 
       .${SimpleContentTemplateClassName}__content {
@@ -93,6 +95,7 @@ export const SimpleContentTemplateStyle = styled.div`
         flex: 1;
 
         max-width: calc(100% - ${LayeredSidebarWidth});
+        min-height: 100vh;
 
         img {
           max-width: 100%;
@@ -134,6 +137,8 @@ export const SimpleContentTemplateStyle = styled.div`
         .${SimpleContentTemplateClassName}__gridlines__el {
           position: absolute;
 
+          z-index: 999;
+
           pointer-events: none;
 
           display: block;
@@ -142,6 +147,8 @@ export const SimpleContentTemplateStyle = styled.div`
           top: 0;
           bottom: 0;
           right: 0;
+
+          min-height: 100vh;
 
           &:before,
           &:after {

@@ -4,6 +4,7 @@
 // Core
 import styled from "styled-components";
 import { Root } from "../../constants/Root";
+import { Theme } from "../../constants/Theme";
 
 // Constants
 // import { Theme } from "../../constants/Theme";
@@ -41,8 +42,6 @@ export const HoverGridStyle = styled.div`
   --cw: 1fr;
   --rh: calc(100vh / var(--c));
 
-  background: black;
-
   position: fixed;
 
   left: 0;
@@ -54,6 +53,18 @@ export const HoverGridStyle = styled.div`
   height: 100vh;
 
   /* transform: scale(1.0001); */
+  opacity: 0;
+
+  /* filter: blur(200px); */
+
+  animation: gridEntrance 1s linear 1;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+
+  * {
+    backface-visibility: hidden;
+    user-select: none;
+  }
 
   // View
   .v {
@@ -62,15 +73,15 @@ export const HoverGridStyle = styled.div`
     left: 0;
     top: 0;
 
-    width: calc(100vw * var(--c));
+    width: calc(175vw * var(--c));
     height: auto;
     min-height: 100vh;
 
     display: grid;
 
-    backface-visibility: hidden;
+    will-change: transform;
 
-    grid-template-columns: repeat(var(--c), 100vw);
+    grid-template-columns: repeat(var(--c), 175vw);
     grid-template-rows: repeat(var(--c), auto);
 
     &.--i {
@@ -81,22 +92,42 @@ export const HoverGridStyle = styled.div`
 
   // Quadrants
   .q {
-    /* background: black; */
 
     display: grid;
 
     backface-visibility: hidden;
 
-    grid-template-columns: repeat(2, var(--cw));
+    grid-template-columns: repeat(4, var(--cw));
     grid-auto-rows: auto;
     grid-auto-flow: row;
 
     width: auto;
     min-width: 100vw;
 
-    @media (min-width: 1600px) {
-      grid-template-columns: repeat(3, var(--cw));
+    // Pseudo item to show background
+    .i.--dead {
+      content: "";
+
+      position: static;
+
+      /* background: rgba(255,255,255, .5); */
+
+      grid-column: 1 / span 2;
     }
+
+    .i.--dead,
+    .i {
+      position: relative;
+
+      right: -0px;
+    }
+
+    .i {
+      top: -80px;
+    }
+    /* @media (min-width: 1600px) {
+      grid-template-columns: repeat(6, var(--cw));
+    } */
 
     /* height: auto;
     min-height: 100vh; */
@@ -190,8 +221,6 @@ export const HoverGridStyle = styled.div`
 
   // Items
   .i {
-    background: black;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,21 +232,13 @@ export const HoverGridStyle = styled.div`
       background: navy;
     }`}
 
-    &:nth-child(odd) {
-      margin-top: calc(${Root.Size} * -20);
-      padding-bottom: calc(${Root.Size} * 20);
-    }
 
-    @media (min-width: 1600px) {
-      &:nth-child(odd) {
-        margin-top: 0;
-        padding-bottom: 0;
-      }
-    }
+    /* &:nth-child(odd) {
+      margin-top: -200px;
+      padding-bottom: 200px;
+    } */
 
     .i-i {
-      color: white;
-
       min-height: var(--rh);
       width: 100%;
 
@@ -227,13 +248,31 @@ export const HoverGridStyle = styled.div`
       align-items: center;
       justify-content: center;
 
-      transform: scale(1.0001);
+      /* transform: scale(1.0001); */
+    }
+
+    .dw {
+      width: 100%;
+
+      position: relative;
+
+      svg {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        fill: ${Theme.Color.varForeground};
+
+        width: 100%;
+        height: 400px;
+      }
     }
 
     .i-t {
-      width: 95%;
+      width: 100%;
 
-      padding: calc(${Root.Size} * 2);
+      padding: calc(${Root.Size} * 1);
 
       img {
         width: 100%;
@@ -241,14 +280,14 @@ export const HoverGridStyle = styled.div`
 
         line-height: 0;
 
-        box-shadow: 0px 0px 0px 0 white;
+        box-shadow: 0px 0px 0px 0 ${Theme.Color.varForeground};
 
         transition: box-shadow .5s ease;
 
-        transform: scale(1.0001);
+        /* transform: scale(1.0001); */
 
         &:hover {
-          box-shadow: 0px 0px 0px calc(${Root.Size} * 2) white;
+          box-shadow: 0px 0px 0px calc(${Root.Size} * 1) ${Theme.Color.varForeground};
         }
       }
     }

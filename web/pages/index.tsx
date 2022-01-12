@@ -1,27 +1,30 @@
-/**
- *
- * index.js
- * @author Peter Laxalt
- * @description The website home page.
- *
- */
-
 // Core
 import { NextPage } from "next";
 import React from "react";
 
-// Components
-import { HomePageFeed } from "../components/Templates/HomePageFeed";
+// Types
+import { LXLT_SidebarPane } from "../components/LayeredSidebar";
+import { LXLT_Category, SiteArtworkGraph } from "../constants/site/Settings";
+
+// Constants
+import { SiteDesignGraph } from "../constants/site/Settings";
 
 // Components
-// import WaterDistortWithCanvasTexturePage from "./projects/water-distort-with-canvas";
+import { SimpleContentTemplate } from "../components/SimpleContentTemplate";
+import { ProjectVerticalListings } from "../components/Sections/ProjectVerticalListings";
+import { ArtworkHeader } from "../components/_svg/Headers/ArtworkHeader";
+import { ArtworkBadge } from "../components/_svg/Headers/ArtworkBadge";
+import { AfterHeadlineWrapper, HeadlineWrapper } from "../components/HeadlineWrapper";
+import { SvgHeadlineDisplay } from "../components/SvgHeadlineDisplay";
+import { HoverGrid } from "../components/HoverGrid";
+import NoWaterDistortCanvas from "./projects/no-distort-with-canvas";
 
 // Begin Component
 // __________________________________________________________________________________________
 
-type LMNTS_LocationsFrontPage = {};
+export type LMNTS_ArtworkFrontPage = {};
 
-export const HomePageFeedClassName = "route__home-page";
+export const ArtworkPageClassName = "route__artwork";
 
 /**
  *
@@ -29,12 +32,16 @@ export const HomePageFeedClassName = "route__home-page";
  * @author Peter Laxalt
  *
  */
-const FrontPage: NextPage<LMNTS_LocationsFrontPage> = () => {
+const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
   return (
-    <div className={`${HomePageFeedClassName}`}>
-      <HomePageFeed />
-    </div>
+    <SimpleContentTemplate
+      addClass={`${ArtworkPageClassName}`}
+      showGridlines={true}
+    >
+      <NoWaterDistortCanvas />
+      <HoverGrid />
+    </SimpleContentTemplate>
   );
 };
 
-export default FrontPage;
+export default ArtworkPage;
