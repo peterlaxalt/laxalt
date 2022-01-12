@@ -516,17 +516,21 @@ html {
     -webkit-tap-highlight-color: transparent; /* for remove highlight */
   }
 
-  /* Intercom */
-  .intercom-namespace {
-    .intercom-launcher-frame {
-      bottom: unset !important;
-      top: 18px !important;
-      right: 139px !important;
-    }
-  }
+  .no-distort-canvas {
+    transition: filter 1s ease, opacity 1s ease;
 
-  .intercom-container {
-    display: none !important;
+    pointer-events: all;
+
+    filter: blur(0px);
+    opacity: 1;
+    transition-delay: .5s;
+
+    &:not(:hover) {
+      filter: blur(100px);
+      opacity: 0;
+
+      transition-delay: 0s;
+    }
   }
 
 `;

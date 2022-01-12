@@ -64,25 +64,25 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
         <div className={`${InteractiveOverlayNavigationClassName}__inner`}>
           {/* _______________________________________________ */}
           {/* Home Button */}
-          <OvalButton
+          {/* <OvalButton
             addStyles={{ ["--animDelay" as any]: '.25s' }}
             label={`Home`}
             href={`/`}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
             addClass={`${InteractiveOverlayNavigationClassName}__oval-btn--home`}
             invert={true}
-          />
+          /> */}
 
           {/* _______________________________________________ */}
           {/* Close Button */}
-          <OvalButton
+          {/* <OvalButton
             addStyles={{ ["--animDelay" as any]: '.5s' }}
             label={`Misc`}
             href={Settings.miscPage}
             onClick={() => toggleOverlayAndLogotypeExpansion()}
             addClass={`${InteractiveOverlayNavigationClassName}__oval-btn--close`}
             invert={true}
-          />
+          /> */}
 
           {/* _______________________________________________ */}
           {/* Navigation List */}

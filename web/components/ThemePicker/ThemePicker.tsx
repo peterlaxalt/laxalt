@@ -99,13 +99,7 @@ export class ThemePickerWithHook extends React.PureComponent<
     super(props);
 
     this.state = {
-      activeTheme: {
-        name: "default",
-        primary: Theme.Color.Primary,
-        secondary: Theme.Color.Secondary,
-        background: Theme.Color.Background,
-        foreground: Theme.Color.Text,
-      },
+      activeTheme: ColorThemes[Math.floor(Math.random() * ColorThemes.length)],
       availableThemes: ColorThemes,
     };
 
@@ -114,19 +108,26 @@ export class ThemePickerWithHook extends React.PureComponent<
 
   componentDidMount() {
     if (typeof window) {
-      window.laxaltUniversalTheme = this.state.activeTheme;
 
-      let nextBodyElement = document.getElementById("__next");
+      this.setNewTheme(this.state.activeTheme);
 
-      if (nextBodyElement) {
-        nextBodyElement.setAttribute("data-theme", this.state.activeTheme.name);
-      }
+      // const { setTheme } = this.props;
+
+      // window.laxaltUniversalTheme = this.state.activeTheme;
+
+      // let nextBodyElement = document.getElementById("__next");
+
+      // if (nextBodyElement) {
+      //   nextBodyElement.setAttribute("data-theme", this.state.activeTheme.name);
+      // }
+
+      // setTheme(theme);
 
       // _________________________
       // Change if dark mode detected
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.setNewTheme(this.state.availableThemes[1]);
-      }
+      // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      //   this.setNewTheme(this.state.availableThemes[1]);
+      // }
 
       __DEBUG__ && console.log("🎨 theme set", window.laxaltUniversalTheme);
     }
@@ -180,11 +181,7 @@ export class ThemePickerWithHook extends React.PureComponent<
             ? availableThemes.map((themeItem: LXLT_ColorTheme, idx: number) => {
                 return (
                   <div
-                    className={`${ThemePickerClassName}__option ${ThemePickerClassName}__option--${
-                      themeItem.name === activeTheme.name
-                        ? "active"
-                        : "inactive"
-                    }`}
+                    className={`${ThemePickerClassName}__option`}
                     onClick={() => this.setNewTheme(themeItem)}
                     key={idx}
                   >

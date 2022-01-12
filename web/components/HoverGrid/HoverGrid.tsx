@@ -120,6 +120,18 @@ export class HoverGrid extends Component<{}, any> {
         {
           src: "/projects/allships/crazy-gif.gif",
           alt: "Allships"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
+          alt: "Full Spectrum Hemp"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
+          alt: "Localyyz"
+        },
+        {
+          src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
+          alt: "Eight Sleep"
         }
       ]),
     };
@@ -504,7 +516,7 @@ export class HoverGrid extends Component<{}, any> {
 
     // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
 
-    let strength = 8;
+    let strength = 5;
 
     let xSensitivity = 0.995;
     let ySensitivity = 0.995;
@@ -687,7 +699,7 @@ export class HoverGrid extends Component<{}, any> {
               <div className={`i --dead`} ref={this.deadItem} />
               {this.state.items.map((i, idx) => {
                 return (
-                  <div key={idx} className={`i`}>
+                  <div key={idx} className={`i`} onMouseOver={(e) => console.log('hovered', e)}>
                     <div className="i-i">
                       <div className="i-t">
                         <img src={i.src} alt={i.alt} />

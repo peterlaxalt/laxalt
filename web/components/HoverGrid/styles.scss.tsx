@@ -57,11 +57,15 @@ export const HoverGridStyle = styled.div`
 
   /* filter: blur(200px); */
 
-  animation: gridEntrance 1s linear 1;
-  animation-delay: 1s;
+  animation: gridEntrance .5s linear 1;
+  animation-delay: .5s;
   animation-fill-mode: forwards;
 
+  pointer-events: none;
+
   * {
+    pointer-events: none;
+
     backface-visibility: hidden;
     user-select: none;
   }
@@ -275,6 +279,8 @@ export const HoverGridStyle = styled.div`
       padding: calc(${Root.Size} * 1);
 
       img {
+        pointer-events: all;
+        
         width: 100%;
         max-width: 100%;
 
