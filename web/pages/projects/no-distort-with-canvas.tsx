@@ -110,6 +110,8 @@ class NoWaterDistortCanvas extends Component<
     if (typeof window) {
       this.updateSize();
 
+      window.dharmaPaused = false;
+
       window.addEventListener("resize", this.updateSize);
     }
   }
@@ -130,6 +132,38 @@ class NoWaterDistortCanvas extends Component<
       canvasTheme: window.laxaltUniversalTheme,
       canvasParent: this.canvasParentRef,
     });
+  }
+
+  playDharma() {
+    console.log('queing dharma to play');
+
+    if (!window.dharmaPaused) {
+      console.log('dharma already playing, deferred');
+
+      return;
+    } else {
+
+      function _play() {
+        console.log('playing dharma');
+  
+        if (typeof window) {
+          if (!window.dharmaPaused) return;
+          
+          window.dharmaPaused = false
+        }
+      }
+  
+      setTimeout(_play, 3000); // match .no-distort-canvas in Global
+    }
+
+  }
+
+  stopDharma() {
+    console.log('stopping dharma');
+
+    if (typeof window) {
+      window.dharmaPaused = true
+    }
   }
 
   /**
@@ -231,6 +265,8 @@ class NoWaterDistortCanvas extends Component<
             <WaterDistortWithCanvasGlobalStyles />
 
             <div
+              // onMouseOver={() => this.playDharma()}
+              // onMouseOut={() => this.stopDharma()}
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }
@@ -246,6 +282,8 @@ class NoWaterDistortCanvas extends Component<
             <WaterDistortWithCanvasGlobalStyles />
 
             <div
+              // onMouseOver={() => this.playDharma()}
+              // onMouseOut={() => this.stopDharma()}
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }
@@ -255,6 +293,8 @@ class NoWaterDistortCanvas extends Component<
             </div>
 
             <div
+              // onMouseOver={() => this.playDharma()}
+              // onMouseOut={() => this.stopDharma()}
               ref={(element: HTMLDivElement) =>
                 (this.canvasParentRef = element)
               }

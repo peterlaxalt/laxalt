@@ -517,7 +517,7 @@ html {
   }
 
   .no-distort-canvas {
-    transition: filter 1s ease, opacity 1s ease;
+    transition: filter 2s ease, opacity 2s ease;
 
     pointer-events: all;
 
@@ -526,7 +526,7 @@ html {
     transition-delay: .5s;
 
     &:not(:hover) {
-      filter: blur(100px);
+      filter: blur(20px);
       opacity: 0;
 
       transition-delay: 0s;

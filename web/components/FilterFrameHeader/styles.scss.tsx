@@ -58,8 +58,9 @@ export const FilterFrameHeaderStyle = styled.div`
       display: none;
     }
 
-    .${FilterFrameHeaderClassName}__frame__nav__linklist {
-      font-weight: 600;
+    .${FilterFrameHeaderClassName}__frame__nav__linklist,
+    .${FilterFrameHeaderClassName}__frame__nav__brandmark {
+      font-weight: 600 !important;
     }
 
     &.${FilterFrameHeaderClassName}--inactive,

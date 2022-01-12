@@ -516,7 +516,7 @@ export class HoverGrid extends Component<{}, any> {
 
     // if (prevMouseX == mouseX && prevMouseY == mouseY) return;
 
-    let strength = 5;
+    let strength = winW > 1600 ? 15 : 5;
 
     let xSensitivity = 0.995;
     let ySensitivity = 0.995;
