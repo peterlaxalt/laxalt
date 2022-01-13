@@ -63,6 +63,31 @@ export const FilterFrameHeaderStyle = styled.div`
       font-weight: 600 !important;
     }
 
+    .${FilterFrameHeaderClassName}__frame__nav__brandmark__label {
+      padding-right: 1em;
+      
+      position: relative;
+
+      overflow: visible !important;
+
+      &:after {
+        content: "";
+
+        position: absolute;
+
+        top: 50%;
+        right: 0;
+
+        transform: translateY(-75%) rotate(45deg);
+
+        border-right: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
+
+        width: 5px;
+        height: 5px;
+      }
+    }
+
     &.${FilterFrameHeaderClassName}--inactive,
     &.${FilterFrameHeaderClassName}--fill-bars-is-expanded {
 

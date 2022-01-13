@@ -326,7 +326,7 @@ const FilterFrameHeaderDisplay: React.FunctionComponent<LXLT_FilterFrameHeaderDi
                         onClick={() => toggleOverlayAndLogotypeExpansion()}
                         className={`${FilterFrameHeaderClassName}__frame__nav__linklist__item__el ${FilterFrameHeaderClassName}__frame__nav__brandmark__label`}
                       >
-                        {router.pathname == '/' ? '/everything' : router.pathname}
+                        {router.pathname == '/' ? '/work' : router.pathname}
                       </span>
                     </div>
                   </div>
