@@ -8,7 +8,7 @@
 
 // Core
 import { timeStamp } from "console";
-import React, { Component, createRef } from "react";
+import React, { Component, createRef, useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import NoWaterDistortCanvas from "../../pages/projects/no-distort-with-canvas";
 import LazyImage from "../../utils/lazyImage";
@@ -34,7 +34,7 @@ import {
 //////////////////////////////////////////////////////////////////////
 
 // HoverGrid
-export class HoverGrid extends Component<{}, any> {
+class HoverGridDesktop extends Component<{}, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
   deadItem: React.RefObject<HTMLDivElement>;
@@ -99,40 +99,40 @@ export class HoverGrid extends Component<{}, any> {
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
-          alt: "Deso"
+          alt: "Deso",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
-          alt: "Dribbble"
+          alt: "Dribbble",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
-          alt: "Communion"
+          alt: "Communion",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
-          alt: "Nonvector"
+          alt: "Nonvector",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/6860546/nv-4_4x.jpg?compress=1&resize=1600x1200&vertical=top",
-          alt: "Nonvector"
+          alt: "Nonvector",
         },
         {
           src: "/projects/allships/crazy-gif.gif",
-          alt: "Allships"
+          alt: "Allships",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
-          alt: "Full Spectrum Hemp"
+          alt: "Full Spectrum Hemp",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
-          alt: "Localyyz"
+          alt: "Localyyz",
         },
         {
           src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
-          alt: "Eight Sleep"
-        }
+          alt: "Eight Sleep",
+        },
       ]),
     };
 
@@ -152,7 +152,7 @@ export class HoverGrid extends Component<{}, any> {
 
       isActive: true,
 
-      items: this.state.items
+      items: this.state.items,
     });
 
     this.loadImages();
@@ -569,7 +569,6 @@ export class HoverGrid extends Component<{}, any> {
       }
     }
 
-    
     window.requestAnimationFrame(this.updateQuadrants);
     window.requestAnimationFrame(this.updateGridCoords);
   };
@@ -699,7 +698,11 @@ export class HoverGrid extends Component<{}, any> {
               <div className={`i --dead`} ref={this.deadItem} />
               {this.state.items.map((i, idx) => {
                 return (
-                  <div key={idx} className={`i`} onMouseOver={(e) => console.log('hovered', e)}>
+                  <div
+                    key={idx}
+                    className={`i`}
+                    onMouseOver={(e) => console.log("hovered", e)}
+                  >
                     <div className="i-i">
                       <div className="i-t">
                         <img src={i.src} alt={i.alt} />
@@ -748,3 +751,24 @@ export class HoverGrid extends Component<{}, any> {
     );
   }
 }
+
+export const HoverGrid = () => {
+  const [isTouchCapable, setTouchCapable] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+      setTouchCapable(true);
+      setLoading(false);
+    } else {
+      setTouchCapable(false);
+      setLoading(false);
+    }
+  });
+
+  return (
+    <>
+      {isLoading ? "Loading" : isTouchCapable ? "Mobile" : <HoverGridDesktop />}
+    </>
+  );
+};
