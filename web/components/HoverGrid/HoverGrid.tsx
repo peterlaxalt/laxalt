@@ -10,6 +10,7 @@
 import { timeStamp } from "console";
 import React, { Component, createRef, useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
+import { LockBodyScroll } from "../../constants/styles/CssUtils";
 import NoWaterDistortCanvas from "../../pages/projects/no-distort-with-canvas";
 import LazyImage from "../../utils/lazyImage";
 import shuffle from "../../utils/shuffle";
@@ -18,7 +19,8 @@ import { DharmaCounter } from "../_interactive/DharmaCounter";
 
 // Styles
 import {
-  HoverGridStyle,
+  HoverGridDesktopStyle,
+  HoverGridTouchCapableStyle,
   bottomCenterQuadrantId,
   bottomLeftQuadrantId,
   bottomRightQuadrantId,
@@ -33,8 +35,13 @@ import {
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
+
+type LXLT_HoverGrid = {
+  items: any[];
+};
+
 // HoverGrid
-class HoverGridDesktop extends Component<{}, any> {
+class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
   deadItem: React.RefObject<HTMLDivElement>;
@@ -72,68 +79,7 @@ class HoverGridDesktop extends Component<{}, any> {
       quadW: 0,
       quadH: 0,
 
-      items: shuffle([
-        {
-          src: "/projects/flash/esmerelda-sm.jpg",
-          alt: "Esmerelda",
-        },
-        {
-          src: "/projects/flash/rr-sm.jpg",
-          alt: "Road Runner",
-        },
-        {
-          src: "/projects/flash/coyote-sm.jpg",
-          alt: "Coyote",
-        },
-        {
-          src: "/projects/flash/vvinemulca-sm.jpg",
-          alt: "Winnemucca",
-        },
-        {
-          src: "/projects/flash/rooster-sm.jpg",
-          alt: "Rooster",
-        },
-        {
-          src: "/projects/flash/ormsby-sm.jpg",
-          alt: "Ormsby",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
-          alt: "Deso",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
-          alt: "Dribbble",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
-          alt: "Communion",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
-          alt: "Nonvector",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/6860546/nv-4_4x.jpg?compress=1&resize=1600x1200&vertical=top",
-          alt: "Nonvector",
-        },
-        {
-          src: "/projects/allships/crazy-gif.gif",
-          alt: "Allships",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
-          alt: "Full Spectrum Hemp",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
-          alt: "Localyyz",
-        },
-        {
-          src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
-          alt: "Eight Sleep",
-        },
-      ]),
+      items: shuffle(this.props.items),
     };
 
     this.quadrant = React.createRef();
@@ -679,7 +625,7 @@ class HoverGridDesktop extends Component<{}, any> {
   render() {
     return (
       <>
-        <HoverGridStyle
+        <HoverGridDesktopStyle
           style={{
             [`--c` as any]: 3,
             [`--qh` as any]: `${this.state.quadH}px`,
@@ -701,7 +647,6 @@ class HoverGridDesktop extends Component<{}, any> {
                   <div
                     key={idx}
                     className={`i`}
-                    onMouseOver={(e) => console.log("hovered", e)}
                   >
                     <div className="i-i">
                       <div className="i-t">
@@ -713,7 +658,7 @@ class HoverGridDesktop extends Component<{}, any> {
               })}
             </div>
           </div>
-        </HoverGridStyle>
+        </HoverGridDesktopStyle>
 
         <div className={`_dbg`} style={{ display: "none" }}>
           mouseX: <strong>{this.state.mouseX} </strong>
@@ -752,6 +697,242 @@ class HoverGridDesktop extends Component<{}, any> {
   }
 }
 
+class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
+  quadrant: React.RefObject<HTMLDivElement>;
+  view: React.RefObject<HTMLDivElement>;
+  deadItem: React.RefObject<HTMLDivElement>;
+  bottomRenderThreshold: number;
+
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      scrollX: 0,
+      scrollY: 0,
+      scrollW: 0,
+      scrollH: 0,
+
+      isActive: false,
+      quadrantCalculated: false,
+
+      imagesLoaded: false,
+      totalImages: 0,
+      imageCounter: 0,
+
+      winW: 0,
+      winH: 0,
+
+      rootGridX: 0,
+      rootGridY: 0,
+
+      quadW: 0,
+      quadH: 0,
+
+      items: shuffle(this.props.items),
+    };
+
+    this.quadrant = React.createRef();
+    this.view = React.createRef();
+    this.deadItem = React.createRef();
+    this.bottomRenderThreshold = 0;
+
+    this.killActive = this.killActive.bind(this);
+    this.setActive = this.setActive.bind(this);
+  }
+
+  componentDidMount(): void {
+    this.setState({
+      winW: window.innerWidth,
+      winH: window.innerHeight,
+
+      isActive: true,
+
+      items: this.state.items,
+    });
+
+    this.init();
+  }
+
+  componentWillUnmount(): void {
+    this.killScrollEventListeners();
+  }
+
+  // _________________________________
+  // Initialize
+
+  init = () => {
+    this.initializeScrollEventListeners();
+    this.initializeQuadrantCalcs();
+  };
+
+  // _________________________________
+  // Scroll managers & listeners
+  initializeScrollEventListeners = () => {
+    if (this.view && this.view.current) {
+      let _v = this.view.current;
+
+      this.setState({
+        scrollW: _v.scrollWidth,
+        scrollH: _v.scrollHeight,
+      })
+
+      _v.addEventListener('scroll', this.handleScroll);
+    }
+  }
+
+  killScrollEventListeners = () => {
+    if (this.view && this.view.current) {
+      let _v = this.view.current;
+
+      _v.removeEventListener('scroll', this.handleScroll);
+    }
+  }
+
+  handleScroll = (e) => {
+    this.updateScrollPosition();
+  }
+
+  updateScrollPosition = () => {
+    let _v = this.view.current;
+
+    console.log(`x: ${_v.scrollLeft}, y: ${_v.scrollTop}`, _v);
+
+    this.setState({
+      scrollX: _v.scrollLeft,
+      scrollY: _v.scrollTop,
+    })
+  }
+
+  // _________________________________
+  // Active / inactive renderer
+  killActive = () => {
+    let { isActive } = this.state;
+
+    if (isActive) {
+      this.setState({
+        isActive: false,
+      });
+    } else {
+      return;
+    }
+  };
+
+  setActive = () => {
+    let { isActive } = this.state;
+
+    if (isActive) {
+      return;
+    } else {
+      this.setState({
+        isActive: true,
+      });
+    }
+  };
+
+  // _________________________________
+  // Quadrant management
+  initializeQuadrantCalcs = () => {
+    if (this.quadrant && this.quadrant.current) {
+      let _q = this.quadrant.current;
+      
+      this.setState({
+        quadW: _q.clientWidth,
+        quadH: _q.clientHeight,
+      })
+    }
+  }
+
+  __temporary__CreateQuadrants = () => {
+    let { quadW, quadH } = this.state;
+    let { quadrant, view } = this;
+
+    let v = view.current;
+    let q = quadrant.current;
+
+    function cloneAndAddNode(
+      n: HTMLDivElement,
+      view: HTMLDivElement,
+      c: string
+    ) {
+      let nClone = n.cloneNode(true) as HTMLDivElement;
+
+      nClone.id = c;
+
+      view.appendChild(nClone);
+    }
+
+    cloneAndAddNode(q, v, topLeftQuadrantId);
+    cloneAndAddNode(q, v, middleLeftQuadrantId);
+    cloneAndAddNode(q, v, bottomLeftQuadrantId);
+
+    cloneAndAddNode(q, v, topCenterQuadrantId);
+    // Root exists
+    cloneAndAddNode(q, v, bottomCenterQuadrantId);
+
+    cloneAndAddNode(q, v, topRightQuadrantId);
+    cloneAndAddNode(q, v, middleRightQuadrantId);
+    cloneAndAddNode(q, v, bottomRightQuadrantId);
+  };
+
+  render() {
+
+
+    return (
+      <>
+        <LockBodyScroll />
+        <HoverGridTouchCapableStyle
+          style={{
+            [`--c` as any]: 3,
+            [`--qh` as any]: `${this.state.quadH}px`,
+          }}
+        >
+          <div
+            className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
+            ref={this.view}
+          >
+            <div className="q" id={rootQuadrantId} ref={this.quadrant}>
+              {/* <div className={`i --dead`} ref={this.deadItem} /> */}
+              {this.state.items.map((i, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className={`i`}
+                  >
+                    <div className="i-i">
+                      <div className="i-t">
+                        <img src={i.src} alt={i.alt} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </HoverGridTouchCapableStyle>
+
+        <div className={`_dbg`}>
+          scrollX: <strong>{this.state.scrollX} </strong>
+          <br />
+          scrollY: <strong>{this.state.scrollY} </strong>
+          <br />
+          scrollW: <strong>{this.state.scrollW} </strong>
+          <br />
+          scrollH: <strong>{this.state.scrollH} </strong>
+          <br />
+          winW: <strong>{this.state.winW} </strong>
+          <br />
+          winH: <strong>{this.state.winH} </strong>
+          <br />
+          quadW: <strong>{this.state.quadW} </strong>
+          <br />
+          quadH: <strong>{this.state.quadH} </strong>
+        </div>
+      </>
+    );
+  }
+}
+
+
 export const HoverGrid = () => {
   const [isTouchCapable, setTouchCapable] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -766,9 +947,72 @@ export const HoverGrid = () => {
     }
   });
 
+  const items = [
+    {
+      src: "/projects/flash/esmerelda-sm.jpg",
+      alt: "Esmerelda",
+    },
+    {
+      src: "/projects/flash/rr-sm.jpg",
+      alt: "Road Runner",
+    },
+    {
+      src: "/projects/flash/coyote-sm.jpg",
+      alt: "Coyote",
+    },
+    {
+      src: "/projects/flash/vvinemulca-sm.jpg",
+      alt: "Winnemucca",
+    },
+    {
+      src: "/projects/flash/rooster-sm.jpg",
+      alt: "Rooster",
+    },
+    {
+      src: "/projects/flash/ormsby-sm.jpg",
+      alt: "Ormsby",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
+      alt: "Deso",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
+      alt: "Dribbble",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
+      alt: "Communion",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
+      alt: "Nonvector",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/6860546/nv-4_4x.jpg?compress=1&resize=1600x1200&vertical=top",
+      alt: "Nonvector",
+    },
+    {
+      src: "/projects/allships/crazy-gif.gif",
+      alt: "Allships",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
+      alt: "Full Spectrum Hemp",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
+      alt: "Localyyz",
+    },
+    {
+      src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
+      alt: "Eight Sleep",
+    },
+  ];
+
   return (
     <>
-      {isLoading ? "Loading" : isTouchCapable ? "Mobile" : <HoverGridDesktop />}
+      {isLoading ? "Loading" : isTouchCapable ? <HoverGridTouchCapable items={items} /> : <HoverGridDesktop items={items} />}
     </>
   );
 };

@@ -38,7 +38,7 @@ export const bottomRightQuadrantId = "_br";
 
 const _DEBUG_ = false;
 
-export const HoverGridStyle = styled.div`
+export const HoverGridDesktopStyle = styled.div`
   --cw: 1fr;
   --rh: calc(100vh / var(--c));
 
@@ -317,3 +317,83 @@ export const HoverGridStyle = styled.div`
     color: black;
   }
 `;
+
+export const HoverGridTouchCapableStyle = styled.div`
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    backface-visibility: hidden;
+
+    position: relative;
+    
+    transform: translate3d(0, 0, 0,);
+  }
+
+  .v {
+    width: 100vw;
+    height: 100vh;
+
+    overflow: scroll;
+  }
+
+  .q {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+
+    width: 325vw;
+    min-width: 100vw;
+
+    gap: 30px;
+    padding: 30px;
+  }
+
+  .i {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .i-t {
+    width: 100%;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  // Debugger
+  ~ ._dbg {
+    position: fixed;
+
+    z-index: 999;
+
+    background: fuchsia;
+
+    left: 20px;
+    bottom: 20px;
+
+    padding: 10px;
+
+    font-size: 12px;
+
+    color: black;
+
+    display: none;
+  }
+`

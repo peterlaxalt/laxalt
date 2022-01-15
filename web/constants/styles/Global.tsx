@@ -67,6 +67,11 @@ const Reset = createGlobalStyle`
   }
 }
 
+@keyframes redraw{
+    0% {opacity: 1;}
+    100% {opacity: .99;}
+}
+
 
 html {
     line-height: 1.15; /* 1 */
