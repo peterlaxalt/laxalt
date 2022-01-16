@@ -822,10 +822,14 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
     console.log(`x: ${_sc.scrollLeft}, y: ${_sc.scrollTop}`, _sc);
 
-    this.setState({
-      scrollX: _sc.scrollLeft,
-      scrollY: _sc.scrollTop,
-    });
+    this.setState(
+      {
+        scrollX: _sc.scrollLeft,
+        scrollY: _sc.scrollTop,
+        scrollXRemainder: _sc.scrollLeft
+      },
+      this.__test__updateScrollPosition
+    );
   };
 
   setInitialScrollPosition = () => {
@@ -844,6 +848,22 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       scrollX: scrollLeft,
       scrollY: scrollTop,
     });
+  };
+
+  __test__updateScrollPosition = () => {
+    let { scrollX, scrollXRemainder, scrollY, quadW, quadH, winW, winH } = this.state;
+    let _sc = this.scrollContainer.current;
+    let offset = 50;
+
+    if (scrollX <= offset) {
+      let scrollLeft = (quadW - offset) + scrollXRemainder;
+
+      _sc.scrollLeft = scrollLeft;
+
+      this.setState({
+        scrollX: scrollLeft,
+      });
+    }
   };
 
   // _________________________________
@@ -912,10 +932,13 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     if (this.quadrant && this.quadrant.current) {
       let _q = this.quadrant.current;
 
-      this.setState({
-        quadW: _q.clientWidth,
-        quadH: _q.clientHeight,
-      }, callback);
+      this.setState(
+        {
+          quadW: _q.clientWidth,
+          quadH: _q.clientHeight,
+        },
+        callback
+      );
     }
   };
 
@@ -992,9 +1015,12 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         </HoverGridTouchCapableStyle>
 
         <div className={`_dbg`}>
-          imagesLoaded: <strong>{this.state.imagesLoaded ? 'true' : 'false'}</strong>
+          imagesLoaded:{" "}
+          <strong>{this.state.imagesLoaded ? "true" : "false"}</strong>
           <br />
           scrollX: <strong>{this.state.scrollX} </strong>
+          <br />
+          scrollXRemainder: <strong>{this.state.scrollXRemainder}</strong>
           <br />
           scrollY: <strong>{this.state.scrollY} </strong>
           <br />
