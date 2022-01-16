@@ -129,38 +129,7 @@ export const HoverGridDesktopStyle = styled.div`
     .i {
       top: -80px;
     }
-    /* @media (min-width: 1600px) {
-      grid-template-columns: repeat(6, var(--cw));
-    } */
-
-    /* height: auto;
-    min-height: 100vh; */
-
-    //  _____ _____ _____
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    //  ----- ----- -----
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    //  ----- ----- -----
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    //  ----- ----- -----
-
-    //  _____ _____ _____
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    // |  7  |  7  |  7  |
-    //  ----- ----- -----
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    // |  7  |  7  |  7  |
-    //  ----- ----- -----
-    // | 123 | 123 | 123 |
-    // | 456 | 456 | 456 |
-    // |  7  |  7  |  7  |
-    //  ----- ----- -----
-
+   
     //  ____ ____ ____
     // | 1a | 2a | 3a |
     // |    |    |    |
@@ -327,7 +296,7 @@ export const HoverGridTouchCapableStyle = styled.div`
   width: 100vw;
   height: 100vh;
 
-  overflow: hidden;
+  overflow: scroll;
 
   * {
     box-sizing: border-box;
@@ -342,10 +311,13 @@ export const HoverGridTouchCapableStyle = styled.div`
   }
 
   .v {
-    width: 100vw;
-    height: 100vh;
+    width: auto;
+    height: auto;
 
-    overflow: scroll;
+    display: grid;
+
+    grid-template-columns: repeat(var(--c), 1fr);
+    grid-template-rows: repeat(var(--r), 1fr);
   }
 
   .q {
@@ -354,6 +326,9 @@ export const HoverGridTouchCapableStyle = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: auto;
     grid-auto-flow: row;
+
+    grid-column: var(--x) / span 1;
+    grid-row: var(--y) / span 1;
 
     width: 325vw;
     min-width: 100vw;
@@ -394,6 +369,6 @@ export const HoverGridTouchCapableStyle = styled.div`
 
     color: black;
 
-    display: none;
+    /* display: none; */
   }
 `

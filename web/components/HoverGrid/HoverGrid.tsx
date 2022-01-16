@@ -35,7 +35,6 @@ import {
 // Begin Component
 //////////////////////////////////////////////////////////////////////
 
-
 type LXLT_HoverGrid = {
   items: any[];
 };
@@ -644,10 +643,7 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
               <div className={`i --dead`} ref={this.deadItem} />
               {this.state.items.map((i, idx) => {
                 return (
-                  <div
-                    key={idx}
-                    className={`i`}
-                  >
+                  <div key={idx} className={`i`}>
                     <div className="i-i">
                       <div className="i-t">
                         <img src={i.src} alt={i.alt} />
@@ -697,6 +693,12 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
   }
 }
 
+// _____________________________________________________________________________
+// _____________________________________________________________________________
+// _____________________________________________________________________________
+// _____________________________________________________________________________
+// _____________________________________________________________________________
+// Touch capable only
 class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
@@ -711,6 +713,26 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       scrollY: 0,
       scrollW: 0,
       scrollH: 0,
+
+      col: 0,
+      totalCol: 3,
+      row: 0,
+      totalRow: 3,
+
+      matrix: {
+        [topLeftQuadrantId]: { x: 1, y: 1, a: true },
+        [middleLeftQuadrantId]: { x: 1, y: 2, a: true },
+        [bottomLeftQuadrantId]: { x: 1, y: 3, a: true },
+
+        [topCenterQuadrantId]: { x: 2, y: 1, a: true },
+        [rootQuadrantId]: { x: 2, y: 2, a: true },
+        [bottomCenterQuadrantId]: { x: 2, y: 3, a: true },
+
+        [topRightQuadrantId]: { x: 3, y: 1, a: true },
+        [middleRightQuadrantId]: { x: 3, y: 2, a: true },
+        [bottomRightQuadrantId]: { x: 3, y: 3, a: true },
+
+      },
 
       isActive: false,
       quadrantCalculated: false,
@@ -763,6 +785,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   init = () => {
     this.initializeScrollEventListeners();
     this.initializeQuadrantCalcs();
+    this.__temporary__CreateQuadrants();
   };
 
   // _________________________________
@@ -774,23 +797,23 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       this.setState({
         scrollW: _v.scrollWidth,
         scrollH: _v.scrollHeight,
-      })
+      });
 
-      _v.addEventListener('scroll', this.handleScroll);
+      _v.addEventListener("scroll", this.handleScroll);
     }
-  }
+  };
 
   killScrollEventListeners = () => {
     if (this.view && this.view.current) {
       let _v = this.view.current;
 
-      _v.removeEventListener('scroll', this.handleScroll);
+      _v.removeEventListener("scroll", this.handleScroll);
     }
-  }
+  };
 
   handleScroll = (e) => {
     this.updateScrollPosition();
-  }
+  };
 
   updateScrollPosition = () => {
     let _v = this.view.current;
@@ -800,8 +823,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     this.setState({
       scrollX: _v.scrollLeft,
       scrollY: _v.scrollTop,
-    })
-  }
+    });
+  };
 
   // _________________________________
   // Active / inactive renderer
@@ -834,70 +857,74 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   initializeQuadrantCalcs = () => {
     if (this.quadrant && this.quadrant.current) {
       let _q = this.quadrant.current;
-      
+
       this.setState({
         quadW: _q.clientWidth,
         quadH: _q.clientHeight,
-      })
+      });
     }
-  }
+  };
+
+  quadrantStyleAttr = (id) => {
+    return `--x: ${this.state.matrix[id].x}; --y: ${this.state.matrix[id].y}`;
+  };
 
   __temporary__CreateQuadrants = () => {
-    let { quadW, quadH } = this.state;
-    let { quadrant, view } = this;
+    let { quadrant, view, quadrantStyleAttr } = this;
 
     let v = view.current;
     let q = quadrant.current;
 
-    function cloneAndAddNode(
-      n: HTMLDivElement,
-      view: HTMLDivElement,
-      c: string
-    ) {
-      let nClone = n.cloneNode(true) as HTMLDivElement;
+    function cloneAndAddNode(id: string) {
+      let qClone = q.cloneNode(true) as HTMLDivElement;
 
-      nClone.id = c;
+      qClone.id = id;
+      qClone.setAttribute("style", quadrantStyleAttr(id));
 
-      view.appendChild(nClone);
+      v.appendChild(qClone);
     }
 
-    cloneAndAddNode(q, v, topLeftQuadrantId);
-    cloneAndAddNode(q, v, middleLeftQuadrantId);
-    cloneAndAddNode(q, v, bottomLeftQuadrantId);
+    cloneAndAddNode(topLeftQuadrantId);
+    cloneAndAddNode(middleLeftQuadrantId);
+    cloneAndAddNode(bottomLeftQuadrantId);
 
-    cloneAndAddNode(q, v, topCenterQuadrantId);
+    cloneAndAddNode(topCenterQuadrantId);
     // Root exists
-    cloneAndAddNode(q, v, bottomCenterQuadrantId);
+    cloneAndAddNode(bottomCenterQuadrantId);
 
-    cloneAndAddNode(q, v, topRightQuadrantId);
-    cloneAndAddNode(q, v, middleRightQuadrantId);
-    cloneAndAddNode(q, v, bottomRightQuadrantId);
+    cloneAndAddNode(topRightQuadrantId);
+    cloneAndAddNode(middleRightQuadrantId);
+    cloneAndAddNode(bottomRightQuadrantId);
   };
 
   render() {
-
-
     return (
       <>
         <LockBodyScroll />
-        <HoverGridTouchCapableStyle
-          style={{
-            [`--c` as any]: 3,
-            [`--qh` as any]: `${this.state.quadH}px`,
-          }}
-        >
+        <HoverGridTouchCapableStyle>
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
             ref={this.view}
+            style={{
+              [`--c` as any]: this.state.totalCol,
+              [`--r` as any]: this.state.totalRow,
+              [`--qh` as any]: `${this.state.quadH}px`,
+              [`--qw` as any]: `${this.state.quadW}px`,
+            }}
           >
-            <div className="q" id={rootQuadrantId} ref={this.quadrant}>
+            <div
+              className="q"
+              id={rootQuadrantId}
+              ref={this.quadrant}
+              style={{
+                [`--x` as any]: this.state.matrix[rootQuadrantId].x,
+                [`--y` as any]: this.state.matrix[rootQuadrantId].y,
+              }}
+            >
               {/* <div className={`i --dead`} ref={this.deadItem} /> */}
               {this.state.items.map((i, idx) => {
                 return (
-                  <div
-                    key={idx}
-                    className={`i`}
-                  >
+                  <div key={idx} className={`i`}>
                     <div className="i-i">
                       <div className="i-t">
                         <img src={i.src} alt={i.alt} />
@@ -919,6 +946,14 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           <br />
           scrollH: <strong>{this.state.scrollH} </strong>
           <br />
+          row: <strong>{this.state.row} </strong>
+          <br />
+          col: <strong>{this.state.col} </strong>
+          <br />
+          totalCol: <strong>{this.state.totalCol} </strong>
+          <br />
+          totalRow: <strong>{this.state.totalRow} </strong>
+          <br />
           winW: <strong>{this.state.winW} </strong>
           <br />
           winH: <strong>{this.state.winH} </strong>
@@ -931,7 +966,6 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     );
   }
 }
-
 
 export const HoverGrid = () => {
   const [isTouchCapable, setTouchCapable] = useState(null);
@@ -1012,7 +1046,13 @@ export const HoverGrid = () => {
 
   return (
     <>
-      {isLoading ? "Loading" : isTouchCapable ? <HoverGridTouchCapable items={items} /> : <HoverGridDesktop items={items} />}
+      {isLoading ? (
+        "Loading"
+      ) : isTouchCapable ? (
+        <HoverGridTouchCapable items={items} />
+      ) : (
+        <HoverGridDesktop items={items} />
+      )}
     </>
   );
 };
