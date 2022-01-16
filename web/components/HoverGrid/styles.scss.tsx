@@ -335,6 +335,8 @@ export const HoverGridTouchCapableStyle = styled.div`
 
     gap: 30px;
     padding: 30px;
+
+    animation: redraw .001s ease infinite;
   }
 
   .i {

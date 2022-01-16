@@ -67,7 +67,7 @@ const Reset = createGlobalStyle`
   }
 }
 
-@keyframes redraw{
+@keyframes redraw {
     0% {opacity: 1;}
     100% {opacity: .99;}
 }

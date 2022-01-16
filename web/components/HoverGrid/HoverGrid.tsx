@@ -702,6 +702,7 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
 class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   quadrant: React.RefObject<HTMLDivElement>;
   view: React.RefObject<HTMLDivElement>;
+  scrollContainer: React.RefObject<HTMLDivElement>;
   deadItem: React.RefObject<HTMLDivElement>;
   bottomRenderThreshold: number;
 
@@ -731,7 +732,6 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         [topRightQuadrantId]: { x: 3, y: 1, a: true },
         [middleRightQuadrantId]: { x: 3, y: 2, a: true },
         [bottomRightQuadrantId]: { x: 3, y: 3, a: true },
-
       },
 
       isActive: false,
@@ -756,6 +756,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     this.quadrant = React.createRef();
     this.view = React.createRef();
     this.deadItem = React.createRef();
+    this.scrollContainer = React.createRef();
     this.bottomRenderThreshold = 0;
 
     this.killActive = this.killActive.bind(this);
@@ -763,16 +764,17 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   }
 
   componentDidMount(): void {
-    this.setState({
-      winW: window.innerWidth,
-      winH: window.innerHeight,
+    this.setState(
+      {
+        winW: window.innerWidth,
+        winH: window.innerHeight,
 
-      isActive: true,
+        isActive: true,
 
-      items: this.state.items,
-    });
-
-    this.init();
+        items: this.state.items,
+      },
+      this.loadImagesAndInitialize
+    );
   }
 
   componentWillUnmount(): void {
@@ -784,45 +786,97 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
   init = () => {
     this.initializeScrollEventListeners();
-    this.initializeQuadrantCalcs();
+    this.initializeQuadrantCalcs(this.setInitialScrollPosition);
     this.__temporary__CreateQuadrants();
   };
 
   // _________________________________
   // Scroll managers & listeners
   initializeScrollEventListeners = () => {
-    if (this.view && this.view.current) {
-      let _v = this.view.current;
+    if (this.scrollContainer && this.scrollContainer.current) {
+      let _sc = this.scrollContainer.current;
+
+      _sc.addEventListener("scroll", this.handleScroll);
 
       this.setState({
-        scrollW: _v.scrollWidth,
-        scrollH: _v.scrollHeight,
+        scrollW: _sc.scrollWidth,
+        scrollH: _sc.scrollHeight,
       });
-
-      _v.addEventListener("scroll", this.handleScroll);
     }
   };
 
   killScrollEventListeners = () => {
-    if (this.view && this.view.current) {
-      let _v = this.view.current;
+    if (this.scrollContainer && this.scrollContainer.current) {
+      let _sc = this.scrollContainer.current;
 
-      _v.removeEventListener("scroll", this.handleScroll);
+      _sc.removeEventListener("scroll", this.handleScroll);
     }
   };
 
-  handleScroll = (e) => {
+  handleScroll = () => {
     this.updateScrollPosition();
   };
 
   updateScrollPosition = () => {
-    let _v = this.view.current;
+    let _sc = this.scrollContainer.current;
 
-    console.log(`x: ${_v.scrollLeft}, y: ${_v.scrollTop}`, _v);
+    console.log(`x: ${_sc.scrollLeft}, y: ${_sc.scrollTop}`, _sc);
 
     this.setState({
-      scrollX: _v.scrollLeft,
-      scrollY: _v.scrollTop,
+      scrollX: _sc.scrollLeft,
+      scrollY: _sc.scrollTop,
+    });
+  };
+
+  setInitialScrollPosition = () => {
+    let { quadW, quadH, winW, winH } = this.state;
+
+    let _sc = this.scrollContainer.current;
+    let _q = this.quadrant.current;
+
+    let scrollLeft = quadW;
+    let scrollTop = quadH;
+
+    _sc.scrollLeft = scrollLeft;
+    _sc.scrollTop = scrollTop;
+
+    this.setState({
+      scrollX: scrollLeft,
+      scrollY: scrollTop,
+    });
+  };
+
+  // _________________________________
+  // Check when all images are loaded
+  loadImagesAndInitialize = () => {
+    let imgs = document.images;
+    let count = 0;
+
+    this.setState({
+      totalImages: imgs.length,
+    });
+
+    const incrementCount = () => {
+      count++;
+
+      if (count === imgs.length) {
+        console.log("Images loaded");
+
+        this.setState(
+          {
+            imagesLoaded: true,
+            imageCounter: count,
+          },
+          this.init
+        );
+      }
+    };
+
+    Array.from(imgs).forEach((img: HTMLImageElement) => {
+      console.log("loading image", count);
+
+      if (img.complete) incrementCount();
+      else img.addEventListener("load", incrementCount, false);
     });
   };
 
@@ -854,14 +908,14 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
   // _________________________________
   // Quadrant management
-  initializeQuadrantCalcs = () => {
+  initializeQuadrantCalcs = (callback) => {
     if (this.quadrant && this.quadrant.current) {
       let _q = this.quadrant.current;
 
       this.setState({
         quadW: _q.clientWidth,
         quadH: _q.clientHeight,
-      });
+      }, callback);
     }
   };
 
@@ -901,7 +955,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     return (
       <>
         <LockBodyScroll />
-        <HoverGridTouchCapableStyle>
+        <HoverGridTouchCapableStyle ref={this.scrollContainer}>
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
             ref={this.view}
@@ -938,6 +992,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         </HoverGridTouchCapableStyle>
 
         <div className={`_dbg`}>
+          imagesLoaded: <strong>{this.state.imagesLoaded ? 'true' : 'false'}</strong>
+          <br />
           scrollX: <strong>{this.state.scrollX} </strong>
           <br />
           scrollY: <strong>{this.state.scrollY} </strong>
