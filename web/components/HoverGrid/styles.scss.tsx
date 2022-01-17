@@ -297,6 +297,8 @@ export const HoverGridTouchCapableStyle = styled.div`
   height: 100vh;
 
   overflow: scroll;
+  
+  padding-left: var(--ml);
 
   * {
     box-sizing: border-box;
@@ -318,6 +320,11 @@ export const HoverGridTouchCapableStyle = styled.div`
 
     grid-template-columns: repeat(var(--c), 1fr);
     grid-template-rows: repeat(var(--r), 1fr);
+
+    &.--i {
+      grid-template-columns: repeat(var(--c), var(--qw));
+      grid-template-rows: repeat(var(--r), var(--qh));
+    }
   }
 
   .q {
