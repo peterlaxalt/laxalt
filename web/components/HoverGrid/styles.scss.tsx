@@ -298,8 +298,6 @@ export const HoverGridTouchCapableStyle = styled.div`
 
   overflow: scroll;
   
-  padding-left: var(--ml);
-
   * {
     box-sizing: border-box;
   }
@@ -343,7 +341,9 @@ export const HoverGridTouchCapableStyle = styled.div`
     gap: 30px;
     padding: 30px;
 
-    animation: redraw .001s ease infinite;
+    box-shadow: 0px 0px 0px 3px blue;
+
+    /* animation: redraw .001s ease infinite; */
   }
 
   .i {
@@ -377,6 +377,8 @@ export const HoverGridTouchCapableStyle = styled.div`
     font-size: 12px;
 
     color: black;
+
+    pointer-events: none;
 
     /* display: none; */
   }

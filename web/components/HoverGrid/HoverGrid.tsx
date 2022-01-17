@@ -8,6 +8,7 @@
 
 // Core
 import React, { Component, useEffect, useState } from "react";
+import { createGlobalStyle } from "styled-components";
 import { LockBodyScroll } from "../../constants/styles/CssUtils";
 import shuffle from "../../utils/shuffle";
 
@@ -304,7 +305,7 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
   //   cloneAndAddNode(phantom, v, bottomRightQuadrantId);
   // };
 
-  // __temporary__CreateQuadrants = () => {
+  // createQuadrantClones = () => {
   //   let { quadW, quadH } = this.state;
   //   let { quadrant, view } = this;
 
@@ -707,8 +708,17 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     this.state = {
       scrollX: 0,
       scrollY: 0,
+
+      prevScrollX: 0,
+      prevScrollY: 0,
+
       scrollW: 0,
       scrollH: 0,
+
+      scrollDir: {
+        x: null, // 'left', 'right'
+        y: null // 'up', 'down'
+      },
 
       col: 0,
       totalCol: 3,
@@ -716,17 +726,17 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       totalRow: 3,
 
       matrix: {
-        [topLeftQuadrantId]: { x: 1, y: 1, a: false },
-        [middleLeftQuadrantId]: { x: 1, y: 2, a: false },
-        [bottomLeftQuadrantId]: { x: 1, y: 3, a: false },
+        [topLeftQuadrantId]: this.createQuadrantMatrix(1, 1, true, null, null),
+        [middleLeftQuadrantId]: this.createQuadrantMatrix(1, 2, false, null, null),
+        [bottomLeftQuadrantId]: this.createQuadrantMatrix(1, 3, false, null, null),
 
-        [topCenterQuadrantId]: { x: 2, y: 1, a: false },
-        [rootQuadrantId]: { x: 2, y: 2, a: true },
-        [bottomCenterQuadrantId]: { x: 2, y: 3, a: false },
+        [topCenterQuadrantId]: this.createQuadrantMatrix(2, 1, true, null, null),
+        [rootQuadrantId]: this.createQuadrantMatrix(2, 2, true, null, null),
+        [bottomCenterQuadrantId]: this.createQuadrantMatrix(2, 3, false, null, null),
 
-        [topRightQuadrantId]: { x: 3, y: 1, a: false },
-        [middleRightQuadrantId]: { x: 3, y: 2, a: false },
-        [bottomRightQuadrantId]: { x: 3, y: 3, a: false },
+        [topRightQuadrantId]: this.createQuadrantMatrix(3, 1, false, null, null),
+        [middleRightQuadrantId]: this.createQuadrantMatrix(3, 2, false, null, null),
+        [bottomRightQuadrantId]: this.createQuadrantMatrix(3, 3, false, null, null),
       },
 
       isActive: false,
@@ -818,15 +828,28 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
   updateScrollPosition = () => {
     let _sc = this.scrollContainer.current;
+    let _scrollX = _sc.scrollLeft;
+    let _scrollY = _sc.scrollTop;
+    let _prevScrollX = this.state.scrollX;
+    let _prevScrollY = this.state.scrollY;
+
+    let _dir = {
+      x: _prevScrollX > _scrollX ? 'left' : 'right',
+      y: _prevScrollY > _scrollY ? 'up' : 'down'
+    }
 
     // console.log(`x: ${_sc.scrollLeft}, y: ${_sc.scrollTop}`, _sc);
 
     this.setState(
       {
-        scrollX: _sc.scrollLeft,
-        scrollY: _sc.scrollTop,
-      },
-      this.__test__updateScrollPosition
+        scrollX: _scrollX,
+        scrollY: _scrollY,
+
+        scrollDir: _dir,
+
+        prevScrollX: _prevScrollX,
+        prevScrollY: _prevScrollY,
+      }
     );
   };
 
@@ -842,56 +865,65 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     _sc.scrollLeft = scrollLeft;
     _sc.scrollTop = scrollTop;
 
-    this.quadrantObserver = new IntersectionObserver(
-      this.handleObserver,
-      this.observerOptions()
-    );
-
     this.setState(
       {
         scrollX: scrollLeft,
         scrollY: scrollTop,
       },
-      this.__temporary__CreateQuadrants
+      this.createQuadrantClones
     );
   };
 
-  __test__updateScrollPosition = () => {
-    let { quadW, totalCol, winW, scrollX } = this.state;
-    let _sc = this.scrollContainer.current;
-    let _q = this.rootQuadrant.current;
-    let threshold = winW / 2;
-    let offset = quadW * totalCol - winW - threshold;
+  // __test__updateScrollPosition = () => {
+  //   let { quadW, totalCol, winW, scrollX } = this.state;
+  //   let _sc = this.scrollContainer.current;
+  //   let _q = this.rootQuadrant.current;
+  //   let threshold = winW / 2;
+  //   let offset = quadW * totalCol - winW - threshold;
 
-    const __test__moveRootQuad = (newCol) => {
-      _q.setAttribute("style", `--x: ${newCol}; --y: 2`);
-    };
+  //   const __test__moveRootQuad = (newCol) => {
+  //     _q.setAttribute("style", `--x: ${newCol}; --y: 2`);
+  //   };
 
-    if (scrollX >= offset) {
-      this.setState(
-        {
-          totalCol: totalCol + 1,
-        },
-        () => __test__moveRootQuad(totalCol + 1)
-      );
-    }
-  };
+  //   if (scrollX >= offset) {
+  //     this.setState(
+  //       {
+  //         totalCol: totalCol + 1,
+  //       },
+  //       () => __test__moveRootQuad(totalCol + 1)
+  //     );
+  //   }
+  // };
 
   // _________________________________
   // Intersection Observers
+
+  createObserver = (id) => {
+    return new IntersectionObserver(
+      (entries, observer) => this.handleObserver(id, entries, observer),
+      this.observerOptions()
+    );
+  };
+
   observerOptions = () => {
+    let { scrollContainer } = this;
+    let { winW, winH } = this.state;
+
+    let sc = scrollContainer.current;
+
     let options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: this.buildThresholdList(),
+      root: sc,
+      rootMargin: `0px`,
+      // threshold: [0, 0.25, 0.5, 0.75, 1],
+      threshold: this.buildThresholdList(100),
     };
 
-    return options
-  }
+    return options;
+  };
 
-  buildThresholdList = () => {
+  buildThresholdList = (s) => {
     let thresholds = [];
-    let numSteps = 20;
+    let numSteps = s;
 
     for (let i = 1.0; i <= numSteps; i++) {
       let ratio = i / numSteps;
@@ -899,12 +931,45 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     }
 
     thresholds.push(0);
+
     return thresholds;
   };
 
-  handleObserver = (entries, observer) => {
-    console.log(`handleObserver() #${entries[0].target.id} entries`, entries);
-    // console.log(`handleObserver() #${entries[0].target.id} observer`, observer);
+  handleObserver = (id, entries, observer) => {
+    console.log(
+      `handleObserver(${id}) ratio`,
+      entries[0].intersectionRatio
+    );
+    console.log(`handleObserver(${id}) entries`, entries);
+    console.log(`handleObserver(${id}) observer`, observer);
+
+    let prevMatrix = this.state.matrix;
+
+    this.updateQuadrantCoordinates(entries, id, prevMatrix);
+  };
+  
+  generateObserverMatrix = (e, id, prevMatrix) => {
+    let isActive = e.intersectionRatio > 0 ? true : false;
+
+    return this.createQuadrantMatrix(prevMatrix[id].x, prevMatrix[id].y, isActive, e.intersectionRatio, prevMatrix[id].r)
+  }
+
+  addObservers = (store) => {
+    let { rootQuadrant, quadrantObserver } = this;
+
+    let q = rootQuadrant.current;
+    let _observer = this.createObserver(rootQuadrantId);
+
+    if (store && q) {
+      if (_observer) {
+        _observer.observe(rootQuadrant.current);
+      }
+
+      store.map((clone) => {
+        let _cloneObserver = this.createObserver(clone.id);
+        _cloneObserver.observe(clone);
+      });
+    }
   };
 
   // _________________________________
@@ -969,6 +1034,32 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
   // _________________________________
   // Quadrant management
+  updateQuadrantCoordinates = (entries, id, prevMatrix) => {
+  
+    entries.map((e) => {
+      let newMatrix = this.generateObserverMatrix(e, id, prevMatrix);
+
+      this.updateQuadrantStyleAttr(id, newMatrix);
+
+      this.setState({
+        matrix: {
+          ... prevMatrix,
+          [id]: newMatrix
+        }
+      }, () => console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix))
+    })
+  }
+  
+  createQuadrantMatrix = (x, y, active, ratio, prevRatio) => {
+    return {
+      x: x,
+      y: y,
+      a: active,
+      r: ratio,
+      pR: prevRatio,
+    };
+  };
+
   initializeQuadrantCalcs = (callback) => {
     if (this.rootQuadrant && this.rootQuadrant.current) {
       let _q = this.rootQuadrant.current;
@@ -984,32 +1075,40 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     }
   };
 
-  quadrantStyleAttr = (id) => {
-    return `--x: ${this.state.matrix[id].x}; --y: ${this.state.matrix[id].y}`;
+  quadrantStyleAttr = (matrix) => {
+    let displayProp = matrix.a ? '1' : '0';
+
+    return `--x: ${matrix.x}; --y: ${matrix.y}; --a: ${displayProp}`;
   };
 
-  __temporary__CreateQuadrants = () => {
+  updateQuadrantStyleAttr = (id, matrix) => {
+    let q = document.getElementById(id);
+
+    if (q) {
+      q.setAttribute("style", this.quadrantStyleAttr(matrix));
+    }
+  }
+
+  createQuadrantClones = () => {
     let { rootQuadrant, view, quadrantStyleAttr, quadrantObserver } = this;
 
-    let v = view.current;
     let q = rootQuadrant.current;
+    let v = view.current;
+    let qCloneStore = [];
 
-    if (quadrantObserver) {
-      quadrantObserver.observe(rootQuadrant.current);
-    }
-
-    function cloneAndAddNode(id: string) {
+    const cloneAndAddNode = (id: string) => {
       let qClone = q.cloneNode(true) as HTMLDivElement;
 
       qClone.id = id;
-      qClone.setAttribute("style", quadrantStyleAttr(id));
-      
+      qClone.setAttribute("style", quadrantStyleAttr(this.state.matrix[id]));
+
       if (quadrantObserver) {
         quadrantObserver.observe(qClone);
       }
 
       v.appendChild(qClone);
-    }
+      qCloneStore.push(qClone);
+    };
 
     cloneAndAddNode(topLeftQuadrantId);
     cloneAndAddNode(middleLeftQuadrantId);
@@ -1022,12 +1121,13 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     cloneAndAddNode(topRightQuadrantId);
     cloneAndAddNode(middleRightQuadrantId);
     cloneAndAddNode(bottomRightQuadrantId);
+
+    this.addObservers(qCloneStore);
   };
 
   render() {
     return (
       <>
-        <LockBodyScroll />
         <HoverGridTouchCapableStyle ref={this.scrollContainer}>
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
@@ -1073,9 +1173,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           <br />
           scrollX: <strong>{this.state.scrollX} </strong>
           <br />
-          scrollXRemainder: <strong>{this.state.scrollXRemainder}</strong>
-          <br />
           scrollY: <strong>{this.state.scrollY} </strong>
+          <br />
+          scrollDir: <strong>{this.state.scrollDir.x} / {this.state.scrollDir.y}</strong>
           <br />
           scrollW: <strong>{this.state.scrollW} </strong>
           <br />

@@ -46,7 +46,7 @@ export const FilterFrameHeaderStyle = styled.div`
     top: 0;
 
     width: 100vw;
-    height: 100vh;
+    max-width: 100vw;
 
     z-index: 900;
 
