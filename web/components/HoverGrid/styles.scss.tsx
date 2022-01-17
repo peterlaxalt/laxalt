@@ -400,6 +400,6 @@ export const HoverGridTouchCapableStyle = styled.div`
 
     pointer-events: none;
 
-    display: none;
+    /* display: none; */
   }
 `

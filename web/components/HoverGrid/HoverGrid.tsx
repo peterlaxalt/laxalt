@@ -738,6 +738,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       activeQuadrants: [rootQuadrantId],
       inactiveQuadrants: [aQuadrantId, bQuadrantId, cQuadrantId],
 
+      visibleColumns: [2],
+      visibleRows: [2],
+
       isActive: false,
       quadrantCalculated: false,
       observerInitialized: false,
@@ -906,12 +909,74 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   };
 
   updatePositioning = () => {
-    let { scrollDir, col, row, totalRow, totalCol, activeQuadrants, inactiveQuadrants, matrix } = this.state;
+    let { 
+      scrollDir,
+      col,
+      row,
+      totalRow,
+      totalCol,
+      activeQuadrants,
+      inactiveQuadrants,
+      matrix,
+      visibleColumns,
+      visibleRows,
+      winW,
+      winH,
+      quadW,
+      quadH 
+    } = this.state;
 
     let prevMatrix = matrix;
 
+    let _visibleColumns = visibleColumns;
+    let _visibleRows = visibleRows;
+
+    let screenXRatio = (winW / quadW);
+    let screenYRatio = (winH / quadH);
+
+    let screenXVec = {
+      start: scrollX,
+      end: scrollX + winW
+    }
+
+    let _rowArray = Array.from(Array(totalRow).keys());
+    let _colArray = Array.from(Array(totalCol).keys());
+
+    _rowArray
+
+    // _rowArray.map((r) => {
+    //   rowAbs.push(`row ${r + 1}: ${Math.abs(r - row)}`)
+    // })
+
+    // if (!_visibleRows.includes(Math.floor(row))) {
+    //   _visibleRows.push(Math.floor(row))
+      
+    //   this.setState({
+    //     visibleRows: _visibleRows
+    //   })
+    // }
+
+    _colArray.map((c) => {
+      let colVec = {
+        start: quadW * (c + 1),
+        end: (quadW * (c + 1)) + quadW
+      };
+
+      // let startVisible = colVec.start <= screenXVec.end && colVec.start >= screenXVec.start;
+      // let endVisible = colVec.end <= screenXVec.end && colVec.end >= screenXVec.start;
+
+      let visible = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
+      let alreadyVisible = _visibleColumns.includes(c);
+
+      if (visible && !alreadyVisible) {
+        _visibleColumns.push(c)
+      }
+    })
+
+    console.log('_visibleColumns', _visibleColumns)
+
     // @TODO: figure out this ratio
-    if (row > (totalRow - .7) && scrollDir.y == 'down') {
+    if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
       if (inactiveQuadrants && inactiveQuadrants.length > 0) {
         let cachedQuadrantId = inactiveQuadrants[0];
         let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
