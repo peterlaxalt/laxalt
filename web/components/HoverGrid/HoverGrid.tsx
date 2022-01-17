@@ -739,6 +739,18 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         [bottomRightQuadrantId]: this.createQuadrantMatrix(3, 3, false, null, null),
       },
 
+      activeQuadrants: [rootQuadrantId],
+      inactiveQuadrants: [
+        topLeftQuadrantId, 
+        middleLeftQuadrantId, 
+        bottomLeftQuadrantId, 
+        topCenterQuadrantId, 
+        bottomCenterQuadrantId,
+        topRightQuadrantId,
+        middleRightQuadrantId,
+        bottomRightQuadrantId
+      ],
+
       isActive: false,
       quadrantCalculated: false,
       observerInitialized: false,
@@ -834,8 +846,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let _prevScrollY = this.state.scrollY;
 
     let _dir = {
-      x: _prevScrollX > _scrollX ? 'left' : 'right',
-      y: _prevScrollY > _scrollY ? 'up' : 'down'
+      x: _prevScrollX >= _scrollX ? 'left' : 'right',
+      y: _prevScrollY >= _scrollY ? 'up' : 'down'
     }
 
     // console.log(`x: ${_sc.scrollLeft}, y: ${_sc.scrollTop}`, _sc);
@@ -849,7 +861,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
         prevScrollX: _prevScrollX,
         prevScrollY: _prevScrollY,
-      }
+      }, this.updateGrid
     );
   };
 
@@ -874,26 +886,39 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     );
   };
 
-  // __test__updateScrollPosition = () => {
-  //   let { quadW, totalCol, winW, scrollX } = this.state;
-  //   let _sc = this.scrollContainer.current;
-  //   let _q = this.rootQuadrant.current;
-  //   let threshold = winW / 2;
-  //   let offset = quadW * totalCol - winW - threshold;
+  updateGrid = () => {
+    let { quadW, quadH, totalCol, totalRow, winW, winH, scrollX, scrollY } = this.state;
+    let _sc = this.scrollContainer.current;
+    let _q = this.rootQuadrant.current;
 
-  //   const __test__moveRootQuad = (newCol) => {
-  //     _q.setAttribute("style", `--x: ${newCol}; --y: 2`);
-  //   };
+    let xThreshold = winW / 2;
+    let yThreshold = winH / 2;
 
-  //   if (scrollX >= offset) {
-  //     this.setState(
-  //       {
-  //         totalCol: totalCol + 1,
-  //       },
-  //       () => __test__moveRootQuad(totalCol + 1)
-  //     );
-  //   }
-  // };
+    let xOffset = quadW * totalCol - winW - xThreshold;
+    let yOffset = quadH * totalRow - winH - xThreshold;
+
+    let currentCol = (scrollX / quadW) + 1;
+    let currentRow = (scrollY / quadH) + 1;
+
+    const _updateTotals = (r, c) => {      
+      let totalColUpdate = scrollX >= xOffset ? c + 1 : c;
+      let totalRowUpdate = scrollY >= yOffset ? r + 1 : r;
+
+      this.setState(
+        {
+          totalCol: totalColUpdate,
+          totalRow: totalRowUpdate
+        }
+      );
+    }
+
+    this.setState({
+      row: currentRow,
+      col: currentCol
+    }, () => _updateTotals(totalRow, totalCol))
+
+    
+  };
 
   // _________________________________
   // Intersection Observers
@@ -1037,19 +1062,49 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   updateQuadrantCoordinates = (entries, id, prevMatrix) => {
   
     entries.map((e) => {
-      let newMatrix = this.generateObserverMatrix(e, id, prevMatrix);
+      let newQuadrantMatrix = this.generateObserverMatrix(e, id, prevMatrix);
+      
+      let isActive = newQuadrantMatrix.a;
+      let prevActiveQuadrants = this.state.activeQuadrants;
+      let prevInactiveQuadrants = this.state.inactiveQuadrants;
 
-      this.updateQuadrantStyleAttr(id, newMatrix);
+      let _activeQuadrants = prevActiveQuadrants;
+      let _inactiveQuadrants = prevInactiveQuadrants;
+
+      let alreadyActiveQuadrant = _activeQuadrants.includes(id);
+      let alreadyInactiveQuadrant = _inactiveQuadrants.includes(id);
+
+      if (isActive) {
+        if (!alreadyActiveQuadrant) {
+          _activeQuadrants.push(id);
+          _inactiveQuadrants = _inactiveQuadrants.filter((i) => i != id);
+        }
+      } else {
+        if (!alreadyInactiveQuadrant) {
+          _inactiveQuadrants.push(id);
+          _activeQuadrants = _activeQuadrants.filter((i) => i != id);
+        }
+      }
+      
+      this.updateQuadrantAttr(id, newQuadrantMatrix);
+
+      let newMatrix = {
+        ... prevMatrix,
+        [id]: newQuadrantMatrix 
+      }
 
       this.setState({
-        matrix: {
-          ... prevMatrix,
-          [id]: newMatrix
-        }
+        matrix: newMatrix,
+        activeQuadrants: _activeQuadrants,
+        inactiveQuadrants: _inactiveQuadrants,
       }, () => console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix))
     })
   }
   
+  updateGridPositioning = () => {
+
+  }
+
   createQuadrantMatrix = (x, y, active, ratio, prevRatio) => {
     return {
       x: x,
@@ -1059,6 +1114,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       pR: prevRatio,
     };
   };
+
 
   initializeQuadrantCalcs = (callback) => {
     if (this.rootQuadrant && this.rootQuadrant.current) {
@@ -1076,16 +1132,15 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   };
 
   quadrantStyleAttr = (matrix) => {
-    let displayProp = matrix.a ? '1' : '0';
-
-    return `--x: ${matrix.x}; --y: ${matrix.y}; --a: ${displayProp}`;
+    return `--x: ${matrix.x}; --y: ${matrix.y};`;
   };
 
-  updateQuadrantStyleAttr = (id, matrix) => {
+  updateQuadrantAttr = (id, matrix) => {
     let q = document.getElementById(id);
 
     if (q) {
       q.setAttribute("style", this.quadrantStyleAttr(matrix));
+      q.setAttribute("aria-hidden", matrix.a ? 'false' : 'true')
     }
   }
 
@@ -1188,6 +1243,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           totalCol: <strong>{this.state.totalCol} </strong>
           <br />
           totalRow: <strong>{this.state.totalRow} </strong>
+          <br />
+          activeQuadrants: <strong>{this.state.activeQuadrants.length}</strong>
+          <br />
+          inactiveQuadrants: <strong>{this.state.inactiveQuadrants.length}</strong>
           <br />
           winW: <strong>{this.state.winW} </strong>
           <br />
