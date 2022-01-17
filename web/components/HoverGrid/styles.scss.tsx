@@ -16,6 +16,9 @@ import { Theme } from "../../constants/Theme";
 // Begin Styles
 //////////////////////////////////////////////////////////////////////
 
+
+// ______________________________________
+// Desktop system
 //  _____ _____ _____
 // | _tl | _tc | _tr |
 // |_____|_____|_____|
@@ -35,6 +38,17 @@ export const bottomCenterQuadrantId = "_bc";
 export const topRightQuadrantId = "_tr";
 export const middleRightQuadrantId = "_mr";
 export const bottomRightQuadrantId = "_br";
+
+// ______________________________________
+// Tappable system
+//  _____ _____ 
+// | _a  | _b  |
+// |_____|_____|
+// | _c  | root|
+// |_____|_____|
+export const aQuadrantId = "_a";
+export const bQuadrantId = "_b";
+export const cQuadrantId = "_c";
 
 const _DEBUG_ = false;
 
@@ -342,6 +356,12 @@ export const HoverGridTouchCapableStyle = styled.div`
     padding: 30px;
 
     box-shadow: 0px 0px 0px 1px blue;
+
+    &[aria-hidden="true"] {
+      * {
+        display: none;
+      }
+    }
 
     /* animation: redraw .001s ease infinite; */
   }

@@ -25,6 +25,9 @@ import {
   topLeftQuadrantId,
   topRightQuadrantId,
   rootQuadrantId,
+  aQuadrantId,
+  bQuadrantId,
+  cQuadrantId,
 } from "./styles.scss";
 
 // Begin Component
@@ -726,30 +729,14 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       totalRow: 3,
 
       matrix: {
-        [topLeftQuadrantId]: this.createQuadrantMatrix(1, 1, true, null, null),
-        [middleLeftQuadrantId]: this.createQuadrantMatrix(1, 2, false, null, null),
-        [bottomLeftQuadrantId]: this.createQuadrantMatrix(1, 3, false, null, null),
-
-        [topCenterQuadrantId]: this.createQuadrantMatrix(2, 1, true, null, null),
+        [aQuadrantId]: this.createQuadrantMatrix(1, 1, true, null, null),
+        [bQuadrantId]: this.createQuadrantMatrix(2, 1, true, null, null),
+        [cQuadrantId]: this.createQuadrantMatrix(1, 2, false, null, null),
         [rootQuadrantId]: this.createQuadrantMatrix(2, 2, true, null, null),
-        [bottomCenterQuadrantId]: this.createQuadrantMatrix(2, 3, false, null, null),
-
-        [topRightQuadrantId]: this.createQuadrantMatrix(3, 1, false, null, null),
-        [middleRightQuadrantId]: this.createQuadrantMatrix(3, 2, false, null, null),
-        [bottomRightQuadrantId]: this.createQuadrantMatrix(3, 3, false, null, null),
       },
 
       activeQuadrants: [rootQuadrantId],
-      inactiveQuadrants: [
-        topLeftQuadrantId, 
-        middleLeftQuadrantId, 
-        bottomLeftQuadrantId, 
-        topCenterQuadrantId, 
-        bottomCenterQuadrantId,
-        topRightQuadrantId,
-        middleRightQuadrantId,
-        bottomRightQuadrantId
-      ],
+      inactiveQuadrants: [aQuadrantId, bQuadrantId, cQuadrantId],
 
       isActive: false,
       quadrantCalculated: false,
@@ -908,7 +895,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         {
           totalCol: totalColUpdate,
           totalRow: totalRowUpdate
-        }
+        }, this.updatePositioning
       );
     }
 
@@ -916,9 +903,79 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       row: currentRow,
       col: currentCol
     }, () => _updateTotals(totalRow, totalCol))
-
-    
   };
+
+  updatePositioning = () => {
+    let { scrollDir, col, row, totalRow, totalCol, activeQuadrants, inactiveQuadrants, matrix } = this.state;
+
+    let prevMatrix = matrix;
+
+    // @TODO: figure out this ratio
+    if (row > (totalRow - .7) && scrollDir.y == 'down') {
+      if (inactiveQuadrants && inactiveQuadrants.length > 0) {
+        let cachedQuadrantId = inactiveQuadrants[0];
+        let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+        let updatedQuadrantMatrix = {
+          ...cachedQuadrantMatrix,
+          x: Math.floor(col),
+          y: totalRow,
+        }
+
+        let matrixKeys = Object.keys(prevMatrix);
+        let itemAlreadyCloned = false;
+
+        matrixKeys.map((key) => {
+          if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+            itemAlreadyCloned = true;
+
+            console.log("item already cloned, bail")
+          }
+        })
+
+        if (!itemAlreadyCloned) {
+          this.setState({
+            matrix: {
+              ... prevMatrix,
+              [cachedQuadrantId]: updatedQuadrantMatrix
+            }
+          }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+        }
+      }
+    }
+
+    // @TODO: figure out this ratio
+    if (col > (totalCol - .7) && scrollDir.x == 'right') {
+      if (inactiveQuadrants && inactiveQuadrants.length > 0) {
+        let cachedQuadrantId = inactiveQuadrants[0];
+        let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+        let updatedQuadrantMatrix = {
+          ...cachedQuadrantMatrix,
+          x: totalCol,
+          y: Math.floor(row),
+        }
+
+        let matrixKeys = Object.keys(prevMatrix);
+        let itemAlreadyCloned = false;
+
+        matrixKeys.map((key) => {
+          if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+            itemAlreadyCloned = true;
+
+            console.log("item already cloned, bail")
+          }
+        })
+
+        if (!itemAlreadyCloned) {
+          this.setState({
+            matrix: {
+              ... prevMatrix,
+              [cachedQuadrantId]: updatedQuadrantMatrix
+            }
+          }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+        }
+      }
+    }
+  }
 
   // _________________________________
   // Intersection Observers
@@ -1086,7 +1143,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         }
       }
       
-      this.updateQuadrantAttr(id, newQuadrantMatrix);
+      this.updateQuadrantVisibility(id, newQuadrantMatrix);
 
       let newMatrix = {
         ... prevMatrix,
@@ -1135,11 +1192,18 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     return `--x: ${matrix.x}; --y: ${matrix.y};`;
   };
 
-  updateQuadrantAttr = (id, matrix) => {
+  updateQuadrantCssVariables = (id, matrix) => {
     let q = document.getElementById(id);
 
     if (q) {
       q.setAttribute("style", this.quadrantStyleAttr(matrix));
+    }
+  }
+
+  updateQuadrantVisibility = (id, matrix) => {
+    let q = document.getElementById(id);
+
+    if (q) {
       q.setAttribute("aria-hidden", matrix.a ? 'false' : 'true')
     }
   }
@@ -1165,17 +1229,18 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       qCloneStore.push(qClone);
     };
 
-    cloneAndAddNode(topLeftQuadrantId);
-    cloneAndAddNode(middleLeftQuadrantId);
-    cloneAndAddNode(bottomLeftQuadrantId);
+    cloneAndAddNode(aQuadrantId);
+    cloneAndAddNode(bQuadrantId);
+    cloneAndAddNode(cQuadrantId);
 
-    cloneAndAddNode(topCenterQuadrantId);
+    // cloneAndAddNode(topCenterQuadrantId);
+
     // Root exists
-    cloneAndAddNode(bottomCenterQuadrantId);
+    // cloneAndAddNode(bottomCenterQuadrantId);
 
-    cloneAndAddNode(topRightQuadrantId);
-    cloneAndAddNode(middleRightQuadrantId);
-    cloneAndAddNode(bottomRightQuadrantId);
+    // cloneAndAddNode(topRightQuadrantId);
+    // cloneAndAddNode(middleRightQuadrantId);
+    // cloneAndAddNode(bottomRightQuadrantId);
 
     this.addObservers(qCloneStore);
   };
