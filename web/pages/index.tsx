@@ -1,5 +1,5 @@
 // Core
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 
 // Types
@@ -21,11 +21,14 @@ import {
 import { SvgHeadlineDisplay } from "../components/SvgHeadlineDisplay";
 import { HoverGrid } from "../components/HoverGrid";
 import NoWaterDistortCanvas from "./projects/no-distort-with-canvas";
+import { QueryUtils } from "../constants/Queries";
 
 // Begin Component
 // __________________________________________________________________________________________
 
-export type LMNTS_ArtworkFrontPage = {};
+export type LMNTS_ArtworkFrontPage = {
+  allContent: any;
+};
 
 export const ArtworkPageClassName = "route__artwork";
 
@@ -35,9 +38,11 @@ export const ArtworkPageClassName = "route__artwork";
  * @author Peter Laxalt
  *
  */
-const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
+const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = ({allContent}) => {
   const [isTouchCapable, setTouchCapable] = useState(null);
   const [isLoading, setLoading] = useState(true);
+
+  console.log('content loaded:', allContent);
 
   useEffect(() => {
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -56,9 +61,20 @@ const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = () => {
     >
       {isLoading ? "Loading" : isTouchCapable ? "" : <NoWaterDistortCanvas />}
 
-      <HoverGrid />
+      <HoverGrid allContent={allContent} />
     </SimpleContentTemplate>
   );
 };
 
 export default ArtworkPage;
+
+/**
+ *
+ * @name Server Rendered Data
+ * @author Peter Francis Laxalt
+ * @description Try to do as many data-specific tasks here as possible.
+ *
+ */
+ export const getStaticProps: GetStaticProps = async () => {
+  return await QueryUtils.initAppData(false);
+};

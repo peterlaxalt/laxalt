@@ -1,22 +1,20 @@
 {
-  "./dev/noop": [
-    {
-      "id": "./node_modules/next/dist/client/dev/noop.js",
-      "file": "static/chunks/1.js"
-    }
-  ],
-  "react-p5-wrapper": [
-    {
-      "id": "./node_modules/next/dist/compiled/webpack/global.js",
-      "file": "static/chunks/0.js"
-    },
-    {
-      "id": "./node_modules/p5/lib/p5.min.js",
-      "file": "static/chunks/0.js"
-    },
-    {
-      "id": "./node_modules/react-p5-wrapper/dist/index.js",
-      "file": "static/chunks/0.js"
-    }
-  ]
+  "../components/Footer/Footer.tsx -> react-p5-wrapper": {
+    "id": "../components/Footer/Footer.tsx -> react-p5-wrapper",
+    "files": [
+      "static/chunks/node_modules_react-p5-wrapper_dist_index_js.js"
+    ]
+  },
+  "../node_modules/next/dist/client/index.js -> ../pages/_error": {
+    "id": "../node_modules/next/dist/client/index.js -> ../pages/_error",
+    "files": [
+      "static/chunks/node_modules_next_dist_pages__error_js.js"
+    ]
+  },
+  "projects/no-distort-with-canvas.tsx -> react-p5-wrapper": {
+    "id": "projects/no-distort-with-canvas.tsx -> react-p5-wrapper",
+    "files": [
+      "static/chunks/node_modules_react-p5-wrapper_dist_index_js.js"
+    ]
+  }
 }
