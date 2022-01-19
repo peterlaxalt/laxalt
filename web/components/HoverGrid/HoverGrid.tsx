@@ -724,9 +724,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       },
 
       col: 0,
-      totalCol: 3,
+      totalCol: 2,
       row: 0,
-      totalRow: 3,
+      totalRow: 2,
 
       matrix: {
         [aQuadrantId]: this.createQuadrantMatrix(1, 1, true, null, null),
@@ -740,6 +740,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
       visibleColumns: [2],
       visibleRows: [2],
+      nearbyColumns: [1],
+      nearbyRows: [1],
 
       isActive: false,
       quadrantCalculated: false,
@@ -885,14 +887,14 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let yThreshold = winH / 2;
 
     let xOffset = quadW * totalCol - winW - xThreshold;
-    let yOffset = quadH * totalRow - winH - xThreshold;
+    let yOffset = quadH * totalRow - winH - yThreshold;
 
-    let currentCol = (scrollX / quadW) + 1;
-    let currentRow = (scrollY / quadH) + 1;
+    let currentCol = (scrollX / quadW);
+    let currentRow = (scrollY / quadH);
 
     const _updateTotals = (r, c) => {      
-      let totalColUpdate = scrollX >= xOffset ? c + 1 : c;
-      let totalRowUpdate = scrollY >= yOffset ? r + 1 : r;
+      let totalColUpdate = scrollX >= xOffset ? c : c;
+      let totalRowUpdate = scrollY >= yOffset ? r : r;
 
       this.setState(
         {
@@ -942,112 +944,110 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let _rowArray = Array.from(Array(totalRow).keys());
     let _colArray = Array.from(Array(totalCol).keys());
 
-    _rowArray
+    // ____________________________________
+    // Get visible columns
+    // console.log('totalCol', totalCol);
+    // console.log('_colArray', _colArray);
 
-    // _rowArray.map((r) => {
-    //   rowAbs.push(`row ${r + 1}: ${Math.abs(r - row)}`)
-    // })
-
-    // if (!_visibleRows.includes(Math.floor(row))) {
-    //   _visibleRows.push(Math.floor(row))
-      
-    //   this.setState({
-    //     visibleRows: _visibleRows
-    //   })
-    // }
-
-    _colArray.map((c) => {
-      let colVec = {
-        start: quadW * (c + 1),
-        end: (quadW * (c + 1)) + quadW
-      };
-
-      // let startVisible = colVec.start <= screenXVec.end && colVec.start >= screenXVec.start;
-      // let endVisible = colVec.end <= screenXVec.end && colVec.end >= screenXVec.start;
-
-      let isInside = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
-      let isOverStartingEdge = screenXVec.end >= colVec.start && screenXVec.start <= colVec.start;
-      let isOverEndingEdge = screenXVec.start <= colVec.end && screenXVec.end >= colVec.end;
-
-      let visible = isInside || isOverStartingEdge || isOverEndingEdge;
-      let alreadyVisible = _visibleColumns.includes(c);
-
-      if (visible) {
-        _visibleColumns.unshift(c)
-      }
-    })
-
-    console.log('_visibleColumns', _visibleColumns)
+    // ____________________________________
 
     this.setState({
-      visibleColumns: _visibleColumns
+      visibleColumns: _visibleColumns,
+      visibleRows: visibleRows
     })
 
-    // @TODO: figure out this ratio
-    if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
-      if (inactiveQuadrants && inactiveQuadrants.length > 0) {
-        let cachedQuadrantId = inactiveQuadrants[0];
-        let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
-        let updatedQuadrantMatrix = {
-          ...cachedQuadrantMatrix,
-          x: Math.floor(col),
-          y: totalRow,
-        }
+    // _colArray.map((c) => {
+    //   let colVec = {
+    //     start: quadW * (c + 1),
+    //     end: (quadW * (c + 1)) + quadW
+    //   };
 
-        let matrixKeys = Object.keys(prevMatrix);
-        let itemAlreadyCloned = false;
+    //   // let startVisible = colVec.start <= screenXVec.end && colVec.start >= screenXVec.start;
+    //   // let endVisible = colVec.end <= screenXVec.end && colVec.end >= screenXVec.start;
 
-        matrixKeys.map((key) => {
-          if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
-            itemAlreadyCloned = true;
+    //   let isInside = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
+    //   let isOverStartingEdge = screenXVec.end >= colVec.start && screenXVec.start <= colVec.start;
+    //   let isOverEndingEdge = screenXVec.start <= colVec.end && screenXVec.end >= colVec.end;
 
-            console.log("item already cloned, bail")
-          }
-        })
+    //   let visible = isInside || isOverStartingEdge || isOverEndingEdge;
+    //   let alreadyVisible = _visibleColumns.includes(c);
 
-        if (!itemAlreadyCloned) {
-          this.setState({
-            matrix: {
-              ... prevMatrix,
-              [cachedQuadrantId]: updatedQuadrantMatrix
-            }
-          }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
-        }
-      }
-    }
+    //   if (visible) {
+    //     _visibleColumns.unshift(c)
+    //   }
+    // })
 
-    // @TODO: figure out this ratio
-    if (col > (totalCol - .7) && scrollDir.x == 'right') {
-      if (inactiveQuadrants && inactiveQuadrants.length > 0) {
-        let cachedQuadrantId = inactiveQuadrants[0];
-        let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
-        let updatedQuadrantMatrix = {
-          ...cachedQuadrantMatrix,
-          x: totalCol,
-          y: Math.floor(row),
-        }
+    // console.log('_visibleColumns', _visibleColumns)
 
-        let matrixKeys = Object.keys(prevMatrix);
-        let itemAlreadyCloned = false;
+    // this.setState({
+    //   visibleColumns: _visibleColumns
+    // })
 
-        matrixKeys.map((key) => {
-          if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
-            itemAlreadyCloned = true;
+    // // @TODO: figure out this ratio
+    // if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
+    //   if (inactiveQuadrants && inactiveQuadrants.length > 0) {
+    //     let cachedQuadrantId = inactiveQuadrants[0];
+    //     let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+    //     let updatedQuadrantMatrix = {
+    //       ...cachedQuadrantMatrix,
+    //       x: Math.floor(col),
+    //       y: totalRow,
+    //     }
 
-            console.log("item already cloned, bail")
-          }
-        })
+    //     let matrixKeys = Object.keys(prevMatrix);
+    //     let itemAlreadyCloned = false;
 
-        if (!itemAlreadyCloned) {
-          this.setState({
-            matrix: {
-              ... prevMatrix,
-              [cachedQuadrantId]: updatedQuadrantMatrix
-            }
-          }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
-        }
-      }
-    }
+    //     matrixKeys.map((key) => {
+    //       if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+    //         itemAlreadyCloned = true;
+
+    //         console.log("item already cloned, bail")
+    //       }
+    //     })
+
+    //     if (!itemAlreadyCloned) {
+    //       this.setState({
+    //         matrix: {
+    //           ... prevMatrix,
+    //           [cachedQuadrantId]: updatedQuadrantMatrix
+    //         }
+    //       }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+    //     }
+    //   }
+    // }
+
+    // // @TODO: figure out this ratio
+    // if (col > (totalCol - .7) && scrollDir.x == 'right') {
+    //   if (inactiveQuadrants && inactiveQuadrants.length > 0) {
+    //     let cachedQuadrantId = inactiveQuadrants[0];
+    //     let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+    //     let updatedQuadrantMatrix = {
+    //       ...cachedQuadrantMatrix,
+    //       x: totalCol,
+    //       y: Math.floor(row),
+    //     }
+
+    //     let matrixKeys = Object.keys(prevMatrix);
+    //     let itemAlreadyCloned = false;
+
+    //     matrixKeys.map((key) => {
+    //       if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+    //         itemAlreadyCloned = true;
+
+    //         console.log("item already cloned, bail")
+    //       }
+    //     })
+
+    //     if (!itemAlreadyCloned) {
+    //       this.setState({
+    //         matrix: {
+    //           ... prevMatrix,
+    //           [cachedQuadrantId]: updatedQuadrantMatrix
+    //         }
+    //       }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+    //     }
+    //   }
+    // }
   }
 
   // _________________________________
@@ -1230,10 +1230,6 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       }, () => console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix))
     })
   }
-  
-  updateGridPositioning = () => {
-
-  }
 
   createQuadrantMatrix = (x, y, active, ratio, prevRatio) => {
     return {
@@ -1244,7 +1240,6 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       pR: prevRatio,
     };
   };
-
 
   initializeQuadrantCalcs = (callback) => {
     if (this.rootQuadrant && this.rootQuadrant.current) {
@@ -1381,6 +1376,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           totalCol: <strong>{this.state.totalCol} </strong>
           <br />
           totalRow: <strong>{this.state.totalRow} </strong>
+          <br />
+          visibleColumns: <strong>{this.state.visibleColumns.length ? this.state.visibleColumns.toString() : ''}</strong>
+          <br />
+          visibleRows: <strong>{this.state.visibleRows.length ? this.state.visibleRows.toString() : ''}</strong>
           <br />
           activeQuadrants: <strong>{this.state.activeQuadrants.length}</strong>
           <br />
