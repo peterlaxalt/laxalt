@@ -355,7 +355,7 @@ export const HoverGridTouchCapableStyle = styled.div`
     gap: 30px;
     padding: 30px;
 
-    box-shadow: 0px 0px 0px 1px blue;
+    /* box-shadow: 0px 0px 0px 1px blue; */
 
     &[aria-hidden="true"] {
       * {
@@ -400,6 +400,6 @@ export const HoverGridTouchCapableStyle = styled.div`
 
     pointer-events: none;
 
-    /* display: none; */
+    display: none;
   }
 `
