@@ -1051,7 +1051,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
           let updatedQuadrantMatrix = {
             ...cachedQuadrantMatrix,
-            x: nearbyCol + 1,
+            x: nearbyCol + 1, 
             y: nearbyRow + 1,
             a: true
           }
@@ -1587,6 +1587,10 @@ export const HoverGrid = () => {
     {
       src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
       alt: "Eight Sleep",
+    },
+    {
+      src: "/projects/flash/goldfield-sm.jpg",
+      alt: "Goldfield",
     },
   ];
 

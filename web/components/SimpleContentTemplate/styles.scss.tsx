@@ -36,7 +36,8 @@ export const SimpleContentTemplateStyle = styled.div`
     min-height: 100vh;
 
     @media(max-width: ${Theme.Base.Media.Width.Md}) {
-      /* padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left}; */
+      padding: 0 ${Root.Grid.Gutter.Right} 0 ${Root.Grid.Gutter.Left};
+      /* padding: 0; */
 
       .${InnerGridClassName} {
         padding: 0;
