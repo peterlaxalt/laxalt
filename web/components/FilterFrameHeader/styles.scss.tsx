@@ -63,7 +63,7 @@ export const FilterFrameHeaderStyle = styled.div`
       font-weight: 600 !important;
     }
 
-    .${FilterFrameHeaderClassName}__frame__nav__brandmark__label {
+    .filter-frame-header__frame__nav__brandmark > .${FilterFrameHeaderClassName}__frame__nav__linklist__item__el {
       padding-right: 1em;
       
       position: relative;
