@@ -965,15 +965,23 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       // let startVisible = colVec.start <= screenXVec.end && colVec.start >= screenXVec.start;
       // let endVisible = colVec.end <= screenXVec.end && colVec.end >= screenXVec.start;
 
-      let visible = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
+      let isInside = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
+      let isOverStartingEdge = screenXVec.end >= colVec.start && screenXVec.start <= colVec.start;
+      let isOverEndingEdge = screenXVec.start <= colVec.end && screenXVec.end >= colVec.end;
+
+      let visible = isInside || isOverStartingEdge || isOverEndingEdge;
       let alreadyVisible = _visibleColumns.includes(c);
 
-      if (visible && !alreadyVisible) {
-        _visibleColumns.push(c)
+      if (visible) {
+        _visibleColumns.unshift(c)
       }
     })
 
     console.log('_visibleColumns', _visibleColumns)
+
+    this.setState({
+      visibleColumns: _visibleColumns
+    })
 
     // @TODO: figure out this ratio
     if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
