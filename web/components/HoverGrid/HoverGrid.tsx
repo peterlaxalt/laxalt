@@ -37,6 +37,8 @@ type LXLT_HoverGrid = {
   items: any[];
 };
 
+const DEBUG_VERBOSE = false;
+
 // HoverGrid
 class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
   rootQuadrant: React.RefObject<HTMLDivElement>;
@@ -171,7 +173,7 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
     };
 
     Array.from(imgs).forEach((img: HTMLImageElement) => {
-      console.log("loading image", count);
+      if (DEBUG_VERBOSE) console.log("loading image", count);
 
       if (img.complete) incrementCount();
       else img.addEventListener("load", incrementCount, false);
@@ -351,13 +353,13 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
     q.style.width = `${q.clientWidth}px`;
 
     if (q) {
-      console.log("quadrant:", q);
+      if (DEBUG_VERBOSE) console.log("quadrant:", q);
 
       this.setInitialGridCoords(q);
 
       return;
     } else {
-      console.log("quadrant not found");
+      console.log("Quadrant not found");
     }
   };
 
@@ -1018,7 +1020,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
             if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
               itemAlreadyCloned = true;
 
-              console.log("item already cloned, bail")
+              if (DEBUG_VERBOSE) console.log("Item already cloned, bail")
             }
           })
 
@@ -1063,7 +1065,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
             if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
               itemAlreadyCloned = true;
 
-              console.log("item already cloned, bail")
+              if (DEBUG_VERBOSE) console.log("Item already cloned, bail")
             }
           })
 
@@ -1202,12 +1204,12 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   };
 
   handleObserver = (id, entries, observer) => {
-    console.log(
+    if (DEBUG_VERBOSE) console.log(
       `handleObserver(${id}) ratio`,
       entries[0].intersectionRatio
     );
-    console.log(`handleObserver(${id}) entries`, entries);
-    console.log(`handleObserver(${id}) observer`, observer);
+    if (DEBUG_VERBOSE) console.log(`handleObserver(${id}) entries`, entries);
+    if (DEBUG_VERBOSE) console.log(`handleObserver(${id}) observer`, observer);
 
     let prevMatrix = this.state.matrix;
 
@@ -1265,7 +1267,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     };
 
     Array.from(imgs).forEach((img: HTMLImageElement) => {
-      console.log("loading image", count);
+      if (DEBUG_VERBOSE) console.log("loading image", count);
 
       if (img.complete) incrementCount();
       else img.addEventListener("load", incrementCount, false);
@@ -1338,7 +1340,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
         matrix: newMatrix,
         activeQuadrants: _activeQuadrants,
         inactiveQuadrants: _inactiveQuadrants,
-      }, () => console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix))
+      }, () => DEBUG_VERBOSE ? console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix) : '')
     })
   }
 
