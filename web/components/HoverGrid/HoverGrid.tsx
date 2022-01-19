@@ -930,6 +930,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       scrollY
     } = this.state;
 
+    // @TODO: Bail on this function if there was no updates, maybe create a prevState to compare as everything below is extremely heavy
+
+    // ___________________________
+    // Vectors
     let screenXVec = {
       start: scrollX,
       end: scrollX + winW
@@ -950,11 +954,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       end: (r + 1) * quadH
     })
 
-    
-    // ____________________________________
-    // Get visible columns
-    // console.log('totalCol', totalCol);
-    // console.log('_colArray', _colArray);
+  
+    // ___________________________
+    // Visibility functions
     const getInView = (screenVec, quadVec, total) => {
       let _totalArray = Array.from(Array(total).keys());
       let _visibleItems = [];
@@ -981,69 +983,116 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       return _nearbyItems;
     }
 
-    const getNearbyColumns = () => {
-      let _totalColumns = Array.from(Array(totalCol).keys());
-      let _nearbyColumns = [];
+    let _visibleColumns = getInView(screenXVec, quadWVec, totalCol);
+    let _visibleRows = getInView(screenYVec, quadHVec, totalRow);
+    let _nearbyColumns = getNearby(screenXVec, quadWVec, totalCol, winW / 2);
+    let _nearbyRows = getNearby(screenYVec, quadHVec, totalRow, winH / 2);
 
-      _totalColumns.map((c) => {
-        if (((screenXVec.end >= quadWVec(c).start - (winW / 2)) && (screenXVec.end <= quadWVec(c).start)) || ((screenXVec.start <= quadWVec(c).end + (winW / 2)) && (screenXVec.start >= quadWVec(c).end))) {
-          _nearbyColumns.push(c)
-        }
+    // ___________________________
+    // Updating functions
+
+    let prevMatrix = this.state.matrix;
+
+    const updateInViewFromCache = (c, r) => {
+      // Bail if we don't have anything to work with
+      if (!c || !r || !inactiveQuadrants) return;
+
+      let tick = 0;
+      let quadRecyclingCache = inactiveQuadrants.length;
+
+      c.map((visCol) => {
+        r.map((visRow) => {
+          let cachedQuadrantId = inactiveQuadrants[tick]; // Take first available
+          let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+          let updatedQuadrantMatrix = {
+            ...cachedQuadrantMatrix,
+            x: visCol + 1,
+            y: visRow + 1,
+            a: true
+          }
+
+          let matrixKeys = Object.keys(prevMatrix);
+          let itemAlreadyCloned = false;
+
+          matrixKeys.map((key) => {
+            if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+              itemAlreadyCloned = true;
+
+              console.log("item already cloned, bail")
+            }
+          })
+
+          if (!itemAlreadyCloned) {
+            this.setState({
+              matrix: {
+                ... prevMatrix,
+                [cachedQuadrantId]: updatedQuadrantMatrix
+              }
+            }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+            
+            tick++;
+          }
+
+        })
       })
-
-      return _nearbyColumns;
-    }
-
-    const getNearbyRows = () => {
-      let _totalRows = Array.from(Array(totalRow).keys());
-      let _nearbyRows = [];
-
-      _totalRows.map((r) => {
-        if (((screenYVec.end >= quadHVec(r).start - (winW / 2)) && (screenYVec.end <= quadHVec(r).start)) || ((screenYVec.start <= quadHVec(r).end + (winH / 2)) && (screenYVec.start >= quadHVec(r).end))) {
-          _nearbyRows.push(r)
-        }
-      })
-
-      return _nearbyRows;
     }
 
     
+    const updateNearbyFromCache = (c, r) => {
+      // Bail if we don't have anything to work with
+      if (!c || !r || !inactiveQuadrants) return;
 
-    // ____________________________________
+      let tick = 0;
+      let quadRecyclingCache = inactiveQuadrants.length;
 
+      c.map((nearbyCol) => {
+        r.map((nearbyRow) => {
+          let cachedQuadrantId = inactiveQuadrants[tick]; // Take first available
+          let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
+          let updatedQuadrantMatrix = {
+            ...cachedQuadrantMatrix,
+            x: nearbyCol + 1,
+            y: nearbyRow + 1,
+            a: true
+          }
+
+          let matrixKeys = Object.keys(prevMatrix);
+          let itemAlreadyCloned = false;
+
+          matrixKeys.map((key) => {
+            if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+              itemAlreadyCloned = true;
+
+              console.log("item already cloned, bail")
+            }
+          })
+
+          if (!itemAlreadyCloned) {
+            this.setState({
+              matrix: {
+                ... prevMatrix,
+                [cachedQuadrantId]: updatedQuadrantMatrix
+              }
+            }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
+            
+            tick++;
+          }
+
+        })
+      })
+    }
+    
+    updateInViewFromCache(_visibleColumns, _visibleRows);
+    updateNearbyFromCache(_nearbyColumns, _nearbyRows);
+
+    // ___________________________
+    // Set State
     this.setState({
-      visibleColumns: getInView(screenXVec, quadWVec, totalCol),
-      visibleRows: getInView(screenYVec, quadHVec, totalRow),
-      nearbyColumns: getNearby(screenXVec, quadWVec, totalCol, winW / 2),
-      nearbyRows: getNearby(screenYVec, quadHVec, totalRow, winH / 2),
+      visibleColumns: _visibleColumns,
+      visibleRows: _visibleRows,
+      nearbyColumns: _nearbyColumns,
+      nearbyRows: _nearbyRows
     })
-
-    // _colArray.map((c) => {
-    //   let colVec = {
-    //     start: quadW * (c + 1),
-    //     end: (quadW * (c + 1)) + quadW
-    //   };
-
-    //   // let startVisible = colVec.start <= screenXVec.end && colVec.start >= screenXVec.start;
-    //   // let endVisible = colVec.end <= screenXVec.end && colVec.end >= screenXVec.start;
-
-    //   let isInside = screenXVec.start >= colVec.start && screenXVec.end <= colVec.end;
-    //   let isOverStartingEdge = screenXVec.end >= colVec.start && screenXVec.start <= colVec.start;
-    //   let isOverEndingEdge = screenXVec.start <= colVec.end && screenXVec.end >= colVec.end;
-
-    //   let visible = isInside || isOverStartingEdge || isOverEndingEdge;
-    //   let alreadyVisible = _visibleColumns.includes(c);
-
-    //   if (visible) {
-    //     _visibleColumns.unshift(c)
-    //   }
-    // })
-
-    // console.log('_visibleColumns', _visibleColumns)
-
-    // this.setState({
-    //   visibleColumns: _visibleColumns
-    // })
 
     // // @TODO: figure out this ratio
     // if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
