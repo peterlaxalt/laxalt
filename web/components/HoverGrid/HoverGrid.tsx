@@ -968,6 +968,19 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       return _visibleItems;
     }
 
+    const getNearby = (screenVec, quadVec, total, threshold) => {
+      let _totalArray = Array.from(Array(total).keys());
+      let _nearbyItems = [];
+
+      _totalArray.map((i) => {
+        if (((screenVec.end >= quadVec(i).start - threshold) && (screenVec.end <= quadVec(i).start)) || ((screenVec.start <= quadVec(i).end + threshold) && (screenVec.start >= quadVec(i).end))) {
+          _nearbyItems.push(i)
+        }
+      })
+
+      return _nearbyItems;
+    }
+
     const getNearbyColumns = () => {
       let _totalColumns = Array.from(Array(totalCol).keys());
       let _nearbyColumns = [];
@@ -986,7 +999,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       let _nearbyRows = [];
 
       _totalRows.map((r) => {
-        if (((screenYVec.end >= quadHVec(r).start - (winW / 2)) && (screenYVec.end <= quadHVec(r).start)) || ((screenYVec.start <= quadHVec(r).end + (winW / 2)) && (screenYVec.start >= quadHVec(r).end))) {
+        if (((screenYVec.end >= quadHVec(r).start - (winW / 2)) && (screenYVec.end <= quadHVec(r).start)) || ((screenYVec.start <= quadHVec(r).end + (winH / 2)) && (screenYVec.start >= quadHVec(r).end))) {
           _nearbyRows.push(r)
         }
       })
@@ -1001,8 +1014,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     this.setState({
       visibleColumns: getInView(screenXVec, quadWVec, totalCol),
       visibleRows: getInView(screenYVec, quadHVec, totalRow),
-      nearbyColumns: getNearbyColumns(),
-      nearbyRows: getNearbyRows(),
+      nearbyColumns: getNearby(screenXVec, quadWVec, totalCol, winW / 2),
+      nearbyRows: getNearby(screenYVec, quadHVec, totalRow, winH / 2),
     })
 
     // _colArray.map((c) => {
