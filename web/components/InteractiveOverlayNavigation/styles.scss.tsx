@@ -79,21 +79,24 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
 
     /* _________________________________________________ */
     /* Theme Picker */
-    /* .${InteractiveOverlayNavigationClassName}__theme-picker {
+    .${InteractiveOverlayNavigationClassName}__theme-picker {
       position: absolute;
 
       left: 50%;
-      bottom: ${Root.Grid.Gutter.Bottom};
+      /* bottom: calc(env(safe-area-inset-bottom) + ${Root.Grid.Gutter.Bottom}); */
+      bottom: 100px;
 
       transform: translateX(-50%);
 
       color: ${Theme.Color.varBackground};
 
-      @media (min-width: ${Theme.Base.Media.Width.Md}) {
+      @media (min-width: ${Theme.Base.Media.Width.Sm}) {
         left: calc(${Root.Grid.Gutter.Left} * 2);
         bottom: calc(${Root.Grid.Gutter.Bottom} * 2);
 
         transform: unset;
+
+        display: none !important;
       }
 
       @media (max-width: ${Theme.Base.Media.Width.Md}) {
@@ -133,7 +136,7 @@ export const InteractiveOverlayNavigationStyle = styled.nav`
           display: none;
         }
       }
-    } */
+    }
 
     /* _________________________________________________ */
     /* Inner Grid */

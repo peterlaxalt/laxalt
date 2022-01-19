@@ -226,7 +226,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
 
           {/* _______________________________________________ */}
           {/* Theme Picker */}
-          {/* <div
+          <div
             className={`${InteractiveOverlayNavigationClassName}__theme-picker`}
           >
             <span
@@ -234,7 +234,7 @@ export const InteractiveOverlayNavigation: React.FunctionComponent<LXLT_Interact
             >
               <ThemePicker />
             </span>
-          </div> */}
+          </div>
         </div>
       </InteractiveOverlayNavigationStyle>
     </>
