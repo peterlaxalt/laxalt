@@ -82,6 +82,13 @@ export const AccordionListingRowStyle = styled.section`
       }
     }
 
+    &:last-child[aria-expanded="false"] {
+      .${AccordionListingRowClassName}__title__btn::after,
+      .${AccordionListingRowClassName}__content::after {
+        display: none;
+      }
+    }
+
     .${AccordionListingRowClassName}__title {
       width: 100%;
 
