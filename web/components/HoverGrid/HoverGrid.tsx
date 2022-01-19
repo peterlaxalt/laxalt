@@ -893,8 +893,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let currentRow = (scrollY / quadH);
 
     const _updateTotals = (r, c) => {      
-      let totalColUpdate = scrollX >= xOffset ? c : c;
-      let totalRowUpdate = scrollY >= yOffset ? r : r;
+      let totalColUpdate = scrollX >= xOffset ? c + 1 : c;
+      let totalRowUpdate = scrollY >= yOffset ? r + 1 : r;
 
       this.setState(
         {
