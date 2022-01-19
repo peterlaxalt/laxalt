@@ -925,35 +925,84 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       winW,
       winH,
       quadW,
-      quadH 
+      quadH ,
+      scrollX,
+      scrollY
     } = this.state;
-
-    let prevMatrix = matrix;
-
-    let _visibleColumns = visibleColumns;
-    let _visibleRows = visibleRows;
-
-    let screenXRatio = (winW / quadW);
-    let screenYRatio = (winH / quadH);
 
     let screenXVec = {
       start: scrollX,
       end: scrollX + winW
     }
 
-    let _rowArray = Array.from(Array(totalRow).keys());
-    let _colArray = Array.from(Array(totalCol).keys());
+    let screenYVec = {
+      start: scrollY,
+      end: scrollY + winH
+    }
 
+    const quadWVec = (c) => ({
+      start: c * quadW,
+      end: (c + 1) * quadW
+    })
+
+    const quadHVec = (r) => ({
+      start: r * quadH,
+      end: (r + 1) * quadH
+    })
+
+    
     // ____________________________________
     // Get visible columns
     // console.log('totalCol', totalCol);
     // console.log('_colArray', _colArray);
+    const getInView = (screenVec, quadVec, total) => {
+      let _totalArray = Array.from(Array(total).keys());
+      let _visibleItems = [];
+
+      _totalArray.map((i) => {
+        if ((screenVec.start > quadVec(i).start && (screenVec.start < quadVec(i).end)) || ((screenVec.end > quadVec(i).start) && (screenVec.end < (quadVec(i).end)))) {
+          _visibleItems.push(i);
+        }
+      })
+      
+      return _visibleItems;
+    }
+
+    const getNearbyColumns = () => {
+      let _totalColumns = Array.from(Array(totalCol).keys());
+      let _nearbyColumns = [];
+
+      _totalColumns.map((c) => {
+        if (((screenXVec.end >= quadWVec(c).start - (winW / 2)) && (screenXVec.end <= quadWVec(c).start)) || ((screenXVec.start <= quadWVec(c).end + (winW / 2)) && (screenXVec.start >= quadWVec(c).end))) {
+          _nearbyColumns.push(c)
+        }
+      })
+
+      return _nearbyColumns;
+    }
+
+    const getNearbyRows = () => {
+      let _totalRows = Array.from(Array(totalRow).keys());
+      let _nearbyRows = [];
+
+      _totalRows.map((r) => {
+        if (((screenYVec.end >= quadHVec(r).start - (winW / 2)) && (screenYVec.end <= quadHVec(r).start)) || ((screenYVec.start <= quadHVec(r).end + (winW / 2)) && (screenYVec.start >= quadHVec(r).end))) {
+          _nearbyRows.push(r)
+        }
+      })
+
+      return _nearbyRows;
+    }
+
+    
 
     // ____________________________________
 
     this.setState({
-      visibleColumns: _visibleColumns,
-      visibleRows: visibleRows
+      visibleColumns: getInView(screenXVec, quadWVec, totalCol),
+      visibleRows: getInView(screenYVec, quadHVec, totalRow),
+      nearbyColumns: getNearbyColumns(),
+      nearbyRows: getNearbyRows(),
     })
 
     // _colArray.map((c) => {
@@ -1377,9 +1426,13 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           <br />
           totalRow: <strong>{this.state.totalRow} </strong>
           <br />
-          visibleColumns: <strong>{this.state.visibleColumns.length ? this.state.visibleColumns.toString() : ''}</strong>
+          visibleColumns: <strong>[{this.state.visibleColumns.length ? this.state.visibleColumns.toString() : ''}]</strong>
           <br />
-          visibleRows: <strong>{this.state.visibleRows.length ? this.state.visibleRows.toString() : ''}</strong>
+          visibleRows: <strong>[{this.state.visibleRows.length ? this.state.visibleRows.toString() : ''}]</strong>
+          <br />
+          nearbyColumns: <strong>[{this.state.nearbyColumns.length ? this.state.nearbyColumns.toString() : ''}]</strong>
+          <br />
+          nearbyRows: <strong>[{this.state.nearbyRows.length ? this.state.nearbyRows.toString() : ''}]</strong>
           <br />
           activeQuadrants: <strong>{this.state.activeQuadrants.length}</strong>
           <br />
