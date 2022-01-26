@@ -28,6 +28,7 @@ import { QueryUtils } from "../constants/Queries";
 
 export type LMNTS_ArtworkFrontPage = {
   allContent: any;
+  allCategories: any;
 };
 
 export const ArtworkPageClassName = "route__artwork";
