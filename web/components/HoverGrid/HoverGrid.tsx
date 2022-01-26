@@ -10,6 +10,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { LockBodyScroll } from "../../constants/styles/CssUtils";
+import { LaxaltContext } from "../../state";
 import shuffle from "../../utils/shuffle";
 
 // Styles
@@ -1518,6 +1519,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 export const HoverGrid = ({allContent}) => {
   const [isTouchCapable, setTouchCapable] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const laxaltState = React.useContext(LaxaltContext);
 
   useEffect(() => {
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -1537,73 +1539,6 @@ export const HoverGrid = ({allContent}) => {
       alt: i.fields.Name
     }
   }).filter((i) => i !== false);
-
-  // const items = [
-  //   {
-  //     src: "/projects/flash/esmerelda-sm.jpg",
-  //     alt: "Esmerelda",
-  //   },
-  //   {
-  //     src: "/projects/flash/rr-sm.jpg",
-  //     alt: "Road Runner",
-  //   },
-  //   {
-  //     src: "/projects/flash/coyote-sm.jpg",
-  //     alt: "Coyote",
-  //   },
-  //   {
-  //     src: "/projects/flash/vvinemulca-sm.jpg",
-  //     alt: "Winnemucca",
-  //   },
-  //   {
-  //     src: "/projects/flash/rooster-sm.jpg",
-  //     alt: "Rooster",
-  //   },
-  //   {
-  //     src: "/projects/flash/ormsby-sm.jpg",
-  //     alt: "Ormsby",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/5917586/deso-full-sheet_4x.jpg?compress=1&resize=1000x750",
-  //     alt: "Deso",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/6247770/drib-snakepin-dribbbb_4x.jpg?compress=1&resize=1000x750",
-  //     alt: "Dribbble",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/5917614/csf-containers_4x.jpg?compress=1&resize=1000x750",
-  //     alt: "Communion",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/6860552/nv-9_4x.jpg?compress=1&resize=1000x750",
-  //     alt: "Nonvector",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/6860546/nv-4_4x.jpg?compress=1&resize=1600x1200&vertical=top",
-  //     alt: "Nonvector",
-  //   },
-  //   {
-  //     src: "/projects/allships/crazy-gif.gif",
-  //     alt: "Allships",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/14085110/media/8a7b13906dc241f63f4d21dcf8988f24.png?compress=1&resize=1000x750",
-  //     alt: "Full Spectrum Hemp",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/5058990/localyyz-anim-render-loop.gif",
-  //     alt: "Localyyz",
-  //   },
-  //   {
-  //     src: "https://cdn.dribbble.com/users/221507/screenshots/4179206/alarm-interact-drib.gif",
-  //     alt: "Eight Sleep",
-  //   },
-  //   {
-  //     src: "/projects/flash/goldfield-sm.jpg",
-  //     alt: "Goldfield",
-  //   },
-  // ];
 
   return (
     <>

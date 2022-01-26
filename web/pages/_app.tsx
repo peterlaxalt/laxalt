@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import { Layout } from "../components/Layout";
 import { ColorContext, ColorContext_Dark_Defaults, useColorContext } from "../constants/styles/Color";
+import { LaxaltContext, useLaxaltState } from "../state";
 
 // Begin Component
 // __________________________________________________________________________________________
@@ -21,15 +22,17 @@ type LMNTS_CustomAppData = AppProps & {};
 
 const MyApp = ({ Component, pageProps }: LMNTS_CustomAppData) => {
   const colorTheme = useColorContext();
-  const { setTheme } = useColorContext();
+  const laxaltState = useLaxaltState();
 
   // Render our App
   return (
-    <ColorContext.Provider value={colorTheme}>
-      <Layout {...pageProps}>
-        <Component {...pageProps} />
-      </Layout>
-    </ColorContext.Provider>
+    <LaxaltContext.Provider value={laxaltState}>
+      <ColorContext.Provider value={colorTheme}>
+        <Layout {...pageProps}>
+          <Component {...pageProps} />
+        </Layout>
+      </ColorContext.Provider>
+    </LaxaltContext.Provider>
   );
 };
 
