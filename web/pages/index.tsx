@@ -38,11 +38,12 @@ export const ArtworkPageClassName = "route__artwork";
  * @author Peter Laxalt
  *
  */
-const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = ({allContent}) => {
+const ArtworkPage: NextPage<LMNTS_ArtworkFrontPage> = ({allContent, allCategories}) => {
   const [isTouchCapable, setTouchCapable] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   console.log('content loaded:', allContent);
+  console.log('categories loaded:', allCategories);
 
   useEffect(() => {
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {

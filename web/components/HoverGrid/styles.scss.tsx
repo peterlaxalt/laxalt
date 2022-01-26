@@ -237,49 +237,6 @@ export const HoverGridDesktopStyle = styled.div`
 
       /* transform: scale(1.0001); */
     }
-
-    .dw {
-      width: 100%;
-
-      position: relative;
-
-      svg {
-        position: absolute;
-
-        left: 0;
-        top: 0;
-
-        fill: ${Theme.Color.varForeground};
-
-        width: 100%;
-        height: 400px;
-      }
-    }
-
-    .i-t {
-      width: 100%;
-
-      padding: calc(${Root.Size} * 1);
-
-      img {
-        pointer-events: all;
-        
-        width: 100%;
-        max-width: 100%;
-
-        line-height: 0;
-
-        box-shadow: 0px 0px 0px 0 ${Theme.Color.varForeground};
-
-        transition: box-shadow .5s ease;
-
-        /* transform: scale(1.0001); */
-
-        &:hover {
-          box-shadow: 0px 0px 0px calc(${Root.Size} * 1) ${Theme.Color.varForeground};
-        }
-      }
-    }
   }
 
   // Debugger
@@ -373,14 +330,6 @@ export const HoverGridTouchCapableStyle = styled.div`
     justify-content: center;
   }
 
-  .i-t {
-    width: 100%;
-
-    img {
-      max-width: 100%;
-    }
-  }
-
   // Debugger
   ~ ._dbg {
     position: fixed;
@@ -401,5 +350,93 @@ export const HoverGridTouchCapableStyle = styled.div`
     pointer-events: none;
 
     display: none;
+  }
+`
+export const HoverGridItemStyle = styled.div`
+  width: 100%;
+
+  img {
+    max-width: 100%;
+  }
+
+  .i-t {
+    margin-top: calc(${Root.Size} / 2);
+
+    display: flex;
+
+    @media (hover: hover) {
+      margin-top: calc(${Root.Size} * 1.5);
+
+      transform: translateY(-80%);
+
+      transition: transform .4s ease;
+    }
+  }
+
+  @media (hover: hover) {
+    .i-c:hover + .i-t {
+      transform: translateY(0%);
+    }
+  }
+
+  button {
+    pointer-events: all;
+
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    padding: 5px 13px;
+
+    color: ${Theme.Color.varForeground};
+    box-shadow: 0px 0px 0px 1px currentColor;
+
+    + button {
+      margin-left: 10px;
+    }
+
+    &:active {
+      color: ${Theme.Color.varBackground};
+      box-shadow: 0px 0px 0px 1px ${Theme.Color.varForeground};
+      background: ${Theme.Color.varForeground};
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: ${Theme.Color.varBackground};
+        box-shadow: 0px 0px 0px 1px ${Theme.Color.varForeground};
+        background: ${Theme.Color.varForeground};
+      }
+    }
+  }
+  
+  @media (min-width: ${Theme.Base.Media.Width.Sm}) {
+    width: 100%;
+
+    padding: calc(${Root.Size} * 1);
+
+    img {
+      pointer-events: all;
+      
+      width: 100%;
+      max-width: 100%;
+
+      line-height: 0;
+
+      box-shadow: 0px 0px 0px 0 ${Theme.Color.varForeground};
+
+      transition: box-shadow .5s ease;
+
+      /* transform: scale(1.0001); */
+
+      &:hover {
+        box-shadow: 0px 0px 0px calc(${Root.Size} * 1) ${Theme.Color.varForeground};
+      }
+    }
   }
 `

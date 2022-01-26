@@ -1,13 +1,13 @@
 import React from "react";
 
-type LXLT_State_Filter = {
+export type LXLT_State_Filters = {
   queries: string[];
 };
 
 type LXLT_State = {
   currentFilter: {
-    _state: LXLT_State_Filter;
-    _set: (_filterUpdate: LXLT_State_Filter) => void;
+    _state: LXLT_State_Filters;
+    _set: (_filterUpdate: LXLT_State_Filters) => void;
   };
 };
 
@@ -33,11 +33,11 @@ export const LAXALT_DEFAULT_STATE: LXLT_State = {
  *
  */
 export const useLaxaltState = (): LXLT_State => {
-  const initialFilterState: LXLT_State_Filter = { queries: [] };
+  const initialFilterState: LXLT_State_Filters = { queries: [] };
   const [filterState, setFilterState] = React.useState(initialFilterState);
 
   const updateFilterState = React.useCallback(
-    (_filterUpdate: LXLT_State_Filter): void => {
+    (_filterUpdate: LXLT_State_Filters): void => {
       setFilterState(_filterUpdate);
     },
     []

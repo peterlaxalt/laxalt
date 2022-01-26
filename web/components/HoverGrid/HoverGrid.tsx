@@ -10,7 +10,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { LockBodyScroll } from "../../constants/styles/CssUtils";
-import { LaxaltContext } from "../../state";
+import { LaxaltContext, LXLT_State_Filters } from "../../state";
 import shuffle from "../../utils/shuffle";
 
 // Styles
@@ -29,6 +29,7 @@ import {
   aQuadrantId,
   bQuadrantId,
   cQuadrantId,
+  HoverGridItemStyle,
 } from "./styles.scss";
 
 // Begin Component
@@ -36,9 +37,51 @@ import {
 
 type LXLT_HoverGrid = {
   items: any[];
+  updateFilters: (_filterUpdate: LXLT_State_Filters) => void;
+};
+
+type LXLT_HoverGridItem = {
+  item: {
+    src: string;
+    alt: string;
+    categories: string[];
+  };
+  updateFilters: (_filterUpdate: LXLT_State_Filters) => void;
 };
 
 const DEBUG_VERBOSE = false;
+
+const HoverGridItem: React.FunctionComponent<LXLT_HoverGridItem> = ({
+  item,
+  updateFilters,
+}) => {
+  const createFilter = (category): LXLT_State_Filters => {
+    return {
+      queries: [category],
+    };
+  };
+
+  return (
+    <HoverGridItemStyle className="i-t">
+      <div className="i-c">
+        <img src={item.src} alt={item.alt} />
+      </div>
+      {item.categories ? (
+        <div className="i-t">
+          {item.categories.map((cat, idx) => {
+            return (
+              <button onClick={() => updateFilters(createFilter(cat))}>
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
+    </HoverGridItemStyle>
+  );
+};
 
 // HoverGrid
 class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
@@ -646,9 +689,10 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
                 return (
                   <div key={idx} className={`i`}>
                     <div className="i-i">
-                      <div className="i-t">
-                        <img src={i.src} alt={i.alt} />
-                      </div>
+                      <HoverGridItem
+                        updateFilters={this.props.updateFilters}
+                        item={i}
+                      />
                     </div>
                   </div>
                 );
@@ -1498,9 +1542,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
                 return (
                   <div key={idx} className={`i`}>
                     <div className="i-i">
-                      <div className="i-t">
-                        <img src={i.src} alt={i.alt} />
-                      </div>
+                      <HoverGridItem
+                        updateFilters={this.props.updateFilters}
+                        item={i}
+                      />
                     </div>
                   </div>
                 );
@@ -1596,16 +1641,8 @@ export const HoverGrid = ({ allContent }) => {
   const [isLoading, setLoading] = useState(true);
   const laxaltState = React.useContext(LaxaltContext);
 
-  const updateFilters = () => {
-    let arr = laxaltState.currentFilter._state.queries;
-
-    arr.push("thing");
-
-    let newState = {
-      queries: arr,
-    };
-
-    laxaltState.currentFilter._set(newState);
+  const updateFilters = (newFilters: LXLT_State_Filters) => {
+    laxaltState.currentFilter._set(newFilters);
   };
 
   useEffect(() => {
@@ -1617,11 +1654,10 @@ export const HoverGrid = ({ allContent }) => {
       setLoading(false);
     }
 
-    
     if (typeof window) {
       let resizeId;
 
-      window.addEventListener('resize', function() {
+      window.addEventListener("resize", function () {
         this.clearTimeout(resizeId);
 
         if (!isLoading) {
@@ -1629,7 +1665,7 @@ export const HoverGrid = ({ allContent }) => {
         }
 
         resizeId = setTimeout(updateGrid, 500);
-      })
+      });
 
       function updateGrid() {
         setLoading(false);
@@ -1641,9 +1677,18 @@ export const HoverGrid = ({ allContent }) => {
     .map((i) => {
       if (!i.fields || !i.fields.Attachments || !i.fields.Name) return false;
 
+      let itemCategories = [];
+
+      if (i.fields.Categories) {
+        i.fields.Categories.map((cat) => {
+          itemCategories.push(cat.fields.Name);
+        });
+      }
+
       return {
         src: i.fields.Attachments[0].url,
         alt: i.fields.Name,
+        categories: itemCategories,
       };
     })
     .filter((i) => i !== false);
@@ -1653,10 +1698,23 @@ export const HoverGrid = ({ allContent }) => {
       {isLoading ? (
         "Loading"
       ) : isTouchCapable ? (
-        <HoverGridTouchCapable items={items} />
+        <HoverGridTouchCapable updateFilters={updateFilters} items={items} />
       ) : (
-        <HoverGridDesktop items={items} />
+        <HoverGridDesktop updateFilters={updateFilters} items={items} />
       )}
+
+      {/* <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          padding: 50,
+          background: "gray",
+          color: "white",
+        }}
+      >
+        {laxaltState.currentFilter._state.queries.toString()}
+      </div> */}
     </>
   );
 };
