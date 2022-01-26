@@ -723,7 +723,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
       scrollDir: {
         x: null, // 'left', 'right'
-        y: null // 'up', 'down'
+        y: null, // 'up', 'down'
       },
 
       col: 0,
@@ -841,9 +841,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let _prevScrollY = this.state.scrollY;
 
     let _dir = {
-      x: _prevScrollX >= _scrollX ? 'left' : 'right',
-      y: _prevScrollY >= _scrollY ? 'up' : 'down'
-    }
+      x: _prevScrollX >= _scrollX ? "left" : "right",
+      y: _prevScrollY >= _scrollY ? "up" : "down",
+    };
 
     // console.log(`x: ${_sc.scrollLeft}, y: ${_sc.scrollTop}`, _sc);
 
@@ -856,7 +856,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
         prevScrollX: _prevScrollX,
         prevScrollY: _prevScrollY,
-      }, this.updateGrid
+      },
+      this.updateGrid
     );
   };
 
@@ -882,7 +883,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   };
 
   updateGrid = () => {
-    let { quadW, quadH, totalCol, totalRow, winW, winH, scrollX, scrollY } = this.state;
+    let { quadW, quadH, totalCol, totalRow, winW, winH, scrollX, scrollY } =
+      this.state;
     let _sc = this.scrollContainer.current;
     let _q = this.rootQuadrant.current;
 
@@ -892,29 +894,33 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     let xOffset = quadW * totalCol - winW - xThreshold;
     let yOffset = quadH * totalRow - winH - yThreshold;
 
-    let currentCol = (scrollX / quadW);
-    let currentRow = (scrollY / quadH);
+    let currentCol = scrollX / quadW;
+    let currentRow = scrollY / quadH;
 
-    const _updateTotals = (r, c) => {      
+    const _updateTotals = (r, c) => {
       let totalColUpdate = scrollX >= xOffset ? c + 1 : c;
       let totalRowUpdate = scrollY >= yOffset ? r + 1 : r;
 
       this.setState(
         {
           totalCol: totalColUpdate,
-          totalRow: totalRowUpdate
-        }, this.updatePositioning
+          totalRow: totalRowUpdate,
+        },
+        this.updatePositioning
       );
-    }
+    };
 
-    this.setState({
-      row: currentRow,
-      col: currentCol
-    }, () => _updateTotals(totalRow, totalCol))
+    this.setState(
+      {
+        row: currentRow,
+        col: currentCol,
+      },
+      () => _updateTotals(totalRow, totalCol)
+    );
   };
 
   updatePositioning = () => {
-    let { 
+    let {
       scrollDir,
       col,
       row,
@@ -928,9 +934,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       winW,
       winH,
       quadW,
-      quadH ,
+      quadH,
       scrollX,
-      scrollY
+      scrollY,
     } = this.state;
 
     // @TODO: Bail on this function if there was no updates, maybe create a prevState to compare as everything below is extremely heavy
@@ -939,25 +945,24 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     // Vectors
     let screenXVec = {
       start: scrollX,
-      end: scrollX + winW
-    }
+      end: scrollX + winW,
+    };
 
     let screenYVec = {
       start: scrollY,
-      end: scrollY + winH
-    }
+      end: scrollY + winH,
+    };
 
     const quadWVec = (c) => ({
       start: c * quadW,
-      end: (c + 1) * quadW
-    })
+      end: (c + 1) * quadW,
+    });
 
     const quadHVec = (r) => ({
       start: r * quadH,
-      end: (r + 1) * quadH
-    })
+      end: (r + 1) * quadH,
+    });
 
-  
     // ___________________________
     // Visibility functions
     const getInView = (screenVec, quadVec, total) => {
@@ -965,26 +970,35 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       let _visibleItems = [];
 
       _totalArray.map((i) => {
-        if ((screenVec.start > quadVec(i).start && (screenVec.start < quadVec(i).end)) || ((screenVec.end > quadVec(i).start) && (screenVec.end < (quadVec(i).end)))) {
+        if (
+          (screenVec.start > quadVec(i).start &&
+            screenVec.start < quadVec(i).end) ||
+          (screenVec.end > quadVec(i).start && screenVec.end < quadVec(i).end)
+        ) {
           _visibleItems.push(i);
         }
-      })
-      
+      });
+
       return _visibleItems;
-    }
+    };
 
     const getNearby = (screenVec, quadVec, total, threshold) => {
       let _totalArray = Array.from(Array(total).keys());
       let _nearbyItems = [];
 
       _totalArray.map((i) => {
-        if (((screenVec.end >= quadVec(i).start - threshold) && (screenVec.end <= quadVec(i).start)) || ((screenVec.start <= quadVec(i).end + threshold) && (screenVec.start >= quadVec(i).end))) {
-          _nearbyItems.push(i)
+        if (
+          (screenVec.end >= quadVec(i).start - threshold &&
+            screenVec.end <= quadVec(i).start) ||
+          (screenVec.start <= quadVec(i).end + threshold &&
+            screenVec.start >= quadVec(i).end)
+        ) {
+          _nearbyItems.push(i);
         }
-      })
+      });
 
       return _nearbyItems;
-    }
+    };
 
     let _visibleColumns = getInView(screenXVec, quadWVec, totalCol);
     let _visibleRows = getInView(screenYVec, quadHVec, totalRow);
@@ -1011,36 +1025,44 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
             ...cachedQuadrantMatrix,
             x: visCol + 1,
             y: visRow + 1,
-            a: true
-          }
+            a: true,
+          };
 
           let matrixKeys = Object.keys(prevMatrix);
           let itemAlreadyCloned = false;
 
           matrixKeys.map((key) => {
-            if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+            if (
+              prevMatrix[key].x == updatedQuadrantMatrix.x &&
+              prevMatrix[key].y == updatedQuadrantMatrix.y
+            ) {
               itemAlreadyCloned = true;
 
-              if (DEBUG_VERBOSE) console.log("Item already cloned, bail")
+              if (DEBUG_VERBOSE) console.log("Item already cloned, bail");
             }
-          })
+          });
 
           if (!itemAlreadyCloned) {
-            this.setState({
-              matrix: {
-                ... prevMatrix,
-                [cachedQuadrantId]: updatedQuadrantMatrix
-              }
-            }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
-            
+            this.setState(
+              {
+                matrix: {
+                  ...prevMatrix,
+                  [cachedQuadrantId]: updatedQuadrantMatrix,
+                },
+              },
+              () =>
+                this.updateQuadrantCssVariables(
+                  cachedQuadrantId,
+                  updatedQuadrantMatrix
+                )
+            );
+
             tick++;
           }
+        });
+      });
+    };
 
-        })
-      })
-    }
-
-    
     const updateNearbyFromCache = (c, r) => {
       // Bail if we don't have anything to work with
       if (!c || !r || !inactiveQuadrants) return;
@@ -1054,37 +1076,46 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           let cachedQuadrantMatrix = this.state.matrix[cachedQuadrantId];
           let updatedQuadrantMatrix = {
             ...cachedQuadrantMatrix,
-            x: nearbyCol + 1, 
+            x: nearbyCol + 1,
             y: nearbyRow + 1,
-            a: true
-          }
+            a: true,
+          };
 
           let matrixKeys = Object.keys(prevMatrix);
           let itemAlreadyCloned = false;
 
           matrixKeys.map((key) => {
-            if (prevMatrix[key].x == updatedQuadrantMatrix.x && prevMatrix[key].y == updatedQuadrantMatrix.y) {
+            if (
+              prevMatrix[key].x == updatedQuadrantMatrix.x &&
+              prevMatrix[key].y == updatedQuadrantMatrix.y
+            ) {
               itemAlreadyCloned = true;
 
-              if (DEBUG_VERBOSE) console.log("Item already cloned, bail")
+              if (DEBUG_VERBOSE) console.log("Item already cloned, bail");
             }
-          })
+          });
 
           if (!itemAlreadyCloned) {
-            this.setState({
-              matrix: {
-                ... prevMatrix,
-                [cachedQuadrantId]: updatedQuadrantMatrix
-              }
-            }, () => this.updateQuadrantCssVariables(cachedQuadrantId, updatedQuadrantMatrix))
-            
+            this.setState(
+              {
+                matrix: {
+                  ...prevMatrix,
+                  [cachedQuadrantId]: updatedQuadrantMatrix,
+                },
+              },
+              () =>
+                this.updateQuadrantCssVariables(
+                  cachedQuadrantId,
+                  updatedQuadrantMatrix
+                )
+            );
+
             tick++;
           }
+        });
+      });
+    };
 
-        })
-      })
-    }
-    
     updateInViewFromCache(_visibleColumns, _visibleRows);
     updateNearbyFromCache(_nearbyColumns, _nearbyRows);
 
@@ -1094,8 +1125,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
       visibleColumns: _visibleColumns,
       visibleRows: _visibleRows,
       nearbyColumns: _nearbyColumns,
-      nearbyRows: _nearbyRows
-    })
+      nearbyRows: _nearbyRows,
+    });
 
     // // @TODO: figure out this ratio
     // if (row > (totalRow - screenYRatio) && scrollDir.y == 'down') {
@@ -1162,7 +1193,7 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     //     }
     //   }
     // }
-  }
+  };
 
   // _________________________________
   // Intersection Observers
@@ -1205,10 +1236,8 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   };
 
   handleObserver = (id, entries, observer) => {
-    if (DEBUG_VERBOSE) console.log(
-      `handleObserver(${id}) ratio`,
-      entries[0].intersectionRatio
-    );
+    if (DEBUG_VERBOSE)
+      console.log(`handleObserver(${id}) ratio`, entries[0].intersectionRatio);
     if (DEBUG_VERBOSE) console.log(`handleObserver(${id}) entries`, entries);
     if (DEBUG_VERBOSE) console.log(`handleObserver(${id}) observer`, observer);
 
@@ -1216,12 +1245,18 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 
     this.updateQuadrantCoordinates(entries, id, prevMatrix);
   };
-  
+
   generateObserverMatrix = (e, id, prevMatrix) => {
     let isActive = e.intersectionRatio > 0 ? true : false;
 
-    return this.createQuadrantMatrix(prevMatrix[id].x, prevMatrix[id].y, isActive, e.intersectionRatio, prevMatrix[id].r)
-  }
+    return this.createQuadrantMatrix(
+      prevMatrix[id].x,
+      prevMatrix[id].y,
+      isActive,
+      e.intersectionRatio,
+      prevMatrix[id].r
+    );
+  };
 
   addObservers = (store) => {
     let { rootQuadrant, quadrantObserver } = this;
@@ -1304,10 +1339,9 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   // _________________________________
   // Quadrant management
   updateQuadrantCoordinates = (entries, id, prevMatrix) => {
-  
     entries.map((e) => {
       let newQuadrantMatrix = this.generateObserverMatrix(e, id, prevMatrix);
-      
+
       let isActive = newQuadrantMatrix.a;
       let prevActiveQuadrants = this.state.activeQuadrants;
       let prevInactiveQuadrants = this.state.inactiveQuadrants;
@@ -1329,21 +1363,30 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           _activeQuadrants = _activeQuadrants.filter((i) => i != id);
         }
       }
-      
+
       this.updateQuadrantVisibility(id, newQuadrantMatrix);
 
       let newMatrix = {
-        ... prevMatrix,
-        [id]: newQuadrantMatrix 
-      }
+        ...prevMatrix,
+        [id]: newQuadrantMatrix,
+      };
 
-      this.setState({
-        matrix: newMatrix,
-        activeQuadrants: _activeQuadrants,
-        inactiveQuadrants: _inactiveQuadrants,
-      }, () => DEBUG_VERBOSE ? console.log(`updateQuadrantCoordinates(${id}) updated matrix`, this.state.matrix) : '')
-    })
-  }
+      this.setState(
+        {
+          matrix: newMatrix,
+          activeQuadrants: _activeQuadrants,
+          inactiveQuadrants: _inactiveQuadrants,
+        },
+        () =>
+          DEBUG_VERBOSE
+            ? console.log(
+                `updateQuadrantCoordinates(${id}) updated matrix`,
+                this.state.matrix
+              )
+            : ""
+      );
+    });
+  };
 
   createQuadrantMatrix = (x, y, active, ratio, prevRatio) => {
     return {
@@ -1380,15 +1423,15 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
     if (q) {
       q.setAttribute("style", this.quadrantStyleAttr(matrix));
     }
-  }
+  };
 
   updateQuadrantVisibility = (id, matrix) => {
     let q = document.getElementById(id);
 
     if (q) {
-      q.setAttribute("aria-hidden", matrix.a ? 'false' : 'true')
+      q.setAttribute("aria-hidden", matrix.a ? "false" : "true");
     }
-  }
+  };
 
   createQuadrantClones = () => {
     let { rootQuadrant, view, quadrantStyleAttr, quadrantObserver } = this;
@@ -1477,7 +1520,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           <br />
           scrollY: <strong>{this.state.scrollY} </strong>
           <br />
-          scrollDir: <strong>{this.state.scrollDir.x} / {this.state.scrollDir.y}</strong>
+          scrollDir:{" "}
+          <strong>
+            {this.state.scrollDir.x} / {this.state.scrollDir.y}
+          </strong>
           <br />
           scrollW: <strong>{this.state.scrollW} </strong>
           <br />
@@ -1491,17 +1537,46 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
           <br />
           totalRow: <strong>{this.state.totalRow} </strong>
           <br />
-          visibleColumns: <strong>[{this.state.visibleColumns.length ? this.state.visibleColumns.toString() : ''}]</strong>
+          visibleColumns:{" "}
+          <strong>
+            [
+            {this.state.visibleColumns.length
+              ? this.state.visibleColumns.toString()
+              : ""}
+            ]
+          </strong>
           <br />
-          visibleRows: <strong>[{this.state.visibleRows.length ? this.state.visibleRows.toString() : ''}]</strong>
+          visibleRows:{" "}
+          <strong>
+            [
+            {this.state.visibleRows.length
+              ? this.state.visibleRows.toString()
+              : ""}
+            ]
+          </strong>
           <br />
-          nearbyColumns: <strong>[{this.state.nearbyColumns.length ? this.state.nearbyColumns.toString() : ''}]</strong>
+          nearbyColumns:{" "}
+          <strong>
+            [
+            {this.state.nearbyColumns.length
+              ? this.state.nearbyColumns.toString()
+              : ""}
+            ]
+          </strong>
           <br />
-          nearbyRows: <strong>[{this.state.nearbyRows.length ? this.state.nearbyRows.toString() : ''}]</strong>
+          nearbyRows:{" "}
+          <strong>
+            [
+            {this.state.nearbyRows.length
+              ? this.state.nearbyRows.toString()
+              : ""}
+            ]
+          </strong>
           <br />
           activeQuadrants: <strong>{this.state.activeQuadrants.length}</strong>
           <br />
-          inactiveQuadrants: <strong>{this.state.inactiveQuadrants.length}</strong>
+          inactiveQuadrants:{" "}
+          <strong>{this.state.inactiveQuadrants.length}</strong>
           <br />
           winW: <strong>{this.state.winW} </strong>
           <br />
@@ -1516,10 +1591,22 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   }
 }
 
-export const HoverGrid = ({allContent}) => {
+export const HoverGrid = ({ allContent }) => {
   const [isTouchCapable, setTouchCapable] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const laxaltState = React.useContext(LaxaltContext);
+
+  const updateFilters = () => {
+    let arr = laxaltState.currentFilter._state.queries;
+
+    arr.push("thing");
+
+    let newState = {
+      queries: arr,
+    };
+
+    laxaltState.currentFilter._set(newState);
+  };
 
   useEffect(() => {
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -1531,14 +1618,16 @@ export const HoverGrid = ({allContent}) => {
     }
   });
 
-  const items = allContent.map((i) => {
-    if (!i.fields || !i.fields.Attachments || !i.fields.Name) return false;
+  const items = allContent
+    .map((i) => {
+      if (!i.fields || !i.fields.Attachments || !i.fields.Name) return false;
 
-    return {
-      src: i.fields.Attachments[0].url,
-      alt: i.fields.Name
-    }
-  }).filter((i) => i !== false);
+      return {
+        src: i.fields.Attachments[0].url,
+        alt: i.fields.Name,
+      };
+    })
+    .filter((i) => i !== false);
 
   return (
     <>
