@@ -1616,6 +1616,25 @@ export const HoverGrid = ({ allContent }) => {
       setTouchCapable(false);
       setLoading(false);
     }
+
+    
+    if (typeof window) {
+      let resizeId;
+
+      window.addEventListener('resize', function() {
+        this.clearTimeout(resizeId);
+
+        if (!isLoading) {
+          setLoading(true);
+        }
+
+        resizeId = setTimeout(updateGrid, 500);
+      })
+
+      function updateGrid() {
+        setLoading(false);
+      }
+    }
   });
 
   const items = allContent
