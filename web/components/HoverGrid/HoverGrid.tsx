@@ -37,6 +37,8 @@ import {
 
 type LXLT_HoverGrid = {
   items: any[];
+  isFiltered: boolean;
+  className: string;
   updateFilters: (_filterUpdate: LXLT_State_Filters) => void;
 };
 
@@ -675,6 +677,7 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
           }}
           onMouseEnter={() => this.setActive()}
           onMouseLeave={() => this.killActive()}
+          className={this.props.className ? this.props.className : ""}
         >
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
@@ -684,7 +687,12 @@ class HoverGridDesktop extends Component<LXLT_HoverGrid, any> {
             ref={this.view}
           >
             <div className="q" id={rootQuadrantId} ref={this.rootQuadrant}>
-              <div className={`i --dead`} ref={this.deadItem} />
+              {!this.props.isFiltered ? (
+                <div className={`i --dead`} ref={this.deadItem} />
+              ) : (
+                ""
+              )}
+
               {this.state.items.map((i, idx) => {
                 return (
                   <div key={idx} className={`i`}>
@@ -1517,7 +1525,10 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
   render() {
     return (
       <>
-        <HoverGridTouchCapableStyle ref={this.scrollContainer}>
+        <HoverGridTouchCapableStyle
+          className={this.props.className ? this.props.className : ""}
+          ref={this.scrollContainer}
+        >
           <div
             className={`v ${this.state.quadrantCalculated ? "--i" : ""}`}
             ref={this.view}
@@ -1637,12 +1648,29 @@ class HoverGridTouchCapable extends Component<LXLT_HoverGrid, any> {
 }
 
 export const HoverGrid = ({ allContent }) => {
-  const [isTouchCapable, setTouchCapable] = useState(null);
-  const [isLoading, setLoading] = useState(true);
   const laxaltState = React.useContext(LaxaltContext);
 
-  const updateFilters = (newFilters: LXLT_State_Filters) => {
+  const [isTouchCapable, setTouchCapable] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  const [currentFilter, setFilter] = useState(laxaltState.currentFilter._state);
+  const [gridExit, setGridExit] = useState(false);
+
+  const _updateCurrentFilter = (newFilters: LXLT_State_Filters) => {
+    setLoading(true);
+    setGridExit(false);
+
     laxaltState.currentFilter._set(newFilters);
+    setFilter(newFilters);
+
+    console.log("updateFilters", newFilters);
+
+    setTimeout(() => setLoading(false), 20);
+  }
+
+  const updateFilters = (newFilters: LXLT_State_Filters) => {
+    setGridExit(true);
+
+    setTimeout(() => _updateCurrentFilter(newFilters), 200);
   };
 
   useEffect(() => {
@@ -1693,17 +1721,56 @@ export const HoverGrid = ({ allContent }) => {
     })
     .filter((i) => i !== false);
 
+  const checkItemForFilters = (i) => {
+    console.log("checkItemForFilters", i);
+
+    let hasMatch = false;
+
+    currentFilter.queries.map((q) => {
+      let matchedFilters = i.categories.filter(
+        (c) => q.toLowerCase() == c.toLowerCase()
+      );
+
+      if (matchedFilters.length > 0) {
+        if (!hasMatch) {
+          hasMatch = true;
+        }
+      }
+    });
+
+    return hasMatch;
+  };
+
+  const isFiltered =
+    currentFilter.queries.length > 0 && currentFilter.queries[0] !== "";
+
+  const filteredItems = items.filter((i) => checkItemForFilters(i));
+
+  const updatedItems = isFiltered ? filteredItems : items;
+
+  console.log("showing items", updatedItems);
+
   return (
     <>
       {isLoading ? (
         "Loading"
       ) : isTouchCapable ? (
-        <HoverGridTouchCapable updateFilters={updateFilters} items={items} />
+        <HoverGridTouchCapable
+          className={gridExit ? '--e' : ''}
+          isFiltered={isFiltered}
+          updateFilters={updateFilters}
+          items={updatedItems}
+        />
       ) : (
-        <HoverGridDesktop updateFilters={updateFilters} items={items} />
+        <HoverGridDesktop
+          className={gridExit ? '--e' : ''}
+          isFiltered={isFiltered}
+          updateFilters={updateFilters}
+          items={updatedItems}
+        />
       )}
 
-      {/* <div
+      <div
         style={{
           position: "fixed",
           bottom: 0,
@@ -1713,8 +1780,18 @@ export const HoverGrid = ({ allContent }) => {
           color: "white",
         }}
       >
+        <button
+          onClick={() =>
+            updateFilters({
+              queries: [""],
+            })
+          }
+        >
+          Clear
+        </button>
+        <br />
         {laxaltState.currentFilter._state.queries.toString()}
-      </div> */}
+      </div>
     </>
   );
 };

@@ -58,6 +58,17 @@ const Reset = createGlobalStyle`
   }
 }
 
+@keyframes gridExit {
+  from {
+    opacity: 1;
+    /* filter: blur(1000px); */
+  }
+  to {
+    opacity: 0;
+    /* filter: blur(0px); */
+  }
+}
+
 @keyframes marqueeTopRightQuadrants {
   from {
     transform: translateX(-100%);

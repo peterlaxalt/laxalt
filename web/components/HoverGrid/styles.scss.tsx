@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////////
 
 // Core
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Root } from "../../constants/Root";
 import { Theme } from "../../constants/Theme";
 
@@ -38,6 +38,21 @@ export const bottomCenterQuadrantId = "_bc";
 export const topRightQuadrantId = "_tr";
 export const middleRightQuadrantId = "_mr";
 export const bottomRightQuadrantId = "_br";
+
+const gridExitDelay = '.15s';
+const gridExitStyles = css`
+  opacity: 1;
+
+  pointer-events: all !important;
+
+  animation: gridExit ${gridExitDelay} linear 1;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+
+  * {
+    pointer-events: all !important;
+  }
+`
 
 // ______________________________________
 // Tappable system
@@ -76,6 +91,10 @@ export const HoverGridDesktopStyle = styled.div`
   animation-fill-mode: forwards;
 
   pointer-events: none;
+
+  &.--e {
+    ${gridExitStyles}
+  }
 
   * {
     pointer-events: none;
@@ -268,6 +287,16 @@ export const HoverGridTouchCapableStyle = styled.div`
   height: 100vh;
 
   overflow: scroll;
+
+  opacity: 0;
+
+  animation: gridEntrance .5s linear 1;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+
+  &.--e {
+    ${gridExitStyles}
+  }
   
   * {
     box-sizing: border-box;
@@ -367,7 +396,7 @@ export const HoverGridItemStyle = styled.div`
     @media (hover: hover) {
       margin-top: calc(${Root.Size} * 1.5);
 
-      transform: translateY(-80%);
+      transform: translateY(-50%);
 
       transition: transform .4s ease;
     }
@@ -407,6 +436,10 @@ export const HoverGridItemStyle = styled.div`
     }
 
     @media (hover: hover) {
+      font-size: 16px;
+
+      padding: 10px 20px;
+
       &:hover {
         color: ${Theme.Color.varBackground};
         box-shadow: 0px 0px 0px 1px ${Theme.Color.varForeground};
