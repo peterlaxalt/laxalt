@@ -2,10 +2,7 @@
 import React, { useContext } from "react";
 import { createGlobalStyle } from "styled-components";
 import { __DEBUG__ } from "../../constants/site/Settings";
-import {
-  ColorContext,
-  LXLT_ColorTheme,
-} from "../../constants/styles/Color";
+import { ColorContext, LXLT_ColorTheme } from "../../constants/styles/Color";
 import { CssUtils } from "../../constants/styles/CssUtils";
 import { Theme } from "../../constants/Theme";
 import { ThemePickerClassName, ThemePickerStyle } from "./styles.scss";
@@ -13,7 +10,9 @@ import { ThemePickerClassName, ThemePickerStyle } from "./styles.scss";
 // Begin Types
 // __________________________________________________________________________________________
 
-type LXLT_ThemePicker = {
+type LXLT_ThemePickerView = {};
+
+type LXLT_ThemePicker = LXLT_ThemePickerView & {
   setTheme: (theme: LXLT_ColorTheme) => void;
 };
 
@@ -29,7 +28,6 @@ type LXLT_ThemePickerState = {
   availableThemes: LXLT_ColorTheme[];
   activeTheme?: LXLT_ColorTheme;
 };
-
 
 export const ColorThemes: LXLT_ColorTheme[] = [
   {
@@ -107,8 +105,7 @@ export class ThemePickerWithHook extends React.PureComponent<
   }
 
   componentDidMount() {
-    if (typeof window) {
-
+    if (typeof window && !window.laxaltUniversalTheme) {
       this.setNewTheme(this.state.activeTheme);
 
       // const { setTheme } = this.props;
@@ -206,7 +203,9 @@ export class ThemePickerWithHook extends React.PureComponent<
   }
 }
 
-export const ThemePicker: React.FunctionComponent = () => {
+export const ThemePicker: React.FunctionComponent<
+  LXLT_ThemePickerView
+> = () => {
   const { setTheme } = useContext(ColorContext);
 
   return <ThemePickerWithHook setTheme={setTheme} />;
